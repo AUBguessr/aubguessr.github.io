@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base target="_top">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>AUBguessr</title>
+
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <link rel="stylesheet" href="AUBguessr.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+</head>
+
+<body>
+
+    <div id="container">
+        <div id="dim"></div>
+
+        <img id="picFull" src="image0.jpeg"></img>
+
+        <div id="side1">
+
+            <p id="imageCount">1/5</p>
+
+            <p id="press">Press Play When Ready.</p>
+
+            <img id="logo" src="logo.png"></img>
+
+            <p id="text1">do you know where this is?</p>
+
+            <img id="picture" src=""></img>
+            <p id="full">Click image to fullscreen</p>
+
+            <p id="result"></p>
+        </div>
+
+        <div id="side2">
+            <div id="map"></div>
+            <button id="submit" class="active">Play!</button>
+        </div>
+
+        <div id="scoreDiv">
+            <p id="scoreText1">FINAL RESULTS</p>
+            <p id="score">98%</p>
+            <p id="perfect">Perfect scores: 99/99</p>
+
+            <button id="again">Play Again!</button>
+        </div>
+    </div>
+
+    <script>
+        var count = 0;
+        var next = false;
+        var guessed = false;
+        var play = true;
+        var done = false;
+        var perfectScore = 0;
+        var total = 0;
+
+        var coords = [
+            [33.90083253913812, 35.48076220903855],     //0
+            [33.89977295523677, 35.479049998468426],    //1
+            [33.899737370858766, 35.48036587391895],    //2
+            [33.89991982670831, 35.48157262332447],     //3
+            [33.900209085181885, 35.48231276295985],    //4
+            [33.89978190351037, 35.482152314384344],    //5
+            [33.901544581797346, 35.47931950135344],    //6
+            [33.901838253608624, 35.48012933601701],    //7
+            [33.902118605528, 35.48027950927635],       //8
+            [33.90176705297437, 35.48045113585846],     //9
+            [33.901014992644164, 35.480874838983084],   //10
+            [33.90015571488018, 35.4818833601382],      //11
+            [33.89966619965902, 35.48103059055828],     //12
+            [33.89955900490268, 35.48085934825922],     //13
+            [33.89972405160433, 35.48014564099421],     //14
+            [33.89989315706555, 35.47975948118444],     //15
+            [33.900053361929935, 35.47974875452308],    //16
+            [33.899505994067184, 35.47869217837691],    //17
+            [33.90041348349714, 35.48268254751606],     //18
+            [33.8995228638317, 35.4840386783003],       //19
+            [33.90048881148797, 35.47835784006983],     //20
+            [33.900618003677664, 35.483346837999285],   //21
+            [33.90105379822309, 35.48242421246508],     //22
+            [33.90180598776183, 35.47984424924498],     //23
+            [33.90201513936023, 35.48018213907853],     //24
+            [33.9018949885047, 35.48024649904684],      //25
+            [33.901076864311214, 35.481909031525966],   //26
+            [33.90115269978488, 35.47959482183285],     //27
+            [33.90081432318587, 35.478806331758214]     //28
+        ];
+
+        var maxMarginLat = 0.00643;
+        var maxMarginLng = 0.0104;
+        var guessLat;
+        var guessLng;
+
+        var round = 5;  //change round size//////////////////////////////////////////////
+        var locations = coords.length;
+        var arr = new Array(locations);
+
+        for (i = 0; i < locations; i++) {
+            arr[i] = i;
+        }
+
+        arr = shuffleArray(arr);
+
+        var turn = arr[0];
+
+        function shuffleArray(arr) {
+            const shuffled = [...arr]; // Copy array to prevent original mutation
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1)); // Pick a random index
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; // Swap elements
+            }
+            return shuffled;
+        }
+
+        var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}')
+        
+        var bounds = L.latLngBounds([33.905, 35.475], [33.897, 35.488]);
+
+        var map = L.map('map', {
+            center: [33.9005, 35.481],
+            zoom: 17,
+            layers: [Esri_WorldImagery],
+            minZoom: 17,   // Minimum zoom level (zoomed out)
+            maxZoom: 18,
+            maxBounds: bounds,
+            maxBoundsViscosity: 1.0
+        });
+
+        var markerGroup = L.layerGroup().addTo(map);
+        var formatted;
+
+        for(i=0; i<coords.length; i++) L.marker([coords[i][0],coords[i][1]]).addTo(markerGroup); //SHOW ALL////////////////////////////////////
+        
+
+        map.on('click', function (e) {
+
+            if (play) return;
+
+            if (next) return;
+
+            document.getElementById("submit").classList.add("active");
+
+            markerGroup.clearLayers();
+            L.marker(e.latlng).addTo(markerGroup);
+
+            guessLat = e.latlng.lat;
+            guessLng = e.latlng.lng;
+
+            //console.log(guessLat, guessLng); //USE FOR NEW PICTURES///////////////////////////////////////////////////////////////////
+
+            var absLat = Math.abs(coords[turn][0] - guessLat);
+            var absLng = Math.abs(coords[turn][1] - guessLng);
+
+            var ACC = 100 - (((absLat / maxMarginLat) + (absLng / maxMarginLng)) / 2 * 100);
+
+            ACC = ACC - 8 * (100 - ACC);
+
+            if (ACC < 0) ACC = 0;
+            if (ACC > 96) {
+                ACC = 100;
+                formatted = ACC.toFixed(0);
+
+            } else formatted = ACC.toFixed(2);
+
+            guessed = true;
+
+        });
+
+        var submit = document.getElementById("submit");
+
+        submit.addEventListener('click', function (e) {
+
+            if (done) {
+                finishRound();
+                return;
+            }
+
+            if (next || play) {
+
+                document.getElementById("picture").style.display = "revert";
+                document.getElementById("text1").style.display = "revert";
+
+                if (next) {
+                    count++;
+                    turn = arr[count];
+                }
+
+                document.getElementById("imageCount").style.display = "revert";
+
+                document.getElementById("picture").src = `image${turn}.jpeg`;
+                document.getElementById("picFull").src = `image${turn}.jpeg`;
+                document.getElementById("result").style.display = "none";
+                document.getElementById("submit").classList.remove("active");
+                document.getElementById("picture").style.width = "30vw";
+                document.getElementById("submit").textContent = "Submit";
+                document.getElementById("imageCount").textContent = (count + 1) + "/" + round;
+                markerGroup.clearLayers();
+                next = false;
+                play = false;
+                document.getElementById("full").style.display = "revert";
+                document.getElementById("press").style.display = "none";
+                return;
+            }
+
+            if (!guessed) return;
+
+            document.getElementById("result").classList.remove("golden", "regular");
+
+            if (formatted == 100) {
+                document.getElementById("result").classList.add("golden");
+            } else {
+                document.getElementById("result").classList.add("regular");
+            }
+
+            document.getElementById("picture").style.width = "25vw";
+
+            document.getElementById("result").style.display = "revert";
+            document.getElementById("result").textContent = formatted + "%";
+            total += parseFloat(formatted);
+            if (parseFloat(formatted) == 100) perfectScore++;
+
+            L.circleMarker([coords[turn][0], coords[turn][1]], {
+                color: 'red',          // Stroke color
+                fillColor: '#f03',     // Fill color
+                fillOpacity: 0.8,
+                radius: 8
+            }).addTo(markerGroup);
+
+            var point1 = [coords[turn][0], coords[turn][1]];
+            var point2 = [guessLat, guessLng];
+
+            // Combine the points into an array
+            var pointList = [point1, point2];
+
+            // Create the line and add it to your map instance
+            var polyline = L.polyline(pointList, {
+                color: 'red',      // Sets line color
+                weight: 3,         // Sets stroke width in pixels
+                opacity: 0.5,      // Sets line transparency
+                smoothFactor: 1    // Simplifies the line at higher zoom levels
+            }).addTo(markerGroup);
+
+            submit.textContent = "Next location ➜"
+            next = true;
+            guessed = false;
+
+            if (count == round - 1) {
+                document.getElementById("submit").textContent = "See Results ➜";
+                done = true;
+                return;
+            }
+        });
+
+        var picture = document.getElementById("picture");
+        var dim = document.getElementById("dim");
+        var picFull = document.getElementById("picFull");
+
+        function finishRound() {
+            var finalScore = (total / round).toFixed(2);
+            if (finalScore == 100.00) finalScore = 100;
+            document.getElementById("score").textContent = finalScore + "%";
+            document.getElementById("perfect").textContent = "Perfect Scores: " + perfectScore + "/" + round;
+            dim.style.display = "revert";
+            document.getElementById("scoreDiv").style.display = "flex";
+            return;
+        };
+
+        picture.addEventListener('click', function (e) {
+            if (play) {
+                return;
+            }
+            dim.style.display = "revert";
+            picFull.style.display = "revert";
+        });
+
+        dim.addEventListener('click', function (e) {
+            dim.style.display = "none";
+            picFull.style.display = "none";
+            document.getElementById("scoreDiv").style.display = "none";
+        });
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                dim.style.display = "none";
+                picFull.style.display = "none";
+                document.getElementById("scoreDiv").style.display = "none";
+            }
+        });
+
+        document.getElementById("logo").addEventListener('click', function (e) {
+            window.location.reload();
+        });
+
+        document.getElementById("again").addEventListener('click', function (e) {
+            window.location.reload();
+        });
+
+    </script>
+</body>
+
+</html>
