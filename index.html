@@ -22,7 +22,7 @@
     <div id="container">
         <div id="dim"></div>
 
-        <img id="picFull" src="image0.jpeg"></img>
+        <img id="picFull" src="images/image0.jpeg"></img>
 
         <div id="side1">
 
@@ -92,10 +92,28 @@
             [33.9018949885047, 35.48024649904684],      //25
             [33.901076864311214, 35.481909031525966],   //26
             [33.90115269978488, 35.47959482183285],     //27
-            [33.90081432318587, 35.478806331758214],     //28
-            [33.89976387021083, 35.48164394659824],   //29
+            [33.90081432318587, 35.478806331758214],    //28
+            [33.89976387021083, 35.48164394659824],     //29
             [33.89960811495678, 35.48009750920969],     //30
-            [33.89948796070927, 35.47995806261175]     //31
+            [33.89948796070927, 35.47995806261175],     //31
+            [33.90202491268324, 35.480595956352616],    //32
+            [33.90188696170237, 35.4807407662813],      //33
+            [33.901272996174704, 35.48177103356111],    //34
+            [33.90195445592131, 35.48217618715327],     //35
+            [33.90217644381394, 35.48205002679223],     //36
+            [33.9022164939857, 35.48258099653064],      //37
+            [33.90194949248518, 35.4824254599406],      //38
+            [33.90167804010247, 35.48250054657027],     //39
+            [33.90145108744703, 35.482559543207884],    //40
+            [33.901357636177984, 35.482650719829614],   //41
+            [33.8997772134505, 35.48154787706983],      //42
+            [33.90108999622375, 35.48287848678208],     //43
+            [33.901023245045074, 35.48272244649119],    //44
+            [33.90071618895002, 35.48313005962372],     //45
+            [33.9005693356441, 35.48300133968713],      //46
+            [33.90027562827346, 35.48278680645951],     //47
+            [33.89972369653041, 35.48278203900603],     //48
+            [33.899679310196504, 35.482438189964554]    //49
         ];
 
         var maxMarginLat = 0.00643;
@@ -141,7 +159,7 @@
         var markerGroup = L.layerGroup().addTo(map);
         var formatted;
 
-        //for(i=0; i<coords.length; i++) L.marker([coords[i][0],coords[i][1]]).addTo(markerGroup); //SHOW ALL////////////////////////////////////
+        for(i=0; i<coords.length; i++) L.marker([coords[i][0],coords[i][1]]).addTo(markerGroup); //SHOW ALL////////////////////////////////////
         
 
         map.on('click', function (e) {
@@ -158,7 +176,7 @@
             guessLat = e.latlng.lat;
             guessLng = e.latlng.lng;
 
-            //console.log(guessLat, guessLng); //USE FOR NEW PICTURES///////////////////////////////////////////////////////////////////
+            console.log(guessLat, guessLng); //USE FOR NEW PICTURES///////////////////////////////////////////////////////////////////
 
             var absLat = Math.abs(coords[turn][0] - guessLat);
             var absLng = Math.abs(coords[turn][1] - guessLng);
@@ -199,8 +217,8 @@
 
                 document.getElementById("imageCount").style.display = "revert";
 
-                document.getElementById("picture").src = `image${turn}.jpeg`;
-                document.getElementById("picFull").src = `image${turn}.jpeg`;
+                document.getElementById("picture").src = `images/image${turn}.jpeg`;
+                document.getElementById("picFull").src = `images/image${turn}.jpeg`;
                 document.getElementById("result").style.display = "none";
                 document.getElementById("submit").classList.remove("active");
                 document.getElementById("picture").style.width = "30vw";
