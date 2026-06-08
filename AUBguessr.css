@@ -5,6 +5,7 @@
 }
 
 body {
+    color-scheme: only light;
     user-select: none;
     height: 100dvh;
     width: 100vw;
