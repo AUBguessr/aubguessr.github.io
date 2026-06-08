@@ -369,6 +369,7 @@ body {
     /* styles that only apply on mobile */
 
     *{
+        outline: 1px solid red;
     }
 
     #container {
