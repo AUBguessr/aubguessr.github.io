@@ -172,7 +172,7 @@ body {
 
     position: absolute;
 
-    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 1);
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.8);
     overflow: hidden;
 
 }
@@ -320,7 +320,7 @@ body {
     border-style: solid;
     border-radius: 10px;
 
-    padding-top: 3px;
+    padding-top: 8px;
 
     text-align: center;
 }
@@ -401,7 +401,7 @@ body {
         right: 30px;
         position: absolute;
         margin-left: 200px;
-        height: 45vw;
+        height: 40vw;
     }
 
     #side1 {
@@ -421,7 +421,7 @@ body {
     }
     
     #submit, #submit.active{
-        top: -950px;
+        top: -750px;
         width: 220px;
     }
 
@@ -451,7 +451,7 @@ body {
         position: absolute;
         width: 200px;
         font-size: 50px;
-        margin-right: 35dvw;
+        margin-right: 40dvw;
         margin-top: 18dvh;
     }
 
@@ -461,12 +461,17 @@ body {
     }
 
     #score{
-        font-size: 70px;
+        font-size: 60px;
         width: 80dvw;
     }
 
     #perfect{
-        width: 310px;
-        font-size: 25px;
+        width: 290px;
+        font-size: 22px;
+        margin-top: 30dvh;
+    }
+    
+    #again{
+        margin-top: 42dvh;
     }
 }

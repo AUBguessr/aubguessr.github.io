@@ -254,7 +254,7 @@
                 document.getElementById("result").classList.add("regular");
             }
 
-            document.getElementById("picture").style.width = "25vw";
+            if(!isMobile) document.getElementById("picture").style.width = "25vw";
 
             document.getElementById("result").style.display = "revert";
             document.getElementById("result").textContent = formatted + "%";
