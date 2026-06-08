@@ -368,6 +368,10 @@ body {
 @media (max-width: 768px) {
     /* styles that only apply on mobile */
 
+    *{
+        outline: 1px solid red;
+    }
+
     #container {
     display: flex;
     flex-direction: column;
@@ -394,6 +398,7 @@ body {
 
     #press{
         font-size: 70px;
+        width: 100dvw;
     }
 
     #picture{
@@ -407,7 +412,7 @@ body {
     #side1 {
         padding-bottom: 30px;
         width: 100vw;
-        height: 100dvh;
+        height: 100 dvh;
 
         padding-bottom: 20px;
 
@@ -421,7 +426,9 @@ body {
     }
     
     #submit, #submit.active{
-        top: -750px;
+        position: absolute;
+        margin-top: 0;
+        top: -20dvh;
         width: 220px;
     }
 

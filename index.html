@@ -149,7 +149,7 @@
         }
 
         var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}')
-        
+
         var bounds = L.latLngBounds([33.905, 35.475], [33.897, 35.488]);
 
         var map = L.map('map', {
@@ -165,8 +165,8 @@
         var markerGroup = L.layerGroup().addTo(map);
         var formatted;
 
-        for(i=0; i<coords.length; i++) L.marker([coords[i][0],coords[i][1]]).addTo(markerGroup); //SHOW ALL////////////////////////////////////
-        
+        for (i = 0; i < coords.length; i++) L.marker([coords[i][0], coords[i][1]]).addTo(markerGroup); //SHOW ALL////////////////////////////////////
+
 
         map.on('click', function (e) {
 
@@ -206,10 +206,11 @@
 
         submit.addEventListener('click', function (e) {
 
-            if(isMobile && (next || play)){
-                document.getElementById("side1").style.height = "30dvh"; 
-                document.getElementById("map").style.height = "70dvh";
-                document.getElementById("submit").style.top = "-230px";
+            if (isMobile && (next || play)) {
+                document.getElementById("side1").style.height = "30dvh";
+                document.getElementById("map").style.height = "70dvh";  
+                map.invalidateSize();
+                document.getElementById("submit").style.top = "60dvh";
             }
 
             if (done) {
@@ -254,14 +255,12 @@
                 document.getElementById("result").classList.add("regular");
             }
 
-            if(!isMobile) document.getElementById("picture").style.width = "25vw";
+            if (!isMobile) document.getElementById("picture").style.width = "25vw";
 
             document.getElementById("result").style.display = "revert";
             document.getElementById("result").textContent = formatted + "%";
             total += parseFloat(formatted);
             if (parseFloat(formatted) == 100) perfectScore++;
-
-map.invalidateSize();
 
             L.circleMarker([coords[turn][0], coords[turn][1]], {
                 color: 'red',          // Stroke color
