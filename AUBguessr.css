@@ -369,7 +369,6 @@ body {
     /* styles that only apply on mobile */
 
     *{
-        outline: 1px solid red;
     }
 
     #container {
@@ -379,7 +378,7 @@ body {
     }
 
     #logo{
-        border-color: aqua;
+        border-color: rgb(14, 255, 42);
         top: 10px;
         width: 80px;
     }
@@ -411,7 +410,6 @@ body {
     }
 
     #side1 {
-        min-height: 220px;
         width: 100vw;
         height: 100dvh;
 
