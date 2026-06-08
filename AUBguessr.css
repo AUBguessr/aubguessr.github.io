@@ -374,6 +374,11 @@ body {
     align-items: center;
     }
 
+    #logo{
+        top: 10px;
+        width: 80px;
+    }
+
     #map {
         float: right;
         width: 100vw;
@@ -381,9 +386,10 @@ body {
     }
 
     #text1{
-        width: 200px;
-        margin-right: 200px;
-        margin-top: -20px;
+        font-size: 16px;
+        width: 250px;
+        margin-right: 38dvw;
+        margin-top: 11dvh;
     }
 
     #press{
@@ -401,7 +407,9 @@ body {
     #side1 {
         padding-bottom: 30px;
         width: 100vw;
-        height: 100vh;
+        height: 100dvh;
+
+        padding-bottom: 20px;
 
         border-style: solid;
         border-width: 3px;
@@ -412,26 +420,51 @@ body {
         border-top: 0px;
     }
     
-    #submit{
+    #submit, #submit.active{
         top: -950px;
+        width: 220px;
     }
 
     #full{
         position: absolute;
-        right: 10px;
-        top: 220px;
+        text-align: center;
+        width: 100px;
+        right: 10dvw;
+        top: 24dvh;
     }
 
     #imageCount{
         position: absolute;
-        top: -20px;
+        margin-top: 1dvh;
         left: 0;
-        font-size: 50px;
+        font-size: 40px;
+
     }
 
     #picFull{
         width: 100vw;
-        height: 62vh;
+        height: 65dvh;
         
+    }
+
+    #result, .golden{
+        width: 200px;
+        font-size: 50px;
+        margin-right: 35dvw;
+    }
+
+    #scoreDiv{
+        height: 60dvh;
+        width: 90dvw;
+    }
+
+    #score{
+        font-size: 70px;
+        width: 80dvw;
+    }
+
+    #perfect{
+        width: 310px;
+        font-size: 25px;
     }
 }
