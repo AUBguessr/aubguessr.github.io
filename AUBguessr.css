@@ -226,7 +226,7 @@ body {
     letter-spacing: 4px;
 
     /* Adds a smooth drop shadow underneath */
-    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.6));
+    filter: drop-shadow(2px 2px 4px rgba(255, 255, 255, 0.3));
     text-align: center;
     margin-bottom: 2vh;
     width: 250px;
@@ -378,7 +378,6 @@ body {
     }
 
     #logo{
-        border-color: rgb(14, 255, 42);
         top: 10px;
         width: 80px;
     }
@@ -390,9 +389,9 @@ body {
     }
 
     #text1{
-        font-size: 16px;
-        width: 250px;
-        margin-right: 38dvw;
+        font-size: 5dvw;
+        width: 60dvw;
+        margin-right: 36dvw;
         margin-top: 11dvh;
     }
 
@@ -406,7 +405,8 @@ body {
         right: 18px;
         position: absolute;
         margin-left: 200px;
-        height: 40vw;
+        height: 20vh;
+
     }
 
     #side1 {
@@ -434,7 +434,7 @@ body {
         text-align: center;
         width: 100px;
         right: 6.5dvw;
-        top: 180px;
+        top: 23dvh;
 
         font-size: 12px;
     }
@@ -457,8 +457,8 @@ body {
         position: absolute;
         width: 200px;
         font-size: 50px;
-        margin-right: 40dvw;
-        margin-top: 18dvh;
+        margin-right: 34dvw;
+        margin-top: 20dvh;
     }
 
     #scoreDiv{
