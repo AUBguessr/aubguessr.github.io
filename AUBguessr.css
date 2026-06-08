@@ -6,7 +6,7 @@
 
 body {
     user-select: none;
-    height: 100vh;
+    height: 100dvh;
     width: 100vw;
     background-color: rgb(132, 1, 50);
     position: relative;
@@ -369,7 +369,6 @@ body {
     /* styles that only apply on mobile */
 
     *{
-        outline: 1px solid red;
     }
 
     #container {
