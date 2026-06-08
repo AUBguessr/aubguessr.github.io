@@ -261,6 +261,8 @@
             total += parseFloat(formatted);
             if (parseFloat(formatted) == 100) perfectScore++;
 
+map.invalidateSize();
+
             L.circleMarker([coords[turn][0], coords[turn][1]], {
                 color: 'red',          // Stroke color
                 fillColor: '#f03',     // Fill color

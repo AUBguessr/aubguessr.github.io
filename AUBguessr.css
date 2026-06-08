@@ -448,9 +448,11 @@ body {
     }
 
     #result, .golden{
+        position: absolute;
         width: 200px;
         font-size: 50px;
         margin-right: 35dvw;
+        margin-top: 18dvh;
     }
 
     #scoreDiv{
