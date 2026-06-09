@@ -366,6 +366,33 @@ body {
     width: 100px;
 }
 
+#rotate{
+    display: none;
+    z-index: 2500;
+    width: 100dvw;
+    height: 100dvh;
+
+    justify-content: center;
+}
+
+#rotateText{
+    margin-top: 45dvh;
+
+    /* Create a color gradient inside the font */
+    background: linear-gradient(45deg, #fffbab, #d55177);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    font-size: 30px;
+    text-align: center;
+}
+
+@media (orientation: landscape) and (max-width: 768px) {
+    #rotate{
+        display: flex;
+    }
+}
+
 @media (max-width: 768px) {
     /* styles that only apply on mobile */
 
@@ -373,12 +400,12 @@ body {
     }
 
     #container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
-    #logo{
+    #logo {
         top: 10px;
         width: 80px;
     }
@@ -389,19 +416,19 @@ body {
         height: 0vh;
     }
 
-    #text1{
+    #text1 {
         font-size: 5dvw;
         width: 60dvw;
         margin-right: 36dvw;
         margin-top: 11dvh;
     }
 
-    #press{
+    #press {
         font-size: 70px;
         width: 95dvw;
     }
 
-    #picture{
+    #picture {
         top: 0;
         right: 18px;
         position: absolute;
@@ -422,15 +449,16 @@ body {
         border-left: 0px;
         border-top: 0px;
     }
-    
-    #submit, #submit.active{
+
+    #submit,
+    #submit.active {
         position: absolute;
         margin-top: 0;
         top: -20dvh;
         width: 220px;
     }
 
-    #full{
+    #full {
         position: absolute;
         text-align: center;
         width: 100px;
@@ -440,7 +468,7 @@ body {
         font-size: 12px;
     }
 
-    #imageCount{
+    #imageCount {
         position: absolute;
         margin-top: 1dvh;
         left: 0;
@@ -448,13 +476,14 @@ body {
 
     }
 
-    #picFull{
+    #picFull {
         width: 100vw;
         height: 65dvh;
-        
+
     }
 
-    #result, .golden{
+    #result,
+    .golden {
         position: absolute;
         width: 200px;
         font-size: 50px;
@@ -462,23 +491,23 @@ body {
         margin-top: 20dvh;
     }
 
-    #scoreDiv{
+    #scoreDiv {
         height: 60dvh;
         width: 90dvw;
     }
 
-    #score{
+    #score {
         font-size: 60px;
         width: 80dvw;
     }
 
-    #perfect{
+    #perfect {
         width: 290px;
         font-size: 22px;
         margin-top: 30dvh;
     }
-    
-    #again{
+
+    #again {
         margin-top: 42dvh;
     }
 }
