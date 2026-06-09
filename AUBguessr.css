@@ -366,7 +366,7 @@ body {
     width: 100px;
 }
 
-#rotate{
+#rotate {
     display: none;
     z-index: 2500;
     width: 100dvw;
@@ -375,7 +375,7 @@ body {
     justify-content: center;
 }
 
-#rotateText{
+#rotateText {
     margin-top: 45dvh;
 
     /* Create a color gradient inside the font */
@@ -387,8 +387,8 @@ body {
     text-align: center;
 }
 
-@media (orientation: landscape) and (max-width: 768px) {
-    #rotate{
+@media (orientation: landscape) and (max-height: 500px) {
+    #rotate {
         display: flex;
     }
 }
@@ -396,8 +396,7 @@ body {
 @media (max-width: 768px) {
     /* styles that only apply on mobile */
 
-    *{
-    }
+    * {}
 
     #container {
         display: flex;
