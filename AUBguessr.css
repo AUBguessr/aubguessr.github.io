@@ -173,7 +173,7 @@ body {
 
     position: absolute;
 
-    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.5);
     overflow: hidden;
 
 }
@@ -372,6 +372,10 @@ body {
     width: 100dvw;
     height: 100dvh;
 
+    position: fixed;
+
+    background-color: rgb(132, 1, 50); 
+
     justify-content: center;
 }
 
@@ -425,6 +429,7 @@ body {
     #press {
         font-size: 70px;
         width: 95dvw;
+        margin-top: 20dvh;
     }
 
     #picture {
@@ -454,7 +459,7 @@ body {
         position: absolute;
         margin-top: 0;
         top: -20dvh;
-        width: 220px;
+        width: 230px;
     }
 
     #full {
