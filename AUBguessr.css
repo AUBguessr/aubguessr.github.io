@@ -439,6 +439,8 @@ body {
         margin-left: 200px;
         height: 20vh;
 
+        border-width: 5px;
+        border-radius: 10px;
     }
 
     #side1 {
@@ -466,7 +468,7 @@ body {
         position: absolute;
         text-align: center;
         width: 100px;
-        right: 6.5dvw;
+        right: 8dvw;
         top: 25dvh;
 
         font-size: 12px;
