@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+ <head>
+    <link rel="stylesheet" href="acc.css" />
+ </head>
+
+ <body>
+    <div id="container">
+        <div id="side1">
+            <img id="profile" src="assets/profile.svg"></img>
+            <p id="idnum">ID: ########</p>
+        </div>
+
+        <button id="back">◄ BACK TO GAME</button>
+
+        <div id="side2">
+            <p id="qrtext">website qr code</p>
+            <img id="qr" src="assets/qr.png"></img>
+        </div>
+
+        <div id="stats">~ Account Statistics:
+            <p id="played">~ Games Played: ##</p>
+            <p id="avg">~ Average Score: ##.##%</p>
+        </div>
+    </div>
+
+
+    <script>
+        document.getElementById("back").addEventListener("click", function(e){
+            window.location.href = "index.html";
+        });
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                window.location.href = "index.html";
+            }
+        });
+    </script>
+ </body>

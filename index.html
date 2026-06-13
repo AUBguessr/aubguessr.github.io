@@ -8,9 +8,9 @@
 
     <title>AUBguessr</title>
 
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
 
-    <link rel="stylesheet" href="AUBguessr.css" />
+    <link rel="stylesheet" href="index.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
@@ -32,7 +32,7 @@
 
             <p id="press">Press Play When Ready.</p>
 
-            <img id="logo" src="logo.png"></img>
+            <img id="logo" src="assets/logo.png"></img>
 
             <p id="text1">do you know where this is?</p>
 
@@ -357,7 +357,8 @@
         });
 
         document.getElementById("logo").addEventListener('click', function (e) {
-            window.location.reload();
+            if(!isMobile) window.location.href = "acc.html";
+            else window.location.reload();
         });
 
         document.getElementById("again").addEventListener('click', function (e) {
