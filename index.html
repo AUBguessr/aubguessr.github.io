@@ -25,7 +25,7 @@
         <div id="signin">
             <p id="enter">Enter New or Existing AUB ID Credential</p>
             <p id="id">ID:</p>
-            <input id="input" placeholder="not implemented"></input>
+            <input id="input" placeholder="not implemented yet"></input>
             <p id="or">or</p>
             <p id="guest">play as guest</p>
         </div>
@@ -273,6 +273,7 @@
                 document.getElementById("map").style.height = "70dvh";
                 setTimeout(() => map.invalidateSize(), 100);
                 document.getElementById("submit").style.top = "60dvh";
+                document.getElementById("submit").style.marginLeft = "10dvh";
             }
 
             if (done) {

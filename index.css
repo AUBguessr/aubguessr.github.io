@@ -634,7 +634,7 @@ body {
     border-color: #e4c473;
     border-style: solid;
     
-    font-size: 30px;
+    font-size: 18px;
 
     padding: 15px;
 }
@@ -816,14 +816,26 @@ body {
     }
 
     #Aside1{
+        height: 12dvh;
         margin-top: 11dvh;
         margin-left: 5dvw;
     }
 
+    #idnum{
+        font-size: 18px;
+        left: 32dvw;
+    }
+
     #stats{
+        font-size: 18px;
+        height: 14dvh;
         top: 28dvh;
         margin-left: 2dvw;
         width: 92%;
+    }
+
+    #played, #avg{
+        font-size: 16px;
     }
 
     #Aside2{
@@ -833,8 +845,8 @@ body {
     }
 
     #qr{
-        width: 58dvw;
-        max-width: 28vh;
+        width: 54dvw;
+        max-width: 26vh;
         margin-top: 20px;
     }
 
