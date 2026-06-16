@@ -18,9 +18,23 @@
 </head>
 
 <body>
+    
+    <img id="logo" src="assets/logo.png"></img>
+
+    <div id="overlay">
+        <div id="signin">
+            <p id="enter">Enter New or Existing AUB ID Credential</p>
+            <p id="id">ID:</p>
+            <input id="input" placeholder="not implemented"></input>
+            <p id="or">or</p>
+            <p id="guest">play as guest</p>
+        </div>
+    </div>
+
     <div id="rotate">
         <p id="rotateText">please rotate your phone to vertical mode</p>
     </div>
+
     <div id="container">
         <div id="dim"></div>
 
@@ -31,8 +45,6 @@
             <p id="imageCount">1/5</p>
 
             <p id="press">Press Play When Ready.</p>
-
-            <img id="logo" src="assets/logo.png"></img>
 
             <p id="text1">do you know where this is?</p>
 
@@ -54,7 +66,31 @@
 
             <button id="again">Play Again!</button>
         </div>
+
+        
+        <img id="profileButton" src="assets/profile.svg"></img>
     </div>
+
+    <!--///////////////////////////////////////////////////////////////////////account details page-->
+    <div id="container2">
+        <div id="Aside1">
+            <img id="profile" src="assets/profile.svg"></img>
+            <p id="idnum">ID: ########</p>
+        </div>
+
+        <button id="back">◄ BACK TO GAME</button>
+
+        <div id="Aside2">
+            <p id="qrtext">share with a friend</p>
+            <img id="qr" src="assets/qr.png"></img>
+        </div>
+
+        <div id="stats">~ Account Statistics:
+            <p id="played">~ Games Played: ##</p>
+            <p id="avg">~ Average Score: ##.##%</p>
+        </div>
+    </div>
+    <!--///////////////////////////////////////////////////////////////////////////////////////-->
 
     <script>
         const isMobile = window.innerWidth < 768;
@@ -144,7 +180,7 @@
             [33.899675188729375, 35.48096647741584],    //74
             [33.89967963887993, 35.48026924442598],     //75
             [33.89970633977844, 35.48202305356198]      //76
-    ];
+        ];
 
         var maxMarginLat = 0.00643;
         var maxMarginLng = 0.0104;
@@ -186,7 +222,7 @@
             maxBoundsViscosity: 1.0
         });
 
-        if(isMobile) map.setMinZoom(16);
+        if (isMobile) map.setMinZoom(16);
 
         var markerGroup = L.layerGroup().addTo(map);
         var formatted;
@@ -234,8 +270,8 @@
 
             if (isMobile && (next || play)) {
                 document.getElementById("side1").style.height = "calc(30dvh - 2px)";
-                document.getElementById("map").style.height = "70dvh";  
-                map.invalidateSize();
+                document.getElementById("map").style.height = "70dvh";
+                setTimeout(() => map.invalidateSize(), 100);
                 document.getElementById("submit").style.top = "60dvh";
             }
 
@@ -356,14 +392,54 @@
             }
         });
 
+        container = document.getElementById("container");
+        container2 = document.getElementById("container2");
+        overlay = document.getElementById("overlay");
+        signin = document.getElementById("signin");
+        stats = document.getElementById("stats");
+
         document.getElementById("logo").addEventListener('click', function (e) {
-            if(!isMobile) window.location.href = "acc.html";
-            else window.location.reload();
+            window.location.reload();
+        });
+
+        document.getElementById("profileButton").addEventListener('click', function (e) {
+            showAccount();
         });
 
         document.getElementById("again").addEventListener('click', function (e) {
             window.location.reload();
         });
+
+        document.getElementById("back").addEventListener("click", function (e) {
+
+            setTimeout(() => map.invalidateSize(), 100);
+            hideAccount();
+        });
+
+        document.getElementById("guest").addEventListener("click", function (e) {
+            setTimeout(() => map.invalidateSize(), 100);
+            hideSignin();
+            hideAccount();
+        });
+
+        function showAccount() {
+            container.style.display = "none";
+            container2.style.display = "revert";
+            stats.style.display = "revert";
+        }
+
+        function hideAccount() {
+            container2.style.display = "none";
+            container.style.display = "flex";
+        }
+
+        function showSignin() {
+            overlay.style.display = "revert";
+        }
+
+        function hideSignin() {
+            overlay.style.display = "none";
+        }
 
     </script>
 </body>
