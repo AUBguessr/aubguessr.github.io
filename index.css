@@ -83,8 +83,8 @@ body {
     position: absolute;
     text-align: center;
     margin-top: 22vh;
-    font-size: 90px;
-    width: 400px;
+    font-size: 12dvh;
+    width: 60dvh;
 
     font-family: 'Georgia', serif;
     font-weight: bold;
