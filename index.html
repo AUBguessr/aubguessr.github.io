@@ -348,9 +348,9 @@
             if (parseFloat(formatted) == 100) perfectScore++;
 
             L.circleMarker([coords[turn][0], coords[turn][1]], {
-                color: 'red',          // Stroke color
-                fillColor: '#f03',     // Fill color
-                fillOpacity: 0.8,
+                color: 'rgb(132, 1, 50)',          // Stroke color
+                fillColor: '#e4c473',     // Fill color
+                fillOpacity: 1,
                 radius: 8
             }).addTo(markerGroup);
 
@@ -362,9 +362,9 @@
 
             // Create the line and add it to your map instance
             var polyline = L.polyline(pointList, {
-                color: 'red',      // Sets line color
-                weight: 3,         // Sets stroke width in pixels
-                opacity: 0.5,      // Sets line transparency
+                color: 'rgb(132, 1, 50)',      // Sets line color
+                weight: 5,         // Sets stroke width in pixels
+                opacity: 1,      // Sets line transparency
                 smoothFactor: 1    // Simplifies the line at higher zoom levels
             }).addTo(markerGroup);
 
