@@ -627,7 +627,7 @@ body {
 
 #input{
     position: absolute;
-    margin-left: 80px;
+    margin-left: 70px;
     margin-top: 14dvh;
     background-color: #85002e;
     color: #e4c473;
@@ -671,12 +671,11 @@ body {
     border-right-width: 0px;
     padding-bottom: 2px;
 
-    margin-top: 170px;
-    margin-bottom: -100px;
+    margin-top: 45dvh;
 }
 
 #guest{
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     color: #e4c473;
     font-size: 20px;
 }
@@ -691,7 +690,7 @@ body {
     position: absolute;
     width: 40px;
     margin-top: 14dvh;
-    margin-right: 30px;
+    margin-right: 40px;
     z-index: 10;
     border-radius: 30px;
     opacity: 0.8;
@@ -834,7 +833,8 @@ body {
     }
 
     #signin{
-        width: 90%;
+        width: 300px;
+        height: 60dvh;
     }
     
     #input{
@@ -887,6 +887,11 @@ body {
     }
 
     #check{
-        margin-right: 4.6dvw;
+        margin-right: 18px;
+        opacity: 1;
+    }
+
+    #or{
+        margin-top: 40dvh;
     }
 }
