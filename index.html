@@ -404,6 +404,7 @@
             if (finalScore == 100.00) finalScore = 100;
 
             if (updateGamesDB) {
+                updateGamesDB = false; //for it to happen once
                 //update games played
                 games_played++;
                 await db.from('users').update({ games_played: games_played}).eq('student_id', id);
@@ -413,8 +414,6 @@
                 avg_score = ((avg_score * (games_played - 1)) + parseFloat(finalScore)) / games_played;
                 await db.from('users').update({ avg_score: avg_score}).eq('student_id', id);
                 document.getElementById("avg").textContent = "~ Average Score: " + avg_score.toFixed(2) + "%";
-
-                updateGamesDB = false; //for it to happen once
             }
 
             document.getElementById("score").textContent = finalScore + "%";

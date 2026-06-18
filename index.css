@@ -297,7 +297,7 @@ body {
 #score {
     margin-top: 8px;
     font-family: 'Georgia', serif;
-    font-size: 30px;
+    font-size: 5dvh;
     font-weight: bold;
     letter-spacing: 4px;
     /* Widens text for a luxury brand aesthetic */
@@ -312,13 +312,13 @@ body {
     /* Adds a smooth drop shadow underneath */
     filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 1));
     text-align: center;
-    width: 200px;
+    width: 20dvw;
 }
 
 #score {
     margin-top: 15vh;
     position: absolute;
-    font-size: 95px;
+    font-size: 12dvh;
     width: 25vw;
 }
 
@@ -327,14 +327,14 @@ body {
     margin-top: 36vh;
 
     font-family: 'Georgia', serif;
-    font-size: 32px;
+    font-size: 4dvh;
     font-weight: bold;
     letter-spacing: 2px;
 
     /* Adds a smooth drop shadow underneath */
     filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.6));
-    width: 410px;
-    height: 55px;
+    width: 25dvw;
+    height: 8dvh;
 
     background-image: -webkit-linear-gradient(#FFF65C, #3A2C00);
     color: rgb(170, 2, 64);
@@ -467,7 +467,7 @@ body {
     position: absolute;
     font-size: 30px;
     top: 0;
-    left: 10dvw;
+    left: 150px;
     
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 
@@ -843,6 +843,7 @@ body {
 
     #Aside1{
         height: 12dvh;
+        width: 80dvw;
         margin-top: 11dvh;
         margin-left: 5dvw;
     }
@@ -854,7 +855,7 @@ body {
 
     #stats{
         font-size: 18px;
-        height: 14dvh;
+        height: 100px;
         top: 28dvh;
         margin-left: 2dvw;
         width: 92%;
@@ -886,6 +887,6 @@ body {
     }
 
     #check{
-        margin-right: 7.8dvw;
+        margin-right: 4.6dvw;
     }
 }
