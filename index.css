@@ -709,7 +709,7 @@ body {
     }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 768px) {
     /* styles that only apply on mobile */
 
     * {}
