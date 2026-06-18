@@ -671,7 +671,7 @@ body {
     border-right-width: 0px;
     padding-bottom: 2px;
 
-    margin-top: 45dvh;
+    margin-top: 40dvh;
 }
 
 #guest{
@@ -731,9 +731,9 @@ body {
     }
 
     #text1 {
-        font-size: 5dvw;
+        font-size: 4dvw;
         width: 60dvw;
-        margin-right: 36dvw;
+        margin-right: 38dvw;
         margin-top: 11dvh;
     }
 
@@ -818,14 +818,18 @@ body {
         width: 80dvw;
     }
 
+    #scoreText1{
+        width:650dvw;
+    }
+
     #perfect {
-        width: 290px;
-        font-size: 22px;
+        width: 90%;
+        font-size: 5dvw;
         margin-top: 30dvh;
     }
 
     #again {
-        margin-top: 42dvh;
+        margin-top: 44dvh;
     }
 
     #overlay{

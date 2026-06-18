@@ -221,7 +221,7 @@
         var guessLat;
         var guessLng;
 
-        var round = 5;  //change round size//////////////////////////////////////////////
+        var round = 1;  //change round size//////////////////////////////////////////////
         var locations = coords.length;
         var arr = new Array(locations);
 
@@ -308,6 +308,9 @@
                 setTimeout(() => map.invalidateSize(), 100);
                 document.getElementById("submit").style.top = "60dvh";
                 document.getElementById("submit").style.marginLeft = "10dvh";
+                
+                document.getElementById("map").style.display = "revert";
+                document.getElementById("side1").style.borderWidth = "3px";
             }
 
             if (done) {
@@ -420,6 +423,7 @@
             document.getElementById("perfect").textContent = "Perfect Scores: " + perfectScore + "/" + round;
             dim.style.display = "revert";
             document.getElementById("scoreDiv").style.display = "flex";
+
             return;
         };
 
@@ -483,6 +487,11 @@
             document.getElementById("full").style.display = "none";
             
             markerGroup.clearLayers();
+            
+            if(isMobile){
+                document.getElementById("map").style.display = "none";
+                document.getElementById("side1").style.borderWidth = "0px";
+            }
 
         });
 
