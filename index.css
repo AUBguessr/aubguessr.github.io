@@ -441,7 +441,7 @@ body {
     margin-top: 14dvh;
     margin-left: 3dvw;
     height: 120px;
-    width: 320px;
+    width: 30dvw;
 
     background-color: transparent;
 }
@@ -467,7 +467,7 @@ body {
     position: absolute;
     font-size: 30px;
     top: 0;
-    left: 45%;
+    left: 10dvw;
     
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 
@@ -628,10 +628,10 @@ body {
 #input{
     position: absolute;
     margin-left: 80px;
-    margin-top: 100px;
+    margin-top: 14dvh;
     background-color: #85002e;
     color: #e4c473;
-    border-radius: 15px;
+    border-radius: 20px;
 
     width: 72%;
     height: 40px;   
@@ -648,11 +648,15 @@ body {
     outline: none;       /* Removes the default browser ring */
 }
 
+.invalid::placeholder {
+    color: rgb(239, 0, 0);
+}
+
 #id{
     position: absolute;
     float: left;
     margin-left: 20px;
-    margin-top: 96px;
+    margin-top: 13.5dvh;
     font-size: 35px;
     
     color: #e4c473;
@@ -682,13 +686,30 @@ body {
     text-decoration: underline;
 }
 
+#check{
+    right: 0;
+    position: absolute;
+    width: 40px;
+    margin-top: 14dvh;
+    margin-right: 30px;
+    z-index: 10;
+    border-radius: 30px;
+    opacity: 0.8;
+}
+
+#check:hover{
+    cursor: pointer;
+    opacity: 1;
+
+}
+
 @media (orientation: landscape) and (max-height: 500px) and (max-width: 768px) {
     #rotate {
         display: flex;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     /* styles that only apply on mobile */
 
     * {}
@@ -862,5 +883,9 @@ body {
     #back{
         left: 6dvw;
         bottom: 4dvh;
+    }
+
+    #check{
+        margin-right: 18.6dvw;
     }
 }

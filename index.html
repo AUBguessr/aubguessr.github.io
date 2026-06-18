@@ -4,7 +4,6 @@
 <head>
     <base target="_top">
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>AUBguessr</title>
 
@@ -15,17 +14,20 @@
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> <!--supabase-->
 </head>
 
 <body>
-    
+
     <img id="logo" src="assets/logo.png"></img>
 
     <div id="overlay">
         <div id="signin">
             <p id="enter">Enter New or Existing AUB ID Credential</p>
             <p id="id">ID:</p>
-            <input id="input" placeholder="not implemented yet"></input>
+            <img id="check" src="assets/check.svg"></img>
+            <input id="input" placeholder="enter 9-digit AUB ID"></input>
             <p id="or">or</p>
             <p id="guest">play as guest</p>
         </div>
@@ -67,7 +69,7 @@
             <button id="again">Play Again!</button>
         </div>
 
-        
+
         <img id="profileButton" src="assets/profile.svg"></img>
     </div>
 
@@ -93,6 +95,15 @@
     <!--///////////////////////////////////////////////////////////////////////////////////////-->
 
     <script>
+
+        const { createClient } = supabase;
+        const db = createClient('https://wujcnvdaffgliugtnfbi.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1amNudmRhZmZnbGl1Z3RuZmJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEzMzI1MjIsImV4cCI6MjA5NjkwODUyMn0.820HceMe01KILH6cffpWq9_yunjvGwBySZp5dz03b3M');
+
+        var games_played = 0;
+        var avg_score = 0;
+
+        var id;
+        var signinScreen = true;
         const isMobile = window.innerWidth < 768;
         var count = 0;
         var next = false;
@@ -383,9 +394,28 @@
         var dim = document.getElementById("dim");
         var picFull = document.getElementById("picFull");
 
-        function finishRound() {
-            var finalScore = (total / round).toFixed(2);
+        var updateGamesDB = true;
+        var finalScore;
+
+        async function finishRound() {
+
+            finalScore = (total / round).toFixed(2);
             if (finalScore == 100.00) finalScore = 100;
+
+            if (updateGamesDB) {
+                //update games played
+                games_played++;
+                await db.from('users').update({ games_played: games_played}).eq('student_id', id);
+                document.getElementById("played").textContent = "~ Games Played: " + games_played;
+
+                //update average score
+                avg_score = ((avg_score * (games_played - 1)) + parseFloat(finalScore)) / games_played;
+                await db.from('users').update({ avg_score: avg_score}).eq('student_id', id);
+                document.getElementById("avg").textContent = "~ Average Score: " + avg_score.toFixed(2) + "%";
+
+                updateGamesDB = false; //for it to happen once
+            }
+
             document.getElementById("score").textContent = finalScore + "%";
             document.getElementById("perfect").textContent = "Perfect Scores: " + perfectScore + "/" + round;
             dim.style.display = "revert";
@@ -430,7 +460,30 @@
         });
 
         document.getElementById("again").addEventListener('click', function (e) {
-            window.location.reload();
+            count = 0;
+            next = false;
+            guessed = false;
+            play = true;
+            done = false;
+            perfectScore = 0;
+            total = 0;
+            arr = shuffleArray(arr);
+            turn = arr[0];
+            updateGamesDB = true;
+
+            dim.style.display = "none";
+            document.getElementById("scoreDiv").style.display = "none";
+            document.getElementById("imageCount").textContent = (count + 1) + "/" + round;
+            document.getElementById("imageCount").style.display = "none";
+            document.getElementById("submit").textContent = "PLAY";
+            document.getElementById("picture").style.display = "none";
+            document.getElementById("result").style.display = "none";
+            document.getElementById("press").style.display = "revert";
+            document.getElementById("text1").style.display = "none";
+            document.getElementById("full").style.display = "none";
+            
+            markerGroup.clearLayers();
+
         });
 
         document.getElementById("back").addEventListener("click", function (e) {
@@ -440,7 +493,7 @@
         });
 
         document.getElementById("guest").addEventListener("click", function (e) {
-            setTimeout(() => map.invalidateSize(), 100);
+            signinScreen = false;
             hideSignin();
             hideAccount();
         });
@@ -452,6 +505,7 @@
         }
 
         function hideAccount() {
+            setTimeout(() => map.invalidateSize(), 100);
             container2.style.display = "none";
             container.style.display = "flex";
         }
@@ -463,6 +517,55 @@
         function hideSignin() {
             overlay.style.display = "none";
         }
+
+        document.getElementById("check").addEventListener("click", function (e) {
+            submitID();
+        });
+
+        async function submitID() {
+            input = document.getElementById("input");
+            value = input.value;
+
+            if (value.trim() == "") {
+                input.value = "";
+                return;
+            };
+
+            if (value.trim().length != 9 || (/[a-zA-Z\s]/.test(value))) {
+                input.value = "";
+                input.placeholder = "invalid";
+
+                input.classList.add("invalid");
+                return;
+            }
+
+            id = value;
+
+            const { data, error } = await db.from('users').select().eq('student_id', id);
+
+            if (data.length == 0) await db.from('users').insert([{ student_id: id, avg_score: 0, games_played: 0 }]); //doesnt exist in database
+            else {
+                const { data: userData } = await db.from('users').select('*').eq('student_id', id);
+                games_played = userData[0].games_played;
+                avg_score = userData[0].avg_score;
+            }
+
+            document.getElementById("idnum").textContent = "ID: " + id;
+            document.getElementById("played").textContent = "~ Games Played: " + games_played;
+            document.getElementById("avg").textContent = "~ Average Score: " + avg_score + "%";
+
+            signinScreen = false;
+            hideSignin();
+            hideAccount();
+        }
+
+        document.addEventListener('keydown', function (event) {
+            if (!signinScreen) return;
+
+            if (event.key === 'Enter') {
+                submitID();
+            }
+        });
 
     </script>
 </body>
