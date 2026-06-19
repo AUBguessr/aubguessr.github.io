@@ -45,6 +45,21 @@
 
         <div id="side1">
 
+
+            <div id="mode">
+                <div id="codeDiv">
+                    <p id="modeText">In 1v1 mode, you can send a random code and play the same game, with a friend.</p>
+
+                    <p id="sendCode">Send a code:</p>
+                    <input id="codeOutput" value="25-35-64-12-96"readonly></input>
+
+                    <p id="enterCode">Enter a code:</p>
+                    <input id="codeInput" placeholder="not coded yet"></input>
+                </div>
+                <p id="single">SinglePlayer</p>
+                <p id="onevone">1v1</p>
+            </div>
+
             <p id="imageCount">1/5</p>
 
             <p id="press">Press Play When Ready.</p>
@@ -225,6 +240,8 @@
         var locations = coords.length;
         var arr = new Array(locations);
 
+        var mode = 0;
+
         for (i = 0; i < locations; i++) {
             arr[i] = i;
         }
@@ -308,7 +325,7 @@
                 setTimeout(() => map.invalidateSize(), 100);
                 document.getElementById("submit").style.top = "60dvh";
                 document.getElementById("submit").style.marginLeft = "10dvh";
-                
+
                 document.getElementById("map").style.display = "revert";
                 document.getElementById("side1").style.borderWidth = "3px";
             }
@@ -337,6 +354,7 @@
                 document.getElementById("picture").style.width = "30vw";
                 document.getElementById("submit").textContent = "Submit";
                 document.getElementById("imageCount").textContent = (count + 1) + "/" + round;
+                document.getElementById("mode").style.display = "none";
                 markerGroup.clearLayers();
                 next = false;
                 play = false;
@@ -410,12 +428,12 @@
                 updateGamesDB = false; //for it to happen once
                 //update games played
                 games_played++;
-                await db.from('users').update({ games_played: games_played}).eq('student_id', id);
+                await db.from('users').update({ games_played: games_played }).eq('student_id', id);
                 document.getElementById("played").textContent = "~ Games Played: " + games_played;
 
                 //update average score
                 avg_score = ((avg_score * (games_played - 1)) + parseFloat(finalScore)) / games_played;
-                await db.from('users').update({ avg_score: avg_score}).eq('student_id', id);
+                await db.from('users').update({ avg_score: avg_score }).eq('student_id', id);
                 document.getElementById("avg").textContent = "~ Average Score: " + avg_score.toFixed(2) + "%";
             }
 
@@ -482,13 +500,18 @@
             document.getElementById("submit").textContent = "PLAY";
             document.getElementById("picture").style.display = "none";
             document.getElementById("result").style.display = "none";
-            document.getElementById("press").style.display = "revert";
+
+            if(!mode) document.getElementById("press").style.display = "revert";
+
             document.getElementById("text1").style.display = "none";
             document.getElementById("full").style.display = "none";
+
             
+            document.getElementById("mode").style.display = "flex";
+
             markerGroup.clearLayers();
-            
-            if(isMobile){
+
+            if (isMobile) {
                 document.getElementById("map").style.display = "none";
                 document.getElementById("side1").style.borderWidth = "0px";
             }
@@ -503,6 +526,7 @@
 
         document.getElementById("guest").addEventListener("click", function (e) {
             signinScreen = false;
+            document.getElementById("side1").style.display = "flex";
             hideSignin();
             hideAccount();
         });
@@ -561,7 +585,8 @@
 
             document.getElementById("idnum").textContent = "ID: " + id;
             document.getElementById("played").textContent = "~ Games Played: " + games_played;
-            document.getElementById("avg").textContent = "~ Average Score: " + avg_score + "%";
+            document.getElementById("avg").textContent = "~ Average Score: " + avg_score + "%"
+            document.getElementById("side1").style.display = "flex";;
 
             signinScreen = false;
             hideSignin();
@@ -575,6 +600,26 @@
                 submitID();
             }
         });
+
+        document.getElementById("onevone").addEventListener("click", function (e) {
+            document.getElementById("single").style.opacity = 0.5;
+            document.getElementById("onevone").style.opacity = 1;
+            document.getElementById("press").style.display = "none";
+            document.getElementById("codeDiv").style.display = "flex";
+            mode = 1;
+        });
+
+        document.getElementById("single").addEventListener("click", function (e) {
+            document.getElementById("single").style.opacity = 1;
+            document.getElementById("onevone").style.opacity = 0.5;
+            document.getElementById("press").style.display = "revert";
+            document.getElementById("codeDiv").style.display = "none";
+            mode = 0;
+        });
+
+        function generateCode(){
+
+        }
 
     </script>
 </body>
