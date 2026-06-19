@@ -1062,6 +1062,7 @@ body {
     #codeOutput{
         margin-top: 144px;
         margin-left: 140px;
+        width: 170px;
     }
 
     #enterCode{
@@ -1073,5 +1074,6 @@ body {
     #codeInput{
         margin-left: 140px;
         margin-top: 244px;
+        width: 170px;
     }
 }
