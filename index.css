@@ -778,7 +778,7 @@ body {
     color: #e4c473;
     border-radius: 20px;
 
-    width: 160px;
+    width: 210px;
 
     height: 40px;
 
@@ -1063,6 +1063,7 @@ body {
         margin-top: 144px;
         margin-left: 140px;
         width: 170px;
+        font-size: 14px;
     }
 
     #enterCode{
@@ -1075,5 +1076,6 @@ body {
         margin-left: 140px;
         margin-top: 244px;
         width: 170px;
+        font-size: 14px;
     }
 }
