@@ -1026,6 +1026,8 @@ body {
         padding-left: 22px;
         padding-right: 22px;
         font-weight: normal;
+
+        font-size: 14px;
     }
 
     #single {
@@ -1048,7 +1050,7 @@ body {
 
     #codeDiv{
         height: 50dvh;
-        width: 80dvw;
+        width: 90dvw;
     }
 
     #sendCode{
@@ -1059,7 +1061,7 @@ body {
 
     #codeOutput{
         margin-top: 144px;
-        margin-left: 120px;
+        margin-left: 140px;
     }
 
     #enterCode{
@@ -1069,7 +1071,7 @@ body {
     }
 
     #codeInput{
-        margin-left: 120px;
+        margin-left: 140px;
         margin-top: 244px;
     }
 }
