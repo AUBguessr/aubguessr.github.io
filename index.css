@@ -266,7 +266,7 @@ body {
     color: rgb(217, 170, 111);
 }
 
-#scoreDiv {
+#scoreDiv, #diffDiv {
     display: none;
     justify-content: center;
 
@@ -287,7 +287,7 @@ body {
     outline-color: rgb(209, 151, 109);
     outline-style: solid;
 
-    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.1);
 
     overflow: hidden;
 
@@ -764,6 +764,92 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
+#diff{
+    position: absolute;
+
+    height: 30px;
+    width: 6dvw;
+    
+    bottom: 11.8dvh;
+    left: 100px;
+    margin-left: 19dvw;
+
+    background-color: #960035;
+
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 2px;
+    border-color: #e2c072;
+    color: #e2c072;
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.1);
+
+}
+
+#diff:hover{
+    cursor: pointer;
+    background-color: #b01048;
+    box-shadow: none;
+}
+
+#diffDiv{
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#inverted, #blurry, #twoSec {
+    font-size: 2.5dvh;
+    height: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #730028;
+    color: #e2c072;
+    border-style: solid;
+    border-color: #e2c072;
+    border-radius: 10px;
+}
+
+#inverted:hover, #blurry:hover, #twoSec:hover {
+    background-color: #9b0036;
+}
+
+.blur {
+    filter: blur(0.8dvh);
+}
+
+.invert {
+    filter: invert(1);
+}
+
+.blur.invert {
+    filter: blur(0.5dvh) invert(1);
+}
+
+#hate{
+
+    font-family: 'Georgia', serif;
+    font-size: 3dvh;
+    font-weight: bold;
+    letter-spacing: 4px;
+    /* Widens text for a luxury brand aesthetic */
+    text-transform: uppercase;
+    /* Forces capital letters */
+
+    /* Create a color gradient inside the font */
+    background: linear-gradient(90deg, #fffa97, #af4261);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* Adds a smooth drop shadow underneath */
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 1));
+    text-align: center;
+    width: 90%;
+}
+
 #codeDiv{
     display: none;
 
@@ -1128,5 +1214,19 @@ body {
     #playCode{
         left: 170px;
         margin-top: 290px;
+    }
+
+    #diff{
+
+        width: 30dvw;
+        margin-bottom: 6dvh;
+        margin-left: 0;
+        top: -70px;
+        left: auto;
+        right: 0;
+    }
+
+    #diffDiv{
+        width: 86%;
     }
 }

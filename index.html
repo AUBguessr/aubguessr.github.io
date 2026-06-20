@@ -45,7 +45,6 @@
 
         <div id="side1">
 
-
             <div id="mode">
                 <div id="codeDiv">
                     <p id="modeText">In 1v1 mode, you can send a random code and play the same game, with a friend.</p>
@@ -58,8 +57,10 @@
 
                     <button id="playCode">Play Code</button>
                 </div>
+
                 <p id="single">SinglePlayer</p>
                 <p id="onevone">1v1</p>
+                <button id="diff">Difficulty</button>
             </div>
 
             <p id="imageCount">1/5</p>
@@ -72,6 +73,16 @@
             <p id="full">Click image to fullscreen</p>
 
             <p id="result"></p>
+        </div>
+
+        <div id="diffDiv">
+
+            <p id="hate">How much do you want to hate this experience?</p>
+
+            <button type="checkbox" id="inverted">Inverted Colors</button>
+            <button type="checkbox" id="blurry">Blurry Images</button>
+            <button type="checkbox" id="twoSec">2-Second Timer</button>
+
         </div>
 
         <div id="side2">
@@ -261,7 +272,41 @@
             [33.8995147192475, 35.480106767906825],     //126
             [33.899492468449324, 35.4810717887515],     //127
             [33.899719426318256, 35.480492776244674],   //128
-            [33.899648223914596, 35.48025152103351]     //129
+            [33.899648223914596, 35.48025152103351],    //129
+            [33.89940330445502, 35.47906446540364],     //130
+            [33.89935433823247, 35.478701706204596],    //131
+            [33.89901612483741, 35.47883582998108],     //132
+            [33.89959909708953, 35.47866415154717],     //133
+            [33.89960354724406, 35.478524662819645],    //134
+            [33.89979045352477, 35.47871780105776],     //135
+            [33.89953234474364, 35.47881973512787],     //136
+            [33.89978600337999, 35.47890557434484],     //137
+            [33.9007160785905, 35.480606263830445],     //138
+            [33.900760579542414, 35.48067064324313],    //139
+            [33.90102758476617, 35.480858416530204],    //140
+            [33.90015981473182, 35.479855170682214],    //141
+            [33.90140679797635, 35.48173812245391],     //142
+            [33.90178950230343, 35.481834691572935],    //143
+            [33.90092619010916, 35.481544984215795],    //144
+            [33.901963053699575, 35.48264479918281],    //145
+            [33.90231015543198, 35.48265552908494],     //146
+            [33.90174055184577, 35.48229071241294],     //147
+            [33.90236800558333, 35.48199027515367],     //148
+            [33.90242140568821, 35.481931260691994],    //149
+            [33.90254582107453, 35.48115338276568],     //150
+            [33.90262592105225, 35.48154502419293],     //151
+            [33.90224322047963, 35.48206005949458],     //152
+            [33.90183826800315, 35.480611522708735],    //153
+            [33.90189611847469, 35.48026280088992],     //154
+            [33.90187386829797, 35.481308966346376],    //155
+            [33.901806604327824, 35.47976388549384],    //156
+            [33.90171387557521, 35.479463333100306],    //157
+            [33.9021766789237, 35.480407564486626],     //158
+            [33.9012154691597, 35.47939358873654],      //159
+            [33.90040110240779, 35.47992471889136],     //160
+            [33.90148692301516, 35.4796457414363],      //161
+            [33.89982258578218, 35.47923800515585],     //162
+            [33.89988488776123, 35.47917362574312]      //163
         ];
 
         var maxMarginLat = 0.00643;
@@ -275,6 +320,11 @@
 
         var mode = 0;
         var was1v1 = 0;
+
+        var inverted = 0;
+        var blurry = 0;
+        var twoSec = 0;
+        var twoSecDone = 0;
 
         for (i = 0; i < locations; i++) {
             arr[i] = i;
@@ -327,10 +377,14 @@
         function showIntroMarkers() {
             markerFlash.clearLayers();
             for (let i = 0; i < coords.length; i++) {
+                if (i == 151 || i == 155) continue;
                 L.marker([coords[i][0], coords[i][1]], { icon: flashIcon }).addTo(markerFlash); //SHOW ALL////////////////////////////////////
             }
         }
 
+        var picture = document.getElementById("picture");
+        var dim = document.getElementById("dim");
+        var picFull = document.getElementById("picFull");
 
         map.on('click', function (e) {
 
@@ -385,6 +439,9 @@
 
                 document.getElementById("map").style.display = "revert";
                 document.getElementById("side1").style.borderWidth = "3px";
+
+                dim.style.display = "revert";
+                picFull.style.display = "revert";
             }
 
             if (done) {
@@ -393,6 +450,17 @@
             }
 
             if (next || play) {
+
+                if (twoSec) {
+                    setTimeout(function () {
+                        document.getElementById("picture").style.opacity = "0";
+                        twoSecDone = 1;
+                        
+                        document.getElementById("picFull").style.display = "none";
+                        dim.style.display = "none";
+                        // or hide it, disable clicking, etc.
+                    }, 2000);
+                }
 
                 document.getElementById("picture").style.display = "revert";
                 document.getElementById("text1").style.display = "revert";
@@ -414,6 +482,7 @@
 
                 document.getElementById("picture").src = `images/image${turn}.jpeg`;
                 document.getElementById("picFull").src = `images/image${turn}.jpeg`;
+                applyDifficulty();
                 document.getElementById("result").style.display = "none";
                 document.getElementById("submit").classList.remove("active");
                 document.getElementById("picture").style.width = "30vw";
@@ -423,6 +492,7 @@
                 markerGroup.clearLayers();
                 next = false;
                 play = false;
+                twoSecDone = 0;
                 document.getElementById("full").style.display = "revert";
                 document.getElementById("press").style.display = "none";
                 return;
@@ -469,6 +539,8 @@
             submit.textContent = "Next location ➜"
             next = true;
             guessed = false;
+            twoSecDone = 0;
+            document.getElementById("picture").style.opacity = "1"; //for twoSec difficulty
 
             if (count == round - 1) {
                 document.getElementById("submit").textContent = "See Results ➜";
@@ -476,10 +548,6 @@
                 return;
             }
         }
-
-        var picture = document.getElementById("picture");
-        var dim = document.getElementById("dim");
-        var picFull = document.getElementById("picFull");
 
         var updateGamesDB = true;
         var finalScore;
@@ -511,7 +579,7 @@
         };
 
         picture.addEventListener('click', function (e) {
-            if (play) {
+            if (play || twoSecDone) {
                 return;
             }
             dim.style.display = "revert";
@@ -521,6 +589,7 @@
         dim.addEventListener('click', function (e) {
             dim.style.display = "none";
             picFull.style.display = "none";
+            document.getElementById("diffDiv").style.display = "none";
             document.getElementById("scoreDiv").style.display = "none";
         });
 
@@ -720,6 +789,59 @@
             was1v1 = 1;
             submitFunc();
         });
+
+        document.getElementById("diff").addEventListener("click", function (e) {
+            document.getElementById("diffDiv").style.display = "flex";
+            dim.style.display = "revert";
+        });
+
+        document.getElementById("inverted").addEventListener("click", function (e) {
+            buttonClicked("inverted", inverted);
+            if (inverted == 0) inverted = 1;
+            else inverted = 0;
+        });
+
+        document.getElementById("blurry").addEventListener("click", function (e) {
+            buttonClicked("blurry", blurry);
+            if (blurry == 0) blurry = 1;
+            else blurry = 0;
+        });
+
+        document.getElementById("twoSec").addEventListener("click", function (e) {
+            buttonClicked("twoSec", twoSec);
+            if (twoSec == 0) twoSec = 1;
+            else twoSec = 0;
+        });
+
+        function buttonClicked(buttonID, state) {
+
+            clickedButton = document.getElementById(buttonID);
+
+            if (state == 0) {
+                clickedButton.style.backgroundColor = "#f5d27a";
+                clickedButton.style.color = "#7d002c";
+                clickedButton.style.borderColor = "#e2c072";
+            } else {
+                clickedButton.style.backgroundColor = "#730028";
+                clickedButton.style.color = "#e2c072";
+                clickedButton.style.borderColor = "#e2c072";
+            }
+
+            if (state == 0) {
+                clickedButton.classList.add("toggle-on");
+            } else {
+                clickedButton.classList.remove("toggle-on");
+            }
+        }
+
+        function applyDifficulty() {
+            var pic = document.getElementById("picture");
+            var fullPic = document.getElementById("picFull");
+            pic.classList.toggle("blur", blurry);
+            pic.classList.toggle("invert", inverted);
+            picFull.classList.toggle("blur", blurry);
+            picFull.classList.toggle("invert", inverted);
+        }
 
     </script>
 </body>
