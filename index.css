@@ -759,6 +759,8 @@ body {
     font-size: 20px;
     text-align: center;
 
+    margin-left: 100px;
+
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
@@ -771,6 +773,7 @@ body {
     height: 60dvh;
     width: 30dvw;
     bottom: 160px;
+    margin-right: 80px;
 }
 
 #codeInput, #codeOutput{
@@ -791,6 +794,10 @@ body {
 
     margin-left: 166px;
     margin-top: 346px;
+}
+
+#codeInput::placeholder{
+    color: red;
 }
 
 
@@ -822,6 +829,30 @@ body {
     border-radius: 5px;
 }
 
+#playCode{
+    position: absolute;
+    height: 30px;
+    width: 80px;
+
+    border-style: solid;
+    border-radius: 10px;
+
+    margin-top: 350px;
+    left: 380px;
+
+
+    color: rgb(217, 170, 111);
+    background-color: rgb(148, 2, 55);
+    border-color: rgb(209, 151, 109);
+
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#playCode:hover{
+    background-color: rgb(181, 28, 84);
+    text-shadow: none;
+    cursor: pointer;
+}
 
 @media (orientation: landscape) and (max-height: 500px) and (max-width: 768px) {
     #rotate {
@@ -831,6 +862,10 @@ body {
 
 @media (max-width: 768px) {
     /* styles that only apply on mobile */
+
+    #body{
+        user-select: none;
+    }
 
     #container {
         display: flex;
@@ -1046,36 +1081,43 @@ body {
 
     #modeText{
         font-size: 16px;
+        margin-left: 30px;
     }
 
     #codeDiv{
         height: 50dvh;
         width: 90dvw;
+        margin-right: 30px;
     }
 
     #sendCode{
-        font-size: 20px;
+        font-size: 16px;
         margin-top: 150px;
         margin-left: 10px;
     }
 
     #codeOutput{
         margin-top: 144px;
-        margin-left: 140px;
+        margin-left: 120px;
         width: 170px;
         font-size: 14px;
     }
 
     #enterCode{
-        font-size: 20px;
+        font-size: 16px;
         margin-top: 250px;
         margin-left: 10px;
     }
 
     #codeInput{
-        margin-left: 140px;
-        margin-top: 244px;
+        margin-left: 120px;
+        margin-top: 240px;
         width: 170px;
         font-size: 14px;
+    }
+
+    #playCode{
+        left: 170px;
+        margin-top: 290px;
     }
 }
