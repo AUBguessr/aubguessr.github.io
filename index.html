@@ -274,6 +274,7 @@
         var arr = new Array(locations);
 
         var mode = 0;
+        var was1v1 = 0;
 
         for (i = 0; i < locations; i++) {
             arr[i] = i;
@@ -547,9 +548,6 @@
             document.getElementById("picture").style.display = "none";
             document.getElementById("result").style.display = "none";
 
-            if (!mode) document.getElementById("press").style.display = "revert";
-            else document.getElementById("press").style.display = "none";
-
             document.getElementById("text1").style.display = "none";
             document.getElementById("full").style.display = "none";
 
@@ -562,6 +560,9 @@
                 document.getElementById("map").style.display = "none";
                 document.getElementById("side1").style.borderWidth = "0px";
             }
+
+            if (was1v1) document.getElementById("press").style.display = "none";
+            else document.getElementById("press").style.display = "revert";
 
             generateCode();
 
@@ -663,6 +664,7 @@
             document.getElementById("onevone").style.opacity = 0.5;
             document.getElementById("press").style.display = "revert";
             document.getElementById("codeDiv").style.display = "none";
+            was1v1 = 0;
             mode = 0;
         });
 
@@ -695,6 +697,7 @@
 
             turn = arr[0];
             mode = 0;
+            was1v1 = 1;
             submitFunc();
         });
 
