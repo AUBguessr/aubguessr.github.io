@@ -640,6 +640,8 @@
             document.getElementById("text1").style.display = "none";
             document.getElementById("full").style.display = "none";
 
+            document.getElementById("side1").style.height = "";
+            document.getElementById("map").style.height = "";
 
             document.getElementById("mode").style.display = "flex";
 
@@ -838,7 +840,6 @@
 
         function applyDifficulty() {
             var pic = document.getElementById("picture");
-            var fullPic = document.getElementById("picFull");
             pic.classList.toggle("blur", blurry);
             pic.classList.toggle("invert", inverted);
             picFull.classList.toggle("blur", blurry);
