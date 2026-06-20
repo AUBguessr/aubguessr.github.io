@@ -440,8 +440,10 @@
                 document.getElementById("map").style.display = "revert";
                 document.getElementById("side1").style.borderWidth = "3px";
 
-                dim.style.display = "revert";
-                picFull.style.display = "revert";
+                if (!done) {
+                    dim.style.display = "revert";
+                    picFull.style.display = "revert";
+                }
             }
 
             if (done) {
@@ -455,7 +457,7 @@
                     setTimeout(function () {
                         document.getElementById("picture").style.opacity = "0";
                         twoSecDone = 1;
-                        
+
                         document.getElementById("picFull").style.display = "none";
                         dim.style.display = "none";
                         // or hide it, disable clicking, etc.
