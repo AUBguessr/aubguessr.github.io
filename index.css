@@ -854,7 +854,16 @@ body {
     cursor: pointer;
 }
 
-@media (orientation: landscape) and (max-height: 500px) and (max-width: 768px) {
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.pulse-marker {
+    animation: pulse 1.5s infinite;
+}
+
+@media (orientation: landscape) and (max-height: 500px) and (max-width: 768px) {\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\mobile\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     #rotate {
         display: flex;
     }

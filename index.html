@@ -312,9 +312,24 @@
         if (isMobile) map.setMinZoom(16);
 
         var markerGroup = L.layerGroup().addTo(map);
+        var markerFlash = L.layerGroup().addTo(map);
+        var flashIcon = L.icon({
+            iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            className: 'pulse-marker'
+        });
+
         var formatted;
 
-        for (i = 0; i < coords.length; i++) L.marker([coords[i][0], coords[i][1]]).addTo(markerGroup); //SHOW ALL////////////////////////////////////
+        showIntroMarkers();
+
+        function showIntroMarkers() {
+            markerFlash.clearLayers();
+            for (let i = 0; i < coords.length; i++) {
+                L.marker([coords[i][0], coords[i][1]], { icon: flashIcon }).addTo(markerFlash); //SHOW ALL////////////////////////////////////
+            }
+        }
 
 
         map.on('click', function (e) {
@@ -358,6 +373,9 @@
         });
 
         function submitFunc() {
+
+            markerFlash.clearLayers();
+
             if (isMobile && (next || play)) {
                 document.getElementById("side1").style.height = "calc(30dvh - 2px)";
                 document.getElementById("map").style.height = "70dvh";
@@ -555,6 +573,7 @@
             document.getElementById("mode").style.display = "flex";
 
             markerGroup.clearLayers();
+            showIntroMarkers();
 
             if (isMobile) {
                 document.getElementById("map").style.display = "none";
@@ -621,7 +640,7 @@
                 input.classList.add("invalid");
                 return;
             }
-            
+
             id = value;
 
             const { data, error } = await db.from('users').select().eq('student_id', id);
@@ -656,6 +675,7 @@
             document.getElementById("onevone").style.opacity = 1;
             document.getElementById("press").style.display = "none";
             document.getElementById("codeDiv").style.display = "flex";
+            was1v1 = 1;
             mode = 1;
         });
 
