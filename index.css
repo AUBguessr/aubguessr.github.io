@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+*:focus {
+    outline: none;
+}
+
 body {
     color-scheme: only light;
     user-select: none;
@@ -212,9 +216,9 @@ body {
 #imageCount {
     display: none;
     margin-top: 12px;
-    margin-left: 20px;
+    margin-left: 3dvw;
     font-family: 'Georgia', serif;
-    font-size: 22px;
+    font-size: 1.5dvw;
     font-weight: bold;
     letter-spacing: 4px;
     /* Widens text for a luxury brand aesthetic */
@@ -234,7 +238,7 @@ body {
 }
 
 #imageCount {
-    font-size: 30px;
+    font-size: 2dvw;
 }
 
 .regular,
@@ -247,7 +251,7 @@ body {
     letter-spacing: 4px;
 
     /* Adds a smooth drop shadow underneath */
-    filter: drop-shadow(2px 2px 4px rgba(255, 255, 255, 0.3));
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
     text-align: center;
     margin-bottom: 2vh;
     width: 250px;
@@ -266,7 +270,7 @@ body {
     color: rgb(217, 170, 111);
 }
 
-#scoreDiv, #diffDiv {
+#scoreDiv, #diffDiv, #hintDiv {
     display: none;
     justify-content: center;
 
@@ -291,6 +295,13 @@ body {
 
     overflow: hidden;
 
+}
+
+#hintDiv {
+    height: 30dvh;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
 }
 
 #scoreText1,
@@ -412,11 +423,9 @@ body {
 }
 
 #profileButton {
-    cursor: pointer;
-
     position: absolute;
-    left: 16px;
-    bottom: 16px;
+    left: 2.6dvh;
+    bottom: 2dvh;
     background-color: #85002e;
 
     border-radius: 10px;
@@ -432,8 +441,8 @@ body {
 }
 
 #profileButton:hover {
+    cursor: pointer;
     background-color: rgb(181, 28, 84);
-    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.1);
 }
 
 #Aside1 {
@@ -650,6 +659,10 @@ body {
     /* Removes the default browser ring */
 }
 
+#input::placeholder {
+    color: rgb(137, 137, 137);
+}
+
 .invalid::placeholder {
     color: rgb(239, 0, 0);
 }
@@ -724,10 +737,10 @@ body {
 #onevone {
     background-color: #ad003d;
     padding: 16px;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 35px;
+    padding-right: 35px;
 
-    font-size: 105%;
+    font-size: 15px;
     font-weight: bold;
 
     border-style: solid;
@@ -735,6 +748,14 @@ body {
     border-color: #e2c072;
     color: #e2c072;
     box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+}
+
+#single {
+    padding-left: 3dvw;
+}
+
+#onevone{
+    padding-right: 3dvw;
 }
 
 #single:hover,
@@ -776,7 +797,7 @@ body {
 
     background-color: #960035;
 
-    font-size: 14px;
+    font-size: 1dvw;
     font-weight: bold;
     letter-spacing: 1px;
 
@@ -801,20 +822,21 @@ body {
     align-items: center;
 }
 
-#inverted, #blurry, #twoSec {
+#inverted, #blurry, #twoSec, #useHint {
+    font-weight: bold;
     font-size: 2.5dvh;
     height: 30px;
     padding-left: 20px;
     padding-right: 20px;
-    background-color: #730028;
+    background-color: #920033;
     color: #e2c072;
     border-style: solid;
     border-color: #e2c072;
     border-radius: 10px;
 }
 
-#inverted:hover, #blurry:hover, #twoSec:hover {
-    background-color: #9b0036;
+#inverted:hover, #blurry:hover, #twoSec:hover, #useHint:hover {
+    background-color: #b4003f;
 }
 
 .blur {
@@ -829,8 +851,9 @@ body {
     filter: blur(0.5dvh) invert(1);
 }
 
-#hate{
+#hate, #hintText1{
 
+    margin-top: -20px;
     font-family: 'Georgia', serif;
     font-size: 3dvh;
     font-weight: bold;
@@ -840,7 +863,7 @@ body {
     /* Forces capital letters */
 
     /* Create a color gradient inside the font */
-    background: linear-gradient(90deg, #fffa97, #af4261);
+    background: linear-gradient(90deg, #fffa97, #d25377);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
@@ -848,6 +871,17 @@ body {
     filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 1));
     text-align: center;
     width: 90%;
+}
+
+#hintText1{
+    
+    margin-top: 0;
+    text-transform: none;
+    letter-spacing: 0px;
+
+    padding-top: 2dvh;
+    width: 95%;
+    font-size: 3dvh;
 }
 
 #codeDiv{
@@ -940,6 +974,33 @@ body {
     cursor: pointer;
 }
 
+#hint{
+    display: none;
+
+    position: absolute;
+    left: 3.7dvh;
+    bottom: 12dvh;
+    background-color: #85002e;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 8px;
+    border-color: #e4c473;
+    padding-bottom: 2px;
+
+    width: 6dvh;
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+}
+
+#hint:hover{
+    cursor: pointer;
+    background-color: #b3003f;
+}
+
+#useHint{
+    margin-bottom: 5dvh;
+    font-weight: bold;
+}
+
 @keyframes pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
@@ -1022,7 +1083,7 @@ body {
         margin-top: 0;
         top: -12dvh;
         margin-left: 20dvw;
-        width: 230px;
+        width: 60dvw;
     }
 
     #full {
@@ -1217,16 +1278,30 @@ body {
     }
 
     #diff{
-
         width: 30dvw;
         margin-bottom: 6dvh;
         margin-left: 0;
         top: -70px;
         left: auto;
         right: 0;
+
+        font-size: 4dvw;
     }
 
     #diffDiv{
         width: 86%;
+    }
+
+    #hint{
+        z-index: 500;
+    }
+
+    #hintText1{
+        margin-top: 10px;
+        font-size: 4dvw;
+    }
+
+    #hintDiv{
+        width: 90%;
     }
 }

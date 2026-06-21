@@ -69,6 +69,8 @@
 
             <p id="text1">do you know where this is?</p>
 
+            <img id="hint" src="assets/hint.svg"></img>
+
             <img id="picture" src=""></img>
             <p id="full">Click image to fullscreen</p>
 
@@ -82,6 +84,15 @@
             <button type="checkbox" id="inverted">Inverted Colors</button>
             <button type="checkbox" id="blurry">Blurry Images</button>
             <button type="checkbox" id="twoSec">2-Second Timer</button>
+
+        </div>
+
+        <div id="hintDiv">
+
+            <p id="hintText1">Hints show a big circle containing the correct location, but the maximum score becomes
+                65%.</p>
+
+            <button id="useHint">Use Hint</button>
 
         </div>
 
@@ -326,6 +337,9 @@
         var twoSec = 0;
         var twoSecDone = 0;
 
+        var oceanClick = false;
+        var hintUsed = 0;
+
         for (i = 0; i < locations; i++) {
             arr[i] = i;
         }
@@ -362,12 +376,49 @@
         if (isMobile) map.setMinZoom(16);
 
         var markerGroup = L.layerGroup().addTo(map);
+        var hintGroup = L.layerGroup().addTo(map);
         var markerFlash = L.layerGroup().addTo(map);
         var flashIcon = L.icon({
             iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
             iconSize: [25, 41],
             iconAnchor: [12, 41],
             className: 'pulse-marker'
+        });
+
+        var oceanPolygon = L.polygon([
+            [33.90041108133747, 35.46851832173644],
+            [33.9005802993875, 35.469344481591286],
+            [33.90041108133747, 35.47068565018683],
+            [33.900785141840885, 35.47233796989652],
+            [33.9014352907157, 35.47366840914329],
+            [33.901809346725756, 35.47463405053207],
+            [33.903091812015646, 35.48112530653442],
+            [33.903002752549405, 35.481704691367696],
+            [33.90152435181935, 35.488710956110744],
+            [33.90183606494941, 35.49042765191301],
+            [33.90261088979263, 35.49152204548698],
+            [33.903207589182706, 35.49289540212879],
+            [33.90306509418555, 35.493614269008695],
+            [33.90554091087979, 35.49721933019347],
+            [33.91411665520647, 35.49815278302326],
+            [33.91417898871457, 35.464709402925166],
+            [33.90069607996511, 35.46478450836651]
+            // ...more points outlining the ocean boundary
+        ], {
+            color: 'transparent',
+            fillColor: 'transparent',
+            fillOpacity: 0
+        }).addTo(map);
+
+        oceanPolygon.on('click', function (e) {
+            if (play || next) return;
+
+            oceanClick = true;
+
+            document.getElementById("side1").style.backgroundImage = "url('assets/ocean.jpg')";
+            document.getElementById("side1").style.backgroundSize = "contain";
+
+            if(isMobile) document.getElementById("side1").style.backgroundSize = "cover ";
         });
 
         var formatted;
@@ -385,6 +436,15 @@
         var picture = document.getElementById("picture");
         var dim = document.getElementById("dim");
         var picFull = document.getElementById("picFull");
+
+        map.on('click', function (a) {
+
+            if (oceanClick) {
+                oceanClick = false;
+                return;
+            }
+            document.getElementById("side1").style.backgroundImage = "";
+        });
 
         map.on('click', function (e) {
 
@@ -413,11 +473,11 @@
             if (ACC > 95.5) {
                 ACC = 100;
                 formatted = ACC.toFixed(0);
-
             } else formatted = ACC.toFixed(2);
 
-            guessed = true;
+            if (hintUsed) formatted = (ACC / 1.538461).toFixed(2);
 
+            guessed = true;
         });
 
         var submit = document.getElementById("submit");
@@ -453,6 +513,8 @@
 
             if (next || play) {
 
+                //document.getElementById("side1").style.backgroundColor = "blue";
+
                 if (twoSec) {
                     setTimeout(function () {
                         document.getElementById("picture").style.opacity = "0";
@@ -473,6 +535,7 @@
 
                 if (next) {
 
+                    document.getElementById("side1").style.backgroundImage = "";
                     count++;
 
                     if (mode) {
@@ -480,8 +543,8 @@
                     } else turn = arr[count];
                 }
 
+                document.getElementById("hint").style.display = "revert";
                 document.getElementById("imageCount").style.display = "revert";
-
                 document.getElementById("picture").src = `images/image${turn}.jpeg`;
                 document.getElementById("picFull").src = `images/image${turn}.jpeg`;
                 applyDifficulty();
@@ -489,14 +552,25 @@
                 document.getElementById("submit").classList.remove("active");
                 document.getElementById("picture").style.width = "30vw";
                 document.getElementById("submit").textContent = "Submit";
+                hintGroup.clearLayers();
+                hintUsed = 0;
                 document.getElementById("imageCount").textContent = (count + 1) + "/" + round;
                 document.getElementById("mode").style.display = "none";
                 markerGroup.clearLayers();
+
+                var hintCenter = getHintCircle(coords[turn][0], coords[turn][1]);
+
+                var hintCircle = L.circle(hintCenter, {
+                    radius: 100,
+                    color: 'rgb(132, 1, 50)',
+                    fillOpacity: 0.3
+                }).addTo(hintGroup);
                 next = false;
                 play = false;
                 twoSecDone = 0;
                 document.getElementById("full").style.display = "revert";
                 document.getElementById("press").style.display = "none";
+                map.removeLayer(hintGroup); // hides it
                 return;
             }
 
@@ -516,6 +590,8 @@
             document.getElementById("result").textContent = formatted + "%";
             total += parseFloat(formatted);
             if (parseFloat(formatted) == 100) perfectScore++;
+
+            console.log("HINT: " + hintUsed);
 
             L.circleMarker([coords[turn][0], coords[turn][1]], {
                 color: 'rgb(132, 1, 50)',          // Stroke color
@@ -593,6 +669,7 @@
             picFull.style.display = "none";
             document.getElementById("diffDiv").style.display = "none";
             document.getElementById("scoreDiv").style.display = "none";
+            document.getElementById("hintDiv").style.display = "none";
         });
 
         document.addEventListener('keydown', function (event) {
@@ -600,6 +677,8 @@
                 dim.style.display = "none";
                 picFull.style.display = "none";
                 document.getElementById("scoreDiv").style.display = "none";
+                document.getElementById("diffDiv").style.display = "none";
+                document.getElementById("hintDiv").style.display = "none";
             }
         });
 
@@ -648,6 +727,9 @@
             document.getElementById("mode").style.display = "flex";
 
             markerGroup.clearLayers();
+            hintGroup.clearLayers();
+            document.getElementById("hint").style.display = "none";
+
             showIntroMarkers();
 
             if (isMobile) {
@@ -828,15 +910,9 @@
                 clickedButton.style.color = "#7d002c";
                 clickedButton.style.borderColor = "#e2c072";
             } else {
-                clickedButton.style.backgroundColor = "#730028";
+                clickedButton.style.backgroundColor = "#920033";
                 clickedButton.style.color = "#e2c072";
                 clickedButton.style.borderColor = "#e2c072";
-            }
-
-            if (state == 0) {
-                clickedButton.classList.add("toggle-on");
-            } else {
-                clickedButton.classList.remove("toggle-on");
             }
         }
 
@@ -847,6 +923,28 @@
             picFull.classList.toggle("blur", blurry);
             picFull.classList.toggle("invert", inverted);
         }
+
+        function getHintCircle(trueLat, trueLng) {
+            var offsetLat = trueLat + (Math.random() - 0.5) * 0.001;
+            var offsetLng = trueLng + (Math.random() - 0.5) * 0.001;
+            return [offsetLat, offsetLng];
+        }
+
+        document.getElementById("hint").addEventListener("click", function (e) {
+            if (hintUsed || next) return;
+            dim.style.display = "revert";
+            document.getElementById("hintDiv").style.display = "flex";
+        });
+
+        document.getElementById("useHint").addEventListener("click", function (e) {
+            if (play || next) return;
+            hintUsed = 1;
+
+            dim.style.display = "none";
+            document.getElementById("hintDiv").style.display = "none";
+
+            map.addLayer(hintGroup);    // shows it again
+        });
 
     </script>
 </body>
