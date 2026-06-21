@@ -60,8 +60,10 @@
                     <button id="playCode">Play Code</button>
                 </div>
 
-                <p id="single">SinglePlayer</p>
-                <p id="onevone">1v1</p>
+                <div id="modeSelect">
+                    <p id="single">SinglePlayer</p>
+                    <p id="onevone">1v1</p>
+                </div>
                 <button id="diff">Difficulty</button>
             </div>
 
@@ -639,7 +641,7 @@
             finalScore = (total / round).toFixed(2);
             if (finalScore == 100.00) finalScore = 100;
 
-            if (updateGamesDB) {
+            if (updateGamesDB && !was1v1) {
                 updateGamesDB = false; //for it to happen once
                 //update games played
                 games_played++;

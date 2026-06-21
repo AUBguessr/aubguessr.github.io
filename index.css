@@ -719,18 +719,25 @@ body {
 
 }
 
+#modeSelect{
+    position: absolute;
+    display: flex;
+    width: 16dvw;
+    height: 6dvh;
+    bottom: 11dvh;
+    margin-right: 3dvw;
+}
+
 #single {
     position: absolute;
-    bottom: 10dvh;
-    margin-right: 130px;
+    width: 59%;
     border-radius: 20px 0px 0px 20px;
-    z-index: 10;
 }
 
 #onevone {
     position: absolute;
-    bottom: 10dvh;
-    margin-left: 160px;
+    width: 39%;
+    right: 0;
     border-radius: 0px 20px 20px 0px;
     opacity: 0.5;
 }
@@ -738,11 +745,12 @@ body {
 #single,
 #onevone {
     background-color: #ad003d;
-    padding: 16px;
-    padding-left: 35px;
-    padding-right: 35px;
+    height: 100%;
+    padding-top: 1.5dvh;
 
-    font-size: 15px;
+    text-align: center;
+
+    font-size: 2.3dvh;
     font-weight: bold;
 
     border-style: solid;
@@ -750,14 +758,6 @@ body {
     border-color: #e2c072;
     color: #e2c072;
     box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
-}
-
-#single {
-    padding-left: 3dvw;
-}
-
-#onevone {
-    padding-right: 3dvw;
 }
 
 #single:hover,
@@ -1248,20 +1248,12 @@ body {
 
     #single,
     #onevone {
-        padding: 10px;
-        padding-left: 22px;
-        padding-right: 22px;
         font-weight: normal;
-
         font-size: 14px;
     }
 
-    #single {
-        margin-right: 100px;
-    }
-
-    #onevone {
-        margin-left: 110px;
+    #modeSelect{
+        width: 60dvw;
     }
 
     #mode {
