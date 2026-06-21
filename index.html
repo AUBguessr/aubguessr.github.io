@@ -518,6 +518,7 @@
                 if (twoSec) {
                     setTimeout(function () {
                         document.getElementById("picture").style.opacity = "0";
+                        document.getElementById("full").style.opacity = "0";
                         twoSecDone = 1;
 
                         document.getElementById("picFull").style.display = "none";
@@ -619,6 +620,7 @@
             guessed = false;
             twoSecDone = 0;
             document.getElementById("picture").style.opacity = "1"; //for twoSec difficulty
+            document.getElementById("full").style.opacity = "1";    //for twoSec difficulty
 
             if (count == round - 1) {
                 document.getElementById("submit").textContent = "See Results ➜";

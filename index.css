@@ -1304,4 +1304,8 @@ body {
     #hintDiv{
         width: 90%;
     }
+
+    .blur {
+    filter: blur(0.6dvh);
+    }
 }
