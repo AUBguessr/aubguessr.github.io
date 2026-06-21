@@ -949,7 +949,7 @@ body {
     animation: pulse 1.5s infinite;
 }
 
-@media (orientation: landscape) and (max-height: 500px) and (max-width: 768px) {\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\mobile\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+@media (orientation: landscape) and (max-height: 500px) and (max-width: 768px) {
     #rotate {
         display: flex;
     }
