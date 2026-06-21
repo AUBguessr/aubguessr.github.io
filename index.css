@@ -270,7 +270,9 @@ body {
     color: rgb(217, 170, 111);
 }
 
-#scoreDiv, #diffDiv, #hintDiv {
+#scoreDiv,
+#diffDiv,
+#hintDiv {
     display: none;
     justify-content: center;
 
@@ -663,7 +665,7 @@ body {
     color: rgb(137, 137, 137);
 }
 
-.invalid::placeholder {
+#input.invalid::placeholder {
     color: rgb(239, 0, 0);
 }
 
@@ -754,7 +756,7 @@ body {
     padding-left: 3dvw;
 }
 
-#onevone{
+#onevone {
     padding-right: 3dvw;
 }
 
@@ -774,7 +776,7 @@ body {
     bottom: 0;
 }
 
-#modeText{
+#modeText {
     position: absolute;
     color: #e9c986;
     font-size: 20px;
@@ -785,12 +787,12 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
-#diff{
+#diff {
     position: absolute;
 
     height: 30px;
     width: 6dvw;
-    
+
     bottom: 11.8dvh;
     left: 100px;
     margin-left: 19dvw;
@@ -810,19 +812,22 @@ body {
 
 }
 
-#diff:hover{
+#diff:hover {
     cursor: pointer;
     background-color: #b01048;
     box-shadow: none;
 }
 
-#diffDiv{
+#diffDiv {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
 }
 
-#inverted, #blurry, #twoSec, #useHint {
+#inverted,
+#blurry,
+#twoSec,
+#useHint {
     font-weight: bold;
     font-size: 2.5dvh;
     height: 30px;
@@ -835,7 +840,10 @@ body {
     border-radius: 10px;
 }
 
-#inverted:hover, #blurry:hover, #twoSec:hover, #useHint:hover {
+#inverted:hover,
+#blurry:hover,
+#twoSec:hover,
+#useHint:hover {
     background-color: #b4003f;
 }
 
@@ -851,7 +859,8 @@ body {
     filter: blur(0.5dvh) invert(1);
 }
 
-#hate, #hintText1{
+#hate,
+#hintText1 {
 
     margin-top: -20px;
     font-family: 'Georgia', serif;
@@ -873,8 +882,8 @@ body {
     width: 90%;
 }
 
-#hintText1{
-    
+#hintText1 {
+
     margin-top: 0;
     text-transform: none;
     letter-spacing: 0px;
@@ -884,7 +893,7 @@ body {
     font-size: 3dvh;
 }
 
-#codeDiv{
+#codeDiv {
     display: none;
 
     flex-direction: column;
@@ -896,7 +905,8 @@ body {
     margin-right: 80px;
 }
 
-#codeInput, #codeOutput{
+#codeInput,
+#codeOutput {
     background-color: #85002e;
     color: #e4c473;
     border-radius: 20px;
@@ -916,17 +926,19 @@ body {
     margin-top: 346px;
 }
 
-#codeInput::placeholder{
+#codeInput::placeholder {
     color: red;
 }
 
 
-#codeInput:focus, #codeOutput:focus {
+#codeInput:focus,
+#codeOutput:focus {
     outline: none;
     /* Removes the default browser ring */
 }
 
-#enterCode, #sendCode{
+#enterCode,
+#sendCode {
     position: absolute;
     color: #e4c473;
     font-size: 25px;
@@ -935,21 +947,37 @@ body {
     margin-top: 350px;
 }
 
-#sendCode{
+#sendCode {
     position: absolute;
     margin-top: 202px;
 }
 
-#codeOutput{
+#codeOutput {
     position: absolute;
     margin-top: 200px;
     background-color: rgb(55, 55, 55);
     color: #dddddd;
     border-color: #a2a2a2;
     border-radius: 5px;
+
+    pointer-events: none;
 }
 
-#playCode{
+#copy {
+    position: absolute;
+    width: 40px;
+    margin-top: 200px;
+    margin-left: 380px;
+    border-radius: 10px;
+}
+
+#copy:hover {
+    cursor: pointer;
+    background-color: #ad003d;
+    padding: 4px;
+}
+
+#playCode {
     position: absolute;
     height: 30px;
     width: 80px;
@@ -968,13 +996,13 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-#playCode:hover{
+#playCode:hover {
     background-color: rgb(181, 28, 84);
     text-shadow: none;
     cursor: pointer;
 }
 
-#hint{
+#hint {
     display: none;
 
     position: absolute;
@@ -991,19 +1019,26 @@ body {
     box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
 }
 
-#hint:hover{
+#hint:hover {
     cursor: pointer;
     background-color: #b3003f;
 }
 
-#useHint{
+#useHint {
     margin-bottom: 5dvh;
     font-weight: bold;
 }
 
 @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
 }
 
 .pulse-marker {
@@ -1019,7 +1054,7 @@ body {
 @media (max-width: 768px) {
     /* styles that only apply on mobile */
 
-    #body{
+    #body {
         user-select: none;
     }
 
@@ -1235,49 +1270,55 @@ body {
         width: 80dvw;
     }
 
-    #modeText{
+    #modeText {
         font-size: 16px;
         margin-left: 30px;
     }
 
-    #codeDiv{
+    #codeDiv {
         height: 50dvh;
         width: 90dvw;
         margin-right: 30px;
     }
 
-    #sendCode{
+    #sendCode {
         font-size: 16px;
         margin-top: 150px;
         margin-left: 10px;
     }
 
-    #codeOutput{
+    #codeOutput {
         margin-top: 144px;
         margin-left: 120px;
         width: 170px;
         font-size: 14px;
     }
 
-    #enterCode{
+    #copy {
+        width: 40px;
+        margin-top: 140px;
+        margin-left: 295px;
+    }
+
+    #enterCode {
         font-size: 16px;
         margin-top: 250px;
         margin-left: 10px;
     }
 
-    #codeInput{
+    #codeInput {
         margin-left: 120px;
         margin-top: 240px;
         width: 170px;
         font-size: 14px;
     }
 
-    #playCode{
+    #playCode {
         left: 170px;
         margin-top: 290px;
     }
 
-    #diff{
+    #diff {
         width: 30dvw;
         margin-bottom: 6dvh;
         margin-left: 0;
@@ -1288,24 +1329,24 @@ body {
         font-size: 4dvw;
     }
 
-    #diffDiv{
+    #diffDiv {
         width: 86%;
     }
 
-    #hint{
+    #hint {
         z-index: 500;
     }
 
-    #hintText1{
+    #hintText1 {
         margin-top: 10px;
         font-size: 4dvw;
     }
 
-    #hintDiv{
+    #hintDiv {
         width: 90%;
     }
 
     .blur {
-    filter: blur(0.6dvh);
+        filter: blur(0.6dvh);
     }
 }

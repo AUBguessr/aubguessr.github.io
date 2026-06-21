@@ -52,6 +52,8 @@
                     <p id="sendCode">Send a code:</p>
                     <input id="codeOutput" value="999-999-999-999-999" readonly></input>
 
+                    <img id="copy" src="assets/copy.svg"></img>
+
                     <p id="enterCode">Enter a code:</p>
                     <input id="codeInput"></input>
 
@@ -418,7 +420,7 @@
             document.getElementById("side1").style.backgroundImage = "url('assets/ocean.jpg')";
             document.getElementById("side1").style.backgroundSize = "contain";
 
-            if(isMobile) document.getElementById("side1").style.backgroundSize = "cover ";
+            if (isMobile) document.getElementById("side1").style.backgroundSize = "cover ";
         });
 
         var formatted;
@@ -851,6 +853,10 @@
             var code = arr[round] + "-" + arr[round + 1] + "-" + arr[round + 2] + "-" + arr[round + 3] + "-" + arr[round + 4];
             document.getElementById("codeOutput").value = code;
         }
+
+        document.getElementById("copy").addEventListener("click", function (e) {
+            navigator.clipboard.writeText(document.getElementById("codeOutput").value);
+        });
 
         document.getElementById("playCode").addEventListener("click", function (e) {
             codeArr = (document.getElementById("codeInput").value).split("-");
