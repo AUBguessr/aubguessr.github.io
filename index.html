@@ -9,6 +9,7 @@
 
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no,email=no,address=no"> <!--fixes weird blue text on iphones-->
 
     <link rel="stylesheet" href="index.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -35,7 +36,7 @@
     </div>
 
     <div id="rotate">
-        <p id="rotateText">please rotate your phone to vertical mode</p>
+        <p id="rotateText">please rotate your phone to vertical mode <br>(or zoom out if on desktop)</p>
     </div>
 
     <div id="container">
@@ -85,9 +86,10 @@
 
             <p id="hate">How much do you want to hate this experience?</p>
 
-            <button type="checkbox" id="inverted">Inverted Colors</button>
-            <button type="checkbox" id="blurry">Blurry Images</button>
-            <button type="checkbox" id="twoSec">2-Second Timer</button>
+            <button id="inverted">Inverted Colors</button>
+            <button id="blurry">Blurry Images</button>
+            <button id="mirrored">Mirrored Images</button>
+            <button id="twoSec">2-Second Timer</button>
 
         </div>
 
@@ -321,7 +323,43 @@
             [33.90040110240779, 35.47992471889136],     //160
             [33.90148692301516, 35.4796457414363],      //161
             [33.89982258578218, 35.47923800515585],     //162
-            [33.89988488776123, 35.47917362574312]      //163
+            [33.89988488776123, 35.47917362574312],     //163
+            [33.89939640315094, 35.479516660067986],    //164
+            [33.89964934991581, 35.48009690304438],     //165
+            [33.89960929853817, 35.4803008699796],      //166
+            [33.899538096042534, 35.480418956099996],   //167
+            [33.899974210394966, 35.48001638978048],    //168
+            [33.89942239186033, 35.48042432365092],     //169
+            [33.89950249477245, 35.48038675079442],     //170
+            [33.89936008954334, 35.480435058752775],    //171
+            [33.89971165202142, 35.481288499350086],    //172
+            [33.8997161021701, 35.48146026097976],      //173
+            [33.89936898987714, 35.48052630711852],     //174
+            [33.89970275172341, 35.482920234831774],    //175
+            [33.899707201872545, 35.48321645219334],    //176
+            [33.89976950393589, 35.48349558287878],     //177
+            [33.899790765413805, 35.48244952966393],    //178
+            [33.8995104058401, 35.48404749715111],      //179
+            [33.90003119284309, 35.484218320734826],    //180
+            [33.89993328988071, 35.48399286902736],     //181
+            [33.900244798916255, 35.48312863748211],    //182
+            [33.90031600082171, 35.48308032640194],     //183
+            [33.89951497595696, 35.48386940737806],     //184
+            [33.900525252040225, 35.48269972881685],    //185
+            [33.9007700075361, 35.482415230233634],     //186
+            [33.90088570988959, 35.48228103278872],     //187
+            [33.90117051501391, 35.481905279942964],    //188
+            [33.90108596359193, 35.482307872277715],    //189
+            [33.90135296779672, 35.482286400686526],    //190
+            [33.901366317984994, 35.48198043051213],    //191
+            [33.90163777136017, 35.48232397597109],     //192
+            [33.90157547066197, 35.48239912654026],     //193
+            [33.9013841182328, 35.48165835664432],      //194
+            [33.9013129172193, 35.481443640732465],     //195
+            [33.90141526865751, 35.480783389303454],    //196
+            [33.90227412588466, 35.48215757113942],     //197
+            [33.899270312824875, 35.47871674865177],    //198
+            [33.90199408635763, 35.48031294556797]      //199
         ];
 
         var maxMarginLat = 0.00643;
@@ -338,6 +376,7 @@
 
         var inverted = 0;
         var blurry = 0;
+        var mirrored = 0;
         var twoSec = 0;
         var twoSecDone = 0;
 
@@ -464,7 +503,7 @@
             guessLat = e.latlng.lat;
             guessLng = e.latlng.lng;
 
-            //console.log(guessLat, guessLng); //USE FOR NEW PICTURES///////////////////////////////////////////////////////////////////
+            console.log(guessLat, guessLng); //USE FOR NEW PICTURES///////////////////////////////////////////////////////////////////
 
             var absLat = Math.abs(coords[turn][0] - guessLat);
             var absLng = Math.abs(coords[turn][1] - guessLng);
@@ -905,6 +944,12 @@
             else blurry = 0;
         });
 
+        document.getElementById("mirrored").addEventListener("click", function (e) {
+            buttonClicked("mirrored", mirrored);
+            if (mirrored == 0) mirrored = 1;
+            else mirrored = 0;
+        });
+
         document.getElementById("twoSec").addEventListener("click", function (e) {
             buttonClicked("twoSec", twoSec);
             if (twoSec == 0) twoSec = 1;
@@ -930,8 +975,10 @@
             var pic = document.getElementById("picture");
             pic.classList.toggle("blur", blurry);
             pic.classList.toggle("invert", inverted);
+            pic.classList.toggle("mirrored", mirrored);
             picFull.classList.toggle("blur", blurry);
             picFull.classList.toggle("invert", inverted);
+            picFull.classList.toggle("mirrored", mirrored);
         }
 
         function getHintCircle(trueLat, trueLng) {

@@ -53,7 +53,7 @@ body {
 }
 
 #logo:hover {
-    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.1);
+    box-shadow: none;
 }
 
 #side1 {
@@ -133,7 +133,7 @@ body {
 }
 
 #picture:hover {
-    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.1);
+    box-shadow: none;
 }
 
 #full {
@@ -168,6 +168,7 @@ body {
 #submit {
     background-color: rgb(149, 149, 149);
     border-color: rgb(149, 149, 149);
+    text-decoration: none;
 }
 
 #submit,
@@ -445,6 +446,7 @@ body {
 #profileButton:hover {
     cursor: pointer;
     background-color: rgb(181, 28, 84);
+    box-shadow: none;
 }
 
 #Aside1 {
@@ -790,12 +792,11 @@ body {
 #diff {
     position: absolute;
 
-    height: 30px;
+    height: 4dvh;
     width: 6dvw;
 
     bottom: 11.8dvh;
-    left: 100px;
-    margin-left: 19dvw;
+    margin-left: 24dvw;
 
     background-color: #960035;
 
@@ -826,6 +827,7 @@ body {
 
 #inverted,
 #blurry,
+#mirrored,
 #twoSec,
 #useHint {
     font-weight: bold;
@@ -843,6 +845,7 @@ body {
 #inverted:hover,
 #blurry:hover,
 #twoSec:hover,
+#mirrored:hover,
 #useHint:hover {
     background-color: #b4003f;
 }
@@ -857,6 +860,10 @@ body {
 
 .blur.invert {
     filter: blur(0.5dvh) invert(1);
+}
+
+.mirrored{
+    transform: scaleX(-1);
 }
 
 #hate,
@@ -1022,6 +1029,7 @@ body {
 #hint:hover {
     cursor: pointer;
     background-color: #b3003f;
+    box-shadow: none;
 }
 
 #useHint {
