@@ -719,6 +719,7 @@
         });
 
         dim.addEventListener('click', function (e) {
+
             dim.style.display = "none";
             picFull.style.display = "none";
             document.getElementById("diffDiv").style.display = "none";
@@ -796,7 +797,7 @@
             if (wasMulti) document.getElementById("press").style.display = "none";
             else document.getElementById("press").style.display = "revert";
 
-            if(invited) document.getElementById("press").style.display = "revert";
+            if (invited) document.getElementById("press").style.display = "revert";
 
             invited = 0;
 
@@ -916,7 +917,7 @@
         var genCode;
 
         function generateCode() {
-            var genCode = "https://aubguessr.github.io/?c=" + arr[round] + "-" + arr[round + 1] + "-" + arr[round + 2] + "-" + arr[round + 3] + "-" + arr[round + 4] + "-" + inverted + "-" + blurry + "-" + mirrored + "-" + twoSec;
+            var genCode = "https://aubguessr.github.io/?c=" + arr[round] + "-" + arr[round + 1] + "-" + arr[round + 2] + "-" + arr[round + 3] + "-" + arr[round + 4] + "-" + inverted + blurry + mirrored + twoSec;
             document.getElementById("codeOutput").value = genCode;
 
             return genCode;
@@ -944,11 +945,11 @@
             for (let i = 0; i < round; i++) {
                 arr[i] = Number(codeArr[i]);
             }
-
-            inverted = Number(codeArr[5]);
-            blurry = Number(codeArr[6]);
-            mirrored = Number(codeArr[7]);
-            twoSec = Number(codeArr[8]);
+            
+            inverted = Number(codeArr[5].charAt(0));
+            blurry = Number(codeArr[5].charAt(1));
+            mirrored = Number(codeArr[5].charAt(2));
+            twoSec = Number(codeArr[5].charAt(3));
 
             turn = arr[0];
             mode = 0;
