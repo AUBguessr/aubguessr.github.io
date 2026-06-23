@@ -809,7 +809,7 @@ body {
     border-radius: 10px;
     border-width: 2px;
     border-color: #e2c072;
-    color: #e2c072;
+    color: #e9c986;
     box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.1);
 
 }
@@ -941,7 +941,6 @@ body {
 
 #codeDiv {
     display: none;
-
     flex-direction: column;
     background-color: transparent;
     position: absolute;
@@ -952,24 +951,17 @@ body {
 
 #codeOutput {
     position: absolute;
-
-    background-color: #85002e;
-    color: #e4c473;
-    border-radius: 20px;
-
-    width: 10dvw;
+    width: 30%;
 
     height: 40px;
-
-    border-color: #e4c473;
     border-style: solid;
 
     font-size: 12px;
 
     padding: 8px;
 
-    margin-left: 24dvh;
-    margin-top: 280px;
+    margin-left: 10dvw;
+    margin-top: 38dvh;
     background-color: rgb(55, 55, 55);
     color: #dddddd;
     border-color: #a2a2a2;
@@ -983,11 +975,10 @@ body {
 }
 
 #sendCode {
-    position: absolute;
-    color: #e4c473;
-    font-size: 4dvh;
-    margin-left: 22dvh;
-    margin-top: 220px;
+    align-self: center;
+    color: #e9c986;
+    font-size: 40px;
+    margin-top: 28dvh;
 
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
@@ -995,8 +986,8 @@ body {
 #copy {
     position: absolute;
     width: 40px;
-    margin-top: 280px;
-    margin-left: 22dvw;
+    margin-top: 38dvh;
+    margin-left: 21dvw;
     border-radius: 10px;
 }
 
@@ -1296,7 +1287,7 @@ body {
     #copy {
         width: 40px;
         margin-top: 200px;
-        margin-left: 250px;
+        margin-left: 67dvw;
     }
 
     #startGame {

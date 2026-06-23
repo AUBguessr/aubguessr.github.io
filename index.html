@@ -383,6 +383,7 @@
 
         var mode = 0;
         var wasMulti = 0;
+        var invited = 0;
 
         var inverted = 0;
         var blurry = 0;
@@ -513,7 +514,7 @@
             guessLat = e.latlng.lat;
             guessLng = e.latlng.lng;
 
-            console.log(guessLat, guessLng); //USE FOR NEW PICTURES///////////////////////////////////////////////////////////////////
+            //console.log(guessLat, guessLng); //USE FOR NEW PICTURES///////////////////////////////////////////////////////////////////
 
             var absLat = Math.abs(coords[turn][0] - guessLat);
             var absLng = Math.abs(coords[turn][1] - guessLng);
@@ -644,8 +645,6 @@
             document.getElementById("result").textContent = formatted + "%";
             total += parseFloat(formatted);
             if (parseFloat(formatted) == 100) perfectScore++;
-
-            console.log("HINT: " + hintUsed);
 
             L.circleMarker([coords[turn][0], coords[turn][1]], {
                 color: 'rgb(132, 1, 50)',          // Stroke color
@@ -797,6 +796,10 @@
             if (wasMulti) document.getElementById("press").style.display = "none";
             else document.getElementById("press").style.display = "revert";
 
+            if(invited) document.getElementById("press").style.display = "revert";
+
+            invited = 0;
+
             generateCode();
 
         });
@@ -913,7 +916,7 @@
         var genCode;
 
         function generateCode() {
-            var genCode = "https://aubguessr.github.io/?challenge=" + arr[round] + "-" + arr[round + 1] + "-" + arr[round + 2] + "-" + arr[round + 3] + "-" + arr[round + 4] + "-" + inverted + "-" + blurry + "-" + mirrored + "-" + twoSec;
+            var genCode = "https://aubguessr.github.io/?c=" + arr[round] + "-" + arr[round + 1] + "-" + arr[round + 2] + "-" + arr[round + 3] + "-" + arr[round + 4] + "-" + inverted + "-" + blurry + "-" + mirrored + "-" + twoSec;
             document.getElementById("codeOutput").value = genCode;
 
             return genCode;
@@ -925,11 +928,9 @@
 
         document.getElementById("startGame").addEventListener("click", function (e) {
             var params = new URLSearchParams(window.location.search);
-            var challengeCode = params.get("challenge");
+            var challengeCode = params.get("c");
 
             var codeArr = challengeCode.split("-");
-
-            console.log(codeArr);
 
             var invalid = codeArr.length != 5;
 
@@ -1036,7 +1037,7 @@
         });
 
         var params = new URLSearchParams(window.location.search);
-        var challengeCode = params.get("challenge");
+        var challengeCode = params.get("c");
 
         if (challengeCode) {
             hideSignin();
@@ -1044,6 +1045,7 @@
             dim.style.display = "revert";
             document.getElementById("side1").style.display = "flex";
             document.getElementById("invite").style.display = "flex";
+            invited = 1;
         }
 
     </script>
