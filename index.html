@@ -973,10 +973,18 @@
                 arr[i] = Number(codeArr[i]);
             }
 
-            inverted = Number(codeArr[5].charAt(0));
-            blurry = Number(codeArr[5].charAt(1));
-            mirrored = Number(codeArr[5].charAt(2));
-            twoSec = Number(codeArr[5].charAt(3));
+            if(Number(codeArr[5].charAt(0))){
+                buttonClicked("inverted", inverted);
+            }
+            if(Number(codeArr[5].charAt(1))){
+                buttonClicked("blurry", blurry);
+            }
+            if(Number(codeArr[5].charAt(2))){
+                buttonClicked("mirrored", mirrored);
+            }
+            if(Number(codeArr[5].charAt(3))){
+                buttonClicked("twoSec", twoSec);
+            }
 
             turn = arr[0];
             mode = 0;
