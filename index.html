@@ -49,7 +49,7 @@
     <div id="container">
         <div id="dim"></div>
 
-        <img id="picFull" src="images/image0.jpeg"></img>
+        <img id="picFull" src=""></img>
 
         <div id="side1">
 
@@ -79,7 +79,10 @@
 
             <img id="hint" src="assets/hint.svg"></img>
 
-            <img id="picture" src=""></img>
+            <div id="picWrap">
+                <img id="picture" src=""></img>
+            </div>
+            
             <p id="full">Click image to fullscreen</p>
 
             <p id="result"></p>
@@ -94,6 +97,7 @@
             <button id="mirrored">Mirrored Images</button>
             <button id="twoSec">2-Second Timer</button>
 
+            <p id="diff-apply">difficulties apply to multiplayer links</p>
         </div>
 
         <div id="invite">
@@ -567,11 +571,9 @@
 
             if (next || play) {
 
-                //document.getElementById("side1").style.backgroundColor = "blue";
-
                 if (twoSec) {
                     setTimeout(function () {
-                        document.getElementById("picture").style.opacity = "0";
+                        document.getElementById("picWrap").style.display = "none";
                         document.getElementById("full").style.opacity = "0";
                         twoSecDone = 1;
 
@@ -581,6 +583,7 @@
                     }, isMobile ? 3000 : 2500);
                 }
 
+                document.getElementById("picWrap").style.display = "flex";
                 document.getElementById("picture").style.display = "revert";
                 document.getElementById("text1").style.display = "revert";
 
@@ -671,7 +674,7 @@
             next = true;
             guessed = false;
             twoSecDone = 0;
-            document.getElementById("picture").style.opacity = "1"; //for twoSec difficulty
+            document.getElementById("picWrap").style.display = "flex"; //for twoSec difficulty
             document.getElementById("full").style.opacity = "1";    //for twoSec difficulty
 
             if (count == round - 1) {
@@ -710,7 +713,7 @@
             return;
         };
 
-        picture.addEventListener('click', function (e) {
+        document.getElementById("picWrap").addEventListener('click', function (e) {
             if (play || twoSecDone) {
                 return;
             }
@@ -772,7 +775,7 @@
             document.getElementById("submit").textContent = "PLAY";
             document.getElementById("submit").style.top = "";
             document.getElementById("submit").style.marginLeft = "";
-            document.getElementById("picture").style.display = "none";
+            document.getElementById("picWrap").style.display = "none";
             document.getElementById("result").style.display = "none";
 
             document.getElementById("text1").style.display = "none";
@@ -945,7 +948,7 @@
             for (let i = 0; i < round; i++) {
                 arr[i] = Number(codeArr[i]);
             }
-            
+
             inverted = Number(codeArr[5].charAt(0));
             blurry = Number(codeArr[5].charAt(1));
             mirrored = Number(codeArr[5].charAt(2));
