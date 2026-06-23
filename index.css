@@ -887,7 +887,7 @@ body {
     color: #5d0020;
     font-weight: bold;
     font-size: 1.2dvw;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     position: absolute;
     bottom: 0;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -1359,5 +1359,10 @@ body {
 
     #invite{
         width: 90%;
+    }
+
+    #diff-apply{
+        font-size: 12px;
+        letter-spacing: 1px;
     }
 }
