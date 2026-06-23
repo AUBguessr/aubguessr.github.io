@@ -273,7 +273,8 @@ body {
 
 #scoreDiv,
 #diffDiv,
-#hintDiv {
+#hintDiv,
+#invite {
     display: none;
     justify-content: center;
 
@@ -724,7 +725,7 @@ body {
 #modeSelect{
     position: absolute;
     display: flex;
-    width: 16dvw;
+    width: 18dvw;
     height: 6dvh;
     bottom: 11dvh;
     margin-right: 3dvw;
@@ -732,20 +733,20 @@ body {
 
 #single {
     position: absolute;
-    width: 59%;
+    width: 57%;
     border-radius: 20px 0px 0px 20px;
 }
 
-#onevone {
+#multi {
     position: absolute;
-    width: 39%;
+    width: 42%;
     right: 0;
     border-radius: 0px 20px 20px 0px;
     opacity: 0.5;
 }
 
 #single,
-#onevone {
+#multi {
     background-color: #ad003d;
     height: 100%;
     padding-top: 1.5dvh;
@@ -763,7 +764,7 @@ body {
 }
 
 #single:hover,
-#onevone:hover {
+#multi:hover {
     cursor: pointer;
     background-color: #b01048;
     box-shadow: none;
@@ -782,11 +783,11 @@ body {
     position: absolute;
     color: #e9c986;
     font-size: 20px;
+    align-self: center;
     text-align: center;
+    margin-top: 100px;
 
-    margin-left: 100px;
-
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 #diff {
@@ -867,7 +868,8 @@ body {
 }
 
 #hate,
-#hintText1 {
+#hintText1,
+#inviteText1 {
 
     margin-top: -20px;
     font-family: 'Georgia', serif;
@@ -900,100 +902,28 @@ body {
     font-size: 3dvh;
 }
 
-#codeDiv {
-    display: none;
+#invite{
+    height: 30dvh;
+}
 
-    flex-direction: column;
-    background-color: transparent;
+#inviteText1{
+    margin-top: 4dvh;
+    text-transform: none;
+    letter-spacing: 0px;
+}
+
+#startGame {
     position: absolute;
-    height: 60dvh;
-    width: 30dvw;
-    bottom: 160px;
-    margin-right: 80px;
-}
-
-#codeInput,
-#codeOutput {
-    background-color: #85002e;
-    color: #e4c473;
-    border-radius: 20px;
-
-    width: 210px;
-
-    height: 40px;
-
-    border-color: #e4c473;
-    border-style: solid;
-
-    font-size: 18px;
-
-    padding: 15px;
-
-    margin-left: 166px;
-    margin-top: 346px;
-}
-
-#codeInput::placeholder {
-    color: red;
-}
-
-
-#codeInput:focus,
-#codeOutput:focus {
-    outline: none;
-    /* Removes the default browser ring */
-}
-
-#enterCode,
-#sendCode {
-    position: absolute;
-    color: #e4c473;
-    font-size: 25px;
-
-    margin-left: 20px;
-    margin-top: 350px;
-}
-
-#sendCode {
-    position: absolute;
-    margin-top: 202px;
-}
-
-#codeOutput {
-    position: absolute;
-    margin-top: 200px;
-    background-color: rgb(55, 55, 55);
-    color: #dddddd;
-    border-color: #a2a2a2;
-    border-radius: 5px;
-
-    pointer-events: none;
-}
-
-#copy {
-    position: absolute;
-    width: 40px;
-    margin-top: 200px;
-    margin-left: 380px;
-    border-radius: 10px;
-}
-
-#copy:hover {
-    cursor: pointer;
-    background-color: #ad003d;
-    padding: 4px;
-}
-
-#playCode {
-    position: absolute;
-    height: 30px;
-    width: 80px;
+    height: 20%;
+    width: 12dvw;
 
     border-style: solid;
     border-radius: 10px;
 
-    margin-top: 350px;
-    left: 380px;
+    font-size: 2.5dvh;
+    font-weight: bold;
+
+    margin-top: 15dvh;
 
 
     color: rgb(217, 170, 111);
@@ -1003,10 +933,77 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-#playCode:hover {
-    background-color: rgb(181, 28, 84);
+#startGame:hover {
+    background-color: rgb(171, 0, 63);
     text-shadow: none;
     cursor: pointer;
+}
+
+#codeDiv {
+    display: none;
+
+    flex-direction: column;
+    background-color: transparent;
+    position: absolute;
+    height: 68dvh;
+    width: 34dvw;
+    bottom: 160px;
+}
+
+#codeOutput {
+    position: absolute;
+
+    background-color: #85002e;
+    color: #e4c473;
+    border-radius: 20px;
+
+    width: 10dvw;
+
+    height: 40px;
+
+    border-color: #e4c473;
+    border-style: solid;
+
+    font-size: 12px;
+
+    padding: 8px;
+
+    margin-left: 24dvh;
+    margin-top: 280px;
+    background-color: rgb(55, 55, 55);
+    color: #dddddd;
+    border-color: #a2a2a2;
+    border-radius: 5px;
+
+    pointer-events: none;
+}
+#codeOutput:focus {
+    outline: none;
+    /* Removes the default browser ring */
+}
+
+#sendCode {
+    position: absolute;
+    color: #e4c473;
+    font-size: 4dvh;
+    margin-left: 22dvh;
+    margin-top: 220px;
+
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+#copy {
+    position: absolute;
+    width: 40px;
+    margin-top: 280px;
+    margin-left: 22dvw;
+    border-radius: 10px;
+}
+
+#copy:hover {
+    cursor: pointer;
+    background-color: #ad003d;
+    padding: 4px;
 }
 
 #hint {
@@ -1255,7 +1252,7 @@ body {
     }
 
     #single,
-    #onevone {
+    #multi {
         font-weight: normal;
         font-size: 14px;
     }
@@ -1272,50 +1269,39 @@ body {
 
     #modeText {
         font-size: 16px;
-        margin-left: 30px;
+        margin-top: 40px;
     }
 
     #codeDiv {
         height: 50dvh;
         width: 90dvw;
-        margin-right: 30px;
     }
 
     #sendCode {
-        font-size: 16px;
+        font-size: 24px;
+        margin-left: 0;
         margin-top: 150px;
-        margin-left: 10px;
+        align-self: center;
     }
 
     #codeOutput {
-        margin-top: 144px;
-        margin-left: 120px;
+        align-self: center;
+        margin-top: 200px;
+        margin-left: 0;
+        margin-right: 40px;
         width: 170px;
         font-size: 14px;
     }
 
     #copy {
         width: 40px;
-        margin-top: 140px;
-        margin-left: 295px;
+        margin-top: 200px;
+        margin-left: 250px;
     }
 
-    #enterCode {
-        font-size: 16px;
-        margin-top: 250px;
-        margin-left: 10px;
-    }
-
-    #codeInput {
-        margin-left: 120px;
-        margin-top: 240px;
-        width: 170px;
-        font-size: 14px;
-    }
-
-    #playCode {
-        left: 170px;
-        margin-top: 290px;
+    #startGame {
+        margin-top: 100px;
+        width: 60%;
     }
 
     #diff {
@@ -1348,5 +1334,9 @@ body {
 
     .blur {
         filter: blur(0.6dvh);
+    }
+
+    #invite{
+        width: 90%;
     }
 }

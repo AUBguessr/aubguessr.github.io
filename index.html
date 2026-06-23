@@ -8,7 +8,8 @@
     <title>AUBguessr</title>
 
     <meta property="og:title" content="AUBguessr">
-    <meta property="og:description" content="AUB's campus guessing game. Challenge your friends and see who knows campus best.">
+    <meta property="og:description"
+        content="AUB's campus guessing game. Challenge your friends and see who knows campus best.">
     <meta property="og:image" content="https://aubguessr.github.io/assets/preview.png">
     <meta property="og:url" content="https://aubguessr.github.io">
     <meta property="og:type" content="website">
@@ -54,22 +55,18 @@
 
             <div id="mode">
                 <div id="codeDiv">
-                    <p id="modeText">In 1v1 mode, you can send a random code and play the same game, with a friend.</p>
+                    <p id="modeText">In MultiPlayer mode, you can send a link and play the same game, with other people.
+                    </p>
 
-                    <p id="sendCode">Send a code:</p>
-                    <input id="codeOutput" value="999-999-999-999-999" readonly></input>
+                    <p id="sendCode">Challenge a friend:</p>
+                    <input id="codeOutput" value="https://aubguessr.github.io" readonly></input>
 
                     <img id="copy" src="assets/copy.svg"></img>
-
-                    <p id="enterCode">Enter a code:</p>
-                    <input id="codeInput"></input>
-
-                    <button id="playCode">Play Code</button>
                 </div>
 
                 <div id="modeSelect">
                     <p id="single">SinglePlayer</p>
-                    <p id="onevone">1v1</p>
+                    <p id="multi">MultiPlayer</p>
                 </div>
                 <button id="diff">Difficulty</button>
             </div>
@@ -96,6 +93,13 @@
             <button id="blurry">Blurry Images</button>
             <button id="mirrored">Mirrored Images</button>
             <button id="twoSec">2-Second Timer</button>
+
+        </div>
+
+        <div id="invite">
+
+            <p id="inviteText1">You have been invited to a game!</p>
+            <button id="startGame">Start Game</button>
 
         </div>
 
@@ -378,7 +382,7 @@
         var arr = new Array(locations);
 
         var mode = 0;
-        var was1v1 = 0;
+        var wasMulti = 0;
 
         var inverted = 0;
         var blurry = 0;
@@ -686,7 +690,7 @@
             finalScore = (total / round).toFixed(2);
             if (finalScore == 100.00) finalScore = 100;
 
-            if (updateGamesDB && !was1v1) {
+            if (updateGamesDB && !wasMulti) {
                 updateGamesDB = false; //for it to happen once
                 //update games played
                 games_played++;
@@ -721,6 +725,8 @@
             document.getElementById("diffDiv").style.display = "none";
             document.getElementById("scoreDiv").style.display = "none";
             document.getElementById("hintDiv").style.display = "none";
+            document.getElementById("invite").style.display = "none";
+            generateCode();
         });
 
         document.addEventListener('keydown', function (event) {
@@ -740,7 +746,7 @@
         stats = document.getElementById("stats");
 
         document.getElementById("logo").addEventListener('click', function (e) {
-            window.location.reload();
+            window.location.href = window.location.origin + window.location.pathname;
         });
 
         document.getElementById("profileButton").addEventListener('click', function (e) {
@@ -788,7 +794,7 @@
                 document.getElementById("side1").style.borderWidth = "0px";
             }
 
-            if (was1v1) document.getElementById("press").style.display = "none";
+            if (wasMulti) document.getElementById("press").style.display = "none";
             else document.getElementById("press").style.display = "revert";
 
             generateCode();
@@ -878,35 +884,52 @@
             }
         });
 
-        document.getElementById("onevone").addEventListener("click", function (e) {
+        document.getElementById("multi").addEventListener("click", function (e) {
             document.getElementById("single").style.opacity = 0.5;
-            document.getElementById("onevone").style.opacity = 1;
+            document.getElementById("multi").style.opacity = 1;
+
+            document.getElementById("multi").style.width = "55%";
+            document.getElementById("single").style.width = "44%";
+
             document.getElementById("press").style.display = "none";
             document.getElementById("codeDiv").style.display = "flex";
-            was1v1 = 1;
+            wasMulti = 1;
             mode = 1;
         });
 
         document.getElementById("single").addEventListener("click", function (e) {
             document.getElementById("single").style.opacity = 1;
-            document.getElementById("onevone").style.opacity = 0.5;
+            document.getElementById("multi").style.opacity = 0.5;
+
+            document.getElementById("multi").style.width = "42%";
+            document.getElementById("single").style.width = "57%";
+
             document.getElementById("press").style.display = "revert";
             document.getElementById("codeDiv").style.display = "none";
-            was1v1 = 0;
+            wasMulti = 0;
             mode = 0;
         });
 
+        var genCode;
+
         function generateCode() {
-            var code = arr[round] + "-" + arr[round + 1] + "-" + arr[round + 2] + "-" + arr[round + 3] + "-" + arr[round + 4];
-            document.getElementById("codeOutput").value = code;
+            var genCode = "https://aubguessr.github.io/?challenge=" + arr[round] + "-" + arr[round + 1] + "-" + arr[round + 2] + "-" + arr[round + 3] + "-" + arr[round + 4] + "-" + inverted + "-" + blurry + "-" + mirrored + "-" + twoSec;
+            document.getElementById("codeOutput").value = genCode;
+
+            return genCode;
         }
 
         document.getElementById("copy").addEventListener("click", function (e) {
-            navigator.clipboard.writeText(document.getElementById("codeOutput").value);
+            navigator.clipboard.writeText(generateCode());
         });
 
-        document.getElementById("playCode").addEventListener("click", function (e) {
-            codeArr = (document.getElementById("codeInput").value).split("-");
+        document.getElementById("startGame").addEventListener("click", function (e) {
+            var params = new URLSearchParams(window.location.search);
+            var challengeCode = params.get("challenge");
+
+            var codeArr = challengeCode.split("-");
+
+            console.log(codeArr);
 
             var invalid = codeArr.length != 5;
 
@@ -917,19 +940,22 @@
                 }
             }
 
-            if (invalid) {
-                document.getElementById("codeInput").value = "";
-                document.getElementById("codeInput").placeholder = "invalid";
-                return;
-            }
-
             for (let i = 0; i < round; i++) {
                 arr[i] = Number(codeArr[i]);
             }
 
+            inverted = Number(codeArr[5]);
+            blurry = Number(codeArr[6]);
+            mirrored = Number(codeArr[7]);
+            twoSec = Number(codeArr[8]);
+
             turn = arr[0];
             mode = 0;
-            was1v1 = 1;
+            wasMulti = 1;
+
+            dim.style.display = "none";
+            document.getElementById("invite").style.display = "none";
+
             submitFunc();
         });
 
@@ -1008,6 +1034,17 @@
 
             map.addLayer(hintGroup);    // shows it again
         });
+
+        var params = new URLSearchParams(window.location.search);
+        var challengeCode = params.get("challenge");
+
+        if (challengeCode) {
+            hideSignin();
+            hideAccount();
+            dim.style.display = "revert";
+            document.getElementById("side1").style.display = "flex";
+            document.getElementById("invite").style.display = "flex";
+        }
 
     </script>
 </body>
