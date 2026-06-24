@@ -118,7 +118,7 @@
 
         <div id="side2">
             <div id="map"></div>
-            <button id="submit" class="active">Play!</button>
+            <button id="submit" class="active">Play</button>
         </div>
 
         <div id="scoreDiv">
@@ -924,6 +924,8 @@
 
             document.getElementById("press").style.display = "none";
             document.getElementById("codeDiv").style.display = "flex";
+            
+            document.getElementById("submit").textContent = "PLAY MULTIPLAYER";
             wasMulti = 1;
             mode = 1;
         });
@@ -937,6 +939,8 @@
 
             document.getElementById("press").style.display = "revert";
             document.getElementById("codeDiv").style.display = "none";
+            
+            document.getElementById("submit").textContent = "PLAY";
             wasMulti = 0;
             mode = 0;
         });

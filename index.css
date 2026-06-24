@@ -191,7 +191,7 @@ body {
 #submit.active {
 
     height: 50px;
-    width: 30%;
+    width: 20dvw;
     margin-top: 85vh;
 
     text-transform: uppercase;
@@ -202,7 +202,7 @@ body {
     border-style: solid;
 
     font-weight: bolder;
-    font-size: 20px;
+    font-size: 1.4dvw;
     z-index: 1000;
     /* Places it on top */
 
@@ -635,7 +635,7 @@ body {
     border-color: #e4c473;
     border-style: solid;
 
-    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
 
     z-index: 15;
 
@@ -769,7 +769,7 @@ body {
 
     text-align: center;
 
-    font-size: 2.3dvh;
+    font-size: 1.1dvw;
     font-weight: bold;
 
     border-style: solid;
@@ -1003,7 +1003,7 @@ body {
 #sendCode {
     align-self: center;
     color: #e9c986;
-    font-size: 40px;
+    font-size: 3dvw;
     margin-top: 28dvh;
 
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
@@ -1145,6 +1145,7 @@ body {
         top: -12dvh;
         margin-left: 20dvw;
         width: 60dvw;
+        font-size: 4dvw;
     }
 
     #full {
@@ -1309,8 +1310,7 @@ body {
         align-self: center;
         margin-top: 200px;
         margin-left: 0;
-        margin-right: 40px;
-        width: 170px;
+        width: 40dvw;
         font-size: 14px;
     }
 
