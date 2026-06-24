@@ -833,7 +833,6 @@
         });
 
         document.getElementById("back").addEventListener("click", function (e) {
-
             setTimeout(() => map.invalidateSize(), 100);
             hideAccount();
         });
@@ -939,7 +938,7 @@
 
             document.getElementById("press").style.display = "revert";
             document.getElementById("codeDiv").style.display = "none";
-            
+
             document.getElementById("submit").textContent = "PLAY";
             wasMulti = 0;
             mode = 0;
