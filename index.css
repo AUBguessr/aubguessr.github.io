@@ -749,7 +749,7 @@ body {
     position: absolute;
     display: flex;
     width: 18dvw;
-    height: 6dvh;
+    height: 10dvw;
     bottom: 11dvh;
     margin-right: 3dvw;
 }
@@ -1282,8 +1282,9 @@ body {
 
     #single,
     #multi {
+        padding-top: 1dvh;
         font-weight: normal;
-        font-size: 14px;
+        font-size: 4dvw;
     }
 
     #modeSelect{
