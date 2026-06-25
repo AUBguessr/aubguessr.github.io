@@ -209,7 +209,7 @@ body {
 
     position: absolute;
 
-    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
     overflow: hidden;
 
 }
