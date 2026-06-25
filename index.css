@@ -92,7 +92,7 @@ body {
 
     font-family: 'Georgia', serif;
     font-weight: bold;
-    letter-spacing: 4px;
+    letter-spacing: 0.3dvw;
     /* Widens text for a luxury brand aesthetic */
     text-transform: uppercase;
     /* Forces capital letters */
@@ -103,7 +103,7 @@ body {
     -webkit-text-fill-color: transparent;
 
     /* Adds a smooth drop shadow underneath */
-    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 1));
+    filter: drop-shadow(2px 2px 0.3dvw rgba(0, 0, 0, 1));
 }
 
 #picture {
@@ -115,6 +115,7 @@ body {
     display: none;
 
     width: 30vw;
+    max-width: 62dvh;
     height: 100%;
 
     border-radius: 20px;
@@ -252,6 +253,10 @@ body {
     text-align: center;
     width: 22dvw;
 
+}
+
+#text1{
+    margin-left: 5dvw;
 }
 
 #imageCount {
@@ -498,6 +503,7 @@ body {
     font-size: 30px;
     top: 0;
     left: 150px;
+    width: 200px;
 
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 
@@ -563,6 +569,7 @@ body {
 #qr {
     position: absolute;
     width: 24dvw;
+    max-width: 50dvh;
     margin-top: 26dvh;
 }
 
@@ -765,7 +772,7 @@ body {
 #multi {
     background-color: #ad003d;
     height: 100%;
-    padding-top: 1.5dvh;
+    padding-top: 1.4dvh;
 
     text-align: center;
 
@@ -1251,7 +1258,7 @@ body {
 
     #qr {
         width: 54dvw;
-        max-width: 26vh;
+        max-width: 28vh;
         margin-top: 20px;
     }
 
