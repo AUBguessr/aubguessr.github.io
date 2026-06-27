@@ -1159,19 +1159,27 @@
             document.getElementById("canvas").style.display = "none";
 
             canvas.toBlob(async (blob) => {
-                try {
-                    await navigator.clipboard.write([
-                        new ClipboardItem({ 'image/png': blob })
-                    ]);
-                    alert('Scores copied to clipboard!');
-                } catch (err) {
-                    console.error(err);
-                    alert('Error occured - unable to copy scores.');
+                if (isMobile) {
+                    const file = new File([blob], 'aubguessr-score.png', { type: 'image/png' });
+
+                    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                        await navigator.share({
+                            files: [file],
+                            text: `I scored ${avg_score}% on AUBguessr!`
+                        });
+                    }
+                }else{
+                    try {
+                        await navigator.clipboard.write([
+                            new ClipboardItem({ 'image/png': blob })
+                        ]);
+                        alert('Scores copied to clipboard!');
+                    } catch (err) {
+                        console.error(err);
+                        alert('Error occured - unable to copy scores.');
+                    }
                 }
             }, 'image/png');
-
-
-
         }
 
         document.getElementById("share").addEventListener("click", function (e) {
