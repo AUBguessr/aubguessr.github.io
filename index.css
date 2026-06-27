@@ -305,7 +305,7 @@ body {
 
     height: 60vh;
 
-    background-color: rgb(133, 1, 50);
+    background-color: rgb(14, 11, 185);
 
     border-radius: 20px;
     border-width: 10px;
@@ -1103,7 +1103,7 @@ body {
     text-align: center;
     color: #85002e;
     font-family: system-ui, sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     margin-top: 10px;
     font-size: 50px;
 }
@@ -1152,7 +1152,7 @@ body {
 
 #canvasQR{
     margin-left: 16px;
-    height: 260px;
+    height: 270px;
 }
 
 #canYou{
