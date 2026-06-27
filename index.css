@@ -416,18 +416,18 @@ body {
 
 #share{
     font-size: 1dvw;
-    width: 20%;
+    width: 16%;
     bottom: 10px;
     right: 10px;
     border: none;
     border-radius: 6px;
 
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-
     box-shadow: none;
     text-shadow: none;
 
-    font-weight: 100;
+    font-family: system-ui, sans-serif;
+
+    font-weight: 500;
 
     color: #d3416b;
 
@@ -1102,7 +1102,8 @@ body {
 #iGot, #summary{
     text-align: center;
     color: #85002e;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: system-ui, sans-serif;
+    font-weight: 500;
     margin-top: 10px;
     font-size: 50px;
 }
@@ -1151,7 +1152,7 @@ body {
 
 #canvasQR{
     margin-left: 16px;
-    height: 280px;
+    height: 260px;
 }
 
 #canYou{
@@ -1331,6 +1332,7 @@ body {
 
     #share{
         font-size: 4dvw;
+        width: 20%;
         background-color: #a4063e;
     }
 
