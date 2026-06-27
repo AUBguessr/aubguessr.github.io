@@ -674,10 +674,13 @@ body {
 }
 
 #enter {
+    align-self: center;
     margin-top: 10px;
     font-size: 22px;
     font-family: 'Georgia', serif;
     font-weight: bold;
+
+    width: 80%;
 
     color: #e4c473;
 
