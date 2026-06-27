@@ -847,7 +847,7 @@ body {
 #diff {
     position: absolute;
 
-    height: 4dvh;
+    height: 30px;
     width: 6dvw;
 
     bottom: 11.8dvh;
@@ -1340,7 +1340,7 @@ body {
     }
 
     #again {
-        margin-top: 44dvh;
+        bottom: 30px;
         font-size: 4dvw;
     }
 
@@ -1348,6 +1348,7 @@ body {
         font-size: 4dvw;
         width: 20%;
         background-color: #a4063e;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
     }
 
     #overlay {
@@ -1418,8 +1419,6 @@ body {
         opacity: 1;
     }
 
-    #or {}
-
     #single,
     #multi {
         padding-top: 1.4dvh;
@@ -1428,7 +1427,7 @@ body {
     }
 
     #modeSelect {
-        width: 60dvw;
+        width: 70dvw;
         height: 12dvw;
     }
 
@@ -1439,7 +1438,7 @@ body {
     }
 
     #modeText {
-        font-size: 16px;
+        font-size: 5dvw;
         margin-top: 40px;
     }
 
@@ -1449,7 +1448,8 @@ body {
     }
 
     #sendCode {
-        font-size: 24px;
+        font-size: 7dvw;
+        
         margin-left: 0;
         margin-top: 150px;
         align-self: center;
@@ -1475,12 +1475,10 @@ body {
     }
 
     #diff {
+        position: absolute;
         width: 30dvw;
-        margin-bottom: 6dvh;
-        margin-left: 0;
-        top: -70px;
-        left: auto;
         right: 0;
+        margin-bottom: 70dvh;
 
         font-size: 4dvw;
     }
