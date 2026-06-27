@@ -1348,6 +1348,10 @@ body {
         height: 60dvh;
     }
 
+    #enter{
+        font-size: 5dvw;
+    }
+
     #input {
         width: 70%;
     }
