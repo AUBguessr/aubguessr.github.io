@@ -268,7 +268,7 @@ body {
     display: none;
 
     font-family: 'Georgia', serif;
-    font-size: 80px;
+    font-size: 6dvw;
     font-weight: bold;
     letter-spacing: 4px;
 
@@ -276,9 +276,9 @@ body {
     filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
     text-align: center;
     margin-bottom: 2vh;
-    width: 250px;
+    width: 20dvw;
+    margin-left: 4dvw;
 
-    margin-right: -40px;
 }
 
 .golden {
@@ -319,7 +319,6 @@ body {
     box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.1);
 
     overflow: hidden;
-
 }
 
 #hintDiv {
@@ -333,7 +332,7 @@ body {
 #score {
     margin-top: 8px;
     font-family: 'Georgia', serif;
-    font-size: 5dvh;
+    font-size: 3dvw;
     font-weight: bold;
     letter-spacing: 4px;
     /* Widens text for a luxury brand aesthetic */
@@ -352,9 +351,9 @@ body {
 }
 
 #score {
-    margin-top: 15vh;
+    margin-top: 17vh;
     position: absolute;
-    font-size: 12dvh;
+    font-size: 6dvw;
     width: 25vw;
 }
 
@@ -363,14 +362,14 @@ body {
     margin-top: 36vh;
 
     font-family: 'Georgia', serif;
-    font-size: 4dvh;
+    font-size: 2dvw;
     font-weight: bold;
     letter-spacing: 2px;
 
     /* Adds a smooth drop shadow underneath */
     filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.6));
     width: 25dvw;
-    height: 8dvh;
+    height: 60px;
 
     background-image: -webkit-linear-gradient(#FFF65C, #3A2C00);
     color: rgb(170, 2, 64);
@@ -382,12 +381,12 @@ body {
     text-align: center;
 }
 
-#again {
+#again, #share {
     position: absolute;
-    margin-top: 48vh;
+    bottom: 20px;
 
     height: 50px;
-    width: 170px;
+    width: 40%;
 
     text-transform: uppercase;
     font-family: 'Georgia', serif;
@@ -397,7 +396,7 @@ body {
     border-style: solid;
 
     font-weight: 800;
-    font-size: 20px;
+    font-size: 1.4dvw;
 
     cursor: pointer;
 
@@ -412,6 +411,29 @@ body {
 
 #again:hover {
     background-color: rgb(181, 28, 84);
+
+}
+
+#share{
+    font-size: 1.3dvw;
+    width: 14%;
+    border: none;
+    border-radius: 6px;
+
+    box-shadow: none;
+    text-shadow: none;
+
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 100;
+
+    color: #d3416b;
+    right: 0;
+    margin-right: 6%;
+
+}
+
+#share:hover{
+    background-color: #a4063e;
 
 }
 
@@ -1058,6 +1080,96 @@ body {
     font-weight: bold;
 }
 
+#canvas{
+    position: absolute;
+    margin-left: -9999px;
+    display: none;
+    justify-content: center;
+    width: 800px;
+    height: 800px; 
+    background-color: #85002e;
+}
+
+#canvasYellow{
+    width: 720px;
+    height: 720px; 
+    background-color: #e2c072;
+    margin-top: 40px;
+    border-radius: 14px;
+}
+
+#iGot, #summary{
+    text-align: center;
+    color: #85002e;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin-top: 10px;
+    font-size: 50px;
+}
+
+#summary{
+    text-align: left;
+    margin-top: 20px;
+    margin-left: 20px;
+    font-size: 30px;
+}
+
+#canvasPics{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    width: 100%;
+    height: 200px;
+}
+
+#pic{
+    margin-left: 18px;
+    width: 17%;
+    height: 100%;
+}
+
+#smallPic0, #smallPic1, #smallPic2, #smallPic3, #smallPic4{
+    width: 100%;
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #85002e;
+}
+
+#picScore{
+    text-align: center;
+    color: #85002e;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 30px;
+}
+
+#canvasBottom{
+    margin-top: 30px;
+    width: 100%;
+    height: 340px;
+}
+
+#canvasQR{
+    margin-left: 16px;
+    height: 280px;
+}
+
+#canYou{
+    position: absolute;
+    text-align: center;
+    font-size: 60px;
+    margin-left: 340px;
+    top: 500px;
+    width: 330px;
+
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    
+    color: #85002e;
+
+}
+
 @keyframes pulse {
 
     0%,
@@ -1183,7 +1295,7 @@ body {
     .golden {
         position: absolute;
         width: 200px;
-        font-size: 50px;
+        font-size: 12dvw;
         margin-right: 34dvw;
         margin-top: 20dvh;
     }
@@ -1194,22 +1306,31 @@ body {
     }
 
     #score {
-        font-size: 60px;
+        font-size: 18dvw;
+        margin-top: 14dvh;
         width: 80dvw;
     }
 
     #scoreText1 {
-        width: 650dvw;
+        font-size: 9dvw;
+        width: 65dvw;
     }
 
     #perfect {
-        width: 90%;
-        font-size: 5dvw;
+        width: 80dvw;
+        font-size: 6dvw;
+        height: 10dvh;
         margin-top: 30dvh;
     }
 
     #again {
         margin-top: 44dvh;
+        font-size: 4dvw;
+    }
+
+    #share{
+        font-size: 4dvw;
+        background-color: #a4063e;
     }
 
     #overlay {

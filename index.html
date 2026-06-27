@@ -25,11 +25,46 @@
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> <!--supabase-->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script> <!--html2canvas library-->
 </head>
 
 <body>
 
     <img id="logo" src="assets/logo.png"></img>
+
+    <div id="canvas">
+        <div id="canvasYellow">
+            <p id="iGot"> I got <span id="scoreValue"></span>% on a game of AUBguessr!</p>
+            <p id="summary">Summary</p>
+
+            <div id="canvasPics">
+
+                <div id="pic"> <img id="smallPic0" src=""></img>
+                    <p id="picScore"><span id="pic0score"> </span>%</p>
+                </div>
+                <div id="pic"> <img id="smallPic1" src=""></img>
+                    <p id="picScore"><span id="pic1score"> </span>%</p>
+                </div>
+                <div id="pic"> <img id="smallPic2" src=""></img>
+                    <p id="picScore"><span id="pic2score"> </span>%</p>
+                </div>
+                <div id="pic"> <img id="smallPic3" src=""></img>
+                    <p id="picScore"><span id="pic3score"> </span>%</p>
+                </div>
+                <div id="pic"> <img id="smallPic4" src=""></img>
+                    <p id="picScore"><span id="pic4score"> </span>%</p>
+                </div>
+
+            </div>
+
+            <div id="canvasBottom">
+
+                <img id="canvasQR" src="assets/qr.png"></img>
+                <p id="canYou"> Can you do better?</p>
+
+            </div>
+        </div>
+    </div>
 
     <div id="overlay">
         <div id="signin">
@@ -82,7 +117,7 @@
             <div id="picWrap">
                 <img id="picture" src=""></img>
             </div>
-            
+
             <p id="full">Click image to fullscreen</p>
 
             <p id="result"></p>
@@ -127,6 +162,7 @@
             <p id="perfect">Perfect scores: 99/99</p>
 
             <button id="again">Play Again!</button>
+            <button id="share">share score</button>
         </div>
 
 
@@ -160,7 +196,6 @@
         const db = createClient('https://wujcnvdaffgliugtnfbi.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1amNudmRhZmZnbGl1Z3RuZmJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEzMzI1MjIsImV4cCI6MjA5NjkwODUyMn0.820HceMe01KILH6cffpWq9_yunjvGwBySZp5dz03b3M');
 
         var games_played = 0;
-        var avg_score = 0;
 
         var id;
         var signinScreen = true;
@@ -172,7 +207,7 @@
         var done = false;
         var perfectScore = 0;
         var total = 0;
-
+        var avg_score = 0;
         var coords = [
             [33.90083253913812, 35.48076220903855],     //0
             [33.89977295523677, 35.479049998468426],    //1
@@ -398,7 +433,7 @@
             [33.900648552287564, 35.48220498563147],    //221
             [33.900301209889506, 35.482080125901994],   //222
             [33.900791051323594, 35.48204259293954]     //223
-            ];
+        ];
 
         var maxMarginLat = 0.00643;
         var maxMarginLng = 0.0104;
@@ -408,6 +443,8 @@
         var round = 5;  //change round size//////////////////////////////////////////////
         var locations = coords.length;
         var arr = new Array(locations);
+        var scoreArr = new Array(round);
+        var turnArr = new Array(round);
 
         var mode = 0;
         var wasMulti = 0;
@@ -593,6 +630,8 @@
                 return;
             }
 
+            turnArr[count] = turn;
+
             if (next || play) {
 
                 if (twoSec) {
@@ -622,7 +661,9 @@
 
                     if (mode) {
                         turn = arr[round + count];
-                    } else turn = arr[count];
+                    } else {
+                        turn = arr[count];
+                    }
                 }
 
                 document.getElementById("hint").style.display = "revert";
@@ -670,6 +711,9 @@
 
             document.getElementById("result").style.display = "revert";
             document.getElementById("result").textContent = formatted + "%";
+
+            scoreArr[count] = formatted;
+
             total += parseFloat(formatted);
             if (parseFloat(formatted) == 100) perfectScore++;
 
@@ -706,6 +750,8 @@
                 done = true;
                 return;
             }
+
+            console.log(turnArr);
         }
 
         var updateGamesDB = true;
@@ -923,7 +969,7 @@
 
             document.getElementById("press").style.display = "none";
             document.getElementById("codeDiv").style.display = "flex";
-            
+
             document.getElementById("submit").textContent = "PLAY MULTIPLAYER";
             wasMulti = 1;
             mode = 1;
@@ -976,19 +1022,19 @@
                 arr[i] = Number(codeArr[i]);
             }
 
-            if(Number(codeArr[5].charAt(0))){
+            if (Number(codeArr[5].charAt(0))) {
                 buttonClicked("inverted", inverted);
                 inverted = 1;
             }
-            if(Number(codeArr[5].charAt(1))){
+            if (Number(codeArr[5].charAt(1))) {
                 buttonClicked("blurry", blurry);
                 blurry = 1;
             }
-            if(Number(codeArr[5].charAt(2))){
+            if (Number(codeArr[5].charAt(2))) {
                 buttonClicked("mirrored", mirrored);
                 mirrored = 1;
             }
-            if(Number(codeArr[5].charAt(3))){
+            if (Number(codeArr[5].charAt(3))) {
                 buttonClicked("twoSec", twoSec);
                 twoSec = 1;
             }
@@ -1045,6 +1091,8 @@
                 clickedButton.style.color = "#e2c072";
                 clickedButton.style.borderColor = "#e2c072";
             }
+
+            return;
         }
 
         function applyDifficulty() {
@@ -1055,6 +1103,8 @@
             picFull.classList.toggle("blur", blurry);
             picFull.classList.toggle("invert", inverted);
             picFull.classList.toggle("mirrored", mirrored);
+
+            return;
         }
 
         function getHintCircle(trueLat, trueLng) {
@@ -1091,5 +1141,41 @@
             invited = 1;
         }
 
+        function assembleCanvas() {
+            document.getElementById('scoreValue').textContent = finalScore;
+
+            for (x = 0; x < round; x++) {
+                document.getElementById(`pic${x}score`).textContent = scoreArr[x];
+                document.getElementById(`smallPic${x}`).src = "images/image" + turnArr[x] + ".jpeg";
+            }
+
+            return;
+        }
+
+        async function captureCanvas() {
+            assembleCanvas();
+            document.getElementById("canvas").style.display = "flex";
+            const canvas = await html2canvas(document.getElementById('canvas'));
+            document.getElementById("canvas").style.display = "none";
+
+            canvas.toBlob(async (blob) => {
+                try {
+                    await navigator.clipboard.write([
+                        new ClipboardItem({ 'image/png': blob })
+                    ]);
+                    alert('Scores copied to clipboard!');
+                } catch (err) {
+                    console.error(err);
+                    alert('Error occured - unable to copy scores.');
+                }
+            }, 'image/png');
+
+
+
+        }
+
+        document.getElementById("share").addEventListener("click", function (e) {
+            captureCanvas();
+        });
     </script>
 </body>
