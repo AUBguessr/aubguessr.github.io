@@ -137,7 +137,7 @@ body {
     box-shadow: none;
 }
 
-#picWrap{
+#picWrap {
     justify-content: center;
     display: none;
 
@@ -255,7 +255,7 @@ body {
 
 }
 
-#text1{
+#text1 {
     margin-left: 5dvw;
 }
 
@@ -381,7 +381,8 @@ body {
     text-align: center;
 }
 
-#again, #share {
+#again,
+#share {
     position: absolute;
     bottom: 20px;
 
@@ -414,7 +415,7 @@ body {
 
 }
 
-#share{
+#share {
     font-size: 1dvw;
     width: 16%;
     bottom: 10px;
@@ -433,7 +434,7 @@ body {
 
 }
 
-#share:hover{
+#share:hover {
     background-color: #a4063e;
 
 }
@@ -732,6 +733,11 @@ body {
 }
 
 #or {
+    align-self: center;
+    position: absolute;
+    width: 80%;
+    bottom: 50px;
+
     color: #e4c473;
     border-style: solid;
 
@@ -740,11 +746,10 @@ body {
     border-right-width: 0px;
     padding-bottom: 2px;
 
-    margin-top: 280px;
 }
 
 #guest {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     color: #e4c473;
     font-size: 20px;
 }
@@ -771,7 +776,7 @@ body {
 
 }
 
-#modeSelect{
+#modeSelect {
     position: absolute;
     display: flex;
     width: 18dvw;
@@ -912,11 +917,11 @@ body {
     filter: blur(0.5dvh) invert(1);
 }
 
-.mirrored{
+.mirrored {
     transform: scaleX(-1);
 }
 
-#diff-apply{
+#diff-apply {
     color: #5d0020;
     font-weight: bold;
     font-size: 1.2dvw;
@@ -961,11 +966,11 @@ body {
     font-size: 3dvh;
 }
 
-#invite{
+#invite {
     height: 30dvh;
 }
 
-#inviteText1{
+#inviteText1 {
     margin-top: 4dvh;
     text-transform: none;
     letter-spacing: 0px;
@@ -1028,6 +1033,7 @@ body {
 
     pointer-events: none;
 }
+
 #codeOutput:focus {
     outline: none;
     /* Removes the default browser ring */
@@ -1084,25 +1090,26 @@ body {
     font-weight: bold;
 }
 
-#canvas{
+#canvas {
     position: absolute;
     margin-left: -9999px;
     display: none;
     justify-content: center;
     width: 800px;
-    height: 800px; 
+    height: 800px;
     background-color: #85002e;
 }
 
-#canvasYellow{
+#canvasYellow {
     width: 720px;
-    height: 720px; 
+    height: 720px;
     background-color: #e2c072;
     margin-top: 40px;
     border-radius: 14px;
 }
 
-#iGot, #summary{
+#iGot,
+#summary {
     text-align: center;
     color: #85002e;
     font-family: system-ui, sans-serif;
@@ -1111,14 +1118,14 @@ body {
     font-size: 50px;
 }
 
-#summary{
+#summary {
     text-align: left;
     margin-top: 20px;
     margin-left: 20px;
     font-size: 30px;
 }
 
-#canvasPics{
+#canvasPics {
     display: flex;
     flex-direction: row;
     margin-top: 10px;
@@ -1126,13 +1133,17 @@ body {
     height: 200px;
 }
 
-#pic{
+#pic {
     margin-left: 18px;
     width: 17%;
     height: 100%;
 }
 
-#smallPic0, #smallPic1, #smallPic2, #smallPic3, #smallPic4{
+#smallPic0,
+#smallPic1,
+#smallPic2,
+#smallPic3,
+#smallPic4 {
     width: 100%;
     border-radius: 20px;
     border-style: solid;
@@ -1140,25 +1151,25 @@ body {
     border-color: #85002e;
 }
 
-#picScore{
+#picScore {
     text-align: center;
     color: #85002e;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 30px;
 }
 
-#canvasBottom{
+#canvasBottom {
     margin-top: 30px;
     width: 100%;
     height: 340px;
 }
 
-#canvasQR{
+#canvasQR {
     margin-left: 16px;
     height: 270px;
 }
 
-#canYou{
+#canYou {
     position: absolute;
     text-align: center;
     font-size: 60px;
@@ -1170,7 +1181,7 @@ body {
     font-weight: bold;
     letter-spacing: 2px;
     text-transform: uppercase;
-    
+
     color: #85002e;
 
 }
@@ -1241,7 +1252,7 @@ body {
         border-radius: 10px;
     }
 
-    #picWrap{
+    #picWrap {
         top: 0;
         right: 18px;
         position: absolute;
@@ -1333,7 +1344,7 @@ body {
         font-size: 4dvw;
     }
 
-    #share{
+    #share {
         font-size: 4dvw;
         width: 20%;
         background-color: #a4063e;
@@ -1344,11 +1355,11 @@ body {
     }
 
     #signin {
-        width: 300px;
+        width: 280px;
         height: 60dvh;
     }
 
-    #enter{
+    #enter {
         font-size: 5dvw;
     }
 
@@ -1403,13 +1414,11 @@ body {
     }
 
     #check {
-        margin-right: 17px;
+        margin-right: 11.5px;
         opacity: 1;
     }
 
-    #or {
-        margin-top: 40dvh;
-    }
+    #or {}
 
     #single,
     #multi {
@@ -1418,7 +1427,7 @@ body {
         font-size: 4dvw;
     }
 
-    #modeSelect{
+    #modeSelect {
         width: 60dvw;
         height: 12dvw;
     }
@@ -1497,11 +1506,11 @@ body {
         filter: blur(0.6dvh);
     }
 
-    #invite{
+    #invite {
         width: 90%;
     }
 
-    #diff-apply{
+    #diff-apply {
         font-size: 12px;
         letter-spacing: 1px;
     }
