@@ -27,6 +27,7 @@ body {
 
 #container2 {
     display: none;
+    justify-content: center;
 }
 
 #map {
@@ -298,7 +299,8 @@ body {
 #scoreDiv,
 #diffDiv,
 #hintDiv,
-#invite {
+#invite,
+#deleteDiv {
     display: none;
     justify-content: center;
 
@@ -329,6 +331,22 @@ body {
     justify-content: space-between;
     flex-direction: column;
     align-items: center;
+}
+
+#deleteDiv{
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-top: 33dvh;
+    height: 30dvh;
+}
+
+#deleteText1{
+    text-align: center;
+    align-self: center;
+    color: #e2c072;
+    width: 60%;
+    font-size: 3dvh;
+    font-weight: 600;
 }
 
 #scoreText1,
@@ -502,9 +520,9 @@ body {
 #Aside1 {
     position: absolute;
     margin-top: 14dvh;
-    margin-left: 3dvw;
+    left: 3dvw;
     height: 120px;
-    width: 30dvw;
+    width: 68dvw;
 
     background-color: transparent;
 }
@@ -536,6 +554,38 @@ body {
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 
     color: #e4c473;
+}
+
+#delete, #confirm{
+    top: 0;
+    position: absolute;
+    right: 0;
+    padding: 8px;
+    background-color: #e2c072;
+    border-style: solid;
+    border-color: #c4a45a;
+    color: #720028;
+    border-width: 3px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 2dvh;
+}
+
+#delete{
+    display: none;
+}
+
+#confirm{
+    position: relative;
+    align-self: center;
+    width: 30%;
+}
+
+#delete:hover, #confirm:hover{
+    cursor: pointer;
+    background-color: #c40000;
+    border-color: #ad0000;
+    color: #ffffff;
 }
 
 #back {
@@ -1217,6 +1267,7 @@ body {
 }
 
 #leaderText1 {
+    align-self: center;
     text-align: center;
     color: #a3063d;
     font-family: system-ui, sans-serif;
@@ -1224,6 +1275,7 @@ body {
     margin-top: 10px;
     margin-bottom: 4dvh;
     font-size: 3dvw;
+    width: 45%;
 
 
     text-transform: uppercase;
@@ -1262,8 +1314,9 @@ body {
 
 #leader1 {
     color: #85002e;
-    background-image: -webkit-linear-gradient(#fff86d, #674f00);
+    background-image: -webkit-linear-gradient(#fff86d, #755b06);
     filter: drop-shadow(0px 0px 0.3dvw rgba(255, 255, 255, 0.3));
+    text-shadow: none;
     border-style: solid;
     border-width: 0.3dvh;
     border-color: #674f00;

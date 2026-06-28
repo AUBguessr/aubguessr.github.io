@@ -86,8 +86,9 @@
         <p id="rotateText">please rotate your phone to vertical mode <br>(or zoom out if on desktop)</p>
     </div>
 
+    <div id="dim"></div>
+
     <div id="container">
-        <div id="dim"></div>
 
         <img id="picFull" src=""></img>
 
@@ -174,13 +175,14 @@
         <img id="profileButton" src="assets/profile.svg"></img>
 
         <div id="leaderDiv">
-            <p id="leaderText1">Top Average Scores:</p>
+            <p id="leaderText1">LeaderBoard</p>
             <p id="leader1">1. </p>
             <p id="leader2">2. </p>
             <p id="leader3">3. </p>
             <p id="leader4">4. </p>
             <p id="leader5">5. </p>
         </div>
+
     </div>
 
     <!--///////////////////////////////////////////////////////////////////////account details page-->
@@ -188,6 +190,7 @@
         <div id="Aside1">
             <img id="profile" src="assets/profile.svg"></img>
             <p id="idnum">ID: #########</p>
+            <button id="delete">Delete Account</button>
         </div>
 
         <button id="back">◄ BACK TO GAME</button>
@@ -200,6 +203,12 @@
         <div id="stats">~ Account Statistics:
             <p id="played">~ Games Played: ##</p>
             <p id="avg">~ Average Score: ##.##%</p>
+        </div>
+
+
+        <div id="deleteDiv">
+            <p id="deleteText1">Are you sure you want to delete your account? <br> (statistics will be wiped.)</p>
+            <button id="confirm">Confirm</button>
         </div>
     </div>
     <!--///////////////////////////////////////////////////////////////////////////////////////-->
@@ -827,6 +836,7 @@
             document.getElementById("hintDiv").style.display = "none";
             document.getElementById("invite").style.display = "none";
             document.getElementById("leaderDiv").style.display = "none";
+            document.getElementById("deleteDiv").style.display = "none";
             generateCode();
         });
 
@@ -921,7 +931,7 @@
 
         function showAccount() {
             container.style.display = "none";
-            container2.style.display = "revert";
+            container2.style.display = "flex";
             stats.style.display = "revert";
         }
 
@@ -974,7 +984,8 @@
             document.getElementById("idnum").textContent = "ID: " + id;
             document.getElementById("played").textContent = "~ Games Played: " + games_played;
             document.getElementById("avg").textContent = "~ Average Score: " + avg_score.toFixed(2) + "%"
-            document.getElementById("side1").style.display = "flex";;
+            document.getElementById("side1").style.display = "flex";
+            document.getElementById("delete").style.display = "revert";
 
             signinScreen = false;
             hideSignin();
@@ -1220,5 +1231,22 @@
             dim.style.display = "revert";
         });
 
+        document.getElementById("delete").addEventListener("click", function (e) {
+            document.getElementById("deleteDiv").style.display = "flex";
+            dim.style.display = "revert";
+        });
+
+        document.getElementById("confirm").addEventListener("click", function (e) {
+            deleteAccount();
+        });
+
+        async function deleteAccount(){
+            const { error } = await db
+                .from('users')
+                .delete()
+                .eq('student_id', id);
+                
+            window.location.href = window.location.origin + window.location.pathname;
+        }
     </script>
 </body>
