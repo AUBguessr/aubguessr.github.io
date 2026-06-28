@@ -118,6 +118,7 @@
             <p id="text1">do you know where this is?</p>
 
             <img id="hint" src="assets/hint.svg"></img>
+            <img id="leader" src="assets/leader.svg"></img>
 
             <div id="picWrap">
                 <img id="picture" src=""></img>
@@ -170,8 +171,16 @@
             <button id="share">share score</button>
         </div>
 
-
         <img id="profileButton" src="assets/profile.svg"></img>
+
+        <div id="leaderDiv">
+            <p id="leaderText1">Top Average Scores:</p>
+            <p id="leader1">1. </p>
+            <p id="leader2">2. </p>
+            <p id="leader3">3. </p>
+            <p id="leader4">4. </p>
+            <p id="leader5">5. </p>
+        </div>
     </div>
 
     <!--///////////////////////////////////////////////////////////////////////account details page-->
@@ -670,7 +679,8 @@
                         turn = arr[count];
                     }
                 }
-
+                
+                document.getElementById("leader").style.display = "none";
                 document.getElementById("hint").style.display = "revert";
                 document.getElementById("imageCount").style.display = "revert";
                 document.getElementById("picture").src = `images/image${turn}.jpeg`;
@@ -802,6 +812,7 @@
             document.getElementById("scoreDiv").style.display = "none";
             document.getElementById("hintDiv").style.display = "none";
             document.getElementById("invite").style.display = "none";
+            document.getElementById("leaderDiv").style.display = "none";
             generateCode();
         });
 
@@ -862,6 +873,7 @@
             markerGroup.clearLayers();
             hintGroup.clearLayers();
             document.getElementById("hint").style.display = "none";
+            document.getElementById("leader").style.display = "flex";
 
             showIntroMarkers();
 
@@ -1188,5 +1200,11 @@
         document.getElementById("share").addEventListener("click", function (e) {
             captureCanvas();
         });
+
+        document.getElementById("leader").addEventListener("click", function(e){
+            document.getElementById("leaderDiv").style.display = "flex";
+            dim.style.display = "revert"; 
+        });
+
     </script>
 </body>

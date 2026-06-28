@@ -2,6 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+    -webkit-user-drag: none;
 }
 
 *:focus {
@@ -430,7 +432,7 @@ body {
 
     font-weight: 500;
 
-    color:  rgb(192, 18, 82);
+    color: rgb(192, 18, 82);
     background-color: #74052b;
 }
 
@@ -493,6 +495,7 @@ body {
     cursor: pointer;
     background-color: rgb(181, 28, 84);
     box-shadow: none;
+    padding: 4px;
 }
 
 #Aside1 {
@@ -1062,7 +1065,8 @@ body {
     padding: 4px;
 }
 
-#hint {
+#hint,
+#leader {
     display: none;
 
     position: absolute;
@@ -1071,7 +1075,7 @@ body {
     background-color: #85002e;
     border-style: solid;
     border-width: 2px;
-    border-radius: 8px;
+    border-radius: 6px;
     border-color: #e4c473;
     padding-bottom: 2px;
 
@@ -1079,10 +1083,21 @@ body {
     box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
 }
 
-#hint:hover {
+#leader {
+    display: flex;
+    bottom: 0;
+    width: 6dvh;
+    height: 6dvh;
+    top: 12dvh;
+    left: 2dvh;
+}
+
+#hint:hover,
+#leader:hover {
     cursor: pointer;
     background-color: #b3003f;
     box-shadow: none;
+    padding: 4px;
 }
 
 #useHint {
@@ -1183,7 +1198,74 @@ body {
     text-transform: uppercase;
 
     color: #85002e;
+}
 
+#leaderDiv {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    right: 0;
+    z-index: 1600;
+    background-color: #74052b;
+    border-radius: 30px 0px 0px 30px;
+    border-style: solid;
+    border-width: 4px;
+    border-color: #990d3e;
+    height: 100%;
+    width: 40%;
+}
+
+#leaderText1 {
+    text-align: center;
+    color: #a3063d;
+    font-family: system-ui, sans-serif;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 4dvh;
+    font-size: 3dvw;
+
+
+    text-transform: uppercase;
+    /* Forces capital letters */
+
+    /* Create a color gradient inside the font */
+    background: linear-gradient(90deg, #fffa97, #af4261);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* Adds a smooth drop shadow underneath */
+    filter: drop-shadow(2px 2px 0.3dvw rgba(0, 0, 0, 0.5));
+}
+
+#leader1,
+#leader2,
+#leader3,
+#leader4,
+#leader5 {
+    background-color: #920033;
+    color: #e2c072;
+    font-family: system-ui, sans-serif;
+    font-weight: 600;
+    margin-top: 2dvh;
+    margin-left: 2dvw;
+    padding-left: 1dvw;
+    font-size: 4dvh;
+    height: 6dvh;
+    width: 90%;
+    border-radius: 1dvh;
+
+    /* Adds a smooth drop shadow underneath */
+    filter: drop-shadow(2px 2px 0.3dvw rgba(0, 0, 0, 0.5));
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#leader1 {
+    color: #85002e;
+    background-image: -webkit-linear-gradient(#fff86d, #674f00);
+    filter: drop-shadow(0px 0px 0.3dvw rgba(255, 255, 255, 0.3));
+    border-style: solid;
+    border-width: 0.3dvh;
+    border-color: #674f00;
 }
 
 @keyframes pulse {
@@ -1348,7 +1430,7 @@ body {
         font-size: 4dvw;
         width: 20%;
     }
-    
+
     #share:hover {
         font-size: 3dvw;
     }
@@ -1451,7 +1533,7 @@ body {
 
     #sendCode {
         font-size: 7dvw;
-        
+
         margin-left: 0;
         margin-top: 150px;
         align-self: center;
@@ -1513,5 +1595,34 @@ body {
     #diff-apply {
         font-size: 12px;
         letter-spacing: 1px;
+    }
+
+    #leader {
+        top: 10dvh;
+    }
+
+    #leaderDiv {
+        right: auto;
+        border-radius: 30px 30px 0px 0px;
+        width: 100%;
+        height: 70%;
+        bottom: 0;
+    }
+
+    #leader1,
+    #leader2,
+    #leader3,
+    #leader4,
+    #leader5 {
+        margin-top: 2dvh;
+        margin-left: 4dvw;
+        padding-left: 3dvw;
+        font-size: 2dvh;
+        height: 4dvh;
+    }
+
+    #leaderText1{
+        font-size: 6dvw;
+        margin-bottom: 10px;
     }
 }
