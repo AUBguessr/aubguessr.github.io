@@ -186,6 +186,7 @@ body {
 
 #submit {
     background-color: rgb(149, 149, 149);
+    color: black;
     border-color: rgb(149, 149, 149);
     text-decoration: none;
 }
@@ -1249,7 +1250,7 @@ body {
     margin-top: 2dvh;
     margin-left: 2dvw;
     padding-left: 1dvw;
-    font-size: 4dvh;
+    font-size: calc(1.4dvw + 1dvh);
     height: 6dvh;
     width: 90%;
     border-radius: 1dvh;
@@ -1619,7 +1620,11 @@ body {
         padding-left: 3dvw;
         font-size: 2dvh;
         height: 4dvh;
-        padding-top: 4px;
+        padding-top: 6px;
+    }
+
+    #leader1{
+        border-width: 0.2dvh;
     }
 
     #leaderText1{
