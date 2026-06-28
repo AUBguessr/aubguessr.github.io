@@ -39,19 +39,24 @@
 
             <div id="canvasPics">
 
-                <div id="pic"> <img id="smallPic0" src=""></img>
+                <div id="pic">
+                    <img id="smallPic0" src=""></img>
                     <p id="picScore"><span id="pic0score"> </span>%</p>
                 </div>
-                <div id="pic"> <img id="smallPic1" src=""></img>
+                <div id="pic">
+                    <img id="smallPic1" src=""></img>
                     <p id="picScore"><span id="pic1score"> </span>%</p>
                 </div>
-                <div id="pic"> <img id="smallPic2" src=""></img>
+                <div id="pic">
+                    <img id="smallPic2" src=""></img>
                     <p id="picScore"><span id="pic2score"> </span>%</p>
                 </div>
-                <div id="pic"> <img id="smallPic3" src=""></img>
+                <div id="pic">
+                    <img id="smallPic3" src=""></img>
                     <p id="picScore"><span id="pic3score"> </span>%</p>
                 </div>
-                <div id="pic"> <img id="smallPic4" src=""></img>
+                <div id="pic">
+                    <img id="smallPic4" src=""></img>
                     <p id="picScore"><span id="pic4score"> </span>%</p>
                 </div>
 
@@ -1166,7 +1171,7 @@
                             text: `I scored ${avg_score}% on AUBguessr! \nTry to beat it here: https://aubguessr.github.io`
                         });
                     }
-                }else{
+                } else {
                     try {
                         await navigator.clipboard.write([
                             new ClipboardItem({ 'image/png': blob })
