@@ -1619,6 +1619,7 @@ body {
         padding-left: 3dvw;
         font-size: 2dvh;
         height: 4dvh;
+        padding-top: 4px;
     }
 
     #leaderText1{
