@@ -473,6 +473,20 @@
         var oceanClick = false;
         var hintUsed = 0;
 
+        leaderboard();
+
+        async function leaderboard() {
+            const { data, error } = await db
+                .from('users')
+                .select('student_id, avg_score, games_played')
+                .order('avg_score', { ascending: false })
+                .limit(5);
+
+            for (i = 1; i < 6; i++) {
+                document.getElementById(`leader${i}`).textContent = `${i}. ${data[i - 1].student_id} - (AVG: ${(data[i - 1].avg_score).toFixed(2)}%, Games: ${data[i - 1].games_played})`
+            }
+        }
+
         for (i = 0; i < locations; i++) {
             arr[i] = i;
         }
@@ -679,7 +693,7 @@
                         turn = arr[count];
                     }
                 }
-                
+
                 document.getElementById("leader").style.display = "none";
                 document.getElementById("hint").style.display = "revert";
                 document.getElementById("imageCount").style.display = "revert";
@@ -1201,9 +1215,9 @@
             captureCanvas();
         });
 
-        document.getElementById("leader").addEventListener("click", function(e){
+        document.getElementById("leader").addEventListener("click", function (e) {
             document.getElementById("leaderDiv").style.display = "flex";
-            dim.style.display = "revert"; 
+            dim.style.display = "revert";
         });
 
     </script>
