@@ -1584,13 +1584,13 @@ body {
 
     #idnum {
         font-size: 16px;
-        left: 100px;
+        left: 115px;
         width: 60%;
     }
     
     #profileName {
         font-size: 16px;
-        left: 100px;
+        left: 115px;
         width: 60%;
     }
 
@@ -1742,7 +1742,7 @@ body {
         margin-top: 2dvh;
         margin-left: 4dvw;
         padding-left: 3dvw;
-        font-size: 1.8dvh;
+        font-size: 1.6dvh;
         height: 4dvh;
         padding-top: 6px;
     }
