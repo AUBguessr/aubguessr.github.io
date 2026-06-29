@@ -1543,13 +1543,13 @@ body {
     }
 
     #input, #name {
-        width: 60%;
+        width: 55%;
         font-size: 13px;
         margin-right: 20px;
     }
 
     #id{
-        margin-left: 53px;
+        margin-left: 60px;
     }
 
     #username{
