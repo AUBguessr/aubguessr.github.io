@@ -981,6 +981,7 @@
         function updateButtonOpacity() {
             const hasInput = document.getElementById("input").value.trim() !== "" || document.getElementById("name").value.trim() !== "";
             document.getElementById("check").style.opacity = hasInput ? "1" : "0.6";
+            document.getElementById("check").style.cursor = hasInput ? "pointer" : "auto";
         }
 
         document.getElementById("check").addEventListener("click", function (e) {

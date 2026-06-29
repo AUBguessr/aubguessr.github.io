@@ -861,12 +861,6 @@ body {
     opacity: 0.6;
 }
 
-#check:hover {
-    cursor: pointer;
-    opacity: 1;
-
-}
-
 #modeSelect {
     position: absolute;
     display: flex;
