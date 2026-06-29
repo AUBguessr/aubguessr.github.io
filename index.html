@@ -853,7 +853,17 @@
         });
 
         dim.addEventListener('click', function (e) {
+            hideDivs();
+            generateCode();
+        });
 
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+            hideDivs();
+            }
+        });
+
+        function hideDivs(){
             dim.style.display = "none";
             picFull.style.display = "none";
             document.getElementById("diffDiv").style.display = "none";
@@ -862,18 +872,8 @@
             document.getElementById("invite").style.display = "none";
             document.getElementById("leaderDiv").style.display = "none";
             document.getElementById("deleteDiv").style.display = "none";
-            generateCode();
-        });
-
-        document.addEventListener('keydown', function (event) {
-            if (event.key === 'Escape') {
-                dim.style.display = "none";
-                picFull.style.display = "none";
-                document.getElementById("scoreDiv").style.display = "none";
-                document.getElementById("diffDiv").style.display = "none";
-                document.getElementById("hintDiv").style.display = "none";
-            }
-        });
+            return;
+        }
 
         container = document.getElementById("container");
         container2 = document.getElementById("container2");
