@@ -1560,12 +1560,14 @@ body {
     }
 
     #name {
-        width: 55%;
-        font-size: 13px;
+        width: 52%;
+        font-size: 12px;
     }
 
     #username{
+        margin-top: 6px;
         margin-left: 10px;
+        font-size: 16px;
     }
 
     #check {
