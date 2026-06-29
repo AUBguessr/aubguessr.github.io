@@ -853,6 +853,7 @@
         });
 
         dim.addEventListener('click', function (e) {
+            if(!done) invited = 0;
             hideDivs();
             generateCode();
         });
@@ -933,7 +934,8 @@
 
             if (wasMulti) document.getElementById("press").style.display = "none";
             else document.getElementById("press").style.display = "revert";
-
+            
+            console.log(invited);
             if (invited) document.getElementById("press").style.display = "revert";
 
             invited = 0;
@@ -1176,6 +1178,8 @@
 
             dim.style.display = "none";
             document.getElementById("invite").style.display = "none";
+
+            console.log(invited);
 
             submitFunc();
         });
