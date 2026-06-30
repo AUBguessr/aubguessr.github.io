@@ -212,6 +212,7 @@
             <img id="profile" src="assets/profile.svg"></img>
             <p id="idnum">ID: #########</p>
             <p id="profileName">Name: ############</p>
+            <button id="logout">Log Out</button>
             <button id="delete">Delete Account</button>
         </div>
 
@@ -507,6 +508,17 @@
 
         leaderboard();
 
+        const savedId = localStorage.getItem('student_id'); // null
+        const savedName = localStorage.getItem('username');  // null
+
+        if (savedId && savedName) {
+            document.getElementById("input").value = savedId;
+            document.getElementById("name").value = savedName;
+            document.getElementById("check").style.opacity = "1";
+            document.getElementById("check").style.cursor = "pointer";
+            submitInfo();
+        }
+
         async function leaderboard() {
             const { data, error } = await db
                 .from('users')
@@ -591,7 +603,7 @@
             fillOpacity: 0
         }).addTo(map);
 
-        oceanPolygon.on('click', function (e) {
+        oceanPolygon.on('click', function () {
             if (play || next) return;
 
             oceanClick = true;
@@ -663,7 +675,7 @@
 
         var submit = document.getElementById("submit");
 
-        submit.addEventListener('click', function (e) {
+        submit.addEventListener('click', function () {
             submitFunc();
         });
 
@@ -844,7 +856,7 @@
             return;
         };
 
-        document.getElementById("picWrap").addEventListener('click', function (e) {
+        document.getElementById("picWrap").addEventListener('click', function () {
             if (play || twoSecDone) {
                 return;
             }
@@ -852,19 +864,19 @@
             picFull.style.display = "revert";
         });
 
-        dim.addEventListener('click', function (e) {
-            if(!done) invited = 0;
+        dim.addEventListener('click', function () {
+            if (!done) invited = 0;
             hideDivs();
             generateCode();
         });
 
         document.addEventListener('keydown', function (event) {
             if (event.key === 'Escape') {
-            hideDivs();
+                hideDivs();
             }
         });
 
-        function hideDivs(){
+        function hideDivs() {
             dim.style.display = "none";
             picFull.style.display = "none";
             document.getElementById("diffDiv").style.display = "none";
@@ -882,15 +894,15 @@
         signin = document.getElementById("signin");
         stats = document.getElementById("stats");
 
-        document.getElementById("logo").addEventListener('click', function (e) {
+        document.getElementById("logo").addEventListener('click', function () {
             window.location.href = window.location.origin + window.location.pathname;
         });
 
-        document.getElementById("profileButton").addEventListener('click', function (e) {
+        document.getElementById("profileButton").addEventListener('click', function () {
             showAccount();
         });
 
-        document.getElementById("again").addEventListener('click', function (e) {
+        document.getElementById("again").addEventListener('click', function () {
             count = 0;
             next = false;
             guessed = false;
@@ -934,7 +946,7 @@
 
             if (wasMulti) document.getElementById("press").style.display = "none";
             else document.getElementById("press").style.display = "revert";
-            
+
             console.log(invited);
             if (invited) document.getElementById("press").style.display = "revert";
 
@@ -944,12 +956,12 @@
 
         });
 
-        document.getElementById("back").addEventListener("click", function (e) {
+        document.getElementById("back").addEventListener("click", function () {
             setTimeout(() => map.invalidateSize(), 100);
             hideAccount();
         });
 
-        document.getElementById("guest").addEventListener("click", function (e) {
+        document.getElementById("guest").addEventListener("click", function () {
             signinScreen = false;
             document.getElementById("side1").style.display = "flex";
             hideSignin();
@@ -986,7 +998,7 @@
             document.getElementById("check").style.cursor = hasInput ? "pointer" : "auto";
         }
 
-        document.getElementById("check").addEventListener("click", function (e) {
+        document.getElementById("check").addEventListener("click", function () {
             submitInfo();
         });
 
@@ -1079,6 +1091,10 @@
             document.getElementById("avg").textContent = "~ Average Score: " + avg_score.toFixed(2) + "%"
             document.getElementById("side1").style.display = "flex";
             document.getElementById("delete").style.display = "revert";
+            document.getElementById("logout").style.display = "revert";
+
+            localStorage.setItem('student_id', id);
+            localStorage.setItem('username', user_name);
 
             signinScreen = false;
             hideSignin();
@@ -1093,7 +1109,7 @@
             }
         });
 
-        document.getElementById("multi").addEventListener("click", function (e) {
+        document.getElementById("multi").addEventListener("click", function () {
             document.getElementById("single").style.opacity = 0.5;
             document.getElementById("multi").style.opacity = 1;
 
@@ -1108,7 +1124,7 @@
             mode = 1;
         });
 
-        document.getElementById("single").addEventListener("click", function (e) {
+        document.getElementById("single").addEventListener("click", function () {
             document.getElementById("single").style.opacity = 1;
             document.getElementById("multi").style.opacity = 0.5;
 
@@ -1132,11 +1148,11 @@
             return genCode;
         }
 
-        document.getElementById("copy").addEventListener("click", function (e) {
+        document.getElementById("copy").addEventListener("click", function () {
             navigator.clipboard.writeText(generateCode());
         });
 
-        document.getElementById("startGame").addEventListener("click", function (e) {
+        document.getElementById("startGame").addEventListener("click", function () {
             var params = new URLSearchParams(window.location.search);
             var challengeCode = params.get("c");
 
@@ -1184,30 +1200,30 @@
             submitFunc();
         });
 
-        document.getElementById("diff").addEventListener("click", function (e) {
+        document.getElementById("diff").addEventListener("click", function () {
             document.getElementById("diffDiv").style.display = "flex";
             dim.style.display = "revert";
         });
 
-        document.getElementById("inverted").addEventListener("click", function (e) {
+        document.getElementById("inverted").addEventListener("click", function () {
             buttonClicked("inverted", inverted);
             if (inverted == 0) inverted = 1;
             else inverted = 0;
         });
 
-        document.getElementById("blurry").addEventListener("click", function (e) {
+        document.getElementById("blurry").addEventListener("click", function () {
             buttonClicked("blurry", blurry);
             if (blurry == 0) blurry = 1;
             else blurry = 0;
         });
 
-        document.getElementById("mirrored").addEventListener("click", function (e) {
+        document.getElementById("mirrored").addEventListener("click", function () {
             buttonClicked("mirrored", mirrored);
             if (mirrored == 0) mirrored = 1;
             else mirrored = 0;
         });
 
-        document.getElementById("twoSec").addEventListener("click", function (e) {
+        document.getElementById("twoSec").addEventListener("click", function () {
             buttonClicked("twoSec", twoSec);
             if (twoSec == 0) twoSec = 1;
             else twoSec = 0;
@@ -1248,13 +1264,13 @@
             return [offsetLat, offsetLng];
         }
 
-        document.getElementById("hint").addEventListener("click", function (e) {
+        document.getElementById("hint").addEventListener("click", function () {
             if (hintUsed || next) return;
             dim.style.display = "revert";
             document.getElementById("hintDiv").style.display = "flex";
         });
 
-        document.getElementById("useHint").addEventListener("click", function (e) {
+        document.getElementById("useHint").addEventListener("click", function () {
             if (play || next) return;
             hintUsed = 1;
 
@@ -1317,21 +1333,21 @@
             }, 'image/png');
         }
 
-        document.getElementById("share").addEventListener("click", function (e) {
+        document.getElementById("share").addEventListener("click", function () {
             captureCanvas();
         });
 
-        document.getElementById("leader").addEventListener("click", function (e) {
+        document.getElementById("leader").addEventListener("click", function () {
             document.getElementById("leaderDiv").style.display = "flex";
             dim.style.display = "revert";
         });
 
-        document.getElementById("delete").addEventListener("click", function (e) {
+        document.getElementById("delete").addEventListener("click", function () {
             document.getElementById("deleteDiv").style.display = "flex";
             dim.style.display = "revert";
         });
 
-        document.getElementById("confirm").addEventListener("click", function (e) {
+        document.getElementById("confirm").addEventListener("click", function () {
             deleteAccount();
         });
 
@@ -1343,5 +1359,10 @@
 
             window.location.href = window.location.origin + window.location.pathname;
         }
+
+        document.getElementById("logout").addEventListener("click", function () {
+            localStorage.clear();
+            window.location.href = window.location.origin + window.location.pathname;
+        });
     </script>
 </body>

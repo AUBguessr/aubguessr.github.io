@@ -565,7 +565,7 @@ body {
     margin-top: 50px;
 }
 
-#delete, #confirm{
+#delete, #confirm, #logout{
     top: 0;
     position: absolute;
     right: 0;
@@ -580,6 +580,11 @@ body {
     font-size: 2dvh;
 }
 
+#logout{
+    display: none;
+    top: 50px;
+}
+
 #delete{
     display: none;
 }
@@ -590,7 +595,7 @@ body {
     width: 30%;
 }
 
-#delete:hover, #confirm:hover{
+#delete:hover, #confirm:hover, #logout:hover{
     cursor: pointer;
     background-color: #c40000;
     border-color: #ad0000;
