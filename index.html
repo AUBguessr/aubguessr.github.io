@@ -1356,7 +1356,8 @@
                 .from('users')
                 .delete()
                 .eq('student_id', id);
-
+            
+            localStorage.clear();
             window.location.href = window.location.origin + window.location.pathname;
         }
 
