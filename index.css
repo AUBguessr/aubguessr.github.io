@@ -724,10 +724,10 @@ body {
     justify-content: space-between;
     flex-direction: column;
 
-    margin-top: 15dvh;
+    margin-top: 12dvh;
     position: absolute;
 
-    height: 430px;
+    height: 530px;
     width: 400px;
 
     background-color: #85002e;
@@ -767,7 +767,7 @@ body {
     width: 100%;
     height: 40px;
 
-    margin-top: -50%;
+    margin-top: -70%;
 
 }
 
@@ -817,11 +817,12 @@ body {
 #having{
     align-self: center;
     position: absolute;
-    margin-top: 63%;
+    margin-top: 75%;
     width: 70%;
 
-    color: rgb(74, 12, 29);
+    color: rgb(93, 16, 37);
 
+    font-size: 140%;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: 600;
 }
@@ -856,7 +857,7 @@ body {
 #check{
     position: absolute;
     align-self: center;
-    margin-top: 44%;
+    margin-top: 50%;
 
     width: 100px;
     height: 40px;
