@@ -208,12 +208,14 @@
 
     <!--///////////////////////////////////////////////////////////////////////account details page-->
     <div id="container2">
+
+        <button id="logout">Log Out</button>
+        <button id="delete">Delete Account</button>
+
         <div id="Aside1">
             <img id="profile" src="assets/profile.svg"></img>
             <p id="idnum">ID: #########</p>
             <p id="profileName">Name: ############</p>
-            <button id="logout">Log Out</button>
-            <button id="delete">Delete Account</button>
         </div>
 
         <button id="back">◄ BACK TO GAME</button>
@@ -1356,7 +1358,7 @@
                 .from('users')
                 .delete()
                 .eq('student_id', id);
-            
+
             localStorage.clear();
             window.location.href = window.location.origin + window.location.pathname;
         }

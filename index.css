@@ -566,9 +566,10 @@ body {
 }
 
 #delete, #confirm, #logout{
-    top: 0;
+    top: 14dvh;
+    right: 28dvw;
+    z-index: 100;
     position: absolute;
-    right: 0;
     padding: 8px;
     background-color: #e2c072;
     border-style: solid;
@@ -582,16 +583,19 @@ body {
 
 #logout{
     display: none;
-    top: 50px;
+    margin-top: 50px;
 }
 
 #delete{
+
     display: none;
 }
 
 #confirm{
     position: relative;
     align-self: center;
+    top: 0;
+    right: 0;
     width: 30%;
 }
 
@@ -1756,9 +1760,15 @@ body {
         margin-bottom: 10px;
     }
 
-    #delete{
-        top: 10dvh;
+    #delete, #logout{
+        top: 14px;
+        right: 14px;
         font-size: 1.4dvh;
+    }
+
+    #logout{
+        margin-top: 0;
+        margin-right: 30dvw;
     }
 
     #deleteDiv{
@@ -1767,5 +1777,6 @@ body {
 
     #deleteText1{
         width: 90%;
+        font-size: 5dvw;
     }
 }
