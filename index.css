@@ -68,6 +68,7 @@ body {
 }
 
 #side1 {
+    display: none;
     height: 100vh;
     width: 39vw;
 
@@ -1413,14 +1414,12 @@ body {
 @media (max-width: 768px) {
     /* styles that only apply on mobile */
 
-    * {}
-
     #body {
         user-select: none;
     }
 
     #container {
-        display: flex;
+        display: none;
         flex-direction: column;
         align-items: center;
     }
@@ -1555,10 +1554,6 @@ body {
 
     #share:hover {
         font-size: 3dvw;
-    }
-
-    #overlay {
-        z-index: 1002;
     }
 
     #signin {
