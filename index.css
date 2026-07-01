@@ -181,6 +181,8 @@ body {
 }
 
 #dim {
+    backdrop-filter: blur(6px); /* Blurs content behind the div */
+    -webkit-backdrop-filter: blur(6px);
     height: 100dvh;
     width: 100dvw;
     position: absolute;
@@ -338,14 +340,14 @@ body {
     align-items: center;
 }
 
-#deleteDiv{
+#deleteDiv {
     flex-direction: column;
     justify-content: space-evenly;
     margin-top: 33dvh;
     height: 30dvh;
 }
 
-#deleteText1{
+#deleteText1 {
     text-align: center;
     align-self: center;
     color: #e2c072;
@@ -549,7 +551,8 @@ body {
     -webkit-user-drag: none;
 }
 
-#idnum, #profileName {
+#idnum,
+#profileName {
     position: absolute;
     font-size: 30px;
     top: 0;
@@ -561,11 +564,13 @@ body {
     color: #e4c473;
 }
 
-#idnum{
+#idnum {
     margin-top: 50px;
 }
 
-#delete, #confirm, #logout{
+#delete,
+#confirm,
+#logout {
     top: 14dvh;
     right: 28dvw;
     z-index: 100;
@@ -581,17 +586,17 @@ body {
     font-size: 2dvh;
 }
 
-#logout{
+#logout {
     display: none;
     margin-top: 50px;
 }
 
-#delete{
+#delete {
 
     display: none;
 }
 
-#confirm{
+#confirm {
     position: relative;
     align-self: center;
     top: 0;
@@ -599,7 +604,9 @@ body {
     width: 30%;
 }
 
-#delete:hover, #confirm:hover, #logout:hover{
+#delete:hover,
+#confirm:hover,
+#logout:hover {
     cursor: pointer;
     background-color: #c40000;
     border-color: #ad0000;
@@ -761,7 +768,8 @@ body {
     text-decoration: underline;
 }
 
-#inputDiv, #nameDiv{
+#inputDiv,
+#nameDiv {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -770,7 +778,8 @@ body {
     margin-top: -70%;
 }
 
-#input, #name {
+#input,
+#name {
     position: absolute;
     right: 0;
     margin-right: 30px;
@@ -791,16 +800,20 @@ body {
 
     padding: 15px;
 }
-#input:focus, #name:focus {
+
+#input:focus,
+#name:focus {
     outline: none;
     /* Removes the default browser ring */
 }
 
-#input.invalid::placeholder, #name.invalid::placeholder {
+#input.invalid::placeholder,
+#name.invalid::placeholder {
     color: rgb(239, 0, 0);
 }
 
-#id, #username {
+#id,
+#username {
     margin-top: 8px;
     font-size: 20px;
     margin-left: 80px;
@@ -808,12 +821,12 @@ body {
     color: #e4c473;
 }
 
-#username{
+#username {
     margin-left: 20px;
     margin-top: 6px;
 }
 
-#having{
+#having {
     align-self: center;
     position: absolute;
     margin-top: 75%;
@@ -853,7 +866,7 @@ body {
     text-decoration: underline;
 }
 
-#check{
+#check {
     position: absolute;
     align-self: center;
     margin-top: 50%;
@@ -1389,8 +1402,7 @@ body {
 @media (max-width: 768px) {
     /* styles that only apply on mobile */
 
-    *{
-    }
+    * {}
 
     #body {
         user-select: none;
@@ -1547,21 +1559,23 @@ body {
         font-size: 2dvh;
     }
 
-    #inputDiv, #nameDiv{
+    #inputDiv,
+    #nameDiv {
         margin-top: -64%;
     }
 
-    #input, #name {
+    #input,
+    #name {
         width: 55%;
         font-size: 13px;
         margin-right: 20px;
     }
 
-    #id{
+    #id {
         margin-left: 64px;
     }
 
-    #username{
+    #username {
         margin-top: 8px;
         margin-left: 10px;
         font-size: 16px;
@@ -1573,7 +1587,7 @@ body {
         opacity: 0.6;
     }
 
-    #having{
+    #having {
         font-size: 12px;
         margin-top: 85%;
         font-family: system-ui, sans-serif;
@@ -1591,7 +1605,7 @@ body {
         left: 115px;
         width: 60%;
     }
-    
+
     #profileName {
         font-size: 16px;
         left: 115px;
@@ -1751,31 +1765,32 @@ body {
         padding-top: 6px;
     }
 
-    #leader1{
+    #leader1 {
         border-width: 0.2dvh;
     }
 
-    #leaderText1{
+    #leaderText1 {
         font-size: 6dvw;
         margin-bottom: 10px;
     }
 
-    #delete, #logout{
+    #delete,
+    #logout {
         top: 14px;
         right: 14px;
         font-size: 1.4dvh;
     }
 
-    #logout{
+    #logout {
         margin-top: 0;
         margin-right: 30dvw;
     }
 
-    #deleteDiv{
+    #deleteDiv {
         width: 90%;
     }
 
-    #deleteText1{
+    #deleteText1 {
         width: 90%;
         font-size: 5dvw;
     }
