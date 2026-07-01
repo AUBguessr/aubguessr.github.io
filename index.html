@@ -59,7 +59,6 @@
                     <img id="smallPic4" src=""></img>
                     <p id="picScore"><span id="pic4score"> </span>%</p>
                 </div>
-
             </div>
 
             <div id="canvasBottom">
@@ -71,35 +70,28 @@
         </div>
     </div>
 
-    <div id="overlay">
-        <div id="signin">
-            <p id="enter">Enter your Credentials </p>
+    <div id="overlay"></div>
 
+    <div id="signin">
+        <p id="enter">Enter your Credentials </p>
 
-            <div id="nameDiv">
-
-                <p id="username">Username:</p>
-                <input id="name" placeholder="enter display name"></input>
-
-            </div>
-
-            <div id="inputDiv">
-
-                <p id="id">ID:</p>
-                <input id="input" placeholder="enter AUB ID">
-                </input>
-
-            </div>
-
-
-            <img id="check" src="assets/check.svg"></img>
-
-
-            <p id="having">Having an account means you can view your statistics and have your name on the leaderboard.</p>
-
-            <p id="or">or</p>
-            <p id="guest">play as guest</p>
+        <div id="nameDiv">
+            <p id="username">Username:</p>
+            <input id="name" placeholder="enter display name"></input>
         </div>
+
+        <div id="inputDiv">
+            <p id="id">ID:</p>
+            <input id="input" placeholder="enter AUB ID">
+            </input>
+        </div>
+
+        <img id="check" src="assets/check.svg"></img>
+
+        <p id="having">Having an account means you can view your statistics and have your name on the leaderboard.</p>
+
+        <p id="or">or</p>
+        <p id="guest">play as guest</p>
     </div>
 
     <div id="rotate">
@@ -948,7 +940,6 @@
             if (wasMulti) document.getElementById("press").style.display = "none";
             else document.getElementById("press").style.display = "revert";
 
-            console.log(invited);
             if (invited) document.getElementById("press").style.display = "revert";
 
             invited = 0;
@@ -965,6 +956,7 @@
         document.getElementById("guest").addEventListener("click", function () {
             signinScreen = false;
             document.getElementById("side1").style.display = "flex";
+            document.getElementById("logo").style.display = "revert";
             hideSignin();
             hideAccount();
         });
@@ -987,6 +979,7 @@
 
         function hideSignin() {
             overlay.style.display = "none";
+            signin.style.display = "none";
             if (isMobile) document.getElementById("side1").style.borderBottomWidth = "0";
         }
 
@@ -1093,6 +1086,7 @@
             document.getElementById("side1").style.display = "flex";
             document.getElementById("delete").style.display = "revert";
             document.getElementById("logout").style.display = "revert";
+            document.getElementById("logo").style.display = "revert";
 
             localStorage.setItem('student_id', id);
             localStorage.setItem('username', user_name);
@@ -1196,8 +1190,6 @@
             dim.style.display = "none";
             document.getElementById("invite").style.display = "none";
 
-            console.log(invited);
-
             submitFunc();
         });
 
@@ -1290,6 +1282,7 @@
             dim.style.display = "revert";
             document.getElementById("side1").style.display = "flex";
             document.getElementById("invite").style.display = "flex";
+            document.getElementById("logo").style.display = "revert";
             invited = 1;
         }
 
