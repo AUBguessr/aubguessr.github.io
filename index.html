@@ -188,6 +188,12 @@
 
         <div id="leaderDiv">
             <p id="leaderText1">LeaderBoard</p>
+
+            <div id="leaderSelect">
+                <p id="allTime">All-Time</p>
+                <p id="daily">Daily Game</p>
+            </div>
+
             <p id="leader1">1. </p>
             <p id="leader2">2. </p>
             <p id="leader3">3. </p>
@@ -498,8 +504,14 @@
 
         var oceanClick = false;
         var hintUsed = 0;
+        var allTimeArr = new Array(5);
+        var dailyArr = new Array(5);
 
-        leaderboard();
+        async function initPrep() {
+            await prepLeaderArrs();
+            displayLeader(0);
+        }
+        initPrep();
 
         const savedId = localStorage.getItem('student_id'); // null
         const savedName = localStorage.getItem('username');  // null
@@ -512,18 +524,47 @@
             submitInfo();
         }
 
-        async function leaderboard() {
-            const { data, error } = await db
+        async function prepLeaderArrs() {
+
+            const { data: allTimeData, error: allTimeErr } = await db
                 .from('users')
                 .select('username, avg_score, games_played')
                 .order('avg_score', { ascending: false })
                 .limit(5);
 
-            for (i = 1; i < 6; i++) {
-                document.getElementById(`leader${i}`).textContent = `${i}. ${(data[i - 1].username).padEnd(12, '-')} (AVG: ${(data[i - 1].avg_score).toFixed(2)}%, Games: ${data[i - 1].games_played})`
+            const { data: dailyData, error: dailyErr } = await db
+                .from('users')
+                .select('username, daily_score, games_played')
+                .order('daily_score', { ascending: false, nullsFirst: false })
+                .limit(5);
+
+            for (i = 0; i < 5; i++) {
+                if (allTimeData[i]) {
+                    allTimeArr[i] = `${i + 1}. ${(allTimeData[i].username).padEnd(12, '-')} (AVG: ${(allTimeData[i].avg_score).toFixed(2)}%, Games: ${allTimeData[i].games_played})`
+                } else {
+                    allTimeArr[i] = `${i + 1}. ~`;
+                }
+
+                if (dailyData[i] && dailyData[i].daily_score !== null) {
+                    dailyArr[i] = `${i + 1}. ${(dailyData[i].username).padEnd(12, '-')} (Score: ${(dailyData[i].daily_score).toFixed(2)}%, Games: ${dailyData[i].games_played})`
+                } else {
+                    dailyArr[i] = `${i + 1}. ~`;
+                }
             }
 
             if (isMobile) document.getElementById("leaderDiv").style.borderBottomWidth = "0";
+        }
+
+        function displayLeader(leaderMode) {
+            if (!leaderMode) {
+                for (i = 0; i < 5; i++) {
+                    document.getElementById(`leader${i + 1}`).textContent = allTimeArr[i];
+                }
+            } else {
+                for (i = 0; i < 5; i++) {
+                    document.getElementById(`leader${i + 1}`).textContent = dailyArr[i];
+                }
+            }
         }
 
         for (i = 0; i < locations; i++) {
@@ -1132,6 +1173,26 @@
             document.getElementById("submit").textContent = "PLAY";
             wasMulti = 0;
             mode = 0;
+        });
+
+        document.getElementById("allTime").addEventListener("click", function () {
+            displayLeader(0);
+
+            document.getElementById("allTime").style.opacity = 1;
+            document.getElementById("daily").style.opacity = 0.5;
+
+            document.getElementById("daily").style.width = "42%";
+            document.getElementById("allTime").style.width = "57%";
+        });
+
+        document.getElementById("daily").addEventListener("click", function () {
+            displayLeader(1);
+
+            document.getElementById("daily").style.opacity = 1;
+            document.getElementById("allTime").style.opacity = 0.5;
+
+            document.getElementById("allTime").style.width = "42%";
+            document.getElementById("daily").style.width = "57%";
         });
 
         var genCode;

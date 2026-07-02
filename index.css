@@ -890,22 +890,28 @@ body {
     opacity: 0.6;
 }
 
-#modeSelect {
+#modeSelect, #leaderSelect {
     position: absolute;
     display: flex;
     width: 18dvw;
-    height: 45px;
+    height: 6dvh;
     bottom: 11dvh;
     margin-right: 3dvw;
 }
 
-#single {
+#leaderSelect{
+    bottom: 6dvh;
+    align-self: center;
+    margin-right: 0;
+}
+
+#single, #allTime {
     position: absolute;
     width: 57%;
     border-radius: 20px 0px 0px 20px;
 }
 
-#multi {
+#multi, #daily {
     position: absolute;
     width: 42%;
     right: 0;
@@ -914,7 +920,9 @@ body {
 }
 
 #single,
-#multi {
+#multi,
+#allTime,
+#daily {
     background-color: #ad003d;
     height: 100%;
     padding-top: 1.4dvh;
@@ -932,7 +940,9 @@ body {
 }
 
 #single:hover,
-#multi:hover {
+#multi:hover,
+#allTime:hover,
+#daily:hover {
     cursor: pointer;
     background-color: #b01048;
     box-shadow: none;
@@ -1653,13 +1663,15 @@ body {
     }
 
     #single,
-    #multi {
+    #multi,
+    #allTime,
+    #daily {
         padding-top: 1.4dvh;
         font-weight: normal;
         font-size: 4dvw;
     }
 
-    #modeSelect {
+    #modeSelect, #leaderSelect {
         width: 70dvw;
         height: 12dvw;
     }
