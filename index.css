@@ -549,7 +549,7 @@ body {
     border-right: 5px;
 
     border-radius: 10px;
-    border-color: #e4c473;
+    border-color: #e2c072;
     border-style: solid;
 
     box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
@@ -762,8 +762,7 @@ body {
 
 #signinBubble{
     position: absolute;
-    right: 0;
-    margin-right: 10dvw;
+    right: 10dvw;
     width: 25dvw;
     height: 20dvh;
     padding-top: 0;
