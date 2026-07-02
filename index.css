@@ -272,7 +272,9 @@ body {
 }
 
 #text1 {
-    margin-left: 5dvw;
+    margin-top: 3dvh;
+    margin-left: 4dvw;
+    font-size: 2dvw;
 }
 
 #imageCount {
@@ -752,7 +754,7 @@ body {
     border-color: #e4c473;
     border-style: solid;
 
-    box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.3);
 
     z-index: 15;
 
@@ -761,8 +763,10 @@ body {
 }
 
 #signinBubble{
+    justify-content: space-evenly;
     position: absolute;
-    right: 10dvw;
+    left: 0;
+    margin-left: 68dvw;
     width: 25dvw;
     height: 20dvh;
     padding-top: 0;
@@ -773,11 +777,10 @@ body {
 #having {
     align-self: center;
     width: 80%;
-    margin-top: 14px;
 
     color: #e2c072;
 
-    font-size: 3dvh;
+    font-size: 1.5dvw;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
@@ -917,14 +920,14 @@ body {
 #single, #allTime {
     position: absolute;
     width: 57%;
-    border-radius: 20px 0px 0px 20px;
+    border-radius: 10px 0px 0px 10px;
 }
 
 #multi, #daily {
     position: absolute;
     width: 42%;
     right: 0;
-    border-radius: 0px 20px 20px 0px;
+    border-radius: 0px 10px 10px 0px;
     opacity: 0.5;
 }
 
@@ -1240,7 +1243,7 @@ body {
 #hint:hover,
 #leader:hover {
     cursor: pointer;
-    background-color: #b3003f;
+    background-color: #b51c54;
     box-shadow: none;
     padding: 8px;
 }
@@ -1477,6 +1480,7 @@ body {
     }
 
     #press {
+        margin-left: 0;
         font-size: 60px;
         width: 95dvw;
         margin-top: 20dvh;
@@ -1596,9 +1600,8 @@ body {
     }
 
     #signinBubble{
-        right: 2dvw;
+        margin-left: 45dvw;
         margin-top: 8dvh;
-        margin-right: 0;
         border-radius: 3dvh 3dvh 3dvh 0;
         width: 50%;
         height: 11dvh;
@@ -1607,7 +1610,6 @@ body {
     
     #having {
         font-size: 1.5dvh;
-        margin-top: 0;
         font-family: system-ui, sans-serif;
     }
 

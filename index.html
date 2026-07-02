@@ -130,7 +130,7 @@
 
             <p id="press">Press Play When Ready.</p>
 
-            <p id="text1">do you know where this is?</p>
+            <p id="text1">SinglePlayer</p>
 
             <img id="hint" src="assets/hint.svg"></img>
             <img id="leader" src="assets/leader.svg"></img>
@@ -1168,6 +1168,7 @@
             document.getElementById("codeDiv").style.display = "flex";
 
             document.getElementById("submit").textContent = "PLAY MULTIPLAYER";
+            document.getElementById("text1").textContent = "Multiplayer";
             wasMulti = 1;
             mode = 1;
         });
@@ -1183,6 +1184,7 @@
             document.getElementById("codeDiv").style.display = "none";
 
             document.getElementById("submit").textContent = "PLAY";
+            document.getElementById("text1").textContent = "Singleplayer";
             wasMulti = 0;
             mode = 0;
         });
