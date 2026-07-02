@@ -194,11 +194,11 @@
                 <p id="daily">Daily Game</p>
             </div>
 
-            <p id="leader1">1. </p>
-            <p id="leader2">2. </p>
-            <p id="leader3">3. </p>
-            <p id="leader4">4. </p>
-            <p id="leader5">5. </p>
+            <p id="leader1">loading...</p>
+            <p id="leader2">loading...</p>
+            <p id="leader3">loading...</p>
+            <p id="leader4">loading...</p>
+            <p id="leader5">loading...</p>
         </div>
 
     </div>
@@ -506,6 +506,7 @@
         var hintUsed = 0;
         var allTimeArr = new Array(5);
         var dailyArr = new Array(5);
+        var leaderLoaded = 0;
 
         async function initPrep() {
             await prepLeaderArrs();
@@ -552,7 +553,10 @@
                 }
             }
 
+            leaderLoaded = 1;
+
             if (isMobile) document.getElementById("leaderDiv").style.borderBottomWidth = "0";
+            return;
         }
 
         function displayLeader(leaderMode) {
@@ -565,6 +569,8 @@
                     document.getElementById(`leader${i + 1}`).textContent = dailyArr[i];
                 }
             }
+
+            return;
         }
 
         for (i = 0; i < locations; i++) {
@@ -1176,7 +1182,7 @@
         });
 
         document.getElementById("allTime").addEventListener("click", function () {
-            displayLeader(0);
+            if(leaderLoaded) displayLeader(0);
 
             document.getElementById("allTime").style.opacity = 1;
             document.getElementById("daily").style.opacity = 0.5;
@@ -1186,7 +1192,7 @@
         });
 
         document.getElementById("daily").addEventListener("click", function () {
-            displayLeader(1);
+            if(leaderLoaded) displayLeader(1);
 
             document.getElementById("daily").style.opacity = 1;
             document.getElementById("allTime").style.opacity = 0.5;
