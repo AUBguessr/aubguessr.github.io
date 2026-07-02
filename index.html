@@ -72,6 +72,10 @@
 
     <div id="overlay"></div>
 
+    <div id="signinBubble">
+        <p id="having">Having an account means you can view your statistics and have your name on the leaderboard.</p>
+    </div>
+
     <div id="signin">
         <p id="enter">Enter your Credentials </p>
 
@@ -87,8 +91,6 @@
         </div>
 
         <img id="check" src="assets/check.svg"></img>
-
-        <p id="having">Having an account means you can view your statistics and have your name on the leaderboard.</p>
 
         <p id="or">or</p>
         <p id="guest">play as guest</p>
@@ -132,6 +134,7 @@
 
             <img id="hint" src="assets/hint.svg"></img>
             <img id="leader" src="assets/leader.svg"></img>
+            <img id="dailySVG" src="assets/daily.svg"></img>
 
             <div id="picWrap">
                 <img id="picture" src=""></img>
@@ -781,6 +784,7 @@
                 }
 
                 document.getElementById("leader").style.display = "none";
+                document.getElementById("dailySVG").style.display = "none";
                 document.getElementById("hint").style.display = "revert";
                 document.getElementById("imageCount").style.display = "revert";
                 document.getElementById("picture").src = `images/image${turn}.jpeg`;
@@ -971,6 +975,7 @@
             document.getElementById("map").style.height = "";
 
             document.getElementById("mode").style.display = "flex";
+            document.getElementById("dailySVG").style.display = "flex";
 
             markerGroup.clearLayers();
             hintGroup.clearLayers();
@@ -1027,6 +1032,7 @@
         function hideSignin() {
             overlay.style.display = "none";
             signin.style.display = "none";
+            document.getElementById("signinBubble").style.display = "none";
             if (isMobile) document.getElementById("side1").style.borderBottomWidth = "0";
         }
 

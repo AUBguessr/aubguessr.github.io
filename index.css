@@ -97,9 +97,10 @@ body {
 #press {
     position: absolute;
     text-align: center;
-    margin-top: 18vh;
-    font-size: 12dvh;
-    width: 60dvh;
+    margin-top: 18dvh;
+    margin-left: 4dvw;
+    font-size: 6dvw;
+    width: 30dvw;
 
     font-family: 'Georgia', serif;
     font-weight: bold;
@@ -509,7 +510,7 @@ body {
     bottom: 2dvh;
     background-color: #85002e;
 
-    border-radius: 10px;
+    border-radius: 6px;
     border-style: solid;
     border-color: #e4c473;
     border-width: 2px;
@@ -733,7 +734,7 @@ body {
     z-index: 10;
 }
 
-#signin {
+#signin, #signinBubble {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -757,6 +758,28 @@ body {
 
     text-align: center;
     padding-top: 15px;
+}
+
+#signinBubble{
+    position: absolute;
+    right: 0;
+    margin-right: 10dvw;
+    width: 25dvw;
+    height: 20dvh;
+    padding-top: 0;
+    
+    border-radius: 5dvh 5dvh 5dvh 0;
+}
+
+#having {
+    align-self: center;
+    width: 80%;
+    margin-top: 14px;
+
+    color: #e2c072;
+
+    font-size: 3dvh;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 #enter {
@@ -831,19 +854,6 @@ body {
 #username {
     margin-left: 20px;
     margin-top: 6px;
-}
-
-#having {
-    align-self: center;
-    position: absolute;
-    margin-top: 75%;
-    width: 70%;
-
-    color: rgb(93, 16, 37);
-
-    font-size: 140%;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-weight: 600;
 }
 
 #or {
@@ -971,7 +981,7 @@ body {
 #diff {
     position: absolute;
 
-    height: 30px;
+    height: 4dvh;
     width: 6dvw;
 
     bottom: 11.8dvh;
@@ -1187,30 +1197,45 @@ body {
 }
 
 #hint,
-#leader {
+#leader,
+#dailySVG {
     display: none;
 
     position: absolute;
-    left: 3.7dvh;
+    left: 2.6dvh;
     bottom: 12dvh;
     background-color: #85002e;
     border-style: solid;
     border-width: 2px;
     border-radius: 6px;
     border-color: #e4c473;
-    padding-bottom: 2px;
+    padding: 4px;
 
-    width: 6dvh;
+    width: 8dvh;
     box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+}
+
+#dailySVG{
+    display: flex;
+    bottom: 12dvh;
+    left: 2.6dvh;
+    padding: 4px;
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+}
+
+#dailySVG:hover{
+    cursor: pointer;
+    background-color: rgb(181, 28, 84);
+    box-shadow: none;
+    padding: 8px;
 }
 
 #leader {
     display: flex;
-    bottom: 0;
-    width: 6dvh;
-    height: 6dvh;
-    top: 12dvh;
-    left: 2dvh;
+    bottom: 22dvh;
+    height: 8dvh;
+    left: 2.6dvh;
+    padding: 4px;
 }
 
 #hint:hover,
@@ -1218,7 +1243,7 @@ body {
     cursor: pointer;
     background-color: #b3003f;
     box-shadow: none;
-    padding: 4px;
+    padding: 8px;
 }
 
 #useHint {
@@ -1407,7 +1432,7 @@ body {
     }
 
     50% {
-        opacity: 0.3;
+        opacity: 0.2;
     }
 }
 
@@ -1490,8 +1515,7 @@ body {
     #submit.active {
         position: absolute;
         margin-top: 0;
-        top: -12dvh;
-        margin-left: 20dvw;
+        top: -22dvh;
         width: 60dvw;
         font-size: 4dvw;
     }
@@ -1567,8 +1591,25 @@ body {
     }
 
     #signin {
+        margin-top: 22dvh;
         width: 280px;
-        height: 400px;
+        height: 320px;
+    }
+
+    #signinBubble{
+        right: 2dvw;
+        margin-top: 8dvh;
+        margin-right: 0;
+        border-radius: 3dvh 3dvh 3dvh 0;
+        width: 50%;
+        height: 11dvh;
+        padding: 4px;
+    }
+    
+    #having {
+        font-size: 1.5dvh;
+        margin-top: 0;
+        font-family: system-ui, sans-serif;
     }
 
     #enter {
@@ -1577,7 +1618,7 @@ body {
 
     #inputDiv,
     #nameDiv {
-        margin-top: -64%;
+        margin-top: -35%;
     }
 
     #input,
@@ -1601,12 +1642,6 @@ body {
         height: 30px;
         margin-top: 60%;
         opacity: 0.6;
-    }
-
-    #having {
-        font-size: 12px;
-        margin-top: 85%;
-        font-family: system-ui, sans-serif;
     }
 
     #Aside1 {
@@ -1674,6 +1709,10 @@ body {
     #modeSelect, #leaderSelect {
         width: 70dvw;
         height: 12dvw;
+    }
+
+    #modeSelect{
+        bottom: 18dvh;
     }
 
     #mode {
@@ -1758,8 +1797,14 @@ body {
         letter-spacing: 1px;
     }
 
+    #dailySVG{
+        bottom: 2dvh;
+        margin-left: 20dvw;
+    }
+
     #leader {
-        top: 10dvh;
+        bottom: 2dvh;
+        margin-left: 40dvw;
     }
 
     #leaderDiv {
