@@ -204,6 +204,12 @@
             <p id="leader5">loading...</p>
         </div>
 
+        <div id="dailyDiv">
+            <p id="dailyText1">• Fresh round everyday.<br><br>• Same for everyone.<br><br>• Has a seperate leaderboard section.<br><br>• One attempt.</p>
+
+            <button id="dailyStart">Play Daily Game</button>
+       </div>
+
     </div>
 
     <!--///////////////////////////////////////////////////////////////////////account details page-->
@@ -510,6 +516,8 @@
         var allTimeArr = new Array(5);
         var dailyArr = new Array(5);
         var leaderLoaded = 0;
+
+        var dailyPlayed = 0;
 
         async function initPrep() {
             await prepLeaderArrs();
@@ -929,6 +937,7 @@
             document.getElementById("invite").style.display = "none";
             document.getElementById("leaderDiv").style.display = "none";
             document.getElementById("deleteDiv").style.display = "none";
+            document.getElementById("dailyDiv").style.display = "none";
             return;
         }
 
@@ -1433,6 +1442,11 @@
         document.getElementById("logout").addEventListener("click", function () {
             localStorage.clear();
             window.location.href = window.location.origin + window.location.pathname;
+        });
+
+        document.getElementById("dailySVG").addEventListener("click", function () {
+            document.getElementById("dailyDiv").style.display = "flex";
+            dim.style.display = "revert";
         });
     </script>
 </body>
