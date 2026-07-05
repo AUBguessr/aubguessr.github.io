@@ -1468,9 +1468,12 @@
 
         document.getElementById("dailySVG").addEventListener("click", function () {
             if(dailyPlayed){
-                document.getElementById("dailyText1").textContent = "Daily Game Already Attempted.";
-                document.getElementById("dailyText1").style.textAlign = "center";
-                document.getElementById("dailyText1").style.marginTop = "20%";
+                dailyText1 = document.getElementById("dailyText1");
+
+                dailyText1.textContent = "Daily Game Already Attempted.";
+                dailyText1.style.textAlign = "center";
+                dailyText1.style.marginTop = "20%";
+                dailyText1.style.fontSize = "4dvh";
                 document.getElementById("dailyStart").style.display = "none";
             }
             document.getElementById("dailyDiv").style.display = "flex";
