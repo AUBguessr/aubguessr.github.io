@@ -1080,10 +1080,10 @@
             valid = true;
 
             input = document.getElementById("input");
-            value = input.value;
+            value = input.value.trim();
 
             nameBox = document.getElementById("name");
-            nameValue = nameBox.value;
+            nameValue = nameBox.value.trim();
 
             if (value.trim() == "") {
                 input.value = "";
