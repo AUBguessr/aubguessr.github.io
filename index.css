@@ -97,7 +97,7 @@ body {
 #press {
     position: absolute;
     text-align: center;
-    margin-top: 18dvh;
+    margin-top: 12dvh;
     margin-left: 4dvw;
     font-size: 6dvw;
     width: 30dvw;
@@ -110,7 +110,7 @@ body {
     /* Forces capital letters */
 
     /* Create a color gradient inside the font */
-    background: linear-gradient(45deg, #fffa97, #af4261);
+    background: linear-gradient(90deg, #fffa97, #af4261);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
@@ -1116,11 +1116,10 @@ body {
     position: inherit;
     margin-top: 0;
     margin-left: 20px;
-    top: 8%;
+    top: 0;
     text-transform: none;
     letter-spacing: 1px;
     text-align: left;
-    align-self: auto;
     font-size: 1dvw;
     width: 92%;
 }
@@ -1133,7 +1132,7 @@ body {
     position: absolute;
 
     margin-top: 0;
-    top: 30%;
+    top: 25%;
     text-transform: none;
     letter-spacing: 0px;
 }
@@ -1833,7 +1832,8 @@ body {
 
     #inviteText1 {
         top: 20%;
-        font-size: 8dvw;
+        font-size: 7dvw;
+        width: 80%;
     }
 
     #diff-apply {
