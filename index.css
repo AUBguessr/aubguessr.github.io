@@ -317,7 +317,7 @@ body {
 #deleteDiv,
 #dailyDiv {
     display: none;
-    justify-content: center;
+    justify-content: space-evenly;
 
     position: absolute;
     z-index: 2001;
@@ -789,7 +789,7 @@ body {
 
     color: #e2c072;
 
-    font-size: 1.5dvw;
+    font-size: 1.2dvw;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
@@ -1248,8 +1248,8 @@ body {
 }
 
 #dailySVG{
-    display: flex;
-    bottom: 12dvh;
+    display: none;
+    bottom: 22dvh;
     left: 2.6dvh;
     padding: 4px;
     box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
@@ -1264,7 +1264,7 @@ body {
 
 #leader {
     display: flex;
-    bottom: 22dvh;
+    bottom: 12dvh;
     height: 8dvh;
     left: 2.6dvh;
     padding: 4px;
@@ -1639,7 +1639,8 @@ body {
     }
     
     #having {
-        font-size: 1.5dvh;
+        font-size: 1.3dvh;
+        width: 90%;
         font-family: system-ui, sans-serif;
     }
 
@@ -1830,12 +1831,12 @@ body {
 
     #dailySVG{
         bottom: 2dvh;
-        margin-left: 20dvw;
+        margin-left: 40dvw;
     }
 
     #leader {
         bottom: 2dvh;
-        margin-left: 40dvw;
+        margin-left: 20dvw;
     }
 
     #leaderDiv {

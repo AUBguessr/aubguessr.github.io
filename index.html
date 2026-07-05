@@ -73,7 +73,7 @@
     <div id="overlay"></div>
 
     <div id="signinBubble">
-        <p id="having">Having an account means you can view your statistics and have your name on the leaderboard.</p>
+        <p id="having">Having an account means you can view your statistics, play the daily game and have your name on the leaderboard.</p>
     </div>
 
     <div id="signin">
@@ -205,10 +205,11 @@
         </div>
 
         <div id="dailyDiv">
-            <p id="dailyText1">• Fresh round everyday.<br><br>• Same for everyone.<br><br>• Has a seperate leaderboard section.<br><br>• One attempt.</p>
+            <p id="dailyText1">• Fresh round everyday.<br><br>• Same for everyone.<br><br>• Has a seperate leaderboard
+                section.<br><br>• One attempt.</p>
 
             <button id="dailyStart">Play Daily Game</button>
-       </div>
+        </div>
 
     </div>
 
@@ -254,6 +255,7 @@
         var id;
         var user_name;
         var signinScreen = true;
+        var signedIn = false;
         const isMobile = window.innerWidth < 768;
         var count = 0;
         var next = false;
@@ -515,9 +517,11 @@
         var hintUsed = 0;
         var allTimeArr = new Array(5);
         var dailyArr = new Array(5);
+        var dailyRound = new Array(5);
         var leaderLoaded = 0;
 
         var dailyPlayed = 0;
+        var dailyMode = 0;
 
         async function initPrep() {
             await prepLeaderArrs();
@@ -734,6 +738,8 @@
 
             markerFlash.clearLayers();
 
+            if (dailyMode && count == 0) turn = dailyRound[0];
+
             if (isMobile && (next || play)) {
                 document.getElementById("side1").style.height = "calc(30dvh - 2px)";
                 document.getElementById("map").style.height = "70dvh";
@@ -787,7 +793,9 @@
                     if (mode) {
                         turn = arr[round + count];
                     } else {
-                        turn = arr[count];
+                        if (dailyMode) {
+                            turn = dailyRound[count];
+                        } else turn = arr[count];
                     }
                 }
 
@@ -887,8 +895,12 @@
             finalScore = (total / round).toFixed(2);
             if (finalScore == 100.00) finalScore = 100;
 
+            document.getElementById("score").textContent = finalScore + "%";
+            document.getElementById("perfect").textContent = "Perfect Scores: " + perfectScore + "/" + round;
+            dim.style.display = "revert";
+            document.getElementById("scoreDiv").style.display = "flex";
+
             if (updateGamesDB && !wasMulti) {
-                updateGamesDB = false; //for it to happen once
                 //update games played
                 games_played++;
                 await db.from('users').update({ games_played: games_played }).eq('student_id', id);
@@ -898,12 +910,17 @@
                 avg_score = ((avg_score * (games_played - 1)) + parseFloat(finalScore)) / games_played;
                 await db.from('users').update({ avg_score: avg_score }).eq('student_id', id);
                 document.getElementById("avg").textContent = "~ Average Score: " + avg_score.toFixed(2) + "%";
-            }
 
-            document.getElementById("score").textContent = finalScore + "%";
-            document.getElementById("perfect").textContent = "Perfect Scores: " + perfectScore + "/" + round;
-            dim.style.display = "revert";
-            document.getElementById("scoreDiv").style.display = "flex";
+                if (dailyMode) {
+                    //update daily score
+                    daily_score = parseFloat(finalScore);
+                    await db.from('users').update({ daily_score: finalScore }).eq('student_id', id);
+                    dailyMode = false;
+                    dailyPlayed = 1;
+                }
+
+                updateGamesDB = false; //for it to happen once
+            }
 
             return;
         };
@@ -966,6 +983,7 @@
             arr = shuffleArray(arr);
             turn = arr[0];
             updateGamesDB = true;
+            dailyMode = 0;
 
             dim.style.display = "none";
             document.getElementById("scoreDiv").style.display = "none";
@@ -1139,6 +1157,8 @@
                 }
                 games_played = data[0].games_played;
                 avg_score = data[0].avg_score;
+
+                if (data[0].daily_score !== null) dailyPlayed = 1;
             }
 
             document.getElementById("profileName").textContent = "Name: " + nameValue;
@@ -1149,11 +1169,13 @@
             document.getElementById("delete").style.display = "revert";
             document.getElementById("logout").style.display = "revert";
             document.getElementById("logo").style.display = "revert";
+            document.getElementById("dailySVG").style.display = "revert";
 
             localStorage.setItem('student_id', id);
             localStorage.setItem('username', user_name);
 
             signinScreen = false;
+            signedIn = true;
             hideSignin();
             hideAccount();
         }
@@ -1199,7 +1221,7 @@
         });
 
         document.getElementById("allTime").addEventListener("click", function () {
-            if(leaderLoaded) displayLeader(0);
+            if (leaderLoaded) displayLeader(0);
 
             document.getElementById("allTime").style.opacity = 1;
             document.getElementById("daily").style.opacity = 0.5;
@@ -1209,7 +1231,7 @@
         });
 
         document.getElementById("daily").addEventListener("click", function () {
-            if(leaderLoaded) displayLeader(1);
+            if (leaderLoaded) displayLeader(1);
 
             document.getElementById("daily").style.opacity = 1;
             document.getElementById("allTime").style.opacity = 0.5;
@@ -1445,9 +1467,41 @@
         });
 
         document.getElementById("dailySVG").addEventListener("click", function () {
+            if(dailyPlayed){
+                document.getElementById("dailyText1").textContent = "Daily Game Already Attempted.";
+                document.getElementById("dailyText1").style.textAlign = "center";
+                document.getElementById("dailyText1").style.marginTop = "20%";
+                document.getElementById("dailyStart").style.display = "none";
+            }
             document.getElementById("dailyDiv").style.display = "flex";
             dim.style.display = "revert";
         });
-        
+
+        document.getElementById("dailyStart").addEventListener("click", function () {
+            document.getElementById("dailyDiv").style.display = "none";
+            dim.style.display = "none";
+            document.getElementById("text1").textContent = "Daily Game";
+
+            dailyMode = 1;
+            dailyPlayed = 1;
+
+            dailyGame();
+            setDailyPlayed();
+        });
+
+        async function dailyGame() {
+            const { data, error } = await db
+                .from('daily')
+                .select('round')
+                .eq('id', -1);
+
+            dailyRound = data[0].round;
+
+            submitFunc();
+        }
+
+        async function setDailyPlayed() {
+            await db.from('users').update({ daily_score: 0}).eq('student_id', id);
+        }
     </script>
 </body>
