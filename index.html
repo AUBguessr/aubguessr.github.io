@@ -1002,7 +1002,7 @@
             document.getElementById("map").style.height = "";
 
             document.getElementById("mode").style.display = "flex";
-            document.getElementById("dailySVG").style.display = "flex";
+            if(signedIn) document.getElementById("dailySVG").style.display = "flex";
 
             markerGroup.clearLayers();
             hintGroup.clearLayers();
