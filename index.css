@@ -1130,7 +1130,10 @@ body {
 }
 
 #inviteText1 {
-    margin-top: 4dvh;
+    position: absolute;
+
+    margin-top: 0;
+    top: 30%;
     text-transform: none;
     letter-spacing: 0px;
 }
@@ -1154,6 +1157,10 @@ body {
     border-color: rgb(209, 151, 109);
 
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#startGame{
+    bottom: 10%;
 }
 
 #dailyStart{
@@ -1822,6 +1829,11 @@ body {
 
     #invite {
         width: 90%;
+    }
+
+    #inviteText1 {
+        top: 20%;
+        font-size: 8dvw;
     }
 
     #diff-apply {
