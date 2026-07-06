@@ -250,22 +250,22 @@
         const { createClient } = supabase;
         const db = createClient('https://wujcnvdaffgliugtnfbi.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1amNudmRhZmZnbGl1Z3RuZmJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEzMzI1MjIsImV4cCI6MjA5NjkwODUyMn0.820HceMe01KILH6cffpWq9_yunjvGwBySZp5dz03b3M');
 
-        var games_played = 0;
+        let games_played = 0;
 
-        var id;
-        var user_name;
-        var signinScreen = true;
-        var signedIn = false;
+        let id;
+        let user_name;
+        let signinScreen = true;
+        let signedIn = false;
         const isMobile = window.innerWidth < 768;
-        var count = 0;
-        var next = false;
-        var guessed = false;
-        var play = true;
-        var done = false;
-        var perfectScore = 0;
-        var total = 0;
-        var avg_score = 0;
-        var coords = [
+        let count = 0;
+        let next = false;
+        let guessed = false;
+        let play = true;
+        let done = false;
+        let perfectScore = 0;
+        let total = 0;
+        let avg_score = 0;
+        let coords = [
             [33.90083253913812, 35.48076220903855],     //0
             [33.89977295523677, 35.479049998468426],    //1
             [33.899737370858766, 35.48036587391895],    //2
@@ -492,36 +492,38 @@
             [33.900791051323594, 35.48204259293954]     //223
         ];
 
-        var maxMarginLat = 0.00643;
-        var maxMarginLng = 0.0104;
-        var guessLat;
-        var guessLng;
+        let maxMarginLat = 0.00643;
+        let maxMarginLng = 0.0104;
+        let guessLat;
+        let guessLng;
 
-        var round = 5;  //change round size//////////////////////////////////////////////
-        var locations = coords.length;
-        var arr = new Array(locations);
-        var scoreArr = new Array(round);
-        var turnArr = new Array(round);
+        let round = 5;  //change round size//////////////////////////////////////////////
+        let locations = coords.length;
+        let arr = new Array(locations);
+        let scoreArr = new Array(round);
+        let turnArr = new Array(round);
 
-        var mode = 0;
-        var wasMulti = 0;
-        var invited = 0;
+        let mode = 0;
+        let wasMulti = 0;
+        let invited = 0;
 
-        var inverted = 0;
-        var blurry = 0;
-        var mirrored = 0;
-        var twoSec = 0;
-        var twoSecDone = 0;
+        let codeArr;
 
-        var oceanClick = false;
-        var hintUsed = 0;
-        var allTimeArr = new Array(5);
-        var dailyArr = new Array(5);
-        var dailyRound = new Array(5);
-        var leaderLoaded = 0;
+        let inverted = 0;
+        let blurry = 0;
+        let mirrored = 0;
+        let twoSec = 0;
+        let twoSecDone = 0;
 
-        var dailyPlayed = 0;
-        var dailyMode = 0;
+        let oceanClick = false;
+        let hintUsed = 0;
+        let allTimeArr = new Array(5);
+        let dailyArr = new Array(5);
+        let dailyRound = new Array(5);
+        let leaderLoaded = 0;
+
+        let dailyPlayed = 0;
+        let dailyMode = 0;
 
         async function initPrep() {
             await prepLeaderArrs();
@@ -576,11 +578,11 @@
 
         function displayLeader(leaderMode) {
             if (!leaderMode) {
-                for (i = 0; i < 5; i++) {
+                for (let i = 0; i < 5; i++) {
                     document.getElementById(`leader${i + 1}`).textContent = allTimeArr[i];
                 }
             } else {
-                for (i = 0; i < 5; i++) {
+                for (let i = 0; i < 5; i++) {
                     document.getElementById(`leader${i + 1}`).textContent = dailyArr[i];
                 }
             }
@@ -588,7 +590,7 @@
             return;
         }
 
-        for (i = 0; i < locations; i++) {
+        for (let i = 0; i < locations; i++) {
             arr[i] = i;
         }
 
@@ -596,7 +598,7 @@
 
         generateCode();
 
-        var turn = arr[0];
+        let turn = arr[0];
 
         function shuffleArray(arr) {
             const shuffled = [...arr]; // Copy array to prevent original mutation
@@ -607,11 +609,11 @@
             return shuffled;
         }
 
-        var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}')
+        let Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}')
 
-        var bounds = L.latLngBounds([33.905, 35.475], [33.897, 35.488]);
+        let bounds = L.latLngBounds([33.905, 35.475], [33.897, 35.488]);
 
-        var map = L.map('map', {
+        let map = L.map('map', {
             center: [33.9005, 35.481],
             zoom: 17,
             layers: [Esri_WorldImagery],
@@ -623,17 +625,17 @@
 
         if (isMobile) map.setMinZoom(16);
 
-        var markerGroup = L.layerGroup().addTo(map);
-        var hintGroup = L.layerGroup().addTo(map);
-        var markerFlash = L.layerGroup().addTo(map);
-        var flashIcon = L.icon({
+        let markerGroup = L.layerGroup().addTo(map);
+        let hintGroup = L.layerGroup().addTo(map);
+        let markerFlash = L.layerGroup().addTo(map);
+        let flashIcon = L.icon({
             iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
             iconSize: [25, 41],
             iconAnchor: [12, 41],
             className: 'pulse-marker'
         });
 
-        var oceanPolygon = L.polygon([
+        let oceanPolygon = L.polygon([
             [33.90041108133747, 35.46851832173644],
             [33.9005802993875, 35.469344481591286],
             [33.90041108133747, 35.47068565018683],
@@ -669,7 +671,7 @@
             if (isMobile) document.getElementById("side1").style.backgroundSize = "cover";
         });
 
-        var formatted;
+        let formatted;
 
         showIntroMarkers();
 
@@ -681,9 +683,9 @@
             }
         }
 
-        var picture = document.getElementById("picture");
-        var dim = document.getElementById("dim");
-        var picFull = document.getElementById("picFull");
+        let picture = document.getElementById("picture");
+        let dim = document.getElementById("dim");
+        let picFull = document.getElementById("picFull");
 
         map.on('click', function (a) {
 
@@ -710,10 +712,10 @@
 
             //console.log(guessLat, guessLng); //USE FOR NEW PICTURES///////////////////////////////////////////////////////////////////
 
-            var absLat = Math.abs(coords[turn][0] - guessLat);
-            var absLng = Math.abs(coords[turn][1] - guessLng);
+            let absLat = Math.abs(coords[turn][0] - guessLat);
+            let absLng = Math.abs(coords[turn][1] - guessLng);
 
-            var ACC = 100 - (((absLat / maxMarginLat) + (absLng / maxMarginLng)) / 2 * 100);
+            let ACC = 100 - (((absLat / maxMarginLat) + (absLng / maxMarginLng)) / 2 * 100);
 
             ACC = ACC - 8 * (100 - ACC);
 
@@ -728,7 +730,7 @@
             guessed = true;
         });
 
-        var submit = document.getElementById("submit");
+        let submit = document.getElementById("submit");
 
         submit.addEventListener('click', function () {
             submitFunc();
@@ -816,9 +818,9 @@
                 document.getElementById("mode").style.display = "none";
                 markerGroup.clearLayers();
 
-                var hintCenter = getHintCircle(coords[turn][0], coords[turn][1]);
+                let hintCenter = getHintCircle(coords[turn][0], coords[turn][1]);
 
-                var hintCircle = L.circle(hintCenter, {
+                let hintCircle = L.circle(hintCenter, {
                     radius: 100,
                     color: 'rgb(132, 1, 50)',
                     fillOpacity: 0.3
@@ -859,14 +861,14 @@
                 radius: 8
             }).addTo(markerGroup);
 
-            var point1 = [coords[turn][0], coords[turn][1]];
-            var point2 = [guessLat, guessLng];
+            let point1 = [coords[turn][0], coords[turn][1]];
+            let point2 = [guessLat, guessLng];
 
             // Combine the points into an array
-            var pointList = [point1, point2];
+            let pointList = [point1, point2];
 
             // Create the line and add it to your map instance
-            var polyline = L.polyline(pointList, {
+            let polyline = L.polyline(pointList, {
                 color: 'rgb(132, 1, 50)',      // Sets line color
                 weight: 5,         // Sets stroke width in pixels
                 opacity: 1,      // Sets line transparency
@@ -887,8 +889,8 @@
             }
         }
 
-        var updateGamesDB = true;
-        var finalScore;
+        let updateGamesDB = true;
+        let finalScore;
 
         async function finishRound() {
 
@@ -900,7 +902,7 @@
             dim.style.display = "revert";
             document.getElementById("scoreDiv").style.display = "flex";
 
-            if (updateGamesDB && !wasMulti) {
+            if (updateGamesDB && !wasMulti && signedIn) {
                 //update games played
                 games_played++;
                 await db.from('users').update({ games_played: games_played }).eq('student_id', id);
@@ -913,7 +915,7 @@
 
                 if (dailyMode) {
                     //update daily score
-                    daily_score = parseFloat(finalScore);
+                    let daily_score = parseFloat(finalScore);
                     await db.from('users').update({ daily_score: finalScore }).eq('student_id', id);
                     dailyMode = false;
                     dailyPlayed = 1;
@@ -934,7 +936,9 @@
         });
 
         dim.addEventListener('click', function () {
-            if (!done) invited = 0;
+
+            if (invited && !done) window.location.href = window.location.origin + window.location.pathname;
+            
             hideDivs();
             generateCode();
         });
@@ -958,11 +962,11 @@
             return;
         }
 
-        container = document.getElementById("container");
-        container2 = document.getElementById("container2");
-        overlay = document.getElementById("overlay");
-        signin = document.getElementById("signin");
-        stats = document.getElementById("stats");
+        let container = document.getElementById("container");
+        let container2 = document.getElementById("container2");
+        let overlay = document.getElementById("overlay");
+        let signin = document.getElementById("signin");
+        let stats = document.getElementById("stats");
 
         document.getElementById("logo").addEventListener('click', function () {
             window.location.href = window.location.origin + window.location.pathname;
@@ -1019,7 +1023,7 @@
             if (wasMulti) document.getElementById("press").style.display = "none";
             else document.getElementById("press").style.display = "revert";
 
-            if (invited) document.getElementById("press").style.display = "revert";
+            if (invited) window.location.href = window.location.origin + window.location.pathname;
 
             invited = 0;
 
@@ -1077,13 +1081,13 @@
         });
 
         async function submitInfo() {
-            valid = true;
+            let valid = true;
 
-            input = document.getElementById("input");
-            value = input.value.trim();
+            let input = document.getElementById("input");
+            let value = input.value.trim();
 
-            nameBox = document.getElementById("name");
-            nameValue = nameBox.value.trim();
+            let nameBox = document.getElementById("name");
+            let nameValue = nameBox.value.trim();
 
             if (value.trim() == "") {
                 input.value = "";
@@ -1240,10 +1244,8 @@
             document.getElementById("daily").style.width = "57%";
         });
 
-        var genCode;
-
         function generateCode() {
-            var genCode = "https://aubguessr.github.io/?c=" + arr[round] + "-" + arr[round + 1] + "-" + arr[round + 2] + "-" + arr[round + 3] + "-" + arr[round + 4] + "-" + inverted + blurry + mirrored + twoSec;
+            let genCode = "https://aubguessr.github.io/?c=" + arr[round] + "-" + arr[round + 1] + "-" + arr[round + 2] + "-" + arr[round + 3] + "-" + arr[round + 4] + "-" + inverted + blurry + mirrored + twoSec;
             document.getElementById("codeOutput").value = genCode;
 
             return genCode;
@@ -1254,17 +1256,11 @@
         });
 
         document.getElementById("startGame").addEventListener("click", function () {
-            var params = new URLSearchParams(window.location.search);
-            var challengeCode = params.get("c");
+            let params = new URLSearchParams(window.location.search);
 
-            var codeArr = challengeCode.split("-");
-
-            var invalid = codeArr.length != 5;
-
-            for (let i = 0; i < codeArr.length && !invalid; i++) {
-                var num = Number(codeArr[i]);
+            for (let i = 0; i < codeArr.length; i++) {
+                let num = Number(codeArr[i]);
                 if (codeArr[i] === "" || !Number.isInteger(num) || num < 0 || num > coords.length - 1) {
-                    invalid = true;
                 }
             }
 
@@ -1330,7 +1326,7 @@
 
         function buttonClicked(buttonID, state) {
 
-            clickedButton = document.getElementById(buttonID);
+            let clickedButton = document.getElementById(buttonID);
 
             if (state == 0) {
                 clickedButton.style.backgroundColor = "#f5d27a";
@@ -1346,7 +1342,7 @@
         }
 
         function applyDifficulty() {
-            var pic = document.getElementById("picture");
+            let pic = document.getElementById("picture");
             pic.classList.toggle("blur", blurry);
             pic.classList.toggle("invert", inverted);
             pic.classList.toggle("mirrored", mirrored);
@@ -1358,8 +1354,8 @@
         }
 
         function getHintCircle(trueLat, trueLng) {
-            var offsetLat = trueLat + (Math.random() - 0.5) * 0.001;
-            var offsetLng = trueLng + (Math.random() - 0.5) * 0.001;
+            let offsetLat = trueLat + (Math.random() - 0.5) * 0.001;
+            let offsetLng = trueLng + (Math.random() - 0.5) * 0.001;
             return [offsetLat, offsetLng];
         }
 
@@ -1379,10 +1375,25 @@
             map.addLayer(hintGroup);    // shows it again
         });
 
-        var params = new URLSearchParams(window.location.search);
-        var challengeCode = params.get("c");
+        let params = new URLSearchParams(window.location.search);
+        let challengeCode = params.get("c");
+        let validCode = false;
 
-        if (challengeCode) {
+        if(challengeCode) {
+            codeArr = challengeCode.split("-");
+            validCode = codeArr.length == 6;
+        }
+
+        if(validCode) validCode = codeArr[5].length == 4;
+        console.log(validCode);
+
+        if (!validCode){
+            document.getElementById("inviteText1").textContent = "Invalid Link";
+            document.getElementById("startGame").style.display = "none";
+        }
+
+        if(challengeCode){
+
             hideSignin();
             hideAccount();
             dim.style.display = "revert";
@@ -1395,7 +1406,7 @@
         function assembleCanvas() {
             document.getElementById('scoreValue').textContent = finalScore;
 
-            for (x = 0; x < round; x++) {
+            for (let x = 0; x < round; x++) {
                 document.getElementById(`pic${x}score`).textContent = scoreArr[x];
                 document.getElementById(`smallPic${x}`).src = "images/image" + turnArr[x] + ".jpeg";
             }
@@ -1468,7 +1479,7 @@
 
         document.getElementById("dailySVG").addEventListener("click", function () {
             if(dailyPlayed){
-                dailyText1 = document.getElementById("dailyText1");
+                let dailyText1 = document.getElementById("dailyText1");
 
                 dailyText1.textContent = "Daily Game Already Attempted.";
                 dailyText1.style.textAlign = "center";
