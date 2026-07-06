@@ -755,7 +755,7 @@
             guessLat = e.latlng.lat;
             guessLng = e.latlng.lng;
 
-            console.log(guessLat, guessLng); //USE FOR NEW PICTURES///////////////////////////////////////////////////////////////////
+            //console.log(guessLat, guessLng); //USE FOR NEW PICTURES///////////////////////////////////////////////////////////////////
 
             let absLat = Math.abs(coords[turn][0] - guessLat);
             let absLng = Math.abs(coords[turn][1] - guessLng);
@@ -1471,7 +1471,7 @@
                     if (navigator.canShare && navigator.canShare({ files: [file] })) {
                         await navigator.share({
                             files: [file],
-                            text: `I scored ${avg_score}% on AUBguessr! \nTry to beat it here: https://aubguessr.github.io`
+                            text: `I scored ${finalScore}% on AUBguessr! \nTry to beat it here: https://aubguessr.github.io`
                         });
                     }
                 } else {

@@ -1585,10 +1585,11 @@ body {
     #result,
     .golden {
         position: absolute;
-        width: 200px;
+        width: 45dvw;
+        padding-bottom: 8px;
         font-size: 12dvw;
         margin-right: 34dvw;
-        margin-top: 20dvh;
+        margin-top: 18dvh;
     }
 
     #scoreDiv {
