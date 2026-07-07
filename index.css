@@ -1799,8 +1799,8 @@ body {
 
     #modeText2 {
         position: absolute;
-        top: 320px;
-        font-size: 4dvw;
+        top: 300px;
+        font-size: 3.5dvw;
     }
 
     #codeDiv {
