@@ -1895,7 +1895,8 @@ body {
     }
 
     #delete,
-    #logout {
+    #logout,
+    #login {
         top: 14px;
         right: 14px;
         font-size: 1.4dvh;
