@@ -585,7 +585,8 @@ body {
 
 #delete,
 #confirm,
-#logout {
+#logout,
+#login {
     top: 14dvh;
     right: 28dvw;
     z-index: 100;
@@ -599,6 +600,7 @@ body {
     border-radius: 10px;
     font-weight: 600;
     font-size: 2dvh;
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
 }
 
 #logout {
@@ -606,8 +608,17 @@ body {
     margin-top: 50px;
 }
 
-#delete {
+#login{
+    display: none;
+}
 
+#login:hover{
+    cursor: pointer;
+    background-color: #efd087;
+    box-shadow: none;
+}
+
+#delete {
     display: none;
 }
 
@@ -626,6 +637,7 @@ body {
     background-color: #c40000;
     border-color: #ad0000;
     color: #ffffff;
+    box-shadow: 0 0 15px 5px rgba(255, 255 ,255, 0.08);
 }
 
 #back {

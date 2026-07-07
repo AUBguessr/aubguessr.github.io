@@ -218,6 +218,7 @@
 
         <button id="logout">Log Out</button>
         <button id="delete">Delete Account</button>
+        <button id="login">Log in</button>
 
         <div id="Aside1">
             <img id="profile" src="assets/profile.svg"></img>
@@ -1085,6 +1086,7 @@
             signinScreen = false;
             document.getElementById("side1").style.display = "flex";
             document.getElementById("logo").style.display = "revert";
+            document.getElementById("login").style.display = "revert";
             hideSignin();
             hideAccount();
         });
@@ -1218,6 +1220,7 @@
             document.getElementById("delete").style.display = "revert";
             document.getElementById("logout").style.display = "revert";
             document.getElementById("logo").style.display = "revert";
+            document.getElementById("login").style.display = "none";
             document.getElementById("dailySVG").style.display = "revert";
 
             localStorage.setItem('student_id', id);
@@ -1500,6 +1503,10 @@
         document.getElementById("delete").addEventListener("click", function () {
             document.getElementById("deleteDiv").style.display = "flex";
             dim.style.display = "revert";
+        });
+
+        document.getElementById("login").addEventListener("click", function () {
+            window.location.href = window.location.origin + window.location.pathname;
         });
 
         document.getElementById("confirm").addEventListener("click", function () {
