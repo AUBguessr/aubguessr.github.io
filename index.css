@@ -341,7 +341,7 @@ body {
     overflow: hidden;
 }
 
-#dailyDiv{
+#dailyDiv {
     height: 280px;
     flex-direction: column;
     justify-content: space-evenly;
@@ -608,11 +608,11 @@ body {
     margin-top: 50px;
 }
 
-#login{
+#login {
     display: none;
 }
 
-#login:hover{
+#login:hover {
     cursor: pointer;
     background-color: #efd087;
     box-shadow: none;
@@ -637,7 +637,7 @@ body {
     background-color: #c40000;
     border-color: #ad0000;
     color: #ffffff;
-    box-shadow: 0 0 15px 5px rgba(255, 255 ,255, 0.08);
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.08);
 }
 
 #back {
@@ -756,7 +756,8 @@ body {
     z-index: 10;
 }
 
-#signin, #signinBubble {
+#signin,
+#signinBubble {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -782,7 +783,7 @@ body {
     padding-top: 15px;
 }
 
-#signinBubble{
+#signinBubble {
     justify-content: space-evenly;
     position: absolute;
     left: 0;
@@ -791,7 +792,7 @@ body {
     width: 25dvw;
     height: 20dvh;
     padding-top: 0;
-    
+
     border-radius: 5dvh 5dvh 5dvh 0;
 }
 
@@ -923,7 +924,8 @@ body {
     opacity: 0.6;
 }
 
-#modeSelect, #leaderSelect {
+#modeSelect,
+#leaderSelect {
     position: absolute;
     display: flex;
     width: 18dvw;
@@ -932,19 +934,21 @@ body {
     margin-right: 3dvw;
 }
 
-#leaderSelect{
+#leaderSelect {
     bottom: 6dvh;
     align-self: center;
     margin-right: 0;
 }
 
-#single, #allTime {
+#single,
+#allTime {
     position: absolute;
     width: 57%;
     border-radius: 10px 0px 0px 10px;
 }
 
-#multi, #daily {
+#multi,
+#daily {
     position: absolute;
     width: 42%;
     right: 0;
@@ -990,7 +994,8 @@ body {
     bottom: 0;
 }
 
-#modeText {
+#modeText1,
+#modeText2 {
     position: absolute;
     color: #e9c986;
     font-size: 20px;
@@ -999,6 +1004,12 @@ body {
     margin-top: 100px;
 
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+#modeText2 {
+    margin-top: 0;
+    bottom: 10dvh;
+    font-size: 16px;
 }
 
 #diff {
@@ -1124,7 +1135,7 @@ body {
     font-size: 3dvh;
 }
 
-#dailyText1{
+#dailyText1 {
     position: inherit;
     margin-top: 0;
     margin-left: 20px;
@@ -1170,18 +1181,19 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-#startGame{
+#startGame {
     bottom: 10%;
 }
 
-#dailyStart{
+#dailyStart {
     margin-top: auto;
     align-self: center;
     bottom: 8%;
     font-size: 1.2dvw;
 }
 
-#startGame:hover, #dailyStart:hover {
+#startGame:hover,
+#dailyStart:hover {
     background-color: rgb(171, 0, 63);
     text-shadow: none;
     cursor: pointer;
@@ -1265,7 +1277,7 @@ body {
     box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
 }
 
-#dailySVG{
+#dailySVG {
     display: none;
     bottom: 22dvh;
     left: 2.6dvh;
@@ -1273,7 +1285,7 @@ body {
     box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
 }
 
-#dailySVG:hover{
+#dailySVG:hover {
     cursor: pointer;
     background-color: rgb(181, 28, 84);
     box-shadow: none;
@@ -1470,8 +1482,15 @@ body {
 }
 
 @keyframes drift {
-    from { background-position: 0 0; }
-    to { background-position: 80px 160px; } /* match your tile size */
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 80px 160px;
+    }
+
+    /* match your tile size */
 }
 
 @keyframes pulse {
@@ -1647,7 +1666,7 @@ body {
         height: 320px;
     }
 
-    #signinBubble{
+    #signinBubble {
         margin-left: 45dvw;
         margin-top: 8dvh;
         border-radius: 3dvh 3dvh 3dvh 0;
@@ -1656,7 +1675,7 @@ body {
         height: 11dvh;
         padding: 4px;
     }
-    
+
     #having {
         font-size: 1.3dvh;
         width: 90%;
@@ -1757,12 +1776,13 @@ body {
         font-size: 4dvw;
     }
 
-    #modeSelect, #leaderSelect {
+    #modeSelect,
+    #leaderSelect {
         width: 70dvw;
         height: 12dvw;
     }
 
-    #modeSelect{
+    #modeSelect {
         bottom: 18dvh;
     }
 
@@ -1772,9 +1792,15 @@ body {
         width: 80dvw;
     }
 
-    #modeText {
+    #modeText1 {
         font-size: 5dvw;
         margin-top: 40px;
+    }
+
+    #modeText2 {
+        position: absolute;
+        top: 320px;
+        font-size: 4dvw;
     }
 
     #codeDiv {
@@ -1854,7 +1880,7 @@ body {
         letter-spacing: 1px;
     }
 
-    #dailySVG{
+    #dailySVG {
         bottom: 2dvh;
         margin-left: 40dvw;
     }
@@ -1916,18 +1942,18 @@ body {
         font-size: 5dvw;
     }
 
-    #dailyDiv{
+    #dailyDiv {
         width: 80%;
         height: 80dvw;
     }
 
-    #dailyText1{
+    #dailyText1 {
         top: 12%;
         font-size: 4dvw;
         margin-left: 10px;
     }
 
-    #dailyStart{
+    #dailyStart {
         width: 70%;
         font-size: 5dvw;
     }
