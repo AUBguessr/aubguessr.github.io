@@ -595,7 +595,7 @@ body {
     background-color: #e2c072;
     border-style: solid;
     border-color: #f7ec87;
-    color: #720028;
+    color: #000000;
     border-width: 2px;
     border-radius: 10px;
     font-weight: 600;
@@ -930,6 +930,7 @@ body {
     display: flex;
     width: 18dvw;
     height: 6dvh;
+    min-height: 42px;
     bottom: 11dvh;
     margin-right: 3dvw;
 }
@@ -1015,11 +1016,13 @@ body {
 #diff {
     position: absolute;
 
-    height: 4dvh;
-    width: 6dvw;
+    left: 30dvw;
+    bottom: 12dvh;
 
-    bottom: 11.8dvh;
-    margin-left: 24dvw;
+    height: 4dvh;
+    min-height: 30px;
+    width: 7dvw;
+    
 
     background-color: #960035;
 
@@ -1838,8 +1841,9 @@ body {
     #diff {
         position: absolute;
         width: 30dvw;
-        right: 0;
-        margin-bottom: 70dvh;
+        left: auto;
+        right: 30px;
+        top: 20px;
 
         font-size: 4dvw;
     }
