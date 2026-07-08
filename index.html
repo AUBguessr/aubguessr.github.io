@@ -73,7 +73,8 @@
     <div id="overlay"></div>
 
     <div id="signinBubble">
-        <p id="having">Having an account means you can view your statistics, play the daily game and have your name on the leaderboard.</p>
+        <p id="having">Having an account means you can view your statistics, play the daily game and have your name on
+            the leaderboard.</p>
     </div>
 
     <div id="signin">
@@ -110,7 +111,8 @@
 
             <div id="mode">
                 <div id="codeDiv">
-                    <p id="modeText1">In MultiPlayer mode, you can send a link and play the same game, with other people.
+                    <p id="modeText1">In MultiPlayer mode, you can send a link and play the same game, with other
+                        people.
                     </p>
 
                     <p id="sendCode">Challenge a friend:</p>
@@ -639,7 +641,7 @@
         }
 
         for (let i = 0; i < locations; i++) {
-            arr[i] = i  ;
+            arr[i] = i;
         }
 
         arr = shuffleArray(arr);
@@ -815,16 +817,16 @@
 
             if (next || play) {
 
-                if (twoSec) {
-                    setTimeout(function () {
-                        document.getElementById("picWrap").style.display = "none";
-                        document.getElementById("full").style.opacity = "0";
-                        twoSecDone = 1;
+                if (twoSec && !dailyMode) {
+                        setTimeout(function () {
+                            document.getElementById("picWrap").style.display = "none";
+                            document.getElementById("full").style.opacity = "0";
+                            twoSecDone = 1;
 
-                        document.getElementById("picFull").style.display = "none";
-                        dim.style.display = "none";
-                        // or hide it, disable clicking, etc.
-                    }, isMobile ? 3000 : 2500);
+                            document.getElementById("picFull").style.display = "none";
+                            dim.style.display = "none";
+                            // or hide it, disable clicking, etc.
+                        }, isMobile ? 3000 : 2500);
                 }
 
                 document.getElementById("picWrap").style.display = "flex";
@@ -855,7 +857,7 @@
                 document.getElementById("imageCount").style.display = "revert";
                 document.getElementById("picture").src = `images/image${turn}.jpeg`;
                 document.getElementById("picFull").src = `images/image${turn}.jpeg`;
-                if(!daily) applyDifficulty();
+                if (!dailyMode) applyDifficulty();
                 document.getElementById("result").style.display = "none";
                 document.getElementById("submit").classList.remove("active");
                 document.getElementById("picture").style.width = "30vw";
@@ -986,7 +988,7 @@
         dim.addEventListener('click', function () {
 
             if (invited && play) window.location.href = window.location.origin + window.location.pathname;
-            
+
             hideDivs();
             generateCode();
         });
@@ -1054,7 +1056,7 @@
             document.getElementById("map").style.height = "";
 
             document.getElementById("mode").style.display = "flex";
-            if(signedIn) document.getElementById("dailySVG").style.display = "flex";
+            if (signedIn) document.getElementById("dailySVG").style.display = "flex";
 
             markerGroup.clearLayers();
             hintGroup.clearLayers();
@@ -1429,19 +1431,19 @@
         let challengeCode = params.get("c");
         let validCode = false;
 
-        if(challengeCode) {
+        if (challengeCode) {
             codeArr = challengeCode.split("-");
             validCode = codeArr.length == 6;
         }
 
-        if(validCode) validCode = codeArr[5].length == 4;
+        if (validCode) validCode = codeArr[5].length == 4;
 
-        if (!validCode){
+        if (!validCode) {
             document.getElementById("inviteText1").textContent = "Invalid Link";
             document.getElementById("startGame").style.display = "none";
         }
 
-        if(challengeCode){
+        if (challengeCode) {
 
             hideSignin();
             hideAccount();
@@ -1531,14 +1533,14 @@
         });
 
         document.getElementById("dailySVG").addEventListener("click", function () {
-            if(dailyPlayed){
+            if (dailyPlayed) {
                 let dailyText1 = document.getElementById("dailyText1");
 
                 dailyText1.textContent = "Daily Game Already Attempted.";
                 dailyText1.style.textAlign = "center";
                 dailyText1.style.marginTop = "8%";
                 dailyText1.style.fontSize = "4dvh";
-                if(isMobile) dailyText1.style.fontSize = "2dvh";
+                if (isMobile) dailyText1.style.fontSize = "2dvh";
                 document.getElementById("dailyStart").style.display = "none";
             }
             document.getElementById("dailyDiv").style.display = "flex";
@@ -1569,7 +1571,7 @@
         }
 
         async function setDailyPlayed() {
-            await db.from('users').update({ daily_score: 0}).eq('student_id', id);
+            await db.from('users').update({ daily_score: 0 }).eq('student_id', id);
         }
     </script>
 </body>
