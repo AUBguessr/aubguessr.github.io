@@ -855,7 +855,7 @@
                 document.getElementById("imageCount").style.display = "revert";
                 document.getElementById("picture").src = `images/image${turn}.jpeg`;
                 document.getElementById("picFull").src = `images/image${turn}.jpeg`;
-                applyDifficulty();
+                if(!daily) applyDifficulty();
                 document.getElementById("result").style.display = "none";
                 document.getElementById("submit").classList.remove("active");
                 document.getElementById("picture").style.width = "30vw";
@@ -1536,9 +1536,9 @@
 
                 dailyText1.textContent = "Daily Game Already Attempted.";
                 dailyText1.style.textAlign = "center";
-                dailyText1.style.marginTop = "20%";
+                dailyText1.style.marginTop = "8%";
                 dailyText1.style.fontSize = "4dvh";
-                if(isMobile) dailyText1.style.fontSize = "3dvh";
+                if(isMobile) dailyText1.style.fontSize = "2dvh";
                 document.getElementById("dailyStart").style.display = "none";
             }
             document.getElementById("dailyDiv").style.display = "flex";
