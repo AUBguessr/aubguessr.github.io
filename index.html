@@ -854,6 +854,7 @@
                 }
 
                 document.getElementById("leader").style.display = "none";
+                document.getElementById("diff").style.display = "none";
                 document.getElementById("dailySVG").style.display = "none";
                 document.getElementById("hint").style.display = "revert";
                 document.getElementById("imageCount").style.display = "revert";
@@ -1058,6 +1059,7 @@
             document.getElementById("map").style.height = "";
 
             document.getElementById("mode").style.display = "flex";
+            document.getElementById("diff").style.display = "revert";
             if (signedIn) document.getElementById("dailySVG").style.display = "flex";
 
             markerGroup.clearLayers();
