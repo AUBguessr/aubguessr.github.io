@@ -129,7 +129,7 @@
                 </div>
             </div>
 
-            
+
             <button id="diff">Difficulty</button>
 
             <p id="imageCount">1/5</p>
@@ -681,10 +681,16 @@
         let hintGroup = L.layerGroup().addTo(map);
         let markerFlash = L.layerGroup().addTo(map);
         let flashIcon = L.icon({
-            iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-            iconSize: [25, 41],
-            iconAnchor: [12, 41],
+            iconUrl: 'assets/marker.png',
+            iconSize: [30, 40],
+            iconAnchor: [15, 33],
             className: 'pulse-marker'
+        });
+
+        var guessIcon = L.icon({
+            iconUrl: 'assets/marker.png',
+            iconSize: [30, 40],
+            iconAnchor: [15, 33]
         });
 
         let oceanPolygon = L.polygon([
@@ -729,9 +735,16 @@
 
         function showIntroMarkers() {
             markerFlash.clearLayers();
+            let index = 0;
             for (let i = 0; i < coords.length; i++) {
                 if (i == 151 || i == 155) continue;
-                L.marker([coords[i][0], coords[i][1]], { icon: flashIcon }).addTo(markerFlash); //SHOW ALL////////////////////////////////////
+                const marker = L.marker([coords[i][0], coords[i][1]], { icon: flashIcon }).addTo(markerFlash);
+                const delay = index * 20;
+                setTimeout(() => {
+                    const el = marker.getElement();
+                    if (el) el.style.animationDelay = `${delay}ms`;
+                }, 100);
+                index++;
             }
         }
 
@@ -757,7 +770,7 @@
             document.getElementById("submit").classList.add("active");
 
             markerGroup.clearLayers();
-            L.marker(e.latlng).addTo(markerGroup);
+            L.marker(e.latlng, { icon: guessIcon }).addTo(markerGroup);
 
             guessLat = e.latlng.lat;
             guessLng = e.latlng.lng;
@@ -820,15 +833,15 @@
             if (next || play) {
 
                 if (twoSec && !dailyMode) {
-                        setTimeout(function () {
-                            document.getElementById("picWrap").style.display = "none";
-                            document.getElementById("full").style.opacity = "0";
-                            twoSecDone = 1;
+                    setTimeout(function () {
+                        document.getElementById("picWrap").style.display = "none";
+                        document.getElementById("full").style.opacity = "0";
+                        twoSecDone = 1;
 
-                            document.getElementById("picFull").style.display = "none";
-                            dim.style.display = "none";
-                            // or hide it, disable clicking, etc.
-                        }, isMobile ? 3000 : 2500);
+                        document.getElementById("picFull").style.display = "none";
+                        dim.style.display = "none";
+                        // or hide it, disable clicking, etc.
+                    }, isMobile ? 3000 : 2500);
                 }
 
                 document.getElementById("picWrap").style.display = "flex";
