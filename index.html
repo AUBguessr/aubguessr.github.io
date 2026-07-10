@@ -261,6 +261,7 @@
 
         let id;
         let user_name;
+        let usernameMaxLength = 18;
         let signinScreen = true;
         let signedIn = false;
         const isMobile = window.innerWidth < 768;
@@ -610,13 +611,13 @@
 
             for (i = 0; i < 5; i++) {
                 if (allTimeData[i]) {
-                    allTimeArr[i] = `${i + 1}. ${(allTimeData[i].username).padEnd(12, '-')} (AVG: ${(allTimeData[i].avg_score).toFixed(2)}%, Games: ${allTimeData[i].games_played})`
+                    allTimeArr[i] = `${i + 1}. ${(allTimeData[i].username).padEnd(usernameMaxLength, '-')} (AVG: ${(allTimeData[i].avg_score).toFixed(2)}%, Games: ${allTimeData[i].games_played})`
                 } else {
                     allTimeArr[i] = `${i + 1}. ~`;
                 }
 
                 if (dailyData[i] && dailyData[i].daily_score !== null) {
-                    dailyArr[i] = `${i + 1}. ${(dailyData[i].username).padEnd(12, '-')} (Score: ${(dailyData[i].daily_score).toFixed(2)}%, Games: ${dailyData[i].games_played})`
+                    dailyArr[i] = `${i + 1}. ${(dailyData[i].username).padEnd(usernameMaxLength, '-')} (Score: ${(dailyData[i].daily_score).toFixed(2)}%, Games: ${dailyData[i].games_played})`
                 } else {
                     dailyArr[i] = `${i + 1}. ~`;
                 }
@@ -1180,9 +1181,9 @@
                 }
             }
 
-            if (nameValue.length > 12) {
+            if (nameValue.length > usernameMaxLength) {
                 nameBox.value = "";
-                nameBox.placeholder = "too long (max 12)";
+                nameBox.placeholder = `too long (max ${usernameMaxLength})`;
                 nameBox.classList.add("invalid");
 
                 valid = false;

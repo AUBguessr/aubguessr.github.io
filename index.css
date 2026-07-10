@@ -1422,7 +1422,7 @@ body {
     border-width: 4px;
     border-color: #990d3e;
     height: 100%;
-    width: 50%;
+    width: 65%;
 }
 
 #leaderText1 {
@@ -1459,7 +1459,7 @@ body {
     font-family: system-ui, sans-serif;
     font-weight: 600;
     margin-top: 2dvh;
-    margin-left: 2.5dvw;
+    margin-left: 3.2dvw;
     padding-left: 1dvw;
     font-size: calc(1.4dvw + 1dvh);
     height: 6dvh;
@@ -1504,7 +1504,7 @@ body {
 }
 
 .pulse-marker {
-    animation: pulse-marker 0.3s forwards;
+    animation: pulse-marker 0.8s forwards;
     animation-fill-mode: backwards;
 }
 
@@ -1906,7 +1906,7 @@ body {
         margin-top: 2dvh;
         margin-left: 4dvw;
         padding-left: 3dvw;
-        font-size: 1.6dvh;
+        font-size: 3dvw;
         height: 4dvh;
         padding-top: 6px;
     }
