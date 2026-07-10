@@ -1491,8 +1491,11 @@ body {
     to {
         background-position: 80px 160px;
     }
+}
 
-    /* match your tile size */
+@keyframes pulse {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 1; }
 }
 
 @keyframes pulse-marker {

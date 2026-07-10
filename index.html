@@ -739,7 +739,7 @@
             for (let i = 0; i < coords.length; i++) {
                 if (i == 151 || i == 155) continue;
                 const marker = L.marker([coords[i][0], coords[i][1]], { icon: flashIcon }).addTo(markerFlash);
-                const delay = index * 20;
+                const delay = index * 80;
                 setTimeout(() => {
                     const el = marker.getElement();
                     if (el) el.style.animationDelay = `${delay}ms`;
