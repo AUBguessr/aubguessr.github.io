@@ -173,7 +173,7 @@
         <div id="hintDiv">
 
             <p id="hintText1">Hints show a big circle containing the correct location, but the maximum score becomes
-                65%.</p>
+                50%.</p>
 
             <button id="useHint">Use Hint</button>
 
@@ -740,7 +740,7 @@
             for (let i = 0; i < coords.length; i++) {
                 if (i == 151 || i == 155) continue;
                 const marker = L.marker([coords[i][0], coords[i][1]], { icon: flashIcon }).addTo(markerFlash);
-                const delay = index * 80;
+                const delay = index * 400;
                 setTimeout(() => {
                     const el = marker.getElement();
                     if (el) el.style.animationDelay = `${delay}ms`;
@@ -791,7 +791,7 @@
                 formatted = ACC.toFixed(0);
             } else formatted = ACC.toFixed(2);
 
-            if (hintUsed) formatted = (ACC / 1.538461).toFixed(2);
+            if (hintUsed) formatted = (ACC / 2).toFixed(2);
 
             guessed = true;
         });
@@ -880,7 +880,6 @@
                 document.getElementById("picture").style.width = "30vw";
                 document.getElementById("submit").textContent = "Submit";
                 hintGroup.clearLayers();
-                hintUsed = 0;
                 document.getElementById("imageCount").textContent = (count + 1) + "/" + round;
                 document.getElementById("mode").style.display = "none";
                 markerGroup.clearLayers();
@@ -1055,6 +1054,7 @@
             turn = arr[0];
             updateGamesDB = true;
             dailyMode = 0;
+            hintUsed = 0;
 
             dim.style.display = "none";
             document.getElementById("scoreDiv").style.display = "none";
@@ -1591,5 +1591,11 @@
         async function setDailyPlayed() {
             await db.from('users').update({ daily_score: 0 }).eq('student_id', id);
         }
+
+        document.addEventListener('contextmenu', function (e) {
+            if (e.target.tagName === 'IMG' || e.target.tagName === 'SVG') {
+                e.preventDefault();
+            }
+        });
     </script>
 </body>

@@ -20,6 +20,7 @@ body {
     justify-content: center;
     color-scheme: only light;
     user-select: none;
+    -webkit-user-drag: none;
     height: 100dvh;
     width: 100vw;
     background-color: rgb(132, 1, 50);
@@ -1504,7 +1505,7 @@ body {
 }
 
 .pulse-marker {
-    animation: pulse-marker 0.8s forwards;
+    animation: pulse-marker 1.5s forwards;
     animation-fill-mode: backwards;
 }
 
