@@ -912,6 +912,7 @@
                 document.getElementById("imageCount").textContent = (count + 1) + "/" + round;
                 document.getElementById("mode").style.display = "none";
                 markerGroup.clearLayers();
+                hintUsed = 0;
 
                 let hintCenter = getHintCircle(coords[turn][0], coords[turn][1]);
 
