@@ -30,7 +30,7 @@
 
 <body>
 
-    <img id="logo" src="assets/logo.png"></img>
+    <img id="logo" src="assets/logo.png">
 
     <div id="canvas">
         <div id="canvasYellow">
@@ -40,30 +40,30 @@
             <div id="canvasPics">
 
                 <div id="pic">
-                    <img id="smallPic0" src=""></img>
+                    <img id="smallPic0" src="">
                     <p id="picScore"><span id="pic0score"> </span>%</p>
                 </div>
                 <div id="pic">
-                    <img id="smallPic1" src=""></img>
+                    <img id="smallPic1" src="">
                     <p id="picScore"><span id="pic1score"> </span>%</p>
                 </div>
                 <div id="pic">
-                    <img id="smallPic2" src=""></img>
+                    <img id="smallPic2" src="">
                     <p id="picScore"><span id="pic2score"> </span>%</p>
                 </div>
                 <div id="pic">
-                    <img id="smallPic3" src=""></img>
+                    <img id="smallPic3" src="">
                     <p id="picScore"><span id="pic3score"> </span>%</p>
                 </div>
                 <div id="pic">
-                    <img id="smallPic4" src=""></img>
+                    <img id="smallPic4" src="">
                     <p id="picScore"><span id="pic4score"> </span>%</p>
                 </div>
             </div>
 
             <div id="canvasBottom">
 
-                <img id="canvasQR" src="assets/qr.png"></img>
+                <img id="canvasQR" src="assets/qr.png">
                 <p id="canYou"> Can you do better?</p>
 
             </div>
@@ -91,7 +91,7 @@
             </input>
         </div>
 
-        <img id="check" src="assets/check.svg"></img>
+        <img id="check" src="assets/check.svg">
 
         <p id="or">or</p>
         <p id="guest">play as guest</p>
@@ -105,7 +105,7 @@
 
     <div id="container">
 
-        <img id="picFull" src=""></img>
+        <img id="picFull" src="">
 
         <div id="side1">
 
@@ -118,7 +118,7 @@
                     <p id="sendCode">Challenge a friend:</p>
                     <input id="codeOutput" value="https://aubguessr.github.io" readonly></input>
 
-                    <img id="copy" src="assets/copy.svg"></img>
+                    <img id="copy" src="assets/copy.svg">
 
                     <p id="modeText2">Multiplayer games do not affect account statistics.</p>
                 </div>
@@ -138,12 +138,12 @@
 
             <p id="text1">SinglePlayer</p>
 
-            <img id="hint" src="assets/hint.svg"></img>
-            <img id="leader" src="assets/leader.svg"></img>
-            <img id="dailySVG" src="assets/daily.svg"></img>
+            <img id="hint" src="assets/hint.svg">
+            <img id="leader" src="assets/leader.svg">
+            <img id="dailySVG" src="assets/daily.svg">
 
             <div id="picWrap">
-                <img id="picture" src=""></img>
+                <img id="picture" src="">
             </div>
 
             <p id="full">Click image to fullscreen</p>
@@ -193,7 +193,7 @@
             <button id="share">share score</button>
         </div>
 
-        <img id="profileButton" src="assets/profile.svg"></img>
+        <img id="profileButton" src="assets/profile.svg">
 
         <div id="leaderDiv">
             <p id="leaderText1">LeaderBoard</p>
@@ -227,7 +227,7 @@
         <button id="login">Log in</button>
 
         <div id="Aside1">
-            <img id="profile" src="assets/profile.svg"></img>
+            <img id="profile" src="assets/profile.svg">
             <p id="idnum">ID: #########</p>
             <p id="profileName">Name: ############</p>
         </div>
@@ -236,7 +236,7 @@
 
         <div id="Aside2">
             <p id="qrtext">share with a friend</p>
-            <img id="qr" src="assets/qr.png"></img>
+            <img id="qr" src="assets/qr.png">
         </div>
 
         <div id="stats">~ Account Statistics:
@@ -516,7 +516,7 @@
             [33.89943754673281, 35.48077456412978],     //239
             [33.89912599752108, 35.47877914417583],     //240
             [33.89929521812154, 35.47979842062332],     //241
-            [33.89929521812154, 35.47979842062332],     //242
+            [33.899575865060086, 35.47911225661259],     //242
             [33.8993976409534, 35.479161138799725],     //243
             [33.90176640284864, 35.480464068466],       //244
             [33.89944651181743, 35.47918235236163],     //245
@@ -805,7 +805,7 @@
             guessLat = e.latlng.lat;
             guessLng = e.latlng.lng;
 
-            //console.log(guessLat, guessLng); //USED FOR NEW PICTURES///////////////////////////////////////////////////////////////////
+            console.log(guessLat, guessLng); //USED FOR NEW PICTURES///////////////////////////////////////////////////////////////////
 
             let absLat = Math.abs(coords[turn][0] - guessLat);
             let absLng = Math.abs(coords[turn][1] - guessLng);
