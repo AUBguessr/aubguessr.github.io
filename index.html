@@ -173,7 +173,7 @@
         <div id="hintDiv">
 
             <p id="hintText1">Hints show a big circle containing the correct location, but the maximum score becomes
-                50%.</p>
+                60%!</p>
 
             <button id="useHint">Use Hint</button>
 
@@ -854,7 +854,7 @@
                 formatted = ACC.toFixed(0);
             } else formatted = ACC.toFixed(2);
 
-            if (hintUsed) formatted = (ACC / 2).toFixed(2);
+            if (hintUsed) formatted = (ACC * 0.6).toFixed(2);
 
             guessed = true;
         });
