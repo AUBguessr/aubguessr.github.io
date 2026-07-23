@@ -675,6 +675,7 @@ body {
 
 #back:hover {
     background-color: rgb(181, 28, 84);
+    text-shadow: none;
 }
 
 #Aside2 {
@@ -720,7 +721,7 @@ body {
     border-color: #e4c473;
 
     padding-left: 15px;
-    padding-top: 5px;
+    padding-top: 10px;
 
     top: 35dvh;
     left: 2dvw;
@@ -1142,11 +1143,11 @@ body {
     position: inherit;
     margin-top: 0;
     margin-left: 20px;
-    top: 12%;
+    top: 10%;
     text-transform: none;
     letter-spacing: 1px;
     text-align: left;
-    font-size: 1dvw;
+    font-size: 1.1dvw;
     width: 92%;
 }
 
@@ -1179,11 +1180,12 @@ body {
 
     margin-top: 15dvh;
 
-    color: rgb(217, 170, 111);
+    color: rgb(233, 183, 122);
     background-color: rgb(148, 2, 55);
     border-color: rgb(209, 151, 109);
 
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
 }
 
 #startGame {
@@ -1199,7 +1201,7 @@ body {
 
 #startGame:hover,
 #dailyStart:hover {
-    background-color: rgb(171, 0, 63);
+    background-color: rgb(181, 28, 84);
     text-shadow: none;
     cursor: pointer;
 }
