@@ -1167,13 +1167,15 @@ body {
 #dailyStart {
     position: absolute;
     height: 18%;
-    width: 11dvw;
+    width: 16dvw;
 
     border-style: solid;
     border-radius: 12px;
 
     font-size: 2.5dvh;
     font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Georgia', serif;
 
     margin-top: 15dvh;
 
@@ -1181,7 +1183,7 @@ body {
     background-color: rgb(148, 2, 55);
     border-color: rgb(209, 151, 109);
 
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 #startGame {
@@ -1959,6 +1961,6 @@ body {
 
     #dailyStart {
         width: 70%;
-        font-size: 5dvw;
+        font-size: 4dvw;
     }
 }
