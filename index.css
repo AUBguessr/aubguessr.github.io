@@ -193,7 +193,7 @@ body {
     width: 100dvw;
     position: absolute;
     z-index: 1500;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.7);
 
     display: none;
 }
@@ -1058,7 +1058,7 @@ body {
 #twoSec,
 #useHint {
     font-weight: bold;
-    font-size: 2.5dvh;
+    font-size: 2dvh;
     height: 4dvh;
     padding-left: 20px;
     padding-right: 20px;
@@ -1067,6 +1067,9 @@ body {
     border-style: solid;
     border-color: #e2c072;
     border-radius: 10px;
+
+
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 #inverted:hover,
@@ -1103,11 +1106,10 @@ body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-#hate,
+#diffText1,
 #hintText1,
 #inviteText1,
 #dailyText1 {
-
     margin-top: -20px;
     font-family: 'Georgia', serif;
     font-size: 3dvh;
@@ -1129,7 +1131,6 @@ body {
 }
 
 #hintText1 {
-
     margin-top: 0;
     text-transform: none;
     letter-spacing: 0px;
@@ -1742,7 +1743,7 @@ body {
 
     #stats {
         font-size: 18px;
-        height: 100px;
+        height: 110px;
         top: 28dvh;
         margin-left: 2dvw;
         width: 92%;
@@ -1854,6 +1855,10 @@ body {
 
     #diffDiv {
         width: 86%;
+    }
+
+    #diffText1{
+        font-size: 2dvh;
     }
 
     #hint {
