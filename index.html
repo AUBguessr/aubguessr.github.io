@@ -242,8 +242,15 @@
         <div id="stats">Account Statistics:
             <p id="played">• Games Played: ~</p>
             <p id="avg">• Average Score: ~</p>
+            <img src="assets/info.svg" id="info"> 
+
+            <div id="infoDiv">
+                <p id="infoText1">Your average score will degrade over time! <br><br> Maintaining your spot on the leaderboard requires consistency.</p>
+                <button id="gotit">Got it!</button>
+            </div>
         </div>
 
+        
 
         <div id="deleteDiv">
             <p id="deleteText1">Are you sure you want to delete your account? <br> (statistics will be wiped)</p>
@@ -1660,6 +1667,29 @@
             if (e.target.tagName === 'IMG' || e.target.tagName === 'SVG') {
                 e.preventDefault();
             }
+        });
+
+        document.getElementById("info").addEventListener("click", function () {
+            document.getElementById("infoDiv").style.display = "flex";
+            document.getElementById("delete").style.display = "none";
+            document.getElementById("logout").style.display = "none";
+            document.getElementById("logo").style.display = "none";
+            document.getElementById("back").style.display = "none";
+            document.getElementById("info").style.display = "none";
+            document.getElementById("stats").style.color = "#443a22";
+            document.getElementById("avg").style.color = "#e4c473";
+            document.getElementById("avg").style.boxShadow = "0 0 0 9999px rgba(0, 0, 0, 0.7)";
+        });
+
+        document.getElementById("gotit").addEventListener("click", function () {
+            document.getElementById("infoDiv").style.display = "none";
+            document.getElementById("delete").style.display = "flex";
+            document.getElementById("logout").style.display = "flex";
+            document.getElementById("logo").style.display = "flex";
+            document.getElementById("back").style.display = "revert";
+            document.getElementById("info").style.display = "flex";
+            document.getElementById("stats").style.color = "#e4c473";
+            document.getElementById("avg").style.boxShadow = "none";
         });
     </script>
 </body>
