@@ -1145,7 +1145,6 @@
 
             document.getElementById("mode").style.display = "flex";
             document.getElementById("diff").style.display = "revert";
-            if (signedIn) document.getElementById("dailySVG").style.display = "flex";
 
             markerGroup.clearLayers();
             hintGroup.clearLayers();
@@ -1315,6 +1314,7 @@
             document.getElementById("logo").style.display = "revert";
             document.getElementById("login").style.display = "none";
             document.getElementById("dailySVG").style.display = "revert";
+            document.getElementById("info").style.display = "revert";
 
             localStorage.setItem('student_id', id);
             localStorage.setItem('username', user_name);

@@ -771,6 +771,7 @@ body {
 }
 
 #info{
+    display: none;
     position: absolute;
 
     bottom: 8px;
@@ -1345,7 +1346,6 @@ body {
 }
 
 #dailySVG {
-    display: none;
     bottom: 22dvh;
     left: 2.6dvh;
     padding: 4px;
@@ -1815,6 +1815,11 @@ body {
 
     #avg{
         width: 180px;
+    }
+
+    #info{
+        height: 25px;
+        bottom: 15px;
     }
 
     #infoDiv{
