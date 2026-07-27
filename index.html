@@ -1163,6 +1163,8 @@
 
             if (invited) window.location.href = window.location.origin + window.location.pathname;
 
+            if(signedIn) document.getElementById("dailySVG").style.display = "revert";
+
             invited = 0;
 
             generateCode();
