@@ -849,7 +849,8 @@ body {
     justify-content: space-evenly;
     position: absolute;
     left: 0;
-    margin-left: 68dvw;
+    margin-left: 420px;
+    bottom: 420px;
     border-width: 3px;
     width: 25dvw;
     height: 20dvh;
@@ -1734,11 +1735,11 @@ body {
     }
 
     #signinBubble {
-        margin-left: 45dvw;
-        margin-top: 8dvh;
+        margin-left: 40dvw;
+        bottom: 340px;
         border-radius: 3dvh 3dvh 3dvh 0;
         border-width: 2px;
-        width: 50%;
+        width: 160px;
         height: 11dvh;
         padding: 4px;
     }
