@@ -1139,6 +1139,7 @@ body {
 #mirrored:hover,
 #useHint:hover {
     background-color: #b4003f;
+    cursor: pointer;
 }
 
 .blur {
