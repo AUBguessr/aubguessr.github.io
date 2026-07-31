@@ -99,7 +99,8 @@ body {
     position: absolute;
     text-align: center;
     font-size: 6dvw;
-    margin-bottom: 10dvh;
+    margin-bottom: 14dvh;
+    margin-left: 4dvw;
     width: 30dvw;
 
     font-family: 'Georgia', serif;
@@ -1625,8 +1626,10 @@ body {
     }
 
     #press {
-        font-size: 60px;
-        width: 280px;
+        margin-left: 0;
+        margin-bottom: 10dvh;
+        font-size: 8dvh;
+        width: 300px;
         top: 20dvh;
     }
 
