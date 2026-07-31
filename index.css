@@ -74,7 +74,7 @@ body {
     width: 39vw;
 
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
 
     border-style: solid;
@@ -98,9 +98,8 @@ body {
 #press {
     position: absolute;
     text-align: center;
-    margin-top: 12dvh;
-    margin-left: 4dvw;
     font-size: 6dvw;
+    margin-bottom: 10dvh;
     width: 30dvw;
 
     font-family: 'Georgia', serif;
@@ -128,7 +127,7 @@ body {
     display: none;
 
     width: 30vw;
-    max-width: 62dvh;
+    max-width: 60vh;
     height: 100%;
 
     border-radius: 20px;
@@ -151,26 +150,33 @@ body {
 }
 
 #picWrap {
+    display: flex;
+    flex-direction: column;
+
     justify-content: center;
     display: none;
-
+    
+    max-width: 60dvh;
+    max-height: 80dvh;
     z-index: 1200;
     cursor: pointer;
     height: 40vw;
     width: 30vw;
-    margin-top: 2vh;
+    margin-top: 12vh;
     margin-left: 4dvw;
-    margin-bottom: 5px;
 
     float: right;
 }
 
 #full {
+
     color: rgb(217, 170, 111);
     font-family: 'Georgia', serif;
-    margin-bottom: 10px;
-    margin-left: 3dvw;
+    font-size: 2dvh;
     display: none;
+
+    align-self: center;
+    margin-top: 10px;
 }
 
 #picFull {
@@ -250,6 +256,10 @@ body {
 #text1,
 #imageCount {
     display: none;
+    
+    position: absolute;
+    top: 0;
+
     margin-top: 12px;
     margin-left: 3dvw;
     font-family: 'Georgia', serif;
@@ -1276,7 +1286,7 @@ body {
     position: absolute;
     height: 68dvh;
     width: 34dvw;
-    bottom: 160px;
+    bottom: 180px;
 }
 
 #codeOutput {
@@ -1615,25 +1625,34 @@ body {
     }
 
     #press {
-        margin-left: 0;
         font-size: 60px;
-        width: 95dvw;
-        margin-top: 20dvh;
+        width: 280px;
+        top: 20dvh;
     }
 
     #picture {
-        height: 100%;
-
+        width: 120px;
+        height: 150px;
         border-width: 5px;
         border-radius: 10px;
+        max-width: none;
+        max-height: none;
+
+        object-fit: cover;
+        background-color: red; /* temp test */
     }
 
     #picWrap {
-        top: 0;
-        right: 18px;
+        background-color: blue;
         position: absolute;
-        margin-left: 200px;
-        height: 20vh;
+        
+        margin-left: 60dvw;
+        margin-top: 0;
+        top: 3dvh;
+        width: 120px;
+        height: 150px;
+        max-width: none;
+        max-height: none;
     }
 
     #side1 {
@@ -1661,9 +1680,9 @@ body {
     #full {
         position: absolute;
         text-align: center;
-        width: 100px;
-        right: 7dvw;
-        top: 25dvh;
+        align-self: center;
+        width: 110px;
+        bottom: -20px;
 
         font-size: 12px;
     }
@@ -1672,7 +1691,7 @@ body {
         position: absolute;
         margin-top: 1dvh;
         left: -16px;
-        font-size: 40px;
+        font-size: 8dvw;
 
     }
 
@@ -1900,6 +1919,7 @@ body {
     #codeDiv {
         height: 50dvh;
         width: 90dvw;
+        bottom: 200px;
     }
 
     #sendCode {

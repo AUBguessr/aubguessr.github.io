@@ -144,9 +144,9 @@
 
             <div id="picWrap">
                 <img id="picture" src="">
+                <p id="full">Click to fullscreen</p>
             </div>
 
-            <p id="full">Click image to fullscreen</p>
 
             <p id="result"></p>
         </div>
@@ -947,7 +947,7 @@
                 if (!dailyMode) applyDifficulty();
                 document.getElementById("result").style.display = "none";
                 document.getElementById("submit").classList.remove("active");
-                document.getElementById("picture").style.width = "30vw";
+                if(!isMobile) document.getElementById("picture").style.width = "30vw";
                 document.getElementById("submit").textContent = "Submit";
                 hintGroup.clearLayers();
                 document.getElementById("imageCount").textContent = (count + 1) + "/" + round;
