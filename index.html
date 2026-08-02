@@ -74,7 +74,7 @@
 
     <div id="signin">
         <div id="signinBubble">
-            <p id="having">Having an account means you can view your statistics, play the daily game and have your name on
+            <p id="signinBubbleText1">Having an account means you can view your statistics, play the daily game and have your name on
             the leaderboard.</p>
         </div>
 
@@ -167,6 +167,15 @@
 
             <p id="inviteText1">You have been invited to a game!</p>
             <button id="startGame">Start Game</button>
+
+            <div id="inviteBubble">
+                <p id="inviteBubbleText1">Added Difficulties:</p>
+
+                <p id="addedDiffInverted">✗ inverted</p>
+                <p id="addedDiffBlurry">✗ blurry</p>
+                <p id="addedDiffMirrored">✗ mirrored</p>
+                <p id="addedDiffTwoSec">✗ two second timer</p>
+            </div>
 
         </div>
 
@@ -1399,34 +1408,6 @@
         });
 
         document.getElementById("startGame").addEventListener("click", function () {
-            let params = new URLSearchParams(window.location.search);
-
-            for (let i = 0; i < codeArr.length; i++) {
-                let num = Number(codeArr[i]);
-                if (codeArr[i] === "" || !Number.isInteger(num) || num < 0 || num > coords.length - 1) {
-                }
-            }
-
-            for (let i = 0; i < round; i++) {
-                arr[i] = Number(codeArr[i]);
-            }
-
-            if (Number(codeArr[5].charAt(0))) {
-                buttonClicked("inverted", inverted);
-                inverted = 1;
-            }
-            if (Number(codeArr[5].charAt(1))) {
-                buttonClicked("blurry", blurry);
-                blurry = 1;
-            }
-            if (Number(codeArr[5].charAt(2))) {
-                buttonClicked("mirrored", mirrored);
-                mirrored = 1;
-            }
-            if (Number(codeArr[5].charAt(3))) {
-                buttonClicked("twoSec", twoSec);
-                twoSec = 1;
-            }
 
             turn = arr[0];
             mode = 0;
@@ -1543,6 +1524,43 @@
             document.getElementById("inviteDiv").style.display = "flex";
             document.getElementById("logo").style.display = "revert";
             invited = 1;
+
+            let params = new URLSearchParams(window.location.search);
+
+            for (let i = 0; i < codeArr.length; i++) {
+                let num = Number(codeArr[i]);
+                if (codeArr[i] === "" || !Number.isInteger(num) || num < 0 || num > coords.length - 1) {
+                }
+            }
+
+            for (let i = 0; i < round; i++) {
+                arr[i] = Number(codeArr[i]);
+            }
+
+            if (Number(codeArr[5].charAt(0))) {
+                buttonClicked("inverted", inverted);
+                document.getElementById("addedDiffInverted").textContent = "✔ inverted";
+                document.getElementById("addedDiffInverted").style.color = "#e2c072";
+                inverted = 1;
+            }
+            if (Number(codeArr[5].charAt(1))) {
+                buttonClicked("blurry", blurry);
+                document.getElementById("addedDiffBlurry").textContent = "✔ blurry";
+                document.getElementById("addedDiffBlurry").style.color = "#e2c072";
+                blurry = 1;
+            }
+            if (Number(codeArr[5].charAt(2))) {
+                buttonClicked("mirrored", mirrored);
+                document.getElementById("addedDiffMirrored").textContent = "✔ mirrored";
+                document.getElementById("addedDiffMirrored").style.color = "#e2c072";
+                mirrored = 1;
+            }
+            if (Number(codeArr[5].charAt(3))) {
+                buttonClicked("twoSec", twoSec);
+                document.getElementById("addedDiffTwoSec").textContent = "✔ two second timer";
+                document.getElementById("addedDiffTwoSec").style.color = "#e2c072";
+                twoSec = 1;
+            }
         }
 
         function assembleCanvas() {

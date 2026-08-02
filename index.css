@@ -156,7 +156,7 @@ body {
 
     justify-content: center;
     display: none;
-    
+
     max-width: 60dvh;
     max-height: 80dvh;
     z-index: 1200;
@@ -257,7 +257,7 @@ body {
 #text1,
 #imageCount {
     display: none;
-    
+
     position: absolute;
     top: 0;
 
@@ -350,8 +350,6 @@ body {
     outline-style: solid;
 
     box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.1);
-
-    overflow: hidden;
 }
 
 #dailyDiv {
@@ -602,8 +600,7 @@ body {
 #confirm,
 #logout,
 #login,
-#gotit
-{
+#gotit {
     top: 14dvh;
     right: 28dvw;
     z-index: 100;
@@ -647,7 +644,7 @@ body {
     width: 100px;
 }
 
-#gotit{
+#gotit {
     margin-top: 20px;
     top: auto;
     right: auto;
@@ -656,7 +653,7 @@ body {
     align-self: center;
 }
 
-#gotit:hover{
+#gotit:hover {
     cursor: pointer;
     background-color: #f7ec87;
     box-shadow: none;
@@ -761,7 +758,7 @@ body {
 
     color: #e4c473;
     background-color: #85002e;
-    
+
 }
 
 #played {
@@ -775,13 +772,13 @@ body {
     text-decoration: dotted;
 }
 
-#avg{
+#avg {
     width: 270px;
     border-radius: 10px;
     background-color: #85002e;
 }
 
-#info{
+#info {
     display: none;
     position: absolute;
 
@@ -789,17 +786,17 @@ body {
     right: 10px;
     height: 40px;
     border-radius: 30px;
-    
+
     box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
 }
 
-#info:hover{
+#info:hover {
     cursor: pointer;
     background-color: #ad003d;
     padding: 4px;
 }
 
-#infoDiv{
+#infoDiv {
     position: absolute;
     left: 300px;
     bottom: 30px;
@@ -809,7 +806,7 @@ body {
     border-radius: 20px 20px 20px 1px;
 }
 
-#infoText1{
+#infoText1 {
     width: 90%;
     font-size: 20px;
 }
@@ -870,7 +867,7 @@ body {
     border-radius: 5dvh 5dvh 5dvh 0;
 }
 
-#having {
+#signinBubbleText1 {
     align-self: center;
     width: 80%;
 
@@ -1095,7 +1092,7 @@ body {
     height: 4dvh;
     min-height: 30px;
     width: 7dvw;
-    
+
 
     background-color: #960035;
 
@@ -1226,7 +1223,67 @@ body {
 }
 
 #inviteDiv {
-    height: 30dvh;
+    height: 220px;
+    width: 400px;
+}
+
+#inviteBubble {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+
+    height: 200px;
+    width: 300px;
+
+    margin-left: 750px;
+    bottom: 160px;
+
+    background-color: #85002e;
+
+    box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.3);
+
+    z-index: 15;
+    border-radius: 22px 22px 22px 0;
+
+    border-width: 10px;
+    border-color: rgb(106, 19, 44);
+    border-style: solid;
+
+    outline-width: 2px;
+    outline-color: rgb(209, 151, 109);
+    outline-style: solid;
+}
+
+#inviteBubbleText1 {
+    margin: auto;
+    margin-top: 10px;
+
+    color: #e2c072;
+
+    font-size: 1.2dvw;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+
+    /* Create a color gradient inside the font */
+    background: linear-gradient(90deg, #fffa97, #d25377);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 1));
+}
+
+#addedDiffInverted,
+#addedDiffBlurry,
+#addedDiffMirrored,
+#addedDiffTwoSec {
+
+    font-size: 1.2dvw;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+
+    color: #5d041d;
+    margin-bottom: 10px;
+    margin-left: 10px;
 }
 
 #inviteText1 {
@@ -1236,7 +1293,7 @@ body {
     top: 25%;
     text-transform: none;
     letter-spacing: 0px;
-    font-size: 1.3dvw;
+    font-size: 1.2dvw;
 }
 
 #startGame,
@@ -1536,7 +1593,7 @@ body {
 #leader4,
 #leader5 {
     white-space: pre;
-    
+
     background-color: #920033;
     color: #e2c072;
     font-family: monospace;
@@ -1578,13 +1635,25 @@ body {
 }
 
 @keyframes pulse {
-    0%, 100% { opacity: 0.2; }
-    50% { opacity: 1; }
+
+    0%,
+    100% {
+        opacity: 0.2;
+    }
+
+    50% {
+        opacity: 1;
+    }
 }
 
 @keyframes pulse-marker {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 .pulse-marker {
@@ -1649,7 +1718,7 @@ body {
 
     #picWrap {
         position: absolute;
-        
+
         margin-left: 60dvw;
         margin-top: 0;
         top: 3dvh;
@@ -1838,28 +1907,28 @@ body {
         font-size: 16px;
     }
 
-    #avg{
+    #avg {
         border-radius: 8px;
         width: 200px;
     }
 
-    #info{
+    #info {
         height: 25px;
         bottom: 15px;
     }
 
-    #infoDiv{
+    #infoDiv {
         left: 80px;
         top: 100px;
         width: 220px;
         border-radius: 0px 20px 20px 20px;
     }
 
-    #infoText1{
+    #infoText1 {
         font-size: 16px;
     }
 
-    #gotit{
+    #gotit {
         width: 100px;
     }
 
@@ -1968,7 +2037,7 @@ body {
         width: 86%;
     }
 
-    #diffText1{
+    #diffText1 {
         font-size: 2.3dvh;
     }
 
@@ -1993,9 +2062,30 @@ body {
         width: 90%;
     }
 
+    #inviteBubble {
+        margin-left: 100px;
+        bottom: 240px;
+
+        width: 200px;
+    }
+
+    #inviteBubbleText1 {
+        font-size: 16px;
+    }
+
+    #addedDiffInverted,
+    #addedDiffBlurry,
+    #addedDiffMirrored,
+    #addedDiffTwoSec {
+
+        font-size: 14px;
+        margin-bottom: 16px;
+        margin-left: 10px;
+    }
+
     #inviteText1 {
         top: 20%;
-        font-size: 7dvw;
+        font-size: 6dvw;
         width: 80%;
     }
 
