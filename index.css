@@ -1195,7 +1195,7 @@ body {
     -webkit-text-fill-color: transparent;
 
     /* Adds a smooth drop shadow underneath */
-    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 1));
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 1));
     text-align: center;
     width: 90%;
 }
@@ -1267,19 +1267,18 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
-    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 1));
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 1));
 }
 
 #addedDiffInverted,
 #addedDiffBlurry,
 #addedDiffMirrored,
 #addedDiffTwoSec {
-
     font-size: 1.2dvw;
     font-family: 'Georgia', serif;
     font-weight: bold;
 
-    color: #5d041d;
+    color: #5e0720;
     margin-bottom: 8px;
     margin-left: 10px;
 }
