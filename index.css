@@ -325,7 +325,7 @@ body {
 #scoreDiv,
 #diffDiv,
 #hintDiv,
-#invite,
+#inviteDiv,
 #deleteDiv,
 #dailyDiv,
 #infoDiv {
@@ -1225,7 +1225,7 @@ body {
     width: 92%;
 }
 
-#invite {
+#inviteDiv {
     height: 30dvh;
 }
 
@@ -1236,6 +1236,7 @@ body {
     top: 25%;
     text-transform: none;
     letter-spacing: 0px;
+    font-size: 1.3dvw;
 }
 
 #startGame,
@@ -1263,7 +1264,9 @@ body {
 }
 
 #startGame {
-    bottom: 10%;
+    top: 10px;
+    width: 40%;
+    font-size: 1dvw;
 }
 
 #dailyStart {
@@ -1946,8 +1949,9 @@ body {
     }
 
     #startGame {
-        margin-top: 100px;
+        margin-top: 16dvh;
         width: 60%;
+        font-size: 4dvw;
     }
 
     #diff {
@@ -1985,7 +1989,7 @@ body {
         filter: blur(0.6dvh);
     }
 
-    #invite {
+    #inviteDiv {
         width: 90%;
     }
 

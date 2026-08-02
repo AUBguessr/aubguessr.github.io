@@ -163,7 +163,7 @@
             <p id="diff-apply">difficulties apply to multiplayer links</p>
         </div>
 
-        <div id="invite">
+        <div id="inviteDiv">
 
             <p id="inviteText1">You have been invited to a game!</p>
             <button id="startGame">Start Game</button>
@@ -1092,7 +1092,7 @@
             document.getElementById("diffDiv").style.display = "none";
             document.getElementById("scoreDiv").style.display = "none";
             document.getElementById("hintDiv").style.display = "none";
-            document.getElementById("invite").style.display = "none";
+            document.getElementById("inviteDiv").style.display = "none";
             document.getElementById("leaderDiv").style.display = "none";
             document.getElementById("deleteDiv").style.display = "none";
             document.getElementById("dailyDiv").style.display = "none";
@@ -1433,7 +1433,7 @@
             wasMulti = 1;
 
             dim.style.display = "none";
-            document.getElementById("invite").style.display = "none";
+            document.getElementById("inviteDiv").style.display = "none";
 
             submitFunc();
         });
@@ -1540,7 +1540,7 @@
             hideAccount();
             dim.style.display = "revert";
             document.getElementById("side1").style.display = "flex";
-            document.getElementById("invite").style.display = "flex";
+            document.getElementById("inviteDiv").style.display = "flex";
             document.getElementById("logo").style.display = "revert";
             invited = 1;
         }
