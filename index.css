@@ -1258,8 +1258,6 @@ body {
     margin: auto;
     margin-top: 10px;
 
-    color: #e2c072;
-
     font-size: 1.2dvw;
     font-family: 'Georgia', serif;
     font-weight: bold;
@@ -2059,6 +2057,7 @@ body {
     }
 
     #inviteDiv {
+        margin-top: 160px;
         width: 90%;
     }
 
