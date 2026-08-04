@@ -124,6 +124,7 @@ body {
     pointer-events: none;
     user-select: none;
     -webkit-user-drag: none;
+    align-self: center;
 
     display: none;
 
@@ -1777,7 +1778,7 @@ body {
         width: 45dvw;
         padding-bottom: 8px;
         font-size: 12dvw;
-        margin-right: 34dvw;
+        left: 5dvw;
         margin-top: 18dvh;
     }
 

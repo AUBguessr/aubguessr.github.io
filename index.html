@@ -925,7 +925,7 @@
                 }
 
                 document.getElementById("picWrap").style.display = "flex";
-                document.getElementById("picture").style.display = "revert";
+                picture.style.display = "revert";
                 document.getElementById("text1").style.display = "revert";
 
                 if (mode && (count == 0)) {
@@ -951,12 +951,12 @@
                 document.getElementById("dailySVG").style.display = "none";
                 document.getElementById("hint").style.display = "revert";
                 document.getElementById("imageCount").style.display = "revert";
-                document.getElementById("picture").src = `images/image${turn}.jpeg`;
+                picture.src = `images/image${turn}.jpeg`;
                 document.getElementById("picFull").src = `images/image${turn}.jpeg`;
                 if (!dailyMode) applyDifficulty();
                 document.getElementById("result").style.display = "none";
                 document.getElementById("submit").classList.remove("active");
-                if(!isMobile) document.getElementById("picture").style.width = "30vw";
+                if(!isMobile) picture.style.width = "30vw";
                 document.getElementById("submit").textContent = "Submit";
                 hintGroup.clearLayers();
                 document.getElementById("imageCount").textContent = (count + 1) + "/" + round;
@@ -990,7 +990,7 @@
                 document.getElementById("result").classList.add("regular");
             }
 
-            if (!isMobile) document.getElementById("picture").style.width = "25vw";
+            if (!isMobile) picture.style.width = "25vw";
 
             document.getElementById("result").style.display = "revert";
             document.getElementById("result").textContent = formatted + "%";
@@ -1468,10 +1468,9 @@
         }
 
         function applyDifficulty() {
-            let pic = document.getElementById("picture");
-            pic.classList.toggle("blur", blurry);
-            pic.classList.toggle("invert", inverted);
-            pic.classList.toggle("mirrored", mirrored);
+            picture.classList.toggle("blur", blurry);
+            picture.classList.toggle("invert", inverted);
+            picture.classList.toggle("mirrored", mirrored);
             picFull.classList.toggle("blur", blurry);
             picFull.classList.toggle("invert", inverted);
             picFull.classList.toggle("mirrored", mirrored);
