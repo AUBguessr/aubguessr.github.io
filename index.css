@@ -808,7 +808,15 @@ body {
 }
 
 #infoText1 {
-    width: 90%;
+    /* Create a color gradient inside the font */
+    background: linear-gradient(90deg, #fffa97, #d25377);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* Adds a smooth drop shadow underneath */
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 1));
+
+    width: 80%;
     font-size: 20px;
 }
 
@@ -1923,6 +1931,7 @@ body {
     }
 
     #infoText1 {
+        width: 90%;
         font-size: 16px;
     }
 
