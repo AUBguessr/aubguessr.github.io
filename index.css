@@ -129,9 +129,8 @@ body {
 
     display: none;
 
-    width: 30vw;
-    max-width: 50dvh;
-    height: 60dvh;
+    width: 30dvw;
+    max-width: 60dvh;
 
     border-radius: 20px;
     border-width: 10px;
@@ -318,6 +317,8 @@ body {
     border-style: solid;
     border-radius: 20px;
     margin-top: 10px;
+
+    -webkit-text-stroke: 1px #fffa97;
 }
 
 .regular {
