@@ -120,17 +120,18 @@ body {
 }
 
 #picture {
-
     pointer-events: none;
     user-select: none;
     -webkit-user-drag: none;
     align-self: center;
 
+    margin-top: -10px;
+
     display: none;
 
     width: 30vw;
-    max-width: 60vh;
-    height: 100%;
+    max-width: 50dvh;
+    height: 60dvh;
 
     border-radius: 20px;
     border-width: 10px;
@@ -243,7 +244,7 @@ body {
     cursor: pointer;
 
     color: rgb(217, 170, 111);
-    background-color: rgb(132, 1, 50);
+    background-color: rgb(149, 4, 57);
     border-color: rgb(209, 151, 109);
 
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
@@ -309,14 +310,14 @@ body {
     margin-bottom: 2vh;
     width: 20dvw;
     margin-left: 4dvw;
-
 }
 
 .golden {
-    background-image: -webkit-linear-gradient(#FFF65C, #3A2C00);
+    background-image: -webkit-linear-gradient(left, #fffa97, #af4261);
     color: rgb(170, 2, 64);
     border-style: solid;
     border-radius: 20px;
+    margin-top: 10px;
 }
 
 .regular {
@@ -1193,9 +1194,9 @@ body {
     font-family: 'Georgia', serif;
     font-size: 3dvh;
     font-weight: bold;
-    letter-spacing: 4px;
+    letter-spacing: 1px;
     /* Widens text for a luxury brand aesthetic */
-    text-transform: uppercase;
+    text-transform: none;
     /* Forces capital letters */
 
     /* Create a color gradient inside the font */
@@ -1206,6 +1207,10 @@ body {
     /* Adds a smooth drop shadow underneath */
     filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 1));
     text-align: center;
+    width: 90%;
+}
+
+#diffText1{
     width: 90%;
 }
 
@@ -1932,11 +1937,19 @@ body {
 
     #infoText1 {
         width: 90%;
-        font-size: 16px;
+        font-size: 15px;
+    }
+
+    #delete,
+    #confirm,
+    #logout,
+    #login,
+    #gotit {
+        border-width: 1.5px;
     }
 
     #gotit {
-        width: 100px;
+        width: 90px;
     }
 
     #Aside2 {
@@ -2045,7 +2058,7 @@ body {
     }
 
     #diffText1 {
-        font-size: 2.3dvh;
+        font-size: 4.5dvw;
     }
 
     #hint {
