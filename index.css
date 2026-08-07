@@ -309,16 +309,16 @@ body {
     text-align: center;
     margin-bottom: 2vh;
     width: 20dvw;
+    margin-left: 4dvw;;
 }
 
 .golden {
     background-image: -webkit-linear-gradient(left, #e2bf71, #af4261);
     color: rgb(170, 2, 64);
-    border-style: solid;
+    border-style: none;
     border-radius: 20px;
     margin-top: 10px;
 
-    -webkit-text-stroke: 1px #e2bf71;
 }
 
 .regular {
@@ -1143,13 +1143,12 @@ body {
     padding-left: 20px;
     padding-right: 20px;
     background-color: #920033;
-    color: #3f0117;
+    color: #5d0121;
     border-style: none;
     border-color: #e2c072;
     border-radius: 10px;
 
-
-    box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.8);
+    box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 #inverted:hover,
@@ -1780,7 +1779,7 @@ body {
         text-align: center;
         align-self: center;
         width: 110px;
-        bottom: -20px;
+        bottom: -2dvh;
 
         font-size: 12px;
     }
@@ -1803,10 +1802,13 @@ body {
     .golden {
         position: absolute;
         width: 45dvw;
-        padding-bottom: 8px;
         font-size: 12dvw;
-        left: 5dvw;
-        margin-top: 18dvh;
+
+        margin-top: 16dvh;
+        margin-left: 0;
+        left: 6dvw;
+
+        padding-bottom: 2px;
     }
 
     #scoreDiv {
