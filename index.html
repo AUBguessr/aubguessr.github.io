@@ -145,10 +145,9 @@
             <div id="picWrap">
                 <img id="picture" src="">
                 <p id="full">Click to fullscreen</p>
+                <p id="result"></p>
             </div>
 
-
-            <p id="result"></p>
         </div>
 
         <div id="diffDiv">
@@ -160,7 +159,7 @@
             <button id="mirrored">Mirrored Images</button>
             <button id="twoSec">2-Second Timer</button>
 
-            <p id="diff-apply">difficulties apply to multiplayer links</p>
+            <p id="diffText2">difficulties apply to multiplayer links</p>
         </div>
 
         <div id="inviteDiv">
@@ -185,7 +184,7 @@
                 60%!</p>
 
             <button id="useHint">Use Hint</button>
-            
+
         </div>
 
         <div id="side2">
@@ -688,13 +687,13 @@
 
             for (i = 0; i < 5; i++) {
                 if (allTimeData[i]) {
-                    allTimeArr[i] = `${i + 1}. ${(allTimeData[i].username).padEnd(usernameMaxLength+2)} (AVG: ${(allTimeData[i].avg_score).toFixed(2)}%, Games: ${allTimeData[i].games_played})`
+                    allTimeArr[i] = `${i + 1}. ${(allTimeData[i].username).padEnd(usernameMaxLength+2)} | AVG: ${(allTimeData[i].avg_score).toFixed(2)}% | Games: ${allTimeData[i].games_played}`
                 } else {
                     allTimeArr[i] = `${i + 1}. ~`;
                 }
 
                 if (dailyData[i] && dailyData[i].daily_score !== null) {
-                    dailyArr[i] = `${i + 1}. ${(dailyData[i].username).padEnd(usernameMaxLength+2)} (Score: ${(dailyData[i].daily_score).toFixed(2)}%, Games: ${dailyData[i].games_played})`
+                    dailyArr[i] = `${i + 1}. ${(dailyData[i].username).padEnd(usernameMaxLength+2)} | Score: ${(dailyData[i].daily_score).toFixed(2)}% | Games: ${dailyData[i].games_played}`
                 } else {
                     dailyArr[i] = `${i + 1}. ~`;
                 }
@@ -1453,13 +1452,12 @@
             let clickedButton = document.getElementById(buttonID);
 
             if (state == 0) {
-                clickedButton.style.backgroundColor = "#f5d27a";
+                clickedButton.style.backgroundImage = "-webkit-linear-gradient(left, #e2bf71, #af4261)";
                 clickedButton.style.color = "#7d002c";
-                clickedButton.style.borderColor = "#e2c072";
             } else {
+                clickedButton.style.backgroundImage = "none";
                 clickedButton.style.backgroundColor = "#920033";
-                clickedButton.style.color = "#e2c072";
-                clickedButton.style.borderColor = "#e2c072";
+                clickedButton.style.color = "#3f0117";
             }
 
             return;
