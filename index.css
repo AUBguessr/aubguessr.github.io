@@ -316,7 +316,7 @@ body {
     background-image: -webkit-linear-gradient(left, #e2bf71, #af4261);
     color: rgb(170, 2, 64);
     border-style: none;
-    border-radius: 20px;
+    border-radius: 16px;
     margin-top: 10px;
 
 }
@@ -1806,9 +1806,7 @@ body {
 
         margin-top: 16dvh;
         margin-left: 0;
-        left: 6dvw;
-
-        padding-bottom: 2px;
+        left: 9dvw;
     }
 
     #scoreDiv {
