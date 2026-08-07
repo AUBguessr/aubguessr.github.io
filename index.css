@@ -363,7 +363,7 @@ body {
 }
 
 #hintDiv {
-    height: 30dvh;
+    height: 200px;
     justify-content: space-between;
     flex-direction: column;
     align-items: center;
@@ -1178,7 +1178,7 @@ body {
 
 #useHint{
     font-weight: bold;
-    font-size: 2dvh;
+    font-size: 14px;
     height: 4dvh;
     padding-left: 20px;
     padding-right: 20px;
@@ -1474,7 +1474,7 @@ body {
 }
 
 #useHint {
-    margin-bottom: 5dvh;
+    margin-bottom: 3dvh;
     font-weight: bold;
 }
 
@@ -2080,12 +2080,18 @@ body {
     }
 
     #hintText1 {
+        width: 90%;
         margin-top: 10px;
-        font-size: 4dvw;
+        font-size: 14px;
     }
 
     #hintDiv {
         width: 90%;
+        height: 160px;
+    }
+
+    #useHint{
+        margin-bottom: 2dvh;
     }
 
     .blur {
