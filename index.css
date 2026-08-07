@@ -584,6 +584,8 @@ body {
 
 #idnum,
 #profileName {
+    font-family: Arial, Helvetica, sans-serif;
+
     position: absolute;
     font-size: 30px;
     top: 0;
@@ -762,6 +764,7 @@ body {
     color: #e4c473;
     background-color: #85002e;
 
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
 }
 
 #played {
