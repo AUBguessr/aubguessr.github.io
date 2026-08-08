@@ -134,11 +134,11 @@ body {
 
     border-radius: 20px;
     border-width: 10px;
-    border-color: rgb(106, 19, 44);
+    border-color: #960236;
     border-style: solid;
 
-    outline-width: 2px;
-    outline-color: rgb(209, 151, 109);
+    outline-width: 3px;
+    outline-color: #ae0f46;
     outline-style: solid;
 
     box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
@@ -540,24 +540,23 @@ body {
     position: absolute;
     left: 2.6dvh;
     bottom: 2dvh;
-    background-color: #85002e;
+    background-color: #960236;
 
     border-radius: 6px;
     border-style: solid;
-    border-color: #e4c473;
     border-width: 2px;
+    border-color: #a00c40;
+    box-shadow: -4px 4px 5px 2px rgba(0, 0, 0, 0.3);
 
     width: 8dvh;
 
     z-index: 1000;
 
-    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
 }
 
 #profileButton:hover {
     cursor: pointer;
-    background-color: rgb(181, 28, 84);
-    box-shadow: none;
+    background-color: rgb(166, 7, 65);
     padding: 4px;
 }
 
@@ -1032,24 +1031,6 @@ body {
 }
 
 #single,
-#allTime {
-    position: absolute;
-    width: 57%;
-    border-radius: 10px 0px 0px 10px;
-    z-index: 100;
-
-    background-image: -webkit-linear-gradient(right, #e2bf71, #af4261);
-}
-
-#multi,
-#daily {
-    position: absolute;
-    width: 42%;
-    right: 0;
-    border-radius: 0px 10px 10px 0px;
-}
-
-#single,
 #multi,
 #allTime,
 #daily {
@@ -1068,6 +1049,28 @@ body {
     border-style: none;
     border-width: 2px;
     box-shadow: -2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+
+    border-style: solid;
+    border-width: 2px;
+    border-color: #a00c40;
+}
+
+#single,
+#allTime {
+    position: absolute;
+    width: 57%;
+    border-radius: 10px 0px 0px 10px;
+    z-index: 100;
+    border-style: none;
+    background-image: -webkit-linear-gradient(right, #e2bf71, #af4261);
+}
+
+#multi,
+#daily {
+    position: absolute;
+    width: 42%;
+    right: 0;
+    border-radius: 0px 10px 10px 0px;
 }
 
 #single:hover,
@@ -1125,17 +1128,19 @@ body {
 
     border-style: solid;
     border-radius: 10px;
-    border-width: 2px;
-    border-color: #e2c072;
     color: #e2c072;
-    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.1);
+
+    
+    border-style: solid;
+    border-width: 2px;
+    border-color: #a00c40;
+    box-shadow: -2px 2px 3px 2px rgba(0, 0, 0, 0.3);
 
 }
 
 #diff:hover {
     cursor: pointer;
-    background-color: #b01048;
-    box-shadow: none;
+    background-color: rgb(166, 7, 65);
 }
 
 #diffDiv {
@@ -1442,28 +1447,29 @@ body {
     position: absolute;
     left: 2.6dvh;
     bottom: 12dvh;
-    background-color: #85002e;
+    background-color: #960236;
+
     border-style: solid;
     border-width: 2px;
+    border-color: #a00c40;
+    box-shadow: -4px 4px 5px 2px rgba(0, 0, 0, 0.3);
+
     border-radius: 6px;
-    border-color: #e4c473;
     padding: 4px;
 
     width: 8dvh;
-    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+    
 }
 
 #dailySVG {
     bottom: 22dvh;
     left: 2.6dvh;
     padding: 4px;
-    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
 }
 
 #dailySVG:hover {
     cursor: pointer;
-    background-color: rgb(181, 28, 84);
-    box-shadow: none;
+    background-color: rgb(166, 7, 65);
     padding: 8px;
 }
 
@@ -1478,8 +1484,7 @@ body {
 #hint:hover,
 #leader:hover {
     cursor: pointer;
-    background-color: #b51c54;
-    box-shadow: none;
+    background-color: rgb(166, 7, 65);
     padding: 8px;
 }
 

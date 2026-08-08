@@ -1346,7 +1346,9 @@
         });
 
         document.getElementById("multi").addEventListener("click", function () {
-
+            
+            document.getElementById("single").style.borderStyle = "solid";
+            document.getElementById("multi").style.borderStyle = "none";
             
             document.getElementById("multi").style.backgroundImage = "-webkit-linear-gradient(left, #e2bf71, #af4261)";
             document.getElementById("single").style.backgroundImage = "none";
@@ -1367,6 +1369,9 @@
         });
 
         document.getElementById("single").addEventListener("click", function () {
+
+            document.getElementById("multi").style.borderStyle = "solid";
+            document.getElementById("single").style.borderStyle = "none";
 
             document.getElementById("single").style.backgroundImage = "-webkit-linear-gradient(left, #e2bf71, #af4261)";
             document.getElementById("multi").style.backgroundImage = "none";
