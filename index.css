@@ -59,7 +59,7 @@ body {
     border-color: #ebe07b;
     border-width: 2px;
 
-    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: -4px 4px 5px 2px rgba(0, 0, 0, 0.3);
     -webkit-user-drag: none;
     /* Safari and Chrome Safari-based engines */
 }
@@ -138,7 +138,7 @@ body {
     border-style: solid;
 
     outline-width: 3px;
-    outline-color: #ae0f46;
+    outline-color: #a3083e;
     outline-style: solid;
 
     box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
@@ -234,7 +234,7 @@ body {
 
     position: absolute;
 
-    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: -3px 3px 5px 2px rgba(0, 0, 0, 0.3);
     overflow: hidden;
 
 }
@@ -243,16 +243,19 @@ body {
     cursor: pointer;
 
     color: rgb(217, 170, 111);
-    background-color: rgb(149, 4, 57);
-    border-color: rgb(209, 151, 109);
 
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    background-color: #960236;
+
+    border-style: solid;
+    border-width: 2px;
+    border-color: #a00c40;
+
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
 }
 
 
 #submit.active:hover {
-    background-color: rgb(181, 28, 84);
-    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.1);
+    background-color: #aa033e;
 }
 
 #text1,
@@ -431,8 +434,7 @@ body {
     height: 60px;
 
     background-image: -webkit-linear-gradient(#FFF65C, #3A2C00);
-    color: rgb(170, 2, 64);
-    border-style: solid;
+    color: rgb(134, 2, 51);
     border-radius: 10px;
 
     padding-top: 8px;
@@ -456,7 +458,7 @@ body {
     border-style: solid;
 
     font-weight: 800;
-    font-size: 1.4dvw;
+    font-size: 1.2dvw;
 
     cursor: pointer;
 
@@ -469,13 +471,23 @@ body {
 
 }
 
-#again:hover {
-    background-color: rgb(181, 28, 84);
+#again{
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #a00c40;
 
+    background-color: #960236;
+    
+    box-shadow: -3px 3px 5px 2px rgba(0, 0, 0, 0.3);
+}
+
+#again:hover {
+    background-color: #a10c40;
 }
 
 #share {
-    font-size: 1dvw;
+    font-size: 0.9dvw;
     width: 16%;
     bottom: 20px;
     right: 20px;
@@ -485,22 +497,26 @@ body {
     box-shadow: none;
     text-shadow: none;
 
-    font-family: system-ui, sans-serif;
+    font-family: 'Georgia', serif;
 
     font-weight: bold;
 
-    background-color: #a20139;
-    color: #5b0321;
-    border-style: none;
-    border-color: #e2c072;
     border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #a00c40;
 
-    box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.4);
+    background-color: #960236;
+    
+    box-shadow: -2px 2px 3px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+
+    color: rgb(217, 170, 111);
     padding-bottom: 4px;
 }
 
 #share:hover {
-    background-image: -webkit-linear-gradient(left, #eece7f, #af4261);
+    background-color: #a10c40;
 
 }
 
@@ -583,8 +599,10 @@ body {
     border-color: #e2c072;
     border-style: solid;
 
-    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: -2px 2px 5px 2px rgba(0, 0, 0, 0.3);
     -webkit-user-drag: none;
+
+    background-color: #8d0333;
 }
 
 #idnum,
@@ -624,7 +642,7 @@ body {
     border-radius: 10px;
     font-weight: 600;
     font-size: 16px;
-    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: -2px 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
 #logout {
@@ -691,24 +709,28 @@ body {
     font-family: 'Georgia', serif;
 
     border-radius: 15px;
-    border-width: 2px;
     border-style: solid;
+    border-width: 2px;
+    border-color: #a00c40;
+
+    box-shadow: -3px 3px 5px 2px rgba(0, 0, 0, 0.3);
+
+    background-color: #960236;
 
     font-weight: bolder;
     font-size: 20px;
 
     position: absolute;
 
-    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
     overflow: hidden;
 
     cursor: pointer;
 
     color: rgb(217, 170, 111);
-    background-color: rgb(132, 1, 50);
-    border-color: rgb(209, 151, 109);
 
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+
+
 }
 
 #back:hover {
@@ -753,10 +775,12 @@ body {
     height: 140px;
     width: 70dvw;
 
-    border-width: 3px;
-    border-style: solid;
     border-radius: 20px;
-    border-color: #e4c473;
+
+    
+    border-style: solid;
+    border-width: 2px;
+    border-color: #a00c40;
 
     padding-left: 15px;
     padding-top: 10px;
@@ -767,9 +791,9 @@ body {
     font-size: 30px;
 
     color: #e4c473;
-    background-color: #85002e;
+    background-color: #8d0333;
 
-    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: -3px 3px 5px 2px rgba(0, 0, 0, 0.3);
 }
 
 #played {
@@ -786,7 +810,7 @@ body {
 #avg {
     width: 270px;
     border-radius: 10px;
-    background-color: #85002e;
+    background-color: #8d0333;
 }
 
 #info {
@@ -1078,7 +1102,7 @@ body {
 #allTime:hover,
 #daily:hover {
     cursor: pointer;
-    background-color: #b01048;
+    background-color: #a2043c;
     box-shadow: none;
 }
 
@@ -1821,7 +1845,7 @@ body {
 
         margin-top: 16dvh;
         margin-left: 0;
-        left: 9dvw;
+        left: 8dvw;
     }
 
     #scoreDiv {
