@@ -1036,6 +1036,9 @@ body {
     position: absolute;
     width: 57%;
     border-radius: 10px 0px 0px 10px;
+    z-index: 100;
+
+    background-image: -webkit-linear-gradient(right, #e2bf71, #af4261);
 }
 
 #multi,
@@ -1044,7 +1047,6 @@ body {
     width: 42%;
     right: 0;
     border-radius: 0px 10px 10px 0px;
-    opacity: 0.5;
 }
 
 #single,
@@ -1052,7 +1054,6 @@ body {
 #allTime,
 #daily {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #ad003d;
     height: 100%;
     padding-top: 1.4dvh;
 
@@ -1060,12 +1061,13 @@ body {
 
     font-size: 1.1dvw;
     font-weight: bold;
+    
+    background-color: #920033;
+    color: #52011d;
 
-    border-style: solid;
+    border-style: none;
     border-width: 2px;
-    border-color: #e2c072;
-    color: #e2c072;
-    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: -2px 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 #single:hover,
@@ -1152,9 +1154,8 @@ body {
     padding-left: 20px;
     padding-right: 20px;
     background-color: #920033;
-    color: #5d0121;
+    color: #52011d;
     border-style: none;
-    border-color: #e2c072;
     border-radius: 10px;
 
     box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.4);

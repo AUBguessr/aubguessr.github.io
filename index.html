@@ -1346,8 +1346,13 @@
         });
 
         document.getElementById("multi").addEventListener("click", function () {
-            document.getElementById("single").style.opacity = 0.5;
-            document.getElementById("multi").style.opacity = 1;
+
+            
+            document.getElementById("multi").style.backgroundImage = "-webkit-linear-gradient(left, #e2bf71, #af4261)";
+            document.getElementById("single").style.backgroundImage = "none";
+            
+            document.getElementById("multi").style.zIndex = "100";
+            document.getElementById("single").style.zIndex = "50";
 
             document.getElementById("multi").style.width = "55%";
             document.getElementById("single").style.width = "44%";
@@ -1362,8 +1367,12 @@
         });
 
         document.getElementById("single").addEventListener("click", function () {
-            document.getElementById("single").style.opacity = 1;
-            document.getElementById("multi").style.opacity = 0.5;
+
+            document.getElementById("single").style.backgroundImage = "-webkit-linear-gradient(left, #e2bf71, #af4261)";
+            document.getElementById("multi").style.backgroundImage = "none";
+            
+            document.getElementById("multi").style.zIndex = "50";
+            document.getElementById("single").style.zIndex = "100";
 
             document.getElementById("multi").style.width = "42%";
             document.getElementById("single").style.width = "57%";
@@ -1380,6 +1389,9 @@
         document.getElementById("allTime").addEventListener("click", function () {
             if (leaderLoaded) displayLeader(0);
 
+            document.getElementById("allTime").style.backgroundImage = "-webkit-linear-gradient(left, #e2bf71, #af4261)";
+            document.getElementById("daily").style.backgroundImage = "none";
+
             document.getElementById("allTime").style.opacity = 1;
             document.getElementById("daily").style.opacity = 0.5;
 
@@ -1389,6 +1401,9 @@
 
         document.getElementById("daily").addEventListener("click", function () {
             if (leaderLoaded) displayLeader(1);
+            
+            document.getElementById("daily").style.backgroundImage = "-webkit-linear-gradient(left, #e2bf71, #af4261)";
+            document.getElementById("allTime").style.backgroundImage = "none";
 
             document.getElementById("daily").style.opacity = 1;
             document.getElementById("allTime").style.opacity = 0.5;
@@ -1455,11 +1470,9 @@
 
             if (state == 0) {
                 clickedButton.style.backgroundImage = "-webkit-linear-gradient(left, #eece7f, #af4261)";
-                clickedButton.style.color = "#7d002c";
             } else {
                 clickedButton.style.backgroundImage = "none";
                 clickedButton.style.backgroundColor = "#920033";
-                clickedButton.style.color = "#5d0121";
             }
 
             return;
