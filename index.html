@@ -74,8 +74,9 @@
 
     <div id="signin">
         <div id="signinBubble">
-            <p id="signinBubbleText1">Having an account means you can view your statistics, play the daily game and have your name on
-            the leaderboard.</p>
+            <p id="signinBubbleText1">Having an account means you can view your statistics, play the daily game and have
+                your name on
+                the leaderboard.</p>
         </div>
 
         <p id="enter">Enter your Credentials </p>
@@ -251,10 +252,11 @@
         <div id="stats">Account Statistics:
             <p id="played">• Games Played: ~</p>
             <p id="avg">• Average Score: ~</p>
-            <img src="assets/info.svg" id="info"> 
+            <img src="assets/info.svg" id="info">
 
             <div id="infoDiv">
-                <p id="infoText1">Your average score will degrade over time! <br><br> Abandoning your account means losing your spot on the leaderboard.</p>
+                <p id="infoText1">Your average score will degrade over time! <br><br> Abandoning your account means
+                    losing your spot on the leaderboard.</p>
                 <button id="gotit">Got it!</button>
             </div>
         </div>
@@ -688,13 +690,13 @@
 
             for (i = 0; i < 5; i++) {
                 if (allTimeData[i]) {
-                    allTimeArr[i] = `${i + 1}. ${(allTimeData[i].username).padEnd(usernameMaxLength+2)} | AVG: ${(allTimeData[i].avg_score).toFixed(2)}% | Games: ${allTimeData[i].games_played}`
+                    allTimeArr[i] = `${i + 1}. ${(allTimeData[i].username).padEnd(usernameMaxLength + 2)} | AVG: ${(allTimeData[i].avg_score).toFixed(2)}% | Games: ${allTimeData[i].games_played}`
                 } else {
                     allTimeArr[i] = `${i + 1}. ~`;
                 }
 
                 if (dailyData[i] && dailyData[i].daily_score !== null) {
-                    dailyArr[i] = `${i + 1}. ${(dailyData[i].username).padEnd(usernameMaxLength+2)} | Score: ${(dailyData[i].daily_score).toFixed(2)}% | Games: ${dailyData[i].games_played}`
+                    dailyArr[i] = `${i + 1}. ${(dailyData[i].username).padEnd(usernameMaxLength + 2)} | Score: ${(dailyData[i].daily_score).toFixed(2)}% | Games: ${dailyData[i].games_played}`
                 } else {
                     dailyArr[i] = `${i + 1}. ~`;
                 }
@@ -955,7 +957,7 @@
                 if (!dailyMode) applyDifficulty();
                 document.getElementById("result").style.display = "none";
                 document.getElementById("submit").classList.remove("active");
-                if(!isMobile) picture.style.width = "30vw";
+                if (!isMobile) picture.style.width = "30vw";
                 document.getElementById("submit").textContent = "Submit";
                 hintGroup.clearLayers();
                 document.getElementById("imageCount").textContent = (count + 1) + "/" + round;
@@ -1082,7 +1084,7 @@
 
         dim.addEventListener('click', function () {
 
-            if (invited && play){
+            if (invited && play) {
                 window.location.href = window.location.origin + window.location.pathname;
             }
 
@@ -1173,7 +1175,7 @@
 
             if (invited) window.location.href = window.location.origin + window.location.pathname;
 
-            if(signedIn) document.getElementById("dailySVG").style.display = "revert";
+            if (signedIn) document.getElementById("dailySVG").style.display = "revert";
 
             invited = 0;
 
@@ -1345,19 +1347,24 @@
             }
         });
 
-        document.getElementById("multi").addEventListener("click", function () {
-            
-            document.getElementById("single").style.borderStyle = "solid";
-            document.getElementById("multi").style.borderStyle = "none";
-            
-            document.getElementById("multi").style.backgroundImage = "-webkit-linear-gradient(left, #e2bf71, #af4261)";
-            document.getElementById("single").style.backgroundImage = "none";
-            
-            document.getElementById("multi").style.zIndex = "100";
-            document.getElementById("single").style.zIndex = "50";
+        let multi = document.getElementById("multi");
+        let single = document.getElementById("single");
+        let allTime = document.getElementById("allTime");
+        let daily = document.getElementById("daily");
 
-            document.getElementById("multi").style.width = "55%";
-            document.getElementById("single").style.width = "44%";
+        // Multiplayer button click handler
+        multi.addEventListener("click", function () {
+            single.style.borderStyle = "solid";
+            multi.style.borderStyle = "none";
+
+            multi.style.backgroundImage = "-webkit-linear-gradient(left, #e2bf71, #af4261)";
+            single.style.backgroundImage = "none";
+
+            multi.style.zIndex = "100";
+            single.style.zIndex = "50";
+
+            multi.style.width = "55%";
+            single.style.width = "44%";
 
             document.getElementById("press").style.display = "none";
             document.getElementById("codeDiv").style.display = "flex";
@@ -1368,19 +1375,19 @@
             mode = 1;
         });
 
-        document.getElementById("single").addEventListener("click", function () {
+        // Singleplayer button click handler
+        single.addEventListener("click", function () {
+            multi.style.borderStyle = "solid";
+            single.style.borderStyle = "none";
 
-            document.getElementById("multi").style.borderStyle = "solid";
-            document.getElementById("single").style.borderStyle = "none";
+            single.style.backgroundImage = "-webkit-linear-gradient(left, #e2bf71, #af4261)";
+            multi.style.backgroundImage = "none";
 
-            document.getElementById("single").style.backgroundImage = "-webkit-linear-gradient(left, #e2bf71, #af4261)";
-            document.getElementById("multi").style.backgroundImage = "none";
-            
-            document.getElementById("multi").style.zIndex = "50";
-            document.getElementById("single").style.zIndex = "100";
+            multi.style.zIndex = "50";
+            single.style.zIndex = "100";
 
-            document.getElementById("multi").style.width = "42%";
-            document.getElementById("single").style.width = "57%";
+            multi.style.width = "42%";
+            single.style.width = "57%";
 
             document.getElementById("press").style.display = "revert";
             document.getElementById("codeDiv").style.display = "none";
@@ -1391,30 +1398,32 @@
             mode = 0;
         });
 
-        document.getElementById("allTime").addEventListener("click", function () {
+        // All-time leaderboard button click handler
+        allTime.addEventListener("click", function () {
             if (leaderLoaded) displayLeader(0);
 
-            document.getElementById("allTime").style.backgroundImage = "-webkit-linear-gradient(left, #e2bf71, #af4261)";
-            document.getElementById("daily").style.backgroundImage = "none";
+            allTime.style.backgroundImage = "-webkit-linear-gradient(left, #e2bf71, #af4261)";
+            daily.style.backgroundImage = "none";
 
-            document.getElementById("allTime").style.opacity = 1;
-            document.getElementById("daily").style.opacity = 0.5;
+            daily.style.borderStyle = "solid";
+            allTime.style.borderStyle = "none";
 
-            document.getElementById("daily").style.width = "42%";
-            document.getElementById("allTime").style.width = "57%";
+            daily.style.width = "42%";
+            allTime.style.width = "57%";
         });
 
-        document.getElementById("daily").addEventListener("click", function () {
+        // Daily leaderboard button click handler
+        daily.addEventListener("click", function () {
             if (leaderLoaded) displayLeader(1);
-            
-            document.getElementById("daily").style.backgroundImage = "-webkit-linear-gradient(left, #e2bf71, #af4261)";
-            document.getElementById("allTime").style.backgroundImage = "none";
 
-            document.getElementById("daily").style.opacity = 1;
-            document.getElementById("allTime").style.opacity = 0.5;
+            daily.style.backgroundImage = "-webkit-linear-gradient(left, #e2bf71, #af4261)";
+            allTime.style.backgroundImage = "none";
 
-            document.getElementById("allTime").style.width = "42%";
-            document.getElementById("daily").style.width = "57%";
+            allTime.style.borderStyle = "solid";
+            daily.style.borderStyle = "none";
+
+            allTime.style.width = "42%";
+            daily.style.width = "57%";
         });
 
         function generateCode() {
