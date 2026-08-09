@@ -238,7 +238,7 @@ body {
 #submit.active {
     cursor: pointer;
 
-    color: rgb(217, 170, 111);
+    color: #e2c072;
 
     background-color: #960236;
 
@@ -1091,10 +1091,13 @@ body {
 
 #multi,
 #daily {
+    color: #e2c072;
     position: absolute;
     width: 42%;
     right: 0;
     border-radius: 0px 10px 10px 0px;
+    
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 #single:hover,
@@ -1103,7 +1106,6 @@ body {
 #daily:hover {
     cursor: pointer;
     background-color: #a2043c;
-    box-shadow: none;
 }
 
 #mode {
