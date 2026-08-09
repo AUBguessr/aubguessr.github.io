@@ -147,10 +147,6 @@ body {
     /* Safari and Chrome Safari-based engines */
 }
 
-#picture:hover {
-    box-shadow: none;
-}
-
 #picWrap {
     display: flex;
     flex-direction: column;
@@ -250,7 +246,7 @@ body {
     border-width: 2px;
     border-color: #a00c40;
 
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
 }
 
 
@@ -466,7 +462,7 @@ body {
     background-color: rgb(132, 1, 50);
     border-color: rgb(209, 151, 109);
 
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    box-shadow: -3px 3px 5px 2px rgba(0, 0, 0, 0.3);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 
 }
@@ -478,8 +474,6 @@ body {
     border-color: #a00c40;
 
     background-color: #960236;
-    
-    box-shadow: -3px 3px 5px 2px rgba(0, 0, 0, 0.3);
 }
 
 #again:hover {
@@ -597,12 +591,21 @@ body {
 
     border-radius: 10px;
     border-color: #e2c072;
+    border-left-color: #a00c40;
+    border-top-color: #a00c40;
+    border-bottom-color: #a00c40;
+
+    
+    border-left-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+
     border-style: solid;
 
     box-shadow: -2px 2px 5px 2px rgba(0, 0, 0, 0.3);
     -webkit-user-drag: none;
 
-    background-color: #8d0333;
+    background-color: #960035;
 }
 
 #idnum,
@@ -638,7 +641,7 @@ body {
     border-style: solid;
     border-color: #f7ec87;
     color: #000000;
-    border-width: 2px;
+    border-width: 1px;
     border-radius: 10px;
     font-weight: 600;
     font-size: 16px;
@@ -714,6 +717,7 @@ body {
     border-color: #a00c40;
 
     box-shadow: -3px 3px 5px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
 
     background-color: #960236;
 
@@ -727,8 +731,6 @@ body {
     cursor: pointer;
 
     color: rgb(217, 170, 111);
-
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 #back:hover {
@@ -820,7 +822,7 @@ body {
     height: 40px;
     border-radius: 30px;
 
-    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 14px 2px rgba(0, 0, 0, 0.2);
 }
 
 #info:hover {
@@ -1196,7 +1198,7 @@ body {
 #twoSec:hover,
 #mirrored:hover,
 #useHint:hover {
-    background-color: #b4003f;
+    background-color: rgb(166, 7, 65);
     cursor: pointer;
 }
 
@@ -1222,12 +1224,18 @@ body {
     height: 4dvh;
     padding-left: 20px;
     padding-right: 20px;
-    background-color: #920033;
-    color: #e2c072;
+
+    background-color: #960035;
+
     border-style: solid;
-    border-color: #e2c072;
     border-radius: 10px;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    color: #e2c072;
+
+    border-style: solid;
+    border-width: 2px;
+    border-color: #a00c40;
+
+    box-shadow: -2px 2px 3px 2px rgba(0, 0, 0, 0.3);
 }
 
 #diffText2 {
@@ -1238,6 +1246,7 @@ body {
     position: absolute;
     bottom: 4px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
 }
 
 #diffText1,
@@ -1367,9 +1376,6 @@ body {
     height: 18%;
     width: 16dvw;
 
-    border-style: solid;
-    border-radius: 12px;
-
     font-size: 2.5dvh;
     font-weight: bold;
     text-transform: uppercase;
@@ -1377,12 +1383,18 @@ body {
 
     margin-top: 15dvh;
 
-    color: rgb(233, 183, 122);
-    background-color: rgb(148, 2, 55);
-    border-color: rgb(209, 151, 109);
+    background-color: #960035;
 
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
-    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+    border-style: solid;
+    border-radius: 15px;
+    color: #e2c072;
+    
+    border-style: solid;
+    border-width: 2px;
+    border-color: #a00c40;
+
+    box-shadow: -2px 2px 3px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
 }
 
 #startGame {
@@ -1400,7 +1412,7 @@ body {
 
 #startGame:hover,
 #dailyStart:hover {
-    background-color: rgb(181, 28, 84);
+    background-color: rgb(166, 7, 65);
     text-shadow: none;
     cursor: pointer;
 }
@@ -1996,14 +2008,6 @@ body {
         font-size: 15px;
     }
 
-    #delete,
-    #confirm,
-    #logout,
-    #login,
-    #gotit {
-        border-width: 1.5px;
-    }
-
     #gotit {
         width: 90px;
     }
@@ -2107,6 +2111,8 @@ body {
         right: 30px;
         top: 20px;
 
+        border-width: 1px;
+
         font-size: 4dvw;
     }
 
@@ -2135,6 +2141,7 @@ body {
 
     #useHint{
         margin-bottom: 2dvh;
+        border-width: 1px;
     }
 
     .blur {
@@ -2206,6 +2213,8 @@ body {
         font-size: 2.7dvw;
         height: 4dvh;
         padding-top: 8px;
+
+        border-width: 1px;
     }
 
     #leader1 {
