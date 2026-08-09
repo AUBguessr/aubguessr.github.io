@@ -1065,7 +1065,7 @@ body {
     font-size: 1.1dvw;
     font-weight: bold;
     
-    background-color: #920033;
+    background-color: #960236;
     color: #52011d;
 
     border-style: none;
@@ -1084,7 +1084,7 @@ body {
     border-radius: 10px 0px 0px 10px;
     z-index: 100;
     border-style: none;
-    background-image: -webkit-linear-gradient(right, #e2bf71, #af4261);
+    background-image: -webkit-linear-gradient(left, #e2bf71, #af4261);
 }
 
 #multi,
@@ -1180,10 +1180,13 @@ body {
     height: 4dvh;
     padding-left: 20px;
     padding-right: 20px;
-    background-color: #920033;
+    background-color: #960236;
     color: #52011d;
-    border-style: none;
+
     border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #a00c40;
 
     box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.4);
 }
@@ -2033,6 +2036,7 @@ body {
         padding-top: 1.6dvh;
         font-weight: bold;
         font-size: 4dvw;
+        border-width: 1px;
     }
 
     #modeSelect,
