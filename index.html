@@ -30,6 +30,8 @@
 
 <body>
 
+    <div id="cursor-glow"></div>
+
     <img id="logo" src="assets/logo.png">
 
     <div id="canvas">
@@ -221,7 +223,8 @@
         </div>
 
         <div id="dailyDiv">
-            <p id="dailyText1">• One attempt.<br><br>• Same for everyone.<br><br>• Fresh round everyday.<br><br>• Has a seperate leaderboard
+            <p id="dailyText1">• One attempt.<br><br>• Same for everyone.<br><br>• Fresh round everyday.<br><br>• Has a
+                seperate leaderboard
                 section.</p>
 
             <button id="dailyStart">Play Daily Game</button>
@@ -656,6 +659,12 @@
 
         let dailyPlayed = 0;
         let dailyMode = 0;
+
+        const glow = document.getElementById('cursor-glow');
+        document.addEventListener('mousemove', (e) => {
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+        });
 
         async function initPrep() {
             await prepLeaderArrs();
@@ -1193,6 +1202,7 @@
             document.getElementById("side1").style.display = "flex";
             document.getElementById("logo").style.display = "revert";
             document.getElementById("login").style.display = "revert";
+            document.getElementById("cursor-glow").style.display = "none";
             hideSignin();
             hideAccount();
         });
@@ -1329,6 +1339,7 @@
             document.getElementById("login").style.display = "none";
             document.getElementById("dailySVG").style.display = "revert";
             document.getElementById("info").style.display = "revert";
+            document.getElementById("cursor-glow").style.display = "none";
 
             localStorage.setItem('student_id', id);
             localStorage.setItem('username', user_name);
@@ -1365,7 +1376,7 @@
 
             multi.style.width = "55%";
             single.style.width = "44%";
-            
+
             multi.style.color = "#52011d";
             single.style.color = "#e2c072";
 
@@ -1422,7 +1433,7 @@
 
             daily.style.width = "42%";
             allTime.style.width = "57%";
-            
+
             allTime.style.color = "#52011d";
             daily.style.color = "#e2c072";
 
@@ -1442,7 +1453,7 @@
 
             allTime.style.width = "42%";
             daily.style.width = "57%";
-            
+
             daily.style.color = "#52011d";
             allTime.style.color = "#e2c072";
 
