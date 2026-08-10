@@ -1698,6 +1698,12 @@ body {
     border-style: none;
 }
 
+#picFull,
+#picWrap,
+#dim{
+    touch-action: none;
+}
+
 @keyframes drift {
     from {
         background-position: 0 0;
