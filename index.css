@@ -220,7 +220,7 @@ body {
     font-family: 'Georgia', serif;
 
     border-radius: 15px;
-    border-width: 2px;
+    border-width: 1px;
     border-style: solid;
 
     font-weight: bolder;
@@ -243,7 +243,7 @@ body {
     background-color: #960236;
 
     border-style: solid;
-    border-width: 2px;
+    border-width: 1px;
     border-color: #a00c40;
 
     text-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
@@ -308,7 +308,8 @@ body {
     text-align: center;
     margin-bottom: 2vh;
     width: 20dvw;
-    margin-left: 4dvw;;
+    margin-left: 4dvw;
+    ;
 }
 
 .golden {
@@ -467,7 +468,7 @@ body {
 
 }
 
-#again{
+#again {
     border-radius: 15px;
     border-style: solid;
     border-width: 2px;
@@ -501,7 +502,7 @@ body {
     border-color: #a00c40;
 
     background-color: #960236;
-    
+
     box-shadow: -2px 2px 3px 2px rgba(0, 0, 0, 0.3);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 
@@ -554,7 +555,7 @@ body {
 
     border-radius: 6px;
     border-style: solid;
-    border-width: 2px;
+    border-width: 1px;
     border-color: #a00c40;
     box-shadow: -4px 4px 5px 2px rgba(0, 0, 0, 0.3);
 
@@ -595,7 +596,7 @@ body {
     border-top-color: #a00c40;
     border-bottom-color: #a00c40;
 
-    
+
     border-left-width: 2px;
     border-top-width: 2px;
     border-bottom-width: 2px;
@@ -778,7 +779,7 @@ body {
 
     border-radius: 20px;
 
-    
+
     border-style: solid;
     border-width: 2px;
     border-color: #a00c40;
@@ -1067,7 +1068,7 @@ body {
 
     font-size: 1.1dvw;
     font-weight: bold;
-    
+
     background-color: #960236;
     color: #52011d;
 
@@ -1097,7 +1098,7 @@ body {
     width: 42%;
     right: 0;
     border-radius: 0px 10px 10px 0px;
-    
+
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
@@ -1146,7 +1147,6 @@ body {
     min-height: 30px;
     width: 7dvw;
 
-
     background-color: #960035;
 
     font-size: 1dvw;
@@ -1157,7 +1157,7 @@ body {
     border-radius: 10px;
     color: #e2c072;
 
-    
+
     border-style: solid;
     border-width: 2px;
     border-color: #a00c40;
@@ -1190,7 +1190,7 @@ body {
 
     border-radius: 10px;
     border-style: solid;
-    border-width: 2px;
+    border-width: 1px;
     border-color: #a00c40;
 
     box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.4);
@@ -1221,7 +1221,7 @@ body {
     transform: scaleX(-1);
 }
 
-#useHint{
+#useHint {
     font-weight: bold;
     font-size: 14px;
     height: 4dvh;
@@ -1276,7 +1276,7 @@ body {
     width: 90%;
 }
 
-#diffText1{
+#diffText1 {
     width: 90%;
 }
 
@@ -1391,7 +1391,7 @@ body {
     border-style: solid;
     border-radius: 15px;
     color: #e2c072;
-    
+
     border-style: solid;
     border-width: 2px;
     border-color: #a00c40;
@@ -1490,7 +1490,7 @@ body {
     background-color: #960236;
 
     border-style: solid;
-    border-width: 2px;
+    border-width: 1px;
     border-color: #a00c40;
     box-shadow: -4px 4px 5px 2px rgba(0, 0, 0, 0.3);
 
@@ -1498,7 +1498,7 @@ body {
     padding: 4px;
 
     width: 8dvh;
-    
+
 }
 
 #dailySVG {
@@ -2119,12 +2119,25 @@ body {
         font-size: 4dvw;
     }
 
+    #diff:hover{
+        background-color: #960035;
+    }
+
     #diffDiv {
         width: 86%;
     }
 
     #diffText1 {
         font-size: 4.5dvw;
+    }
+
+    #inverted:hover,
+    #blurry:hover,
+    #twoSec:hover,
+    #mirrored:hover,
+    #useHint:hover {
+        background-color: #960236;
+        cursor: auto;
     }
 
     #hint {
@@ -2142,7 +2155,7 @@ body {
         height: 160px;
     }
 
-    #useHint{
+    #useHint {
         margin-bottom: 2dvh;
         border-width: 1px;
     }
