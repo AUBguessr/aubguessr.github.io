@@ -200,6 +200,7 @@ body {
     background-color: rgba(0, 0, 0, 0.7);
 
     display: none;
+    touch-action: none;
 }
 
 #submit {
@@ -345,14 +346,8 @@ body {
 
     border-radius: 20px;
     border-width: 10px;
-    border-color: rgb(106, 19, 44);
+    border-color: rgb(111, 10, 39);
     border-style: solid;
-
-    outline-width: 2px;
-    outline-color: rgb(209, 151, 109);
-    outline-style: solid;
-
-    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.1);
 }
 
 #dailyDiv {
@@ -631,8 +626,7 @@ body {
 #delete,
 #confirm,
 #logout,
-#login,
-#gotit {
+#login {
     top: 14dvh;
     right: 28dvw;
     z-index: 100;
@@ -646,7 +640,7 @@ body {
     border-radius: 10px;
     font-weight: 600;
     font-size: 16px;
-    box-shadow: -2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: -2px 2px 3px 1px rgba(0, 0, 0, 0.2);
 }
 
 #logout {
@@ -676,21 +670,6 @@ body {
     width: 100px;
 }
 
-#gotit {
-    margin-top: 20px;
-    top: auto;
-    right: auto;
-    position: static;
-    width: 30%;
-    align-self: center;
-}
-
-#gotit:hover {
-    cursor: pointer;
-    background-color: #f7ec87;
-    box-shadow: none;
-}
-
 #delete:hover,
 #confirm:hover,
 #logout:hover {
@@ -701,7 +680,8 @@ body {
     box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.08);
 }
 
-#back {
+#back,
+#gotit {
     position: absolute;
     bottom: 5dvh;
     left: 3dvw;
@@ -732,6 +712,21 @@ body {
     cursor: pointer;
 
     color: rgb(217, 170, 111);
+}
+
+#gotit {
+    text-transform: none;
+    top: auto;
+    right: auto;
+    position: static;
+    width: 30%;
+    align-self: center;
+}
+
+#gotit:hover {
+    cursor: pointer;
+    background-color: #f7ec87;
+    box-shadow: none;
 }
 
 #back:hover {
@@ -1156,7 +1151,6 @@ body {
     border-style: solid;
     border-radius: 10px;
     color: #e2c072;
-
 
     border-style: solid;
     border-width: 2px;
@@ -1638,7 +1632,7 @@ body {
     background-color: #74052b;
     border-radius: 30px 0px 0px 30px;
     border-style: solid;
-    border-width: 4px;
+    border-width: 2px;
     border-color: #990d3e;
     height: 100%;
     width: 65%;
@@ -1806,6 +1800,8 @@ body {
         height: 150px;
         max-width: none;
         max-height: none;
+
+        cursor: auto;
     }
 
     #side1 {
@@ -1851,7 +1847,6 @@ body {
     #picFull {
         width: 100vw;
         height: 65dvh;
-        touch-action: none;
     }
 
     #result,
@@ -2109,6 +2104,10 @@ body {
         margin-left: 67dvw;
     }
 
+    #copy:hover{
+        cursor: auto;
+    }
+
     #startGame {
         margin-top: 16dvh;
         width: 60%;
@@ -2150,6 +2149,8 @@ body {
 
     #hint {
         z-index: 500;
+        background-color: #960236;
+        cursor: auto;
     }
 
     #hintText1 {
@@ -2284,7 +2285,7 @@ body {
     }
 
     #dailyStart {
-        width: 70%;
-        font-size: 4dvw;
+        width: 60%;
+        font-size: 3.5vw;
     }
 }
