@@ -1059,24 +1059,25 @@
             document.getElementById("scoreDiv").style.display = "flex";
 
             if (updateGamesDB && !wasMulti && signedIn) {
-                //update games played
-                games_played++;
-                await db.from('users').update({ games_played: games_played }).eq('student_id', id);
-                document.getElementById("played").textContent = "• Games Played: " + games_played;
+                const { data, error } = await db.rpc('submit_game_result', {
+                    p_student_id: id,
+                    p_score: parseFloat(finalScore),
+                    p_is_daily: dailyMode
+                });
 
-                //update average score
-                avg_score = ((avg_score * (games_played - 1)) + parseFloat(finalScore)) / games_played;
-                await db.from('users').update({ avg_score: avg_score }).eq('student_id', id);
-                document.getElementById("avg").textContent = "• Average Score: " + avg_score.toFixed(2) + "%";
+                if (!error) {
+                    games_played = data[0].games_played;
+                    avg_score = data[0].avg_score;
+                    document.getElementById("played").textContent = "• Games Played: " + games_played;
+                    document.getElementById("avg").textContent = "• Average Score: " + avg_score.toFixed(2) + "%";
+                } else {
+                    console.error('submit_game_result failed:', error);
+                }
 
                 if (dailyMode) {
-                    //update daily score
-                    let daily_score = parseFloat(finalScore);
-                    await db.from('users').update({ daily_score: finalScore }).eq('student_id', id);
                     dailyMode = false;
                     dailyPlayed = 1;
                 }
-
                 updateGamesDB = false; //for it to happen once
             }
 
@@ -1105,9 +1106,9 @@
             if (event.key === 'Escape') {
 
                 if (invited && play) {
-                window.location.href = window.location.origin + window.location.pathname;
+                    window.location.href = window.location.origin + window.location.pathname;
                 }
-                
+
                 hideDivs();
             }
         });
@@ -1311,27 +1312,30 @@
             id = value;
             user_name = nameValue;
 
-            const { data, error } = await db
-                .from('users')
-                .select()
-                .eq('student_id', id);
+            const { data, error } = await db.rpc('get_or_create_user', {
+                p_student_id: id,
+                p_username: user_name
+            });
 
-            if (data.length == 0) {
-                await db
-                    .from('users')
-                    .insert([{ username: user_name, student_id: id, avg_score: 0, games_played: 0 }]); //doesnt exist in database
-            } else {
-                if (data[0].username !== nameValue) {
-                    nameBox.value = "";
-                    nameBox.placeholder = "wrong username";
-                    nameBox.classList.add("invalid");
-                    return;
-                }
-                games_played = data[0].games_played;
-                avg_score = data[0].avg_score;
-
-                if (data[0].daily_score !== null) dailyPlayed = 1;
+            if (error) {
+                // e.g. error.message === 'username_taken'
+                nameBox.value = "";
+                nameBox.placeholder = "username taken";
+                nameBox.classList.add("invalid");
+                return;
             }
+
+            const row = data[0];
+            if (!row.is_new && row.username !== nameValue) {
+                nameBox.value = "";
+                nameBox.placeholder = "wrong username";
+                nameBox.classList.add("invalid");
+                return;
+            }
+
+            games_played = row.games_played;
+            avg_score = row.avg_score;
+            dailyPlayed = row.daily_score !== null ? 1 : 0;
 
             document.getElementById("profileName").textContent = "Name: " + nameValue;
             document.getElementById("idnum").textContent = "ID: " + id;
@@ -1699,11 +1703,7 @@
         });
 
         async function deleteAccount() {
-            const { error } = await db
-                .from('users')
-                .delete()
-                .eq('student_id', id);
-
+            await db.rpc('delete_account', { p_student_id: id });
             localStorage.clear();
             window.location.href = window.location.origin + window.location.pathname;
         }
@@ -1728,16 +1728,23 @@
             dim.style.display = "revert";
         });
 
-        document.getElementById("dailyStart").addEventListener("click", function () {
+        document.getElementById("dailyStart").addEventListener("click", async function () {
             document.getElementById("dailyDiv").style.display = "none";
             dim.style.display = "none";
-            document.getElementById("text1").textContent = "Daily Game";
 
+            const { error } = await db.rpc('reset_daily_score', { p_student_id: id });
+            if (error) {
+                // already played today (or another error) — bail out
+                console.error('daily start failed:', error);
+                alert("You've already played today's daily.");
+                return;
+            }
+
+            document.getElementById("text1").textContent = "Daily Game";
             dailyMode = 1;
             dailyPlayed = 1;
 
             dailyGame();
-            setDailyPlayed();
         });
 
         async function dailyGame() {
@@ -1752,7 +1759,7 @@
         }
 
         async function setDailyPlayed() {
-            await db.from('users').update({ daily_score: 0 }).eq('student_id', id);
+            await db.rpc('reset_daily_score', { p_student_id: id });
         }
 
         document.addEventListener('contextmenu', function (e) {
