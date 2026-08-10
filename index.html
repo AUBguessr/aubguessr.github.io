@@ -1103,6 +1103,11 @@
 
         document.addEventListener('keydown', function (event) {
             if (event.key === 'Escape') {
+
+                if (invited && play) {
+                window.location.href = window.location.origin + window.location.pathname;
+                }
+                
                 hideDivs();
             }
         });
@@ -1585,6 +1590,7 @@
             document.getElementById("side1").style.display = "flex";
             document.getElementById("inviteDiv").style.display = "flex";
             document.getElementById("logo").style.display = "revert";
+            document.getElementById("cursor-glow").style.display = "none";
             invited = 1;
 
             let params = new URLSearchParams(window.location.search);

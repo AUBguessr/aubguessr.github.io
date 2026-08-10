@@ -1319,20 +1319,17 @@ body {
     margin-left: 750px;
     bottom: 160px;
 
-    background-color: #85002e;
+    background-color: rgb(133, 1, 50);
 
     box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.3);
 
     z-index: 15;
     border-radius: 22px 22px 22px 0;
-
+    
+    border-radius: 20px 20px 20px 0;
     border-width: 10px;
-    border-color: rgb(106, 19, 44);
+    border-color: rgb(111, 10, 39);
     border-style: solid;
-
-    outline-width: 2px;
-    outline-color: rgb(209, 151, 109);
-    outline-style: solid;
 }
 
 #inviteBubbleText1 {
@@ -1715,11 +1712,11 @@ body {
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgb(132, 1, 50, 1), transparent 60%);
+    background: radial-gradient(circle, rgb(132, 1, 50, 1), transparent 70%);
     pointer-events: none;
     z-index: 14;
     transform: translate(-50%, -50%);
-    transition: left 0.01s, top 0.01s;
+    transition: left 0.001s, top 0.001s;
 }
 
 @keyframes drift {
@@ -1943,7 +1940,7 @@ body {
         margin-left: 40dvw;
         bottom: 340px;
         border-radius: 3dvh 3dvh 3dvh 0;
-        border-width: 2px;
+        border-width: 1px;
         width: 160px;
         height: 11dvh;
         padding: 4px;
