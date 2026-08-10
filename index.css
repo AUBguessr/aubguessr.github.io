@@ -59,7 +59,7 @@ body {
     border-color: #ebe07b;
     border-width: 2px;
 
-    box-shadow: -4px 4px 5px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: -2px 2px 5px 2px rgba(0, 0, 0, 0.3);
     -webkit-user-drag: none;
     /* Safari and Chrome Safari-based engines */
 }
@@ -230,7 +230,7 @@ body {
 
     position: absolute;
 
-    box-shadow: -3px 3px 5px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: -2px 2px 5px 2px rgba(0, 0, 0, 0.3);
     overflow: hidden;
 
 }
@@ -246,7 +246,7 @@ body {
     border-width: 1px;
     border-color: #a00c40;
 
-    text-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 
@@ -557,7 +557,7 @@ body {
     border-style: solid;
     border-width: 1px;
     border-color: #a00c40;
-    box-shadow: -4px 4px 5px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: -2px 2px 5px 2px rgba(0, 0, 0, 0.3);
 
     width: 8dvh;
 
@@ -1162,6 +1162,7 @@ body {
     border-width: 2px;
     border-color: #a00c40;
     box-shadow: -2px 2px 3px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 
 }
 
@@ -1492,7 +1493,7 @@ body {
     border-style: solid;
     border-width: 1px;
     border-color: #a00c40;
-    box-shadow: -4px 4px 5px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: -2px 2px 5px 2px rgba(0, 0, 0, 0.3);
 
     border-radius: 6px;
     padding: 4px;
@@ -1850,7 +1851,7 @@ body {
     #picFull {
         width: 100vw;
         height: 65dvh;
-
+        touch-action: none;
     }
 
     #result,
@@ -2044,6 +2045,13 @@ body {
         font-weight: bold;
         font-size: 4dvw;
         border-width: 1px;
+    }
+
+    #single:hover,
+    #multi:hover,
+    #allTime:hover,
+    #daily:hover {
+        cursor: auto;
     }
 
     #modeSelect,
