@@ -685,27 +685,27 @@
 
         async function prepLeaderArrs() {
 
-            const { data: allTimeData, error: allTimeErr } = await db
-                .from('users')
-                .select('username, avg_score, games_played')
-                .order('avg_score', { ascending: false })
-                .limit(5);
+            const { data, error } = await db.rpc('get_leaderboard');
 
-            const { data: dailyData, error: dailyErr } = await db
-                .from('users')
-                .select('username, daily_score, games_played')
-                .order('daily_score', { ascending: false, nullsFirst: false })
-                .limit(5);
+            if (error || !data) {
+                leaderLoaded = 1;
+                return;
+            }
 
-            for (i = 0; i < 5; i++) {
-                if (allTimeData[i]) {
-                    allTimeArr[i] = `${i + 1}. ${(allTimeData[i].username).padEnd(usernameMaxLength + 2)} | AVG: ${(allTimeData[i].avg_score).toFixed(2)}% | Games: ${allTimeData[i].games_played}`
+            const byAvg = [...data].sort((a, b) => b.avg_score - a.avg_score);
+            const byDaily = [...data]
+                .filter(u => u.daily_score !== null)
+                .sort((a, b) => b.daily_score - a.daily_score);
+
+            for (let i = 0; i < 5; i++) {
+                if (byAvg[i]) {
+                    allTimeArr[i] = `${i + 1}. ${(byAvg[i].username).padEnd(usernameMaxLength + 2)} | AVG: ${(byAvg[i].avg_score).toFixed(2)}% | Games: ${byAvg[i].games_played}`;
                 } else {
                     allTimeArr[i] = `${i + 1}. ~`;
                 }
 
-                if (dailyData[i] && dailyData[i].daily_score !== null) {
-                    dailyArr[i] = `${i + 1}. ${(dailyData[i].username).padEnd(usernameMaxLength + 2)} | Score: ${(dailyData[i].daily_score).toFixed(2)}% | Games: ${dailyData[i].games_played}`
+                if (byDaily[i]) {
+                    dailyArr[i] = `${i + 1}. ${(byDaily[i].username).padEnd(usernameMaxLength + 2)} | Score: ${(byDaily[i].daily_score).toFixed(2)}% | Games: ${byDaily[i].games_played}`;
                 } else {
                     dailyArr[i] = `${i + 1}. ~`;
                 }
@@ -1290,24 +1290,6 @@
             }
 
             if (!valid) return;
-
-            const { data: existingUser, error: checkError } = await db
-                .from('users')
-                .select('username, student_id')
-                .eq('username', nameValue);
-
-            if (existingUser.length > 0) {
-                // username already exists
-
-                if (existingUser[0].student_id == value) {
-                    //returning user (do nothing)
-                } else {
-                    nameBox.value = "";
-                    nameBox.placeholder = "already taken";
-                    nameBox.classList.add("invalid");
-                    return;
-                }
-            }
 
             id = value;
             user_name = nameValue;
