@@ -1127,20 +1127,20 @@
                 socketConnected: socket.connected
             });
 
-            console.log("MULTIPLAYER CONDITION:", wasMulti || invited);
-
             finalScore = (total / round).toFixed(2);
             if (finalScore == 100.00) finalScore = 100;
 
             if (wasMulti || invited) {
-                console.log("ENTERED MULTIPLAYER BLOCK");
+                console.log("SENDING SCORE OBJECT:", {
+                    roomCode: challengeCode,
+                    score: parseFloat(finalScore),
+                    perfectScores: perfectScore
+                });
                 socket.emit("sendScore", {
                     roomCode: challengeCode,
                     score: parseFloat(finalScore),
                     perfectScores: perfectScore
                 });
-
-                    console.log("SEND SCORE EMITTED");
 
                 myScoreSubmitted = true;
 
@@ -1213,6 +1213,8 @@
 
             hideDivs();
             generateCode();
+
+            console.log(challengeCode);
         });
 
         document.addEventListener('keydown', function (event) {
@@ -1687,6 +1689,8 @@
         if (validCode) validCode = codeArr[5].length == 4;
 
         if (validCode) {
+            challengeCode = challengeCodeURL;
+            
             socket.emit("joinRoom", {
                 roomCode: challengeCodeURL,
                 username: user_name || "Opponent"
@@ -1751,7 +1755,7 @@
             }
         }
 
-        if(!invited) generateCode();
+        if (!invited) generateCode();
 
         function assembleCanvas() {
             document.getElementById('scoreValue').textContent = finalScore;
