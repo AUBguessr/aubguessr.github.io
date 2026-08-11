@@ -723,6 +723,8 @@
         let myScoreSubmitted = false;
         let opponentPerfectScores = null;
 
+        let host = false;
+
         const glow = document.getElementById('cursor-glow');
         document.addEventListener('mousemove', (e) => {
             glow.style.left = e.clientX + 'px';
@@ -1001,7 +1003,7 @@
                 picture.style.display = "revert";
                 document.getElementById("text1").style.display = "revert";
 
-                if (mode && (count == 0)) {
+                if ((mode && (count == 0))  && !host) {
                     turn = arr[round]
 
                     console.log("RIGHT BEFORE EMIT USING SAME VARIABLE FOR SURE: " + challengeCode);
@@ -1009,6 +1011,8 @@
                         roomCode: challengeCode,
                         username: user_name
                     });
+
+                    host = true;
                 }
 
                 if (next) {
@@ -1262,6 +1266,7 @@
             updateGamesDB = true;
             dailyMode = 0;
             hintUsed = 0;
+            host = false;
 
             dim.style.display = "none";
             document.getElementById("scoreDiv").style.display = "none";
