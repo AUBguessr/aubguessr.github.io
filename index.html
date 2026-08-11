@@ -1004,6 +1004,7 @@
                 if (mode && (count == 0)) {
                     turn = arr[round]
 
+                    console.log("RIGHT BEFORE EMIT USING SAME VARIABLE FOR SURE: " + challengeCode);
                     socket.emit("joinRoom", {
                         roomCode: challengeCode,
                         username: user_name
@@ -1564,7 +1565,7 @@
             let challengeLink = "https://aubguessr.github.io/?c=" + challengeCode;
             document.getElementById("codeOutput").value = challengeLink;
 
-            return genCode;
+            return challengeLink;
         }
 
         document.getElementById("copy").addEventListener("click", function () {
@@ -1661,11 +1662,11 @@
         });
 
         let params = new URLSearchParams(window.location.search);
-        challengeCode = params.get("c");
+        let challengeCodeURL = params.get("c");
         let validCode = false;
 
-        if (challengeCode) {
-            codeArr = challengeCode.split("-");
+        if (challengeCodeURL) {
+            codeArr = challengeCodeURL.split("-");
             validCode = codeArr.length == 6;
         }
 
@@ -1673,7 +1674,7 @@
 
         if (validCode) {
             socket.emit("joinRoom", {
-                roomCode: challengeCode,
+                roomCode: challengeCodeURL,
                 username: user_name || "Opponent"
             });
         }
@@ -1683,7 +1684,7 @@
             document.getElementById("startGame").style.display = "none";
         }
 
-        if (challengeCode) {
+        if (challengeCodeURL) {
 
             hideSignin();
             hideAccount();
