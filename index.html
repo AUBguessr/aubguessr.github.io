@@ -802,8 +802,6 @@
 
         arr = shuffleArray(arr);
 
-        generateCode();
-
         let turn = arr[0];
 
         function shuffleArray(arr) {
@@ -1752,6 +1750,8 @@
                 twoSec = 1;
             }
         }
+
+        if(!invited) generateCode();
 
         function assembleCanvas() {
             document.getElementById('scoreValue').textContent = finalScore;
