@@ -1003,10 +1003,9 @@
                 picture.style.display = "revert";
                 document.getElementById("text1").style.display = "revert";
 
-                if ((mode && (count == 0))  && !host) {
+                if ((mode && (count == 0)) && !host) {
                     turn = arr[round]
 
-                    console.log("RIGHT BEFORE EMIT USING SAME VARIABLE FOR SURE: " + challengeCode);
                     socket.emit("joinRoom", {
                         roomCode: challengeCode,
                         username: user_name
@@ -1123,15 +1122,27 @@
 
         async function finishRound() {
 
+            console.log("FINISH ROUND:", {
+                wasMulti,
+                invited,
+                challengeCode,
+                socketConnected: socket.connected
+            });
+
+            console.log("MULTIPLAYER CONDITION:", wasMulti || invited);
+
             finalScore = (total / round).toFixed(2);
             if (finalScore == 100.00) finalScore = 100;
 
             if (wasMulti || invited) {
+                console.log("ENTERED MULTIPLAYER BLOCK");
                 socket.emit("sendScore", {
                     roomCode: challengeCode,
                     score: parseFloat(finalScore),
                     perfectScores: perfectScore
                 });
+
+                    console.log("SEND SCORE EMITTED");
 
                 myScoreSubmitted = true;
 

@@ -19,6 +19,10 @@ app.get("/", (req, res) => {
 io.on("connection", (socket) => {
     console.log("Player connected:", socket.id);
 
+    socket.onAny((event, ...args) => {
+        console.log("EVENT RECEIVED:", event, args);
+    });
+
     socket.on("testMessage", (message) => {
         console.log("Received:", message);
     });
@@ -53,6 +57,8 @@ io.on("connection", (socket) => {
     });
 
     socket.on("sendScore", (data) => {
+        console.log("SCORE RECEIVED:", socket.id, data);
+
         socket.to(data.roomCode).emit("opponentFinished", {
             username: socket.username,
             score: data.score,
