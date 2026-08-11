@@ -332,7 +332,8 @@ body {
 #inviteDiv,
 #deleteDiv,
 #dailyDiv,
-#infoDiv {
+#infoDiv,
+#scoreDivMulti {
     display: none;
     justify-content: space-evenly;
 
@@ -383,7 +384,8 @@ body {
 }
 
 #scoreText1,
-#score {
+#score,
+#scoreMultiText1 {
     margin-top: 8px;
     font-family: 'Georgia', serif;
     font-size: 3dvw;
@@ -411,6 +413,11 @@ body {
     width: 25vw;
 }
 
+#scoreMultiText1 {
+    font-size: 2dvw;
+    width: 90%;
+}
+
 #perfect {
     position: absolute;
     margin-top: 36vh;
@@ -420,12 +427,11 @@ body {
     font-weight: bold;
     letter-spacing: 2px;
 
-    /* Adds a smooth drop shadow underneath */
-    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.6));
+    box-shadow: -3px 3px 5px 2px rgba(0, 0, 0, 0.3);
     width: 25dvw;
     height: 60px;
 
-    background-image: -webkit-linear-gradient(#FFF65C, #3A2C00);
+    background-image: -webkit-linear-gradient(left, #e2bf71, #af4261);
     color: rgb(134, 2, 51);
     border-radius: 10px;
 
@@ -435,7 +441,9 @@ body {
 }
 
 #again,
-#share {
+#share,
+#againMulti,
+#shareMulti {
     position: absolute;
     bottom: 20px;
 
@@ -456,14 +464,13 @@ body {
 
     color: rgb(217, 170, 111);
     background-color: rgb(132, 1, 50);
-    border-color: rgb(209, 151, 109);
 
     box-shadow: -3px 3px 5px 2px rgba(0, 0, 0, 0.3);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-
 }
 
-#again {
+#again,
+#againMulti {
     border-radius: 15px;
     border-style: solid;
     border-width: 2px;
@@ -476,7 +483,8 @@ body {
     background-color: #a10c40;
 }
 
-#share {
+#share,
+#shareMulti {
     font-size: 0.9dvw;
     width: 16%;
     bottom: 20px;
@@ -505,7 +513,8 @@ body {
     padding-bottom: 4px;
 }
 
-#share:hover {
+#share:hover,
+#shareMulti:hover {
     background-color: #a10c40;
 
 }
@@ -912,7 +921,7 @@ body {
 
     font-size: 1.3dvw;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    
+
     /* Create a color gradient inside the font */
     background: linear-gradient(90deg, #fffa97, #d25377);
     -webkit-background-clip: text;
@@ -1325,7 +1334,7 @@ body {
 
     z-index: 15;
     border-radius: 22px 22px 22px 0;
-    
+
     border-radius: 20px 20px 20px 0;
     border-width: 10px;
     border-color: rgb(111, 10, 39);
@@ -1703,7 +1712,7 @@ body {
 
 #picFull,
 #picWrap,
-#dim{
+#dim {
     touch-action: none;
 }
 
@@ -1717,6 +1726,158 @@ body {
     z-index: 14;
     transform: translate(-50%, -50%);
     transition: left 0.001s, top 0.001s;
+}
+
+#scoreDivMulti {
+    display: nonr;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#scoreMultiText1 {
+    margin-top: 20px;
+    align-self: center;
+}
+
+#againMulti {
+    position: absolute;
+    margin-left: 30%;
+}
+
+#multiNames {
+    align-self: center;
+    height: 60%;
+    width: 95%;
+    background-color: #720a28;
+    border-radius: 20px;
+    margin-bottom: 20%;
+
+    border-width: 3px;
+    border-color: rgb(105, 9, 36);
+    border-style: solid;
+}
+
+#player1,
+#player2,
+#player3,
+#player4 {
+    font-family: monospace;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    height: 6dvh;
+    width: 96%;
+
+    margin-top: 10px;
+    margin-left: 2%;
+    border-radius: 14px;
+
+    background-color: #960236;
+    color: #e2c072;
+
+    /* Adds a smooth drop shadow underneath */
+    box-shadow: -1px 1px 3px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ac0c44;
+}
+
+#player2,
+#player3,
+#player4 {
+    display: none;
+}
+
+#waiting {
+    margin-left: 20px;
+}
+
+#waitingSVG{
+    position: absolute;
+    height: 20px;
+    margin-left: 6px;
+}
+
+#name1,
+#name2,
+#name3,
+#name4 {
+    display: inline;
+    position: absolute;
+    font-size: 1dvw;
+    margin-left: 12px;
+    width: 28%;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+#name2,
+#name3,
+#name4 {
+    display: none;
+
+}
+
+#score1,
+#score2,
+#score3,
+#score4 {
+    position: absolute;
+    font-size: 1.2dvw;
+    right: 32%;
+}
+
+#score2,
+#score3,
+#score4 {
+    display: none;
+}
+
+#perfectLogo1,
+#perfectLogo2,
+#perfectLogo3,
+#perfectLogo4 {
+    position: absolute;
+    font-family: Georgia;
+    right: 17%;
+
+    background-image: -webkit-linear-gradient(left, #e2bf71, #af4261);
+    height: 7%;
+    width: 7%;
+    color: #420017;
+    text-align: center;
+    font-size: 3.4dvh;
+    border-radius: 6px;
+
+    text-shadow: none;
+    box-shadow: -1px 1px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+#perfectLogo2,
+#perfectLogo3,
+#perfectLogo4 {
+    display: none;
+}
+
+#perfect1,
+#perfect2,
+#perfect3,
+#perfect4 {
+    position: absolute;
+    font-size: 1.4dvw;
+    right: 7%;
+}
+
+#perfect2,
+#perfect3,
+#perfect4 {
+    display: none;
 }
 
 @keyframes drift {
@@ -1764,7 +1925,7 @@ body {
 
 @media (max-width: 768px) {
 
-    *{
+    * {
         cursor: auto !important;
     }
 
@@ -1772,7 +1933,7 @@ body {
         cursor: auto !important;
     }
 
-    #cursor-glow{
+    #cursor-glow {
         display: none;
     }
 
@@ -1919,14 +2080,16 @@ body {
         font-size: 4dvw;
     }
 
-    #share {
+    #share,
+    #shareMulti {
         font-size: 14px;
         width: 20%;
         right: 10px;
         bottom: 30px;
     }
 
-    #share:hover {
+    #share:hover,
+    #shareMulti:hover {
         font-size: 3dvw;
     }
 
@@ -2150,7 +2313,7 @@ body {
         font-size: 4dvw;
     }
 
-    #diff:hover{
+    #diff:hover {
         background-color: #960035;
     }
 
@@ -2309,5 +2472,60 @@ body {
     #dailyStart {
         width: 60%;
         font-size: 3.5vw;
+    }
+
+    #scoreDivMulti {
+        width: 90%;
+    }
+
+    #scoreMultiText1 {
+        margin-top: 20px;
+        font-size: 6dvw;
+        padding-bottom: 20px;
+    }
+
+    #againMulti {
+        font-size: 1.6dvh;
+    }
+
+    #multiNames {
+        height: 60%;
+        margin-bottom: 30%;
+    }
+
+    #name1,
+    #name2,
+    #name3,
+    #name4 {
+        font-size: 3dvw;
+        margin-bottom: 2px;
+    }
+
+    #score1,
+    #score2,
+    #score3,
+    #score4 {
+        position: absolute;
+        font-size: 3.3dvw;
+        right: 33%;
+    }
+
+    #perfectLogo1,
+    #perfectLogo2,
+    #perfectLogo3,
+    #perfectLogo4 {
+        font-size: 3dvh;
+        right: 18%;
+        height: 6%;
+        width: 8%;
+    }
+
+    #perfect1,
+    #perfect2,
+    #perfect3,
+    #perfect4 {
+        position: absolute;
+        font-size: 4dvw;
+        right: 8%;
     }
 }

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Socket Test</title>
+</head>
+
+<body>
+
+    <h1>Socket.io Test</h1>
+
+    <button id="sendButton">Send Test Message</button>
+
+    <button id="joinButton">Join Test Room</button>
+
+    <button id="sendScoreButton">Send Score</button>
+    <p id="opponentScore"></p>
+
+    <p id="status">Connecting...</p>
+
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+
+    <script>
+        const socket = io("http://localhost:3000");
+
+        socket.on("connect", () => {
+            document.getElementById("status").textContent =
+                "Connected! Socket ID: " + socket.id;
+
+            console.log("Connected:", socket.id);
+        });
+
+        document.getElementById("sendButton").addEventListener("click", () => {
+            socket.emit("testMessage", "Hello from the browser!");
+        });
+
+        document.getElementById("joinButton").addEventListener("click", () => {
+            socket.emit("joinRoom", "74-4-136-176-104-0000");
+        });
+
+        socket.on("roomJoined", (roomCode) => {
+            console.log("Joined room:", roomCode);
+        });
+
+        socket.on("roomFull", () => {
+            console.log("Room is full!");
+        });
+
+        document.getElementById("sendScoreButton").addEventListener("click", () => {
+            socket.emit("sendScore", {
+                roomCode: "74-4-136-176-104-0000",
+                score: 847
+            });
+        });
+
+        socket.on("opponentScore", (score) => {
+            document.getElementById("opponentScore").textContent =
+                "Opponent score: " + score;
+        });
+    </script>
+
+</body>
+
+</html>
