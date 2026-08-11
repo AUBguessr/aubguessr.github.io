@@ -697,7 +697,7 @@
         let wasMulti = 0;
         let invited = 0;
 
-        let genCode;
+        let challengeCode;
 
         let codeArr;
 
@@ -1005,7 +1005,7 @@
                     turn = arr[round]
 
                     socket.emit("joinRoom", {
-                        roomCode: genCode,
+                        roomCode: challengeCode,
                         username: user_name
                     });
                 }
@@ -1560,8 +1560,9 @@
         });
 
         function generateCode() {
-            genCode = "https://aubguessr.github.io/?c=" + arr[round] + "-" + arr[round + 1] + "-" + arr[round + 2] + "-" + arr[round + 3] + "-" + arr[round + 4] + "-" + inverted + blurry + mirrored + twoSec;
-            document.getElementById("codeOutput").value = genCode;
+            challengeCode = arr[round] + "-" + arr[round + 1] + "-" + arr[round + 2] + "-" + arr[round + 3] + "-" + arr[round + 4] + "-" + inverted + blurry + mirrored + twoSec;
+            let challengeLink = "https://aubguessr.github.io/?c=" + challengeCode;
+            document.getElementById("codeOutput").value = challengeLink;
 
             return genCode;
         }
@@ -1660,7 +1661,7 @@
         });
 
         let params = new URLSearchParams(window.location.search);
-        let challengeCode = params.get("c");
+        challengeCode = params.get("c");
         let validCode = false;
 
         if (challengeCode) {
