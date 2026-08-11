@@ -24,10 +24,10 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
+    <script src="https://aubguessr-multiplayer.onrender.com/socket.io/socket.io.js"></script>    
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> <!--supabase-->
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script> <!--html2canvas library-->
 
-    <script src="http://localhost:3000/socket.io/socket.io.js"></script><!--server shit-->
 </head>
 
 <body>
@@ -315,8 +315,8 @@
 
         const { createClient } = supabase;
         const db = createClient('https://wujcnvdaffgliugtnfbi.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1amNudmRhZmZnbGl1Z3RuZmJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEzMzI1MjIsImV4cCI6MjA5NjkwODUyMn0.820HceMe01KILH6cffpWq9_yunjvGwBySZp5dz03b3M');
-
-        const socket = io("http://localhost:3000");
+        
+        const socket = io("https://aubguessr-multiplayer.onrender.com");
 
         socket.on("connect", () => {
             console.log("Connected to multiplayer server:", socket.id);
