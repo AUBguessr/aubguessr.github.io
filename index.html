@@ -24,7 +24,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-    <script src="https://aubguessr-multiplayer.onrender.com/socket.io/socket.io.js"></script>    
+    <script src="https://aubguessr-multiplayer.onrender.com/socket.io/socket.io.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> <!--supabase-->
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script> <!--html2canvas library-->
 
@@ -315,7 +315,7 @@
 
         const { createClient } = supabase;
         const db = createClient('https://wujcnvdaffgliugtnfbi.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1amNudmRhZmZnbGl1Z3RuZmJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEzMzI1MjIsImV4cCI6MjA5NjkwODUyMn0.820HceMe01KILH6cffpWq9_yunjvGwBySZp5dz03b3M');
-        
+
         const socket = io("https://aubguessr-multiplayer.onrender.com");
 
         socket.on("connect", () => {
@@ -697,6 +697,8 @@
         let wasMulti = 0;
         let invited = 0;
 
+        let genCode;
+
         let codeArr;
 
         let inverted = 0;
@@ -1001,6 +1003,11 @@
 
                 if (mode && (count == 0)) {
                     turn = arr[round]
+
+                    socket.emit("joinRoom", {
+                        roomCode: challengeCode,
+                        username: user_name
+                    });
                 }
 
                 if (next) {
@@ -1553,7 +1560,7 @@
         });
 
         function generateCode() {
-            let genCode = "https://aubguessr.github.io/?c=" + arr[round] + "-" + arr[round + 1] + "-" + arr[round + 2] + "-" + arr[round + 3] + "-" + arr[round + 4] + "-" + inverted + blurry + mirrored + twoSec;
+            genCode = "https://aubguessr.github.io/?c=" + arr[round] + "-" + arr[round + 1] + "-" + arr[round + 2] + "-" + arr[round + 3] + "-" + arr[round + 4] + "-" + inverted + blurry + mirrored + twoSec;
             document.getElementById("codeOutput").value = genCode;
 
             return genCode;
