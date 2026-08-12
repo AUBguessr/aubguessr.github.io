@@ -327,6 +327,7 @@
         });
 
         socket.on("opponentJoined", (name) => {
+            opponentName = name;
             console.log("Opponent:", name);
             document.getElementById("player2").style.display = "flex";
         });
@@ -1712,6 +1713,7 @@
             document.getElementById("inviteDiv").style.display = "flex";
             document.getElementById("logo").style.display = "revert";
             document.getElementById("cursor-glow").style.display = "none";
+            document.getElementById("text1").textContent = "MULTIPLAYER";
             invited = 1;
 
             let params = new URLSearchParams(window.location.search);
