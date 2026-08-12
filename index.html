@@ -698,6 +698,7 @@
         let invited = 0;
 
         let challengeCode;
+        let challengeLink;
 
         let codeArr;
 
@@ -812,6 +813,8 @@
             }
             return shuffled;
         }
+        
+        generateCode();
 
         let Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}')
 
@@ -946,12 +949,13 @@
 
             guessed = true;
         });
-
+        
         let submit = document.getElementById("submit");
 
         submit.addEventListener('click', function () {
             submitFunc();
         });
+    
 
         function submitFunc() {
 
@@ -1002,6 +1006,8 @@
                 document.getElementById("text1").style.display = "revert";
 
                 if ((mode && (count == 0)) && !host) {
+                    generateCode();
+
                     turn = arr[round]
 
                     socket.emit("joinRoom", {
@@ -1212,9 +1218,8 @@
             }
 
             hideDivs();
-            generateCode();
 
-            console.log(challengeCode);
+            if(play) generateCode();
         });
 
         document.addEventListener('keydown', function (event) {
@@ -1281,6 +1286,7 @@
 
             dim.style.display = "none";
             document.getElementById("scoreDiv").style.display = "none";
+            document.getElementById("scoreDivMulti").style.display = "none";
             document.getElementById("imageCount").textContent = (count + 1) + "/" + round;
             document.getElementById("imageCount").style.display = "none";
             document.getElementById("submit").textContent = "PLAY";
@@ -1578,14 +1584,14 @@
 
         function generateCode() {
             challengeCode = arr[round] + "-" + arr[round + 1] + "-" + arr[round + 2] + "-" + arr[round + 3] + "-" + arr[round + 4] + "-" + inverted + blurry + mirrored + twoSec;
-            let challengeLink = "https://aubguessr.github.io/?c=" + challengeCode;
+            challengeLink = "https://aubguessr.github.io/?c=" + challengeCode;
             document.getElementById("codeOutput").value = challengeLink;
 
-            return challengeLink;
+            console.log("Generate Code is being run! Challenge code is: " + challengeCode);
         }
 
         document.getElementById("copy").addEventListener("click", function () {
-            navigator.clipboard.writeText(generateCode());
+            navigator.clipboard.writeText(challengeLink);
         });
 
         document.getElementById("startGame").addEventListener("click", function () {
@@ -1678,31 +1684,26 @@
         });
 
         let params = new URLSearchParams(window.location.search);
-        let challengeCodeURL = params.get("c");
+        let tempChallengeCode = params.get("c");
         let validCode = false;
 
-        if (challengeCodeURL) {
-            codeArr = challengeCodeURL.split("-");
+        if (tempChallengeCode) {
+            codeArr = tempChallengeCode.split("-");
             validCode = codeArr.length == 6;
         }
 
         if (validCode) validCode = codeArr[5].length == 4;
 
         if (validCode) {
-            challengeCode = challengeCodeURL;
+            challengeCode = tempChallengeCode;
             
             socket.emit("joinRoom", {
-                roomCode: challengeCodeURL,
+                roomCode: challengeCode,
                 username: user_name || "Opponent"
             });
         }
 
-        if (!validCode) {
-            document.getElementById("inviteText1").textContent = "Invalid Link";
-            document.getElementById("startGame").style.display = "none";
-        }
-
-        if (challengeCodeURL) {
+        if (validCode) {
 
             hideSignin();
             hideAccount();
@@ -1753,9 +1754,10 @@
                 document.getElementById("addedDiffTwoSec").style.textShadow = "2px 2px 4px rgba(0, 0, 0, 0.6)";
                 twoSec = 1;
             }
+        }else{
+            document.getElementById("inviteText1").textContent = "Invalid Link";
+            document.getElementById("startGame").style.display = "none";
         }
-
-        if (!invited) generateCode();
 
         function assembleCanvas() {
             document.getElementById('scoreValue').textContent = finalScore;
