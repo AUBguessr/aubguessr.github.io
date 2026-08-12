@@ -328,7 +328,10 @@
 
         socket.on("opponentJoined", (name) => {
             opponentName = name;
+            document.getElementById("name2").textContent = opponentName;
+
             console.log("Opponent:", name);
+            
             document.getElementById("player2").style.display = "flex";
         });
 
@@ -1194,7 +1197,6 @@
         function showPlayer2() {
             document.getElementById("waiting").style.display = "none";
 
-            document.getElementById("name2").textContent = opponentName;
             document.getElementById("score2").textContent = "Score: " + opponentScore.toFixed(2) + "%";
             document.getElementById("perfect2").textContent = opponentPerfectScores + "/" + round;
 
@@ -1942,7 +1944,6 @@
 
         socket.on("opponentFinished", (data) => {
             opponentFinished = true;
-            opponentName = data.username;
             opponentScore = data.score;
             opponentPerfectScores = data.perfectScores;
 
