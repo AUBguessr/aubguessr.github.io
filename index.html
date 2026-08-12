@@ -1204,6 +1204,17 @@
             document.getElementById("perfect2").style.display = "flex";
         }
 
+        function hidePlayer2(){
+            document.getElementById("player2").style.display = "none";
+
+            document.getElementById("waiting").style.display = "revert";
+
+            document.getElementById("name2").style.display = "none";
+            document.getElementById("score2").style.display = "none";
+            document.getElementById("perfectLogo2").style.display = "none";
+            document.getElementById("perfect2").style.display = "none";
+        }
+
         document.getElementById("picWrap").addEventListener('click', function () {
             if (play || twoSecDone) {
                 return;
@@ -1285,6 +1296,12 @@
             hintUsed = 0;
             host = false;
 
+            opponentFinished = false;
+            opponentScore = null;
+            opponentName = null;
+            myScoreSubmitted = false;
+            opponentPerfectScores = null;
+
             dim.style.display = "none";
             document.getElementById("scoreDiv").style.display = "none";
             document.getElementById("scoreDivMulti").style.display = "none";
@@ -1309,6 +1326,8 @@
             hintGroup.clearLayers();
             document.getElementById("hint").style.display = "none";
             document.getElementById("leader").style.display = "flex";
+
+            hidePlayer2();
 
             showIntroMarkers();
 

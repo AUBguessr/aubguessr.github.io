@@ -401,7 +401,7 @@ body {
     -webkit-text-fill-color: transparent;
 
     /* Adds a smooth drop shadow underneath */
-    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 1));
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
     text-align: center;
     width: 20dvw;
 }
