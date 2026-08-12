@@ -473,7 +473,7 @@ body {
 #againMulti {
     border-radius: 15px;
     border-style: solid;
-    border-width: 2px;
+    border-width: 1px;
     border-color: #a00c40;
 
     background-color: #960236;
@@ -502,7 +502,7 @@ body {
 
     border-radius: 10px;
     border-style: solid;
-    border-width: 2px;
+    border-width: 1px;
     border-color: #a00c40;
 
     background-color: #960236;
@@ -1314,8 +1314,8 @@ body {
 }
 
 #inviteDiv {
-    height: 220px;
-    width: 400px;
+    height: 24dvh;
+    width: 28dvw;
 }
 
 #inviteBubble {
@@ -1323,11 +1323,11 @@ body {
     flex-direction: column;
     position: absolute;
 
-    height: 200px;
-    width: 300px;
+    height: 26dvh;
+    width: 20dvw;
 
-    margin-left: 750px;
-    bottom: 160px;
+    margin-left: 50dvw;
+    bottom: 20dvh;
 
     background-color: rgb(133, 1, 50);
 
@@ -1362,7 +1362,7 @@ body {
 #addedDiffBlurry,
 #addedDiffMirrored,
 #addedDiffTwoSec {
-    font-size: 1.2dvw;
+    font-size: 2.4dvh;
     font-family: 'Georgia', serif;
     font-weight: bold;
 
@@ -1397,7 +1397,7 @@ body {
     background-color: #960035;
 
     border-style: solid;
-    border-radius: 15px;
+    border-radius: 10px;
     color: #e2c072;
 
     border-style: solid;
@@ -1409,7 +1409,7 @@ body {
 }
 
 #startGame {
-    top: 10px;
+    margin-top: 13dvh;
     width: 40%;
     font-size: 1dvw;
 }
@@ -1748,14 +1748,11 @@ body {
 #multiNames {
     align-self: center;
     height: 60%;
-    width: 95%;
-    background-color: #720a28;
+    width: 97%;
+    background-color: #750b29;
     border-radius: 20px;
     margin-bottom: 20%;
 
-    border-width: 3px;
-    border-color: rgb(105, 9, 36);
-    border-style: solid;
 }
 
 #player1,
@@ -1769,10 +1766,10 @@ body {
     align-items: center;
 
     height: 6dvh;
-    width: 96%;
+    width: 95%;
 
     margin-top: 10px;
-    margin-left: 2%;
+    margin-left: 3%;
     border-radius: 14px;
 
     background-color: #960236;
@@ -2299,7 +2296,7 @@ body {
     }
 
     #startGame {
-        margin-top: 16dvh;
+        margin-top: 15dvh;
         width: 60%;
         font-size: 4dvw;
     }
@@ -2368,8 +2365,8 @@ body {
 
     #inviteBubble {
         margin-left: 100px;
-        bottom: 240px;
-
+        bottom: 200px;
+        height: 200px;
         width: 200px;
     }
 
