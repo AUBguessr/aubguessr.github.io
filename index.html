@@ -316,8 +316,12 @@
         const { createClient } = supabase;
         const db = createClient('https://wujcnvdaffgliugtnfbi.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1amNudmRhZmZnbGl1Z3RuZmJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEzMzI1MjIsImV4cCI6MjA5NjkwODUyMn0.820HceMe01KILH6cffpWq9_yunjvGwBySZp5dz03b3M');
 
-        const socket = io("https://aubguessr-multiplayer.onrender.com");
+        const socket = io("https://aubguessr-multiplayer.bonto.dev");
 
+
+
+
+        
         socket.on("connect", () => {
             console.log("Connected to multiplayer server:", socket.id);
         });
