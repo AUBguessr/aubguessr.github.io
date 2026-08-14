@@ -1791,18 +1791,18 @@ body {
 #player2,
 #player3,
 #player4 {
-    display: none;
+    display: none;   
 }
 
 #waiting {
     margin-left: 20px;
+    font-size: 1dvw;
 }
 
 #waitingSVG {
     position: absolute;
     height: 30px;
     margin-left: 10px;
-    margin-top: -6px;
 }
 
 #name1,
@@ -1832,10 +1832,11 @@ body {
 #score3,
 #score4 {
     position: absolute;
-    font-size: 1dvw;
+    font-size: 1cqw;
     right: 50%;
     width: 14%;
 
+    text-align: center;
 
     background-image: -webkit-linear-gradient(left, #e2bf71, #af4261);
     border-radius: 10px;
@@ -2553,6 +2554,10 @@ body {
         font-size: 3dvw;
     }
 
+    #waitingSVG{
+        margin-top: -6px;
+    }
+
     #name1,
     #name2,
     #name3,
@@ -2567,9 +2572,9 @@ body {
     #score3,
     #score4 {
         position: absolute;
-        font-size: 2.8dvw;
+        font-size: 3cqw;
         right: 54%;
-        width: 52px;
+        width: 15%;
         border-radius: 8px;
     }
 
