@@ -62,7 +62,8 @@ io.on("connection", (socket) => {
         socket.to(data.roomCode).emit("opponentFinished", {
             username: socket.username,
             score: data.score,
-            perfectScores: data.perfectScores
+            perfectScores: data.perfectScores,
+            hints: data.hints
         });
     });
 

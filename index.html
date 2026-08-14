@@ -237,33 +237,41 @@
             <div id="multiNames">
                 <div id="player1">
                     <p id="name1">You</p>
-                    <p id="score1">Score: 99.99%</p>
+                    <p id="score1">99.99%</p>
                     <p id="perfectLogo1">P</p>
                     <p id="perfect1">5/5</p>
+                    <img id="hintSVG1" src="assets/hint2.svg">
+                    <p id="hint1">5/5</p>
                 </div>
 
                 <div id="player2">
                     <p id="waiting">Waiting for Player to finish <img id="waitingSVG" src="assets/waiting.svg"></p>
                     <p id="name2"></p>
-                    <p id="score2">Score: 99.99%</p>
+                    <p id="score2">99.99%</p>
                     <p id="perfectLogo2">P</p>
                     <p id="perfect2">5/5</p>
+                    <img id="hintSVG2" src="assets/hint2.svg">
+                    <p id="hint2">5/5</p>
                 </div>
 
                 <div id="player3">
                     <p id="waiting">Waiting for Player to finish <img id="waitingSVG" src="assets/waiting.svg"></p>
                     <p id="name3"></p>
-                    <p id="score3">Score: 99.99%</p>
+                    <p id="score3">99.99%</p>
                     <p id="perfectLogo3">P</p>
                     <p id="perfect3">5/5</p>
+                    <img id="hintSVG3" src="assets/hint2.svg">
+                    <p id="hint3">5/5</p>
                 </div>
 
                 <div id="player4">
                     <p id="waiting">Waiting for Player to finish <img id="waitingSVG" src="assets/waiting.svg"></p>
                     <p id="name4"></p>
-                    <p id="score4">Score: 99.99%</p>
+                    <p id="score4">99.99%</p>
                     <p id="perfectLogo4">P</p>
                     <p id="perfect4">5/5</p>
+                    <img id="hintSVG4" src="assets/hint2.svg">
+                    <p id="hint4">5/5</p>
                 </div>
             </div>
             <button id="againMulti">Play Again!</button>
@@ -331,7 +339,7 @@
             document.getElementById("name2").textContent = opponentName;
 
             console.log("Opponent:", name);
-            
+
             document.getElementById("player2").style.display = "flex";
         });
 
@@ -349,6 +357,7 @@
         let play = true;
         let done = false;
         let perfectScore = 0;
+        let hints = 0;
         let total = 0;
         let avg_score = 0;
         let coords = [
@@ -727,6 +736,7 @@
         let opponentName = null;
         let myScoreSubmitted = false;
         let opponentPerfectScores = null;
+        let opponentHints = null;
 
         let host = false;
 
@@ -817,7 +827,7 @@
             }
             return shuffled;
         }
-        
+
         generateCode();
 
         let Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}')
@@ -890,7 +900,7 @@
 
         let formatted;
 
-        showIntroMarkers();
+        if (!isMobile) showIntroMarkers();
 
         function showIntroMarkers() {
             markerFlash.clearLayers();
@@ -953,13 +963,13 @@
 
             guessed = true;
         });
-        
+
         let submit = document.getElementById("submit");
 
         submit.addEventListener('click', function () {
             submitFunc();
         });
-    
+
 
         function submitFunc() {
 
@@ -1140,27 +1150,29 @@
             finalScore = (total / round).toFixed(2);
             if (finalScore == 100.00) finalScore = 100;
 
-            if(dailyMode){
+            if (dailyMode) {
                 document.getElementById("score").textContent = finalScore + "%";
                 document.getElementById("perfect").textContent = "Perfect Scores: " + perfectScore + "/" + round;
                 document.getElementById("scoreDiv").style.display = "flex";
-            }else if (wasMulti || invited) {
+            } else if (wasMulti || invited) {
                 console.log("SENDING SCORE OBJECT:", {
                     roomCode: challengeCode,
                     score: parseFloat(finalScore),
-                    perfectScores: perfectScore
+                    perfectScores: perfectScore,
+                    hints: hints
                 });
                 socket.emit("sendScore", {
                     roomCode: challengeCode,
                     score: parseFloat(finalScore),
-                    perfectScores: perfectScore
+                    perfectScores: perfectScore,
+                    hints: hints
                 });
 
                 myScoreSubmitted = true;
 
-                document.getElementById("name1").textContent = "You";
-                document.getElementById("score1").textContent = "Score: " + finalScore + "%";
+                document.getElementById("score1").textContent = finalScore + "%";
                 document.getElementById("perfect1").textContent = perfectScore + "/" + round;
+                document.getElementById("hint1").textContent = hints + "/" + round;
 
                 document.getElementById("scoreDivMulti").style.display = "flex";
 
@@ -1201,16 +1213,19 @@
         function showPlayer2() {
             document.getElementById("waiting").style.display = "none";
 
-            document.getElementById("score2").textContent = "Score: " + opponentScore.toFixed(2) + "%";
+            document.getElementById("score2").textContent = opponentScore.toFixed(2) + "%";
             document.getElementById("perfect2").textContent = opponentPerfectScores + "/" + round;
+            document.getElementById("hint2").textContent = opponentHints + "/" + round;
 
             document.getElementById("name2").style.display = "flex";
             document.getElementById("score2").style.display = "flex";
             document.getElementById("perfectLogo2").style.display = "revert";
             document.getElementById("perfect2").style.display = "flex";
+            document.getElementById("hintSVG2").style.display = "flex";
+            document.getElementById("hint2").style.display = "flex";
         }
 
-        function hidePlayer2(){
+        function hidePlayer2() {
             document.getElementById("player2").style.display = "none";
 
             document.getElementById("waiting").style.display = "revert";
@@ -1237,7 +1252,7 @@
 
             hideDivs();
 
-            if(play) generateCode();
+            if (play) generateCode();
         });
 
         document.addEventListener('keydown', function (event) {
@@ -1294,6 +1309,7 @@
             play = true;
             done = false;
             perfectScore = 0;
+            hints = 0;
             total = 0;
             arr = shuffleArray(arr);
             turn = arr[0];
@@ -1702,7 +1718,7 @@
         document.getElementById("useHint").addEventListener("click", function () {
             if (play || next) return;
             hintUsed = 1;
-
+            hints++;
             dim.style.display = "none";
             document.getElementById("hintDiv").style.display = "none";
 
@@ -1722,7 +1738,7 @@
 
         if (validCode) {
             challengeCode = tempChallengeCode;
-            
+
             socket.emit("joinRoom", {
                 roomCode: challengeCode,
                 username: user_name || "Opponent"
@@ -1781,7 +1797,7 @@
                 document.getElementById("addedDiffTwoSec").style.textShadow = "2px 2px 4px rgba(0, 0, 0, 0.6)";
                 twoSec = 1;
             }
-        }else{
+        } else {
             document.getElementById("inviteText1").textContent = "Invalid Link";
             document.getElementById("startGame").style.display = "none";
         }
@@ -1947,9 +1963,12 @@
         });
 
         socket.on("opponentFinished", (data) => {
+            console.log("OPPONENT FINISHED DATA:", data);
+
             opponentFinished = true;
             opponentScore = data.score;
             opponentPerfectScores = data.perfectScores;
+            opponentHints = data.hints;
 
             showPlayer2();
         });
