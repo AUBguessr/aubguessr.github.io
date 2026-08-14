@@ -1730,7 +1730,7 @@ body {
 }
 
 #scoreDivMulti {
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: space-between;
 }
@@ -1786,12 +1786,21 @@ body {
     border-style: solid;
     border-width: 1px;
     border-color: #ac0c44;
+
+    cursor: pointer;
+}
+
+#player1:hover,
+#player2:hover,
+#player3:hover,
+#player4:hover {
+    background-color: #a4073e;
 }
 
 #player2,
 #player3,
 #player4 {
-    display: none;   
+    display: none;
 }
 
 #waiting {
@@ -1927,6 +1936,98 @@ body {
 #hint3,
 #hint4 {
     display: none;
+}
+
+#summaryDivCover {
+    display: none;
+    justify-content: space-evenly;
+
+    position: absolute;
+    height: 100dvh;
+    width: 100dvw;
+    background-color: #4b021c;
+    z-index: 9000;
+}
+
+#summaryDiv {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    align-self: center;
+    background-color: #e2bf71;
+    width: 700px;
+    height: 300px;
+
+
+    border-style: solid;
+    border-width: 10px;
+    border-color: #85002e;
+    border-radius: 20px;
+
+    z-index: 9999;
+}
+
+#xmark {
+    background-color: #85002e;
+    height: 36px;
+    border-radius: 20px;
+    padding: 6px;
+
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    box-shadow: -2px 2px 1px 0px rgba(0, 0, 0, 0.3);
+}
+
+#xmark:hover {
+    background-color: #9f043b;
+    box-shadow: none;
+}
+
+#summaryText1 {
+    font-size: 40px;
+    color: #85002e;
+    font-family: Impact;
+    letter-spacing: 1px;
+}
+
+#summaryPics {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+
+    bottom: 10px;
+    width: 100%;
+    height: 200px;
+    margin-left: -6px;
+}
+
+#picS {
+    margin-left: 18px;
+    width: 17%;
+    height: 100%;
+}
+
+#smallPicS0,
+#smallPicS1,
+#smallPicS2,
+#smallPicS3,
+#smallPicS4 {
+    width: 100%;
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #85002e;
+}
+
+#picScoreS {
+    text-align: center;
+    color: #85002e;
+    font-family: Impact;
+    font-size: 30px;
+    font-weight: 500;
+    margin-left: 6px;
 }
 
 @keyframes drift {
@@ -2554,7 +2655,7 @@ body {
         font-size: 3dvw;
     }
 
-    #waitingSVG{
+    #waitingSVG {
         margin-top: -6px;
     }
 
@@ -2617,6 +2718,48 @@ body {
     #hint4 {
         position: absolute;
         right: 7%;
+        font-size: 4dvw;
+    }
+
+    #summaryDiv {
+        width: 100dvw;
+        height: 50dvw;
+        min-height: 200px;
+    }
+
+    #xmark {
+        height: 26px;
+    }
+
+    #xmark:hover {
+        background-color: #9f043b;
+        box-shadow: none;
+    }
+
+    #summaryText1 {
+        font-size: 20px;
+    }
+
+    #summaryPics {
+        justify-content: space-evenly;
+        width: 94dvw;
+        height: 60%;
+    }
+
+    #picS {
+        margin-left: 4px;
+        width: 80px;
+    }
+
+    #smallPicS0,
+    #smallPicS1,
+    #smallPicS2,
+    #smallPicS3,
+    #smallPicS4 {
+        border-radius: 10px;
+    }
+
+    #picScoreS {
         font-size: 4dvw;
     }
 }

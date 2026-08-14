@@ -63,7 +63,8 @@ io.on("connection", (socket) => {
             username: socket.username,
             score: data.score,
             perfectScores: data.perfectScores,
-            hints: data.hints
+            hints: data.hints,
+            scoreArr: data.scoreArr
         });
     });
 

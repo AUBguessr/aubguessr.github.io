@@ -236,7 +236,7 @@
             <p id="scoreMultiText1">FINAL RESULTS</p>
             <div id="multiNames">
                 <div id="player1">
-                    <p id="name1">Youuuuuuuuuuuuuuuuuuuu</p>
+                    <p id="name1">You</p>
                     <p id="score1">99.99%</p>
                     <p id="perfectLogo1">P</p>
                     <p id="perfect1">5/5</p>
@@ -278,6 +278,37 @@
             <button id="shareMulti">share score</button>
         </div>
 
+        <div id="summaryDivCover">
+            <div id="summaryDiv">
+
+                <img id="xmark" src="assets/xmark.svg">
+
+                <p id="summaryText1">Guest's Summary:</p>
+
+                <div id="summaryPics">
+                    <div id="picS">
+                        <img id="smallPicS0" src="images/image0.jpeg">
+                        <p id="picScoreS"><span id="pic0scoreS">99.99 </span>%</p>
+                    </div>
+                    <div id="picS">
+                        <img id="smallPicS1" src="images/image0.jpeg">
+                        <p id="picScoreS"><span id="pic1scoreS">99.99 </span>%</p>
+                    </div>
+                    <div id="picS">
+                        <img id="smallPicS2" src="images/image0.jpeg">
+                        <p id="picScoreS"><span id="pic2scoreS">99.99 </span>%</p>
+                    </div>
+                    <div id="picS">
+                        <img id="smallPicS3" src="images/image0.jpeg">
+                        <p id="picScoreS"><span id="pic3scoreS">99.99 </span>%</p>
+                    </div>
+                    <div id="picS">
+                        <img id="smallPicS4" src="images/image0.jpeg">
+                        <p id="picScoreS"><span id="pic4scoreS">99.99 </span>%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!--///////////////////////////////////////////////////////////////////////account details page-->
@@ -737,6 +768,7 @@
         let myScoreSubmitted = false;
         let opponentPerfectScores = null;
         let opponentHints = null;
+        let opponentScoreArr = new Array(5);
 
         let host = false;
 
@@ -1165,7 +1197,8 @@
                     roomCode: challengeCode,
                     score: parseFloat(finalScore),
                     perfectScores: perfectScore,
-                    hints: hints
+                    hints: hints,
+                    scoreArr: scoreArr
                 });
 
                 myScoreSubmitted = true;
@@ -1205,6 +1238,10 @@
                     dailyPlayed = 1;
                 }
                 updateGamesDB = false; //for it to happen once
+            }
+
+            for (let x = 0; x < round; x++) {
+                document.getElementById(`smallPicS${x}`).src = "images/image" + turnArr[x] + ".jpeg";
             }
 
             return;
@@ -1809,7 +1846,6 @@
                 document.getElementById(`pic${x}score`).textContent = scoreArr[x];
                 document.getElementById(`smallPic${x}`).src = "images/image" + turnArr[x] + ".jpeg";
             }
-
             return;
         }
 
@@ -1969,9 +2005,43 @@
             opponentScore = data.score;
             opponentPerfectScores = data.perfectScores;
             opponentHints = data.hints;
+            opponentScoreArr = data.scores;
 
             showPlayer2();
         });
+
+        document.getElementById("player1").addEventListener("click", function () {
+
+            document.getElementById("summaryText1").textContent = "Your Summary:";
+            
+            for (let x = 0; x < round; x++) {
+                document.getElementById(`pic${x}scoreS`).textContent = scoreArr[x];
+            }
+
+            document.getElementById("summaryDivCover").style.display = "flex";
+            document.getElementById("summaryDiv").style.display = "flex";
+        });
+
+        document.getElementById("player2").addEventListener("click", function () {
+
+            if(!opponentFinished) return;
+
+            document.getElementById("summaryText1").textContent = opponentName + "'s Summary:";
+            
+            for (let x = 0; x < round; x++) {
+                document.getElementById(`pic${x}scoreS`).textContent = opponentScoreArr[x];
+            }
+
+            document.getElementById("summaryDivCover").style.display = "flex";
+            document.getElementById("summaryDiv").style.display = "flex";
+        });
+
+        document.getElementById("xmark").addEventListener("click", function () {
+            document.getElementById("summaryDivCover").style.display = "none";
+            document.getElementById("summaryDiv").style.display = "none";
+        });
+
+
 
     </script>
 </body>
