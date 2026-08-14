@@ -233,8 +233,10 @@
         </div>
 
         <div id="scoreDivMulti">
+            <p id="multiNamesText1">click on a player to view their summary</p>
             <p id="scoreMultiText1">FINAL RESULTS</p>
             <div id="multiNames">
+                
                 <div id="player1">
                     <p id="name1">You</p>
                     <p id="score1">99.99%</p>
@@ -1187,12 +1189,7 @@
                 document.getElementById("perfect").textContent = "Perfect Scores: " + perfectScore + "/" + round;
                 document.getElementById("scoreDiv").style.display = "flex";
             } else if (wasMulti || invited) {
-                console.log("SENDING SCORE OBJECT:", {
-                    roomCode: challengeCode,
-                    score: parseFloat(finalScore),
-                    perfectScores: perfectScore,
-                    hints: hints
-                });
+                
                 socket.emit("sendScore", {
                     roomCode: challengeCode,
                     score: parseFloat(finalScore),
@@ -1207,6 +1204,7 @@
                 document.getElementById("perfect1").textContent = perfectScore + "/" + round;
                 document.getElementById("hint1").textContent = hints + "/" + round;
 
+                document.getElementById("multiNamesText1").style.display = "flex";
                 document.getElementById("scoreDivMulti").style.display = "flex";
 
             } else {
@@ -1314,6 +1312,7 @@
             document.getElementById("deleteDiv").style.display = "none";
             document.getElementById("dailyDiv").style.display = "none";
             document.getElementById("scoreDivMulti").style.display = "none";
+            document.getElementById("multiNamesText1").style.display = "none";
             return;
         }
 
@@ -2005,7 +2004,7 @@
             opponentScore = data.score;
             opponentPerfectScores = data.perfectScores;
             opponentHints = data.hints;
-            opponentScoreArr = data.scores;
+            opponentScoreArr = data.scoreArr;
 
             showPlayer2();
         });

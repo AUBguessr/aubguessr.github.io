@@ -1730,7 +1730,7 @@ body {
 }
 
 #scoreDivMulti {
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
@@ -1756,7 +1756,25 @@ body {
     border-width: 2px;
     border-style: solid;
     border-color: #690427;
+    position: static;
+}
 
+#multiNamesText1 {
+    position: absolute;
+    color: #e2bf71;
+    white-space: nowrap;
+
+    margin-top: -60px;
+    margin-left: 50dvh;
+    background-color: #8e0336;
+    padding: 8px;
+    
+    border-width: 4px;
+    border-style: solid;
+    border-color: #6f0a27;
+
+    border-radius: 10px 10px 10px 0;
+    font-weight: bold;
 }
 
 #player1,
@@ -2644,6 +2662,11 @@ body {
         margin-bottom: 30%;
     }
 
+    #multiNamesText1 {
+        margin-left: 0;
+        right: 0;
+    }
+
     #player1,
     #player2,
     #player3,
@@ -2725,6 +2748,7 @@ body {
         width: 100dvw;
         height: 50dvw;
         min-height: 200px;
+        border-width: 6px;
     }
 
     #xmark {
@@ -2738,6 +2762,8 @@ body {
 
     #summaryText1 {
         font-size: 20px;
+        margin-top: 10px;
+        font-weight: bold;
     }
 
     #summaryPics {
@@ -2757,6 +2783,7 @@ body {
     #smallPicS3,
     #smallPicS4 {
         border-radius: 10px;
+        border-width: 4px;
     }
 
     #picScoreS {
