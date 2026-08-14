@@ -236,7 +236,7 @@
             <p id="scoreMultiText1">FINAL RESULTS</p>
             <div id="multiNames">
                 <div id="player1">
-                    <p id="name1">jadoshamso</p>
+                    <p id="name1">You</p>
                     <p id="score1">Score: 99.99%</p>
                     <p id="perfectLogo1">P</p>
                     <p id="perfect1">5/5</p>
@@ -244,7 +244,7 @@
 
                 <div id="player2">
                     <p id="waiting">Waiting for Player to finish <img id="waitingSVG" src="assets/waiting.svg"></p>
-                    <p id="name2">jadoshamsoddddddddd</p>
+                    <p id="name2"></p>
                     <p id="score2">Score: 99.99%</p>
                     <p id="perfectLogo2">P</p>
                     <p id="perfect2">5/5</p>
@@ -252,7 +252,7 @@
 
                 <div id="player3">
                     <p id="waiting">Waiting for Player to finish <img id="waitingSVG" src="assets/waiting.svg"></p>
-                    <p id="name3">jadoshamso</p>
+                    <p id="name3"></p>
                     <p id="score3">Score: 99.99%</p>
                     <p id="perfectLogo3">P</p>
                     <p id="perfect3">5/5</p>
@@ -260,7 +260,7 @@
 
                 <div id="player4">
                     <p id="waiting">Waiting for Player to finish <img id="waitingSVG" src="assets/waiting.svg"></p>
-                    <p id="name4">jadoshamso</p>
+                    <p id="name4"></p>
                     <p id="score4">Score: 99.99%</p>
                     <p id="perfectLogo4">P</p>
                     <p id="perfect4">5/5</p>
@@ -1140,7 +1140,11 @@
             finalScore = (total / round).toFixed(2);
             if (finalScore == 100.00) finalScore = 100;
 
-            if (wasMulti || invited) {
+            if(dailyMode){
+                document.getElementById("score").textContent = finalScore + "%";
+                document.getElementById("perfect").textContent = "Perfect Scores: " + perfectScore + "/" + round;
+                document.getElementById("scoreDiv").style.display = "flex";
+            }else if (wasMulti || invited) {
                 console.log("SENDING SCORE OBJECT:", {
                     roomCode: challengeCode,
                     score: parseFloat(finalScore),
@@ -1154,7 +1158,7 @@
 
                 myScoreSubmitted = true;
 
-                document.getElementById("name1").textContent = user_name;
+                document.getElementById("name1").textContent = "You";
                 document.getElementById("score1").textContent = "Score: " + finalScore + "%";
                 document.getElementById("perfect1").textContent = perfectScore + "/" + round;
 
