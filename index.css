@@ -1753,6 +1753,10 @@ body {
     border-radius: 20px;
     margin-bottom: 20%;
 
+    border-width: 2px;
+    border-style: solid;
+    border-color: #690427;
+
 }
 
 #player1,
@@ -2538,68 +2542,74 @@ body {
         margin-bottom: 30%;
     }
 
-    #waiting {
-        font-size: 3dvw;
+    #player1,
+    #player2,
+    #player3,
+    #player4 {
+        height: 5dvh;
     }
+        #waiting {
+            font-size: 3dvw;
+        }
 
-    #name1,
-    #name2,
-    #name3,
-    #name4 {
-        font-size: 3dvw;
-        margin-bottom: 2px;
-        width: 24%;
-    }
+        #name1,
+        #name2,
+        #name3,
+        #name4 {
+            font-size: 3dvw;
+            margin-bottom: 2px;
+            width: 21%;
+        }
 
-    #score1,
-    #score2,
-    #score3,
-    #score4 {
-        position: absolute;
-        font-size: 2.8dvw;
-        right: 52%;
-        width: 52px;
-    }
+        #score1,
+        #score2,
+        #score3,
+        #score4 {
+            position: absolute;
+            font-size: 2.8dvw;
+            right: 54%;
+            width: 52px;
+        }
 
-    #perfectLogo1,
-    #perfectLogo2,
-    #perfectLogo3,
-    #perfectLogo4 {
-        font-size: 3dvh;
-        right: 40%;
-        height: 6%;
-        width: 8%;
-        padding-top: 0;
-    }
+        #perfectLogo1,
+        #perfectLogo2,
+        #perfectLogo3,
+        #perfectLogo4 {
+            font-size: 3dvh;
+            right: 40%;
+            height: 6%;
+            width: 9%;
+            padding-top: 0;
+        }
 
-    #perfect1,
-    #perfect2,
-    #perfect3,
-    #perfect4 {
-        position: absolute;
-        font-size: 4dvw;
-        right: 31%;
-    }
+        #perfect1,
+        #perfect2,
+        #perfect3,
+        #perfect4 {
+            position: absolute;
+            font-size: 4dvw;
+            right: 30%;
+        }
 
-    #hintSVG1,
-    #hintSVG2,
-    #hintSVG3,
-    #hintSVG4 {
-        position: absolute;
-        height: 6%;
-        border-radius: 6px;
-        box-shadow: -1px 1px 2px 2px rgba(0, 0, 0, 0.3);
-        padding: 2px;
-        background-image: -webkit-linear-gradient(left, #e2bf71, #af4261);
-        right: 17%;
-    }
+        #hintSVG1,
+        #hintSVG2,
+        #hintSVG3,
+        #hintSVG4 {
+            position: absolute;
+            height: 6%;
+            border-radius: 6px;
+            box-shadow: -1px 1px 2px 2px rgba(0, 0, 0, 0.3);
+            padding: 2px;
+            background-image: -webkit-linear-gradient(left, #e2bf71, #af4261);
+            right: 17%;
+        }
 
-    #hint1,
-    #hint2,
-    #hint3,
-    #hint4 {
-        position: absolute;
-        right: 8%;
-        font-size: 4dvw;
+        #hint1,
+        #hint2,
+        #hint3,
+        #hint4 {
+            position: absolute;
+            right: 7%;
+            font-size: 4dvw;
+        }
     }
-}
