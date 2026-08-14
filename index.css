@@ -1730,7 +1730,7 @@ body {
 }
 
 #scoreDivMulti {
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: space-between;
 }
