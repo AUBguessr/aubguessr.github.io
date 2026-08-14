@@ -1730,7 +1730,7 @@ body {
 }
 
 #scoreDivMulti {
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
@@ -2574,7 +2574,7 @@ body {
         position: absolute;
         font-size: 3cqw;
         right: 54%;
-        width: 15%;
+        width: 16%;
         border-radius: 8px;
     }
 
@@ -2582,7 +2582,7 @@ body {
     #perfectLogo2,
     #perfectLogo3,
     #perfectLogo4 {
-        font-size: 3dvh;
+        font-size: 3.3dvh;
         right: 40%;
         height: 6%;
         width: 9%;
