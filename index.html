@@ -2057,6 +2057,7 @@
 
         function hostHasntJoinedPopUp() {
             popUpMessage.textContent = "Host has not started the game yet!";
+            popUpMessage.style.top = "4dvh";
 
             popUpMessage.classList.remove("show");
 
@@ -2067,7 +2068,8 @@
         }
 
         function hostJoinedPopUp() {
-            popUpMessage.textContent = "Host has joined the game!";
+            popUpMessage.textContent = "Host has started the game!";
+            popUpMessage.style.top = "4dvh";
 
             popUpMessage.classList.remove("show");
 
@@ -2079,6 +2081,7 @@
 
         function opponentFinishedPopUp() {
             popUpMessage.textContent = opponentName + " has finished the game!";
+            if(isMobile) popUpMessage.style.top = "34dvh";
 
             popUpMessage.classList.remove("show");
 
