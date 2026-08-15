@@ -1759,7 +1759,7 @@ body {
     position: static;
 }
 
-#multiNamesText1 {
+#scoreDivMultiBubble {
     position: absolute;
     color: #e2bf71;
     white-space: nowrap;
@@ -1778,9 +1778,7 @@ body {
 }
 
 #player1,
-#player2,
-#player3,
-#player4 {
+#player2 {
     font-family: monospace;
     font-weight: bold;
     display: flex;
@@ -1809,15 +1807,11 @@ body {
 }
 
 #player1:hover,
-#player2:hover,
-#player3:hover,
-#player4:hover {
+#player2:hover {
     background-color: #a4073e;
 }
 
-#player2,
-#player3,
-#player4 {
+#player2 {
     display: none;
 }
 
@@ -1833,9 +1827,7 @@ body {
 }
 
 #name1,
-#name2,
-#name3,
-#name4 {
+#name2 {
     display: inline;
     position: absolute;
     font-size: 1dvw;
@@ -1847,17 +1839,13 @@ body {
 
 }
 
-#name2,
-#name3,
-#name4 {
+#name2 {
     display: none;
 
 }
 
 #score1,
-#score2,
-#score3,
-#score4 {
+#score2 {
     position: absolute;
     font-size: 1cqw;
     right: 50%;
@@ -1873,16 +1861,12 @@ body {
     box-shadow: -1px 1px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
-#score2,
-#score3,
-#score4 {
+#score2{
     display: none;
 }
 
 #perfectLogo1,
-#perfectLogo2,
-#perfectLogo3,
-#perfectLogo4 {
+#perfectLogo2 {
     position: absolute;
     font-family: Georgia;
     right: 38%;
@@ -1901,31 +1885,23 @@ body {
     box-shadow: -1px 1px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
-#perfectLogo2,
-#perfectLogo3,
-#perfectLogo4 {
+#perfectLogo2 {
     display: none;
 }
 
 #perfect1,
-#perfect2,
-#perfect3,
-#perfect4 {
+#perfect2 {
     position: absolute;
     font-size: 1.4dvw;
     right: 29%;
 }
 
-#perfect2,
-#perfect3,
-#perfect4 {
+#perfect2 {
     display: none;
 }
 
 #hintSVG1,
-#hintSVG2,
-#hintSVG3,
-#hintSVG4 {
+#hintSVG2 {
     position: absolute;
     height: 6%;
     border-radius: 6px;
@@ -1935,24 +1911,18 @@ body {
     right: 18%;
 }
 
-#hintSVG2,
-#hintSVG3,
-#hintSVG4 {
+#hintSVG2 {
     display: none;
 }
 
 #hint1,
-#hint2,
-#hint3,
-#hint4 {
+#hint2 {
     position: absolute;
     right: 9%;
     font-size: 1.4dvw;
 }
 
-#hint2,
-#hint3,
-#hint4 {
+#hint2 {
     display: none;
 }
 
@@ -2046,6 +2016,43 @@ body {
     font-size: 30px;
     font-weight: 500;
     margin-left: 6px;
+}
+
+#hostNotJoined {
+    position: absolute;
+    opacity: 0;
+    display: none;
+    z-index: 2000;
+
+    font-size: 2dvh;
+
+    color: #e2bf71;
+    white-space: nowrap;
+
+    background-color: #8e0336;
+    padding: 8px;
+    
+    border-width: 4px;
+    border-style: solid;
+    border-color: #6f0a27;
+
+    border-radius: 10px;
+    font-weight: bold;
+
+    top: 4dvh;
+
+}
+
+#hostNotJoined.show {
+    display: block;
+    animation: fadeMessage 2s ease-in-out;
+}
+
+@keyframes fadeMessage {
+    0%   { opacity: 0; }
+    20%  { opacity: 1; }
+    80%  { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 @keyframes drift {
@@ -2534,7 +2541,7 @@ body {
 
     #inviteBubble {
         margin-left: 100px;
-        bottom: 200px;
+        bottom: 26dvh;
         height: 200px;
         width: 200px;
     }
@@ -2662,16 +2669,14 @@ body {
         margin-bottom: 30%;
     }
 
-    #multiNamesText1 {
+    #scoreDivMultiBubble {
         margin-left: 0;
         right: 0;
         font-size: 10px;
     }
 
     #player1,
-    #player2,
-    #player3,
-    #player4 {
+    #player2 {
         height: 5.5dvh;
     }
 
@@ -2684,18 +2689,14 @@ body {
     }
 
     #name1,
-    #name2,
-    #name3,
-    #name4 {
+    #name2 {
         font-size: 3dvw;
         margin-bottom: 2px;
         width: 21%;
     }
 
     #score1,
-    #score2,
-    #score3,
-    #score4 {
+    #score2 {
         position: absolute;
         font-size: 3cqw;
         right: 54%;
@@ -2704,9 +2705,7 @@ body {
     }
 
     #perfectLogo1,
-    #perfectLogo2,
-    #perfectLogo3,
-    #perfectLogo4 {
+    #perfectLogo2 {
         font-size: 3.3dvh;
         right: 40%;
         height: 6%;
@@ -2715,18 +2714,14 @@ body {
     }
 
     #perfect1,
-    #perfect2,
-    #perfect3,
-    #perfect4 {
+    #perfect2 {
         position: absolute;
         font-size: 4dvw;
         right: 30%;
     }
 
     #hintSVG1,
-    #hintSVG2,
-    #hintSVG3,
-    #hintSVG4 {
+    #hintSVG2 {
         position: absolute;
         height: 6%;
         border-radius: 6px;
@@ -2737,9 +2732,7 @@ body {
     }
 
     #hint1,
-    #hint2,
-    #hint3,
-    #hint4 {
+    #hint2 {
         position: absolute;
         right: 7%;
         font-size: 4dvw;
