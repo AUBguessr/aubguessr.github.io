@@ -757,6 +757,7 @@
         let opponentScoreArr = new Array(5);
 
         let host = false;
+        let expired = 0;
 
         const glow = document.getElementById('cursor-glow');
         document.addEventListener('mousemove', (e) => {
@@ -1992,6 +1993,7 @@
         socket.on("roomFull", () => {
             console.log("This multiplayer room is full.");
             popUpMessage.textContent = "This link has 2 players or has expired.";
+            expired = 1;
 
             popUpMessage.classList.remove("show");
 
@@ -2056,7 +2058,7 @@
         const popUpMessage = document.getElementById("popUpMessage");
 
         function hostHasntJoinedPopUp() {
-            popUpMessage.textContent = "Host has not started the game yet!";
+            if(!expired) popUpMessage.textContent = "Host has not started the game yet!";
             popUpMessage.style.top = "4dvh";
 
             popUpMessage.classList.remove("show");
