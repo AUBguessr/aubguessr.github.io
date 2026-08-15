@@ -116,8 +116,8 @@
 
             <div id="mode">
                 <div id="codeDiv">
-                    <p id="modeText1">In MultiPlayer mode, you can send a link and play the same game, with other
-                        people.
+                    <p id="modeText1">In MultiPlayer mode, you can send a link and play the same game, with another
+                        person
                     </p>
 
                     <p id="sendCode">Challenge a friend:</p>
@@ -350,8 +350,8 @@
         });
 
         socket.on("opponentJoined", (name) => {
-            if(!host) hostJoinedPopUp();
-            
+            if (!host) hostJoinedPopUp();
+
             opponentName = name;
             document.getElementById("name2").textContent = opponentName;
 
@@ -1351,7 +1351,12 @@
             document.getElementById("scoreDivMulti").style.display = "none";
             document.getElementById("imageCount").textContent = (count + 1) + "/" + round;
             document.getElementById("imageCount").style.display = "none";
-            document.getElementById("submit").textContent = "PLAY";
+
+            if (wasMulti) {
+                document.getElementById("submit").textContent = "START GAME";
+            } else {
+                document.getElementById("submit").textContent = "PLAY";
+            }
             document.getElementById("submit").style.top = "";
             document.getElementById("submit").style.marginLeft = "";
             document.getElementById("picWrap").style.display = "none";
@@ -1571,7 +1576,7 @@
             document.getElementById("press").style.display = "none";
             document.getElementById("codeDiv").style.display = "flex";
 
-            document.getElementById("submit").textContent = "PLAY MULTIPLAYER";
+            document.getElementById("submit").textContent = "START GAME";
             document.getElementById("text1").textContent = "Multiplayer";
             wasMulti = 1;
             mode = 1;
@@ -1650,8 +1655,6 @@
             challengeCode = arr[round] + "-" + arr[round + 1] + "-" + arr[round + 2] + "-" + arr[round + 3] + "-" + arr[round + 4] + "-" + inverted + blurry + mirrored + twoSec;
             challengeLink = "https://aubguessr.github.io/?c=" + challengeCode;
             document.getElementById("codeOutput").value = challengeLink;
-
-            console.log("Generate Code is being run! Challenge code is: " + challengeCode);
         }
 
         document.getElementById("copy").addEventListener("click", function () {
@@ -1988,6 +1991,14 @@
 
         socket.on("roomFull", () => {
             console.log("This multiplayer room is full.");
+            popUpMessage.textContent = "This link has 2 players or has expired.";
+
+            popUpMessage.classList.remove("show");
+
+            // Force the animation to restart
+            void popUpMessage.offsetWidth;
+
+            popUpMessage.classList.add("show");
         });
 
         socket.on("opponentFinished", (data) => {
@@ -2000,7 +2011,7 @@
             opponentScoreArr = data.scoreArr;
 
             console.log("OPPONENT FINISHED — done =", done);
-            if(!done) opponentFinishedPopUp();
+            if (!done) opponentFinishedPopUp();
 
             showPlayer2();
         });
@@ -2041,7 +2052,7 @@
             document.getElementById("summaryDiv").style.display = "none";
         });
 
-        
+
         const popUpMessage = document.getElementById("popUpMessage");
 
         function hostHasntJoinedPopUp() {

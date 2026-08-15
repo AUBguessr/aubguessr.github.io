@@ -6,6 +6,8 @@ const cors = require("cors");
 const app = express();
 const server = http.createServer(app);
 
+const usedRooms = new Set();
+
 const io = new Server(server, {
     cors: {
         origin: "*"
@@ -35,9 +37,21 @@ io.on("connection", (socket) => {
             return;
         }
 
+        if (usedRooms.has(data.roomCode)) {
+            socket.emit("roomFull");
+            return;
+        }
+
         socket.username = data.username;
 
         socket.join(data.roomCode);
+
+        const newRoom = io.sockets.adapter.rooms.get(data.roomCode);
+        const newPlayerCount = newRoom ? newRoom.size : 0;
+
+        if (newPlayerCount === 2) {
+            usedRooms.add(data.roomCode);
+        }
 
         console.log(`${socket.id} joined room: ${data.roomCode} as ${data.username}`);
 
