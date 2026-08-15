@@ -2018,7 +2018,8 @@ body {
     margin-left: 6px;
 }
 
-#hostNotJoined {
+#hostNotJoinedMessage,
+#hostJoinedMessage {
     position: absolute;
     opacity: 0;
     display: none;
@@ -2043,7 +2044,12 @@ body {
 
 }
 
-#hostNotJoined.show {
+#hostNotJoinedMessage.show {
+    display: block;
+    animation: fadeMessage 2s ease-in-out;
+}
+
+#hostJoinedMessage.show {
     display: block;
     animation: fadeMessage 2s ease-in-out;
 }

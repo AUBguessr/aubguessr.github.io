@@ -260,7 +260,8 @@
             <button id="shareMulti">share score</button>
         </div>
 
-        <p id="hostNotJoined">Host has not started the game yet!</p>
+        <p id="hostNotJoinedMessage">Host has not started the game yet!</p>
+        <p id="hostJoinedMessage">Host has joined the game!</p>
 
         <div id="summaryDivCover">
             <div id="summaryDiv">
@@ -350,6 +351,8 @@
         });
 
         socket.on("opponentJoined", (name) => {
+            if(!host) hostJoinedPopUp();
+            
             opponentName = name;
             document.getElementById("name2").textContent = opponentName;
 
@@ -1658,7 +1661,7 @@
 
             if (!opponentName) {
 
-                hostHasntJoined();
+                hostHasntJoinedPopUp();
 
                 return;
             }
@@ -2029,8 +2032,19 @@
             document.getElementById("summaryDiv").style.display = "none";
         });
 
-        function hostHasntJoined() {
-            const message = document.getElementById("hostNotJoined");
+        function hostHasntJoinedPopUp() {
+            const message = document.getElementById("hostNotJoinedMessage");
+
+            message.classList.remove("show");
+
+            // Force the animation to restart
+            void message.offsetWidth;
+
+            message.classList.add("show");
+        }
+
+        function hostJoinedPopUp() {
+            const message = document.getElementById("hostJoinedMessage");
 
             message.classList.remove("show");
 
