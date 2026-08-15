@@ -171,7 +171,7 @@
         <div id="inviteDiv">
 
             <p id="inviteText1">You have been invited to a game!</p>
-            <button id="startGame">Start Game</button>
+            <button id="startGame">Enter Game</button>
 
             <div id="inviteBubble">
                 <p id="inviteBubbleText1">Added Difficulties:</p>
@@ -260,8 +260,7 @@
             <button id="shareMulti">share score</button>
         </div>
 
-        <p id="hostNotJoinedMessage"><span>Host has not started the game yet!</span></p>
-        <p id="hostJoinedMessage">Host has joined the game!</p>
+        <p id="popUpMessage">pop up</p>
 
         <div id="summaryDivCover">
             <div id="summaryDiv">
@@ -1298,6 +1297,8 @@
             document.getElementById("dailyDiv").style.display = "none";
             document.getElementById("scoreDivMulti").style.display = "none";
             document.getElementById("scoreDivMultiBubble").style.display = "none";
+            document.getElementById("summaryDivCover").style.display = "none";
+            document.getElementById("summaryDiv").style.display = "none";
             return;
         }
 
@@ -1998,6 +1999,9 @@
             opponentHints = data.hints;
             opponentScoreArr = data.scoreArr;
 
+            console.log("OPPONENT FINISHED — done =", done);
+            if(!done) opponentFinishedPopUp();
+
             showPlayer2();
         });
 
@@ -2032,26 +2036,45 @@
             document.getElementById("summaryDiv").style.display = "none";
         });
 
-        function hostHasntJoinedPopUp() {
-            const message = document.getElementById("hostNotJoinedMessage");
+        document.getElementById("summaryDivCover").addEventListener("click", function () {
+            document.getElementById("summaryDivCover").style.display = "none";
+            document.getElementById("summaryDiv").style.display = "none";
+        });
 
-            message.classList.remove("show");
+        
+        const popUpMessage = document.getElementById("popUpMessage");
+
+        function hostHasntJoinedPopUp() {
+            popUpMessage.textContent = "Host has not started the game yet!";
+
+            popUpMessage.classList.remove("show");
 
             // Force the animation to restart
-            void message.offsetWidth;
+            void popUpMessage.offsetWidth;
 
-            message.classList.add("show");
+            popUpMessage.classList.add("show");
         }
 
         function hostJoinedPopUp() {
-            const message = document.getElementById("hostJoinedMessage");
+            popUpMessage.textContent = "Host has joined the game!";
 
-            message.classList.remove("show");
+            popUpMessage.classList.remove("show");
 
             // Force the animation to restart
-            void message.offsetWidth;
+            void popUpMessage.offsetWidth;
 
-            message.classList.add("show");
+            popUpMessage.classList.add("show");
+        }
+
+        function opponentFinishedPopUp() {
+            popUpMessage.textContent = opponentName + " has finished the game!";
+
+            popUpMessage.classList.remove("show");
+
+            // Force the animation to restart
+            void popUpMessage.offsetWidth;
+
+            popUpMessage.classList.add("show");
         }
 
     </script>

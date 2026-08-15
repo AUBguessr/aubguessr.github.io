@@ -2018,8 +2018,7 @@ body {
     margin-left: 6px;
 }
 
-#hostNotJoinedMessage,
-#hostJoinedMessage {
+#popUpMessage{
     position: absolute;
     opacity: 0;
     display: none;
@@ -2046,12 +2045,7 @@ body {
 
 }
 
-#hostNotJoinedMessage.show {
-    display: block;
-    animation: fadeMessage 2s ease-in-out;
-}
-
-#hostJoinedMessage.show {
+#popUpMessage.show {
     display: block;
     animation: fadeMessage 2s ease-in-out;
 }
@@ -2481,8 +2475,12 @@ body {
 
     #startGame {
         margin-top: 15dvh;
-        width: 60%;
-        font-size: 4dvw;
+        width: 45%;
+        font-size: 3.5dvw;
+    }
+
+    #startGame:hover{
+        background-color: #960035;
     }
 
     #diff {
@@ -2686,6 +2684,11 @@ body {
     #player1,
     #player2 {
         height: 5.5dvh;
+    }
+
+    #player1:hover,
+    #player2:hover {
+    background-color: #960236;
     }
 
     #waiting {
