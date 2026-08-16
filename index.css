@@ -1930,13 +1930,16 @@ body {
 }
 
 #summaryDivCover {
-    display: flex;
+    display: none;
     justify-content: space-evenly;
 
     position: absolute;
     height: 100dvh;
     width: 100dvw;
-    background-color: #4b021c;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(6px);
+    /* Blurs content behind the div */
+    -webkit-backdrop-filter: blur(6px);
     z-index: 9000;
 }
 
@@ -2026,7 +2029,7 @@ body {
     display: none;
     position: absolute;
     top: 0;
-    border-radius: 20px 0 20px 0;
+    border-radius: 18px 0 20px 0;
     align-self: center;
     height: 50px;
     padding: 6px;
@@ -2515,7 +2518,7 @@ body {
     }
 
     #startGame:hover {
-        background-color: #960035;
+        background-color: #620022;
     }
 
     #diff {
@@ -2831,7 +2834,7 @@ body {
     #summaryHint3,
     #summaryHint4,
     #summaryHint5 {
-        height: 40px;
+        height: 34px;
     }
 
     #picScoreS {

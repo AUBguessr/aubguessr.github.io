@@ -2054,8 +2054,6 @@
 
             document.getElementById("summaryText1").textContent = opponentName + "'s Summary:";
 
-            console.log("OPPONENTS HINT ARR: " + opponentHintsArr);
-
             for (let x = 0; x < round; x++) {
                 document.getElementById(`pic${x}scoreS`).textContent = opponentScoreArr[x];
                 if(opponentHintsArr[x]){
@@ -2064,10 +2062,6 @@
             }
 
             document.getElementById("summaryDivCover").style.display = "flex";
-        });
-
-        document.getElementById("xmark").addEventListener("click", function () {
-            document.getElementById("summaryDivCover").style.display = "none";
         });
 
         document.getElementById("summaryDivCover").addEventListener("click", function () {
