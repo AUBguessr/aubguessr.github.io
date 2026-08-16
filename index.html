@@ -271,23 +271,23 @@
 
                 <div id="summaryPics">
                     <div id="picS">
-                        <img id="smallPicS0" src="images/image0.jpeg">
+                        <img id="smallPicS0" src="images/image0.jpeg"><img id="summaryHint1" src="assets/hint.svg"></img>
                         <p id="picScoreS"><span id="pic0scoreS">99.99 </span>%</p>
                     </div>
                     <div id="picS">
-                        <img id="smallPicS1" src="images/image0.jpeg">
+                        <img id="smallPicS1" src="images/image0.jpeg"><img id="summaryHint2" src="assets/hint.svg"></img>
                         <p id="picScoreS"><span id="pic1scoreS">99.99 </span>%</p>
                     </div>
                     <div id="picS">
-                        <img id="smallPicS2" src="images/image0.jpeg">
+                        <img id="smallPicS2" src="images/image0.jpeg"><img id="summaryHint3" src="assets/hint.svg"></img>
                         <p id="picScoreS"><span id="pic2scoreS">99.99 </span>%</p>
                     </div>
                     <div id="picS">
-                        <img id="smallPicS3" src="images/image0.jpeg">
+                        <img id="smallPicS3" src="images/image0.jpeg"><img id="summaryHint4" src="assets/hint.svg"></img>
                         <p id="picScoreS"><span id="pic3scoreS">99.99 </span>%</p>
                     </div>
                     <div id="picS">
-                        <img id="smallPicS4" src="images/image0.jpeg">
+                        <img id="smallPicS4" src="images/image0.jpeg"><img id="summaryHint5" src="assets/hint.svg"></img>
                         <p id="picScoreS"><span id="pic4scoreS">99.99 </span>%</p>
                     </div>
                 </div>
@@ -749,6 +749,7 @@
 
         let oceanClick = false;
         let hintUsed = 0;
+        let hintsArr = new Array(5).fill(0);;
         let allTimeArr = new Array(5);
         let dailyArr = new Array(5);
         let dailyRound = new Array(5);
@@ -764,6 +765,7 @@
         let opponentPerfectScores = null;
         let opponentHints = null;
         let opponentScoreArr = new Array(5);
+        let opponentHintsArr = new Array(5).fill(0);;
 
         let host = false;
         let expired = 0;
@@ -979,7 +981,7 @@
 
             let ACC = 100 - (((absLat / maxMarginLat) + (absLng / maxMarginLng)) / 2 * 100);
 
-            ACC = ACC - 8 * (100 - ACC);
+            ACC = ACC - 7 * (100 - ACC);
 
             if (ACC < 0) ACC = 0;
             if (ACC > 95.5) {
@@ -1189,7 +1191,8 @@
                     score: parseFloat(finalScore),
                     perfectScores: perfectScore,
                     hints: hints,
-                    scoreArr: scoreArr
+                    scoreArr: scoreArr,
+                    hintsArr: hintsArr
                 });
 
                 myScoreSubmitted = true;
@@ -1308,7 +1311,6 @@
             document.getElementById("scoreDivMulti").style.display = "none";
             document.getElementById("scoreDivMultiBubble").style.display = "none";
             document.getElementById("summaryDivCover").style.display = "none";
-            document.getElementById("summaryDiv").style.display = "none";
             return;
         }
 
@@ -1356,6 +1358,8 @@
             myScoreSubmitted = false;
             opponentPerfectScores = null;
             shownFinished = false;
+            hintsArr = new Array(5).fill(0);
+            opponentHintsArr = new Array(5).fill(0);
 
             dim.style.display = "none";
             document.getElementById("scoreDiv").style.display = "none";
@@ -1761,6 +1765,7 @@
         document.getElementById("useHint").addEventListener("click", function () {
             if (play || next) return;
             hintUsed = 1;
+            hintsArr[count] = 1;
             hints++;
             dim.style.display = "none";
             document.getElementById("hintDiv").style.display = "none";
@@ -2021,6 +2026,7 @@
             opponentPerfectScores = data.perfectScores;
             opponentHints = data.hints;
             opponentScoreArr = data.scoreArr;
+            opponentHintsArr = data.hintsArr;
 
             console.log("OPPONENT FINISHED — done =", done);
             if (!done) opponentFinishedPopUp();
@@ -2034,10 +2040,10 @@
 
             for (let x = 0; x < round; x++) {
                 document.getElementById(`pic${x}scoreS`).textContent = scoreArr[x];
+                if(hintsArr[x]) document.getElementById(`summaryHint${x+1}`).style.display = "revert";
             }
 
             document.getElementById("summaryDivCover").style.display = "flex";
-            document.getElementById("summaryDiv").style.display = "flex";
         });
 
         document.getElementById("player2").addEventListener("click", function () {
@@ -2048,20 +2054,19 @@
 
             for (let x = 0; x < round; x++) {
                 document.getElementById(`pic${x}scoreS`).textContent = opponentScoreArr[x];
+                if(opponentHintsArr[x]) document.getElementById(`summaryHint${x+1}`).style.display = "revert";
+                else document.getElementById(`summaryHint${x+1}`).style.display = "none";
             }
 
             document.getElementById("summaryDivCover").style.display = "flex";
-            document.getElementById("summaryDiv").style.display = "flex";
         });
 
         document.getElementById("xmark").addEventListener("click", function () {
             document.getElementById("summaryDivCover").style.display = "none";
-            document.getElementById("summaryDiv").style.display = "none";
         });
 
         document.getElementById("summaryDivCover").addEventListener("click", function () {
             document.getElementById("summaryDivCover").style.display = "none";
-            document.getElementById("summaryDiv").style.display = "none";
         });
 
 

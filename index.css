@@ -1994,6 +1994,11 @@ body {
     margin-left: -6px;
 }
 
+#imageContainer {
+    position: relative;
+    display: inline-block;
+}
+
 #picS {
     margin-left: 18px;
     width: 17%;
@@ -2005,11 +2010,27 @@ body {
 #smallPicS2,
 #smallPicS3,
 #smallPicS4 {
+    display: block;
     width: 100%;
     border-radius: 20px;
     border-style: solid;
     border-width: 5px;
     border-color: #85002e;
+}
+
+#summaryHint1,
+#summaryHint2,
+#summaryHint3,
+#summaryHint4,
+#summaryHint5 {
+    display: none;
+    position: absolute;
+    top: 0;
+    border-radius: 20px 0 20px 0;
+    align-self: center;
+    height: 50px;
+    padding: 6px;
+    background-color: #85002e;
 }
 
 #picScoreS {

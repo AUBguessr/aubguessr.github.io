@@ -78,7 +78,8 @@ io.on("connection", (socket) => {
             score: data.score,
             perfectScores: data.perfectScores,
             hints: data.hints,
-            scoreArr: data.scoreArr
+            scoreArr: data.scoreArr,
+            hintsArr: data.hintsArr
         });
     });
 
