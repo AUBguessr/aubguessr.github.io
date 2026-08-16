@@ -1734,7 +1734,7 @@ body {
 }
 
 #scoreDivMulti {
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
@@ -2768,7 +2768,7 @@ body {
     }
 
     #multiNames {
-        margin-bottom: 31dvh;
+        margin-bottom: 36dvh;
     }
 
     #scoreDivMultiBubble {
@@ -2857,6 +2857,8 @@ body {
     #perfectLegendText1,
     #hintLegendText1 {
         margin-left: 28%;
+        margin-top: 1.5dvh;
+        font-size: 2dvh;
     }
 
     #hintLegendText1 {
