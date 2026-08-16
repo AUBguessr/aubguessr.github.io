@@ -2028,7 +2028,6 @@
             opponentScoreArr = data.scoreArr;
             opponentHintsArr = data.hintsArr;
 
-            console.log("OPPONENT FINISHED — done =", done);
             if (!done) opponentFinishedPopUp();
 
             showPlayer2();
@@ -2040,7 +2039,10 @@
 
             for (let x = 0; x < round; x++) {
                 document.getElementById(`pic${x}scoreS`).textContent = scoreArr[x];
-                if(hintsArr[x]) document.getElementById(`summaryHint${x+1}`).style.display = "revert";
+                
+                if(hintsArr[x]){
+                    document.getElementById(`summaryHint${x+1}`).style.display = "revert";
+                }else document.getElementById(`summaryHint${x+1}`).style.display = "none";
             }
 
             document.getElementById("summaryDivCover").style.display = "flex";
@@ -2052,10 +2054,13 @@
 
             document.getElementById("summaryText1").textContent = opponentName + "'s Summary:";
 
+            console.log("OPPONENTS HINT ARR: " + opponentHintsArr);
+
             for (let x = 0; x < round; x++) {
                 document.getElementById(`pic${x}scoreS`).textContent = opponentScoreArr[x];
-                if(opponentHintsArr[x]) document.getElementById(`summaryHint${x+1}`).style.display = "revert";
-                else document.getElementById(`summaryHint${x+1}`).style.display = "none";
+                if(opponentHintsArr[x]){
+                    document.getElementById(`summaryHint${x+1}`).style.display = "revert";
+                }else document.getElementById(`summaryHint${x+1}`).style.display = "none";
             }
 
             document.getElementById("summaryDivCover").style.display = "flex";
