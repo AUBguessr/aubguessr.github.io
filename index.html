@@ -256,6 +256,12 @@
                     <p id="hint2">5/5</p>
                 </div>
             </div>
+
+            <div id="legend">
+                <p id="perfectLegend">P</p>  <p id="perfectLegendText1"> = Perfect Scores Acheived</p>
+                <img id="hintLegend" src="assets/hint2.svg"> <p id="hintLegendText1"> = Hints Used</p>
+            </div>
+
             <button id="againMulti">Play Again!</button>
             <button id="shareMulti">share score</button>
         </div>
@@ -271,23 +277,28 @@
 
                 <div id="summaryPics">
                     <div id="picS">
-                        <img id="smallPicS0" src="images/image0.jpeg"><img id="summaryHint1" src="assets/hint.svg"></img>
+                        <img id="smallPicS0" src="images/image0.jpeg"><img id="summaryHint1"
+                            src="assets/hint.svg"></img>
                         <p id="picScoreS"><span id="pic0scoreS">99.99 </span>%</p>
                     </div>
                     <div id="picS">
-                        <img id="smallPicS1" src="images/image0.jpeg"><img id="summaryHint2" src="assets/hint.svg"></img>
+                        <img id="smallPicS1" src="images/image0.jpeg"><img id="summaryHint2"
+                            src="assets/hint.svg"></img>
                         <p id="picScoreS"><span id="pic1scoreS">99.99 </span>%</p>
                     </div>
                     <div id="picS">
-                        <img id="smallPicS2" src="images/image0.jpeg"><img id="summaryHint3" src="assets/hint.svg"></img>
+                        <img id="smallPicS2" src="images/image0.jpeg"><img id="summaryHint3"
+                            src="assets/hint.svg"></img>
                         <p id="picScoreS"><span id="pic2scoreS">99.99 </span>%</p>
                     </div>
                     <div id="picS">
-                        <img id="smallPicS3" src="images/image0.jpeg"><img id="summaryHint4" src="assets/hint.svg"></img>
+                        <img id="smallPicS3" src="images/image0.jpeg"><img id="summaryHint4"
+                            src="assets/hint.svg"></img>
                         <p id="picScoreS"><span id="pic3scoreS">99.99 </span>%</p>
                     </div>
                     <div id="picS">
-                        <img id="smallPicS4" src="images/image0.jpeg"><img id="summaryHint5" src="assets/hint.svg"></img>
+                        <img id="smallPicS4" src="images/image0.jpeg"><img id="summaryHint5"
+                            src="assets/hint.svg"></img>
                         <p id="picScoreS"><span id="pic4scoreS">99.99 </span>%</p>
                     </div>
                 </div>
@@ -358,6 +369,7 @@
                 startGame.style.color = "#e2c072";
                 startGame.style.textShadow = "0 0 8px rgba(0, 0, 0, 0.4)";
                 startGame.style.cursor = "pointer";
+                startGame.style.boxShadow = "-2px 2px 3px 2px rgba(0, 0, 0, 0.3)";
                 hostJoinedPopUp();
             }
 
@@ -1180,11 +1192,8 @@
             finalScore = (total / round).toFixed(2);
             if (finalScore == 100.00) finalScore = 100;
 
-            if (dailyMode) {
-                document.getElementById("score").textContent = finalScore + "%";
-                document.getElementById("perfect").textContent = "Perfect Scores: " + perfectScore + "/" + round;
-                document.getElementById("scoreDiv").style.display = "flex";
-            } else if (wasMulti || invited) {
+
+            if (wasMulti || invited) {
 
                 socket.emit("sendScore", {
                     roomCode: challengeCode,
@@ -1194,21 +1203,15 @@
                     scoreArr: scoreArr,
                     hintsArr: hintsArr
                 });
-
-                myScoreSubmitted = true;
-
-                document.getElementById("score1").textContent = finalScore + "%";
-                document.getElementById("perfect1").textContent = perfectScore + "/" + round;
-                document.getElementById("hint1").textContent = hints + "/" + round;
-
-                document.getElementById("scoreDivMultiBubble").style.display = "flex";
-                document.getElementById("scoreDivMulti").style.display = "flex";
-
-            } else {
-                document.getElementById("score").textContent = finalScore + "%";
-                document.getElementById("perfect").textContent = "Perfect Scores: " + perfectScore + "/" + round;
-                document.getElementById("scoreDiv").style.display = "flex";
             }
+            myScoreSubmitted = true;
+
+            document.getElementById("score1").textContent = finalScore + "%";
+            document.getElementById("perfect1").textContent = perfectScore + "/" + round;
+            document.getElementById("hint1").textContent = hints + "/" + round;
+
+            document.getElementById("scoreDivMultiBubble").style.display = "flex";
+            document.getElementById("scoreDivMulti").style.display = "flex";
 
             dim.style.display = "revert";
 
@@ -2039,10 +2042,10 @@
 
             for (let x = 0; x < round; x++) {
                 document.getElementById(`pic${x}scoreS`).textContent = scoreArr[x];
-                
-                if(hintsArr[x]){
-                    document.getElementById(`summaryHint${x+1}`).style.display = "revert";
-                }else document.getElementById(`summaryHint${x+1}`).style.display = "none";
+
+                if (hintsArr[x]) {
+                    document.getElementById(`summaryHint${x + 1}`).style.display = "revert";
+                } else document.getElementById(`summaryHint${x + 1}`).style.display = "none";
             }
 
             document.getElementById("summaryDivCover").style.display = "flex";
@@ -2056,9 +2059,9 @@
 
             for (let x = 0; x < round; x++) {
                 document.getElementById(`pic${x}scoreS`).textContent = opponentScoreArr[x];
-                if(opponentHintsArr[x]){
-                    document.getElementById(`summaryHint${x+1}`).style.display = "revert";
-                }else document.getElementById(`summaryHint${x+1}`).style.display = "none";
+                if (opponentHintsArr[x]) {
+                    document.getElementById(`summaryHint${x + 1}`).style.display = "revert";
+                } else document.getElementById(`summaryHint${x + 1}`).style.display = "none";
             }
 
             document.getElementById("summaryDivCover").style.display = "flex";
@@ -2088,13 +2091,13 @@
         let shownFinished = false;
 
         function opponentFinishedPopUp() {
-            if(shownFinished) return;
+            if (shownFinished) return;
 
             popUpMessage.textContent = opponentName + " has finished the game!";
             if (isMobile) popUpMessage.style.top = "`34dvh";
 
             showPopUp();
-            
+
             shownFinished = true;
         }
 

@@ -445,7 +445,7 @@ body {
 #againMulti,
 #shareMulti {
     position: absolute;
-    bottom: 20px;
+    bottom: 2dvh;
 
     height: 50px;
     width: 40%;
@@ -1413,6 +1413,7 @@ body {
     border-color: #620022;
     color: #75643a;
     text-shadow: none;
+    box-shadow: none;
     margin-top: 13dvh;
     width: 40%;
     font-size: 1dvw;
@@ -1749,17 +1750,17 @@ body {
 }
 
 #multiNames {
+    position: static;
     align-self: center;
-    height: 60%;
+    height: 16dvh;
     width: 97%;
     background-color: #750b29;
     border-radius: 20px;
-    margin-bottom: 20%;
+    margin-bottom: 30dvh;
 
     border-width: 2px;
     border-style: solid;
     border-color: #690427;
-    position: static;
 }
 
 #scoreDivMultiBubble {
@@ -1791,8 +1792,8 @@ body {
     height: 6dvh;
     width: 95%;
 
-    margin-top: 10px;
-    margin-left: 3%;
+    margin-top: 1.2dvh;
+    margin-left: 2.6%;
     border-radius: 14px;
 
     background-color: #960236;
@@ -1815,7 +1816,7 @@ body {
 }
 
 #player2 {
-    display: none;
+    display: flex;
 }
 
 #waiting {
@@ -1929,6 +1930,64 @@ body {
     display: none;
 }
 
+#legend {
+    position: absolute;
+    width: 100%;
+    height: 30%;
+
+
+    bottom: 8dvh;
+}
+
+#perfectLegend {
+    position: absolute;
+    margin-left: 16%;
+
+    background-image: -webkit-linear-gradient(left, #e2bf71, #af4261);
+    height: 5dvh;
+    width: 5dvh;
+    color: #420017;
+    text-align: center;
+    font-size: 4dvh;
+    border-radius: 6px;
+
+    padding-top: 2px;
+    font-weight: bold;
+    box-shadow: -1px 1px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+#perfectLegendText1,
+#hintLegendText1 {
+    position: absolute;
+    margin-left: 26%;
+    margin-top: 1.8%;
+    font-weight: bold;
+
+    font-size: 2.4dvh;
+
+    /* Create a color gradient inside the font */
+    background: linear-gradient(180deg, #fffa97, #d6597c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* Adds a smooth drop shadow underneath */
+    filter: drop-shadow(-2px 2px 2px rgba(0, 0, 0, 0.6));
+}
+
+#hintLegendText1 {
+    margin-top: -4dvh;
+}
+
+#hintLegend {
+    margin-left: 16%;
+    margin-top: 7dvh;
+    height: 5dvh;
+    border-radius: 6px;
+    box-shadow: -1px 1px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 2px;
+    background-image: -webkit-linear-gradient(left, #e2bf71, #af4261);
+}
+
 #summaryDivCover {
     display: none;
     justify-content: space-evenly;
@@ -1936,7 +1995,7 @@ body {
     position: absolute;
     height: 100dvh;
     width: 100dvw;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(6px);
     /* Blurs content behind the div */
     -webkit-backdrop-filter: blur(6px);
@@ -2709,8 +2768,7 @@ body {
     }
 
     #multiNames {
-        height: 60%;
-        margin-bottom: 30%;
+        margin-bottom: 31dvh;
     }
 
     #scoreDivMultiBubble {
@@ -2721,7 +2779,7 @@ body {
 
     #player1,
     #player2 {
-        height: 5.5dvh;
+        height: 5.8dvh;
     }
 
     #player1:hover,
@@ -2785,6 +2843,28 @@ body {
         position: absolute;
         right: 7%;
         font-size: 4dvw;
+    }
+
+    #legend {
+        height: 26%;
+        bottom: 12dvh;
+    }
+
+    #perfectLegend {
+        margin-left: 14%;
+    }
+
+    #perfectLegendText1,
+    #hintLegendText1 {
+        margin-left: 28%;
+    }
+
+    #hintLegendText1 {
+        margin-top: -4dvh;
+    }
+
+    #hintLegend {
+        margin-left: 14%;
     }
 
     #summaryDiv {
