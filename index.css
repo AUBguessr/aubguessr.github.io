@@ -1409,6 +1409,10 @@ body {
 }
 
 #startGame {
+    background-color: #620022;
+    border-color: #620022;
+    color: #75643a;
+    text-shadow: none;
     margin-top: 13dvh;
     width: 40%;
     font-size: 1dvw;
@@ -1421,7 +1425,6 @@ body {
     font-size: 1.2dvw;
 }
 
-#startGame:hover,
 #dailyStart:hover {
     background-color: rgb(166, 7, 65);
     text-shadow: none;

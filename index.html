@@ -350,7 +350,16 @@
         });
 
         socket.on("opponentJoined", (name) => {
-            if (!host) hostJoinedPopUp();
+            const startGame = document.getElementById("startGame");
+            if (!host) {
+
+                startGame.style.backgroundColor = "#960035";
+                startGame.style.borderColor = "#a00c40";
+                startGame.style.color = "#e2c072";
+                startGame.style.textShadow = "0 0 8px rgba(0, 0, 0, 0.4)";
+                startGame.style.cursor = "pointer";
+                hostJoinedPopUp();
+            }
 
             opponentName = name;
             document.getElementById("name2").textContent = opponentName;
@@ -1346,6 +1355,7 @@
             opponentName = null;
             myScoreSubmitted = false;
             opponentPerfectScores = null;
+            shownFinished = false;
 
             dim.style.display = "none";
             document.getElementById("scoreDiv").style.display = "none";
@@ -2058,39 +2068,44 @@
         const popUpMessage = document.getElementById("popUpMessage");
 
         function hostHasntJoinedPopUp() {
-            if(!expired) popUpMessage.textContent = "Host has not started the game yet!";
+            if (!expired) popUpMessage.textContent = "Host has not started the game yet!";
             popUpMessage.style.top = "4dvh";
 
-            popUpMessage.classList.remove("show");
-
-            // Force the animation to restart
-            void popUpMessage.offsetWidth;
-
-            popUpMessage.classList.add("show");
+            showPopUp();
         }
 
         function hostJoinedPopUp() {
             popUpMessage.textContent = "Host has started the game!";
             popUpMessage.style.top = "4dvh";
 
-            popUpMessage.classList.remove("show");
-
-            // Force the animation to restart
-            void popUpMessage.offsetWidth;
-
-            popUpMessage.classList.add("show");
+            showPopUp();
         }
 
-        function opponentFinishedPopUp() {
-            popUpMessage.textContent = opponentName + " has finished the game!";
-            if(isMobile) popUpMessage.style.top = "34dvh";
+        let shownFinished = false;
 
+        function opponentFinishedPopUp() {
+            if(shownFinished) return;
+
+            popUpMessage.textContent = opponentName + " has finished the game!";
+            if (isMobile) popUpMessage.style.top = "`34dvh";
+
+            showPopUp();
+            
+            shownFinished = true;
+        }
+
+        function showPopUp() {
             popUpMessage.classList.remove("show");
 
             // Force the animation to restart
             void popUpMessage.offsetWidth;
 
             popUpMessage.classList.add("show");
+
+            // remove .show after animation ends so browser has nothing to repaint
+            popUpMessage.addEventListener("animationend", () => {
+                popUpMessage.classList.remove("show");
+            }, { once: true });
         }
 
     </script>
