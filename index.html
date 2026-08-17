@@ -4,15 +4,25 @@
 <head>
     <base target="_top">
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>AUBguessr</title>
+    <title>AUBguessr | Guess AUB Campus Locations</title>
+    <meta name="description" content="Play AUBguessr, a campus guessing game where you identify iconic places around the American University of Beirut using photos, a map, and daily challenges.">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="https://aubguessr.com/">
 
-    <meta property="og:title" content="AUBguessr">
+    <meta property="og:title" content="AUBguessr | Guess AUB Campus Locations">
     <meta property="og:description"
-        content="AUB's campus guessing game. Challenge your friends and see who knows campus best.">
-    <meta property="og:image" content="https://aubguessr.github.io/assets/preview.png">
-    <meta property="og:url" content="https://aubguessr.github.io">
+        content="AUB's campus guessing game. Play solo, challenge friends, and see who knows campus best.">
+    <meta property="og:image" content="https://aubguessr.com/assets/preview.png">
+    <meta property="og:url" content="https://aubguessr.com">
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AUBguessr">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AUBguessr | Guess AUB Campus Locations">
+    <meta name="twitter:description" content="A photo-based campus guessing game for the American University of Beirut.">
+    <meta name="twitter:image" content="https://aubguessr.com/assets/preview.png">
 
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,6 +37,21 @@
     <script src="https://aubguessr-multiplayer.onrender.com/socket.io/socket.io.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> <!--supabase-->
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script> <!--html2canvas library-->
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "AUBguessr",
+            "description": "A campus guessing game for the American University of Beirut where players identify famous locations from photos and a map.",
+            "applicationCategory": "Game",
+            "operatingSystem": "Web",
+            "url": "https://aubguessr.com/",
+            "genre": ["Educational Game", "Campus Game"],
+            "inLanguage": "en",
+            "keywords": ["AUB", "American University of Beirut", "campus game", "guessing game", "university challenge"]
+        }
+    </script>
 
 </head>
 
