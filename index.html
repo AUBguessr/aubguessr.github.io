@@ -146,7 +146,7 @@
                     </p>
 
                     <p id="sendCode">Challenge a friend:</p>
-                    <input id="codeOutput" value="https://aubguessr.github.io" readonly></input>
+                    <input id="codeOutput" value="https://aubguessr.com" readonly></input>
 
                     <img id="copy" src="assets/copy.svg">
 
@@ -1696,7 +1696,7 @@
 
         function generateCode() {
             challengeCode = arr[round] + "-" + arr[round + 1] + "-" + arr[round + 2] + "-" + arr[round + 3] + "-" + arr[round + 4] + "-" + inverted + blurry + mirrored + twoSec;
-            challengeLink = "https://aubguessr.github.io/?c=" + challengeCode;
+            challengeLink = "https://aubguessr.com/?c=" + challengeCode;
             document.getElementById("codeOutput").value = challengeLink;
         }
 
@@ -1901,7 +1901,7 @@
                     if (navigator.canShare && navigator.canShare({ files: [file] })) {
                         await navigator.share({
                             files: [file],
-                            text: `I scored ${finalScore}% on AUBguessr! \nTry to beat it here: https://aubguessr.github.io`
+                            text: `I scored ${finalScore}% on AUBguessr! \nTry to beat it here: https://aubguessr.com`
                         });
                     }
                 } else {
