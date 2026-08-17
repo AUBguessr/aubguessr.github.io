@@ -1,0 +1,1767 @@
+const { createClient } = supabase;
+const db = createClient('https://wujcnvdaffgliugtnfbi.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1amNudmRhZmZnbGl1Z3RuZmJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEzMzI1MjIsImV4cCI6MjA5NjkwODUyMn0.820HceMe01KILH6cffpWq9_yunjvGwBySZp5dz03b3M');
+
+const socket = io("https://aubguessr-multiplayer.onrender.com");
+
+socket.on("connect", () => {
+    console.log("Connected to multiplayer server:", socket.id);
+});
+
+socket.on("roomJoined", (data) => {
+    console.log("Joined multiplayer room:", data);
+});
+
+socket.on("opponentJoined", (name) => {
+    const startGame = document.getElementById("startGame");
+    if (!host) {
+
+        startGame.style.backgroundColor = "#960035";
+        startGame.style.borderColor = "#a00c40";
+        startGame.style.color = "#e2c072";
+        startGame.style.textShadow = "0 0 8px rgba(0, 0, 0, 0.4)";
+        startGame.style.cursor = "pointer";
+        startGame.style.boxShadow = "-2px 2px 3px 2px rgba(0, 0, 0, 0.3)";
+        hostJoinedPopUp();
+    }
+
+    opponentName = name;
+    document.getElementById("name2").textContent = opponentName;
+
+    console.log("Opponent:", name);
+
+    document.getElementById("player2").style.display = "flex";
+});
+
+let games_played = 0;
+
+let id;
+let user_name = "Guest";
+let usernameMaxLength = 18;
+let signinScreen = true;
+let signedIn = false;
+const isMobile = window.innerWidth < 768;
+let count = 0;
+let next = false;
+let guessed = false;
+let play = true;
+let done = false;
+let perfectScore = 0;
+let hints = 0;
+let total = 0;
+let avg_score = 0;
+let coords = [
+    [33.90083253913812, 35.48076220903855],     //0
+    [33.89977295523677, 35.479049998468426],    //1
+    [33.899737370858766, 35.48036587391895],    //2
+    [33.89991982670831, 35.48157262332447],     //3
+    [33.900209085181885, 35.48231276295985],    //4
+    [33.89978190351037, 35.482152314384344],    //5
+    [33.901544581797346, 35.47931950135344],    //6
+    [33.901838253608624, 35.48012933601701],    //7
+    [33.902118605528, 35.48027950927635],       //8
+    [33.90176705297437, 35.48045113585846],     //9
+    [33.901014992644164, 35.480874838983084],   //10
+    [33.90015571488018, 35.4818833601382],      //11
+    [33.89966619965902, 35.48103059055828],     //12
+    [33.89955900490268, 35.48085934825922],     //13
+    [33.89972405160433, 35.48014564099421],     //14
+    [33.89989315706555, 35.47975948118444],     //15
+    [33.900053361929935, 35.47974875452308],    //16
+    [33.899505994067184, 35.47869217837691],    //17
+    [33.90041348349714, 35.48268254751606],     //18
+    [33.8995228638317, 35.4840386783003],       //19
+    [33.90048881148797, 35.47835784006983],     //20
+    [33.900618003677664, 35.483346837999285],   //21
+    [33.90105379822309, 35.48242421246508],     //22
+    [33.90180598776183, 35.47984424924498],     //23
+    [33.90201513936023, 35.48018213907853],     //24
+    [33.9018949885047, 35.48024649904684],      //25
+    [33.901076864311214, 35.481909031525966],   //26
+    [33.90115269978488, 35.47959482183285],     //27
+    [33.90081432318587, 35.478806331758214],    //28
+    [33.89976387021083, 35.48164394659824],     //29
+    [33.89960811495678, 35.48009750920969],     //30
+    [33.89948796070927, 35.47995806261175],     //31
+    [33.90202491268324, 35.480595956352616],    //32
+    [33.90188696170237, 35.4807407662813],      //33
+    [33.901272996174704, 35.48177103356111],    //34
+    [33.90195445592131, 35.48217618715327],     //35
+    [33.90217644381394, 35.48205002679223],     //36
+    [33.9022164939857, 35.48258099653064],      //37
+    [33.90194949248518, 35.4824254599406],      //38
+    [33.90167804010247, 35.48250054657027],     //39
+    [33.90145108744703, 35.482559543207884],    //40
+    [33.901357636177984, 35.482650719829614],   //41
+    [33.8997772134505, 35.48154787706983],      //42
+    [33.90108999622375, 35.48287848678208],     //43
+    [33.901023245045074, 35.48272244649119],    //44
+    [33.90071618895002, 35.48313005962372],     //45
+    [33.9005693356441, 35.48300133968713],      //46
+    [33.90027562827346, 35.48278680645951],     //47
+    [33.89972369653041, 35.48278203900603],     //48
+    [33.899679310196504, 35.482438189964554],   //49
+    [33.900342428020046, 35.48007585680427],    //50
+    [33.90027567625607, 35.47984523358454],     //51
+    [33.90197115486636, 35.480751636471375],    //52
+    [33.90076518797816, 35.48158295272852],     //53
+    [33.900631685059956, 35.482183645765915],   //54
+    [33.90046286176137, 35.4800278923702],      //55
+    [33.9006364158579, 35.47997425906328],      //56
+    [33.90066756655579, 35.47993671574843],     //57
+    [33.90088117103473, 35.47959882591488],     //58
+    [33.9016866331104, 35.479352114877756],     //59
+    [33.90183348449194, 35.47969000471131],     //60
+    [33.90155758168753, 35.47944329149953],     //61
+    [33.90131727851755, 35.47962564474304],     //62
+    [33.90125942765326, 35.47894450174523],     //63
+    [33.901744483684844, 35.478976681729385],   //64
+    [33.901811234298854, 35.479148308311494],   //65
+    [33.901802334220015, 35.47909467500462],    //66
+    [33.90035605906482, 35.47979727132514],     //67
+    [33.900916771729186, 35.47955055811336],    //68
+    [33.90106362443671, 35.479507651467806],    //69
+    [33.90110812520722, 35.47914294498083],     //70
+    [33.8999644480329, 35.4800118045528],       //71
+    [33.899799792857344, 35.48179243034226],    //72
+    [33.89972859052081, 35.48113810399795],     //73
+    [33.899675188729375, 35.48096647741584],    //74
+    [33.89967963887993, 35.48026924442598],     //75
+    [33.89970633977844, 35.48202305356198],     //76
+    [33.90027095503465, 35.48252618278426],     //77
+    [33.89957673355322, 35.48056181461785],     //78
+    [33.89942542812118, 35.47968697305742],     //79
+    [33.89955003261412, 35.479279071470955],    //80
+    [33.89937202613987, 35.479364945489166],    //81
+    [33.899345325136686, 35.479291444460344],   //82
+    [33.90140641172114, 35.48043002705235],     //83
+    [33.900503044690005, 35.48036032414715],    //84
+    [33.90012033458854, 35.480371047671014],    //85
+    [33.89987088237467, 35.48032343193146],     //86
+    [33.899287911980785, 35.4790526943519],     //87
+    [33.89905205259731, 35.478945459113135],    //88
+    [33.8994701288766, 35.48289714937663],      //89
+    [33.899501519916, 35.48300967466288],       //90
+    [33.89983083110109, 35.48245741318317],     //91
+    [33.90233622455009, 35.48018402612105],     //92
+    [33.90228282439188, 35.48093467279251],     //93
+    [33.90214932384998, 35.48059152002838],     //94
+    [33.901807117732986, 35.47888135436195],    //95
+    [33.89930615890622, 35.47838271050163],     //96
+    [33.899079199937276, 35.47844168988296],    //97
+    [33.89903469810781, 35.47858109569338],     //98
+    [33.90135750182827, 35.480604084001605],    //99
+    [33.901014846298345, 35.482346690846434],   //100
+    [33.89972431311147, 35.4843678733934],      //101
+    [33.899693162068964, 35.48402475487085],    //102
+    [33.899924569541476, 35.48424992640127],    //103
+    [33.90049418525975, 35.483536883221575],    //104
+    [33.90086799350681, 35.48300076053009],     //105
+    [33.89967981161871, 35.48478604909275],     //106
+    [33.89961707284431, 35.484706700599816],    //107
+    [33.89965267406658, 35.48448152906939],     //108
+    [33.89928331066265, 35.48473886796131],     //109
+    [33.89936786387223, 35.48507662525696],     //110
+    [33.89951070573437, 35.484941524673275],    //111
+    [33.89960372238212, 35.48496403949173],     //112
+    [33.89969272542387, 35.483393200005686],    //113
+    [33.899657124218315, 35.48358084294771],    //114
+    [33.899479117967644, 35.48391323901642],    //115
+    [33.899479117967644, 35.48497476194557],    //116
+    [33.89970607587209, 35.48149532567779],     //117
+    [33.899403465198574, 35.48464772710376],    //118
+    [33.8998707312286, 35.48283563240651],      //119
+    [33.89976837793628, 35.48303399780238],     //120
+    [33.89990188220622, 35.48272304664132],     //121
+    [33.89946131732212, 35.48131304396267],     //122
+    [33.899434616346895, 35.481146845928286],   //123
+    [33.89965267406658, 35.48140418482021],     //124
+    [33.89946131732212, 35.47979581674572],     //125
+    [33.8995147192475, 35.480106767906825],     //126
+    [33.899492468449324, 35.4810717887515],     //127
+    [33.899719426318256, 35.480492776244674],   //128
+    [33.899648223914596, 35.48025152103351],    //129
+    [33.89940330445502, 35.47906446540364],     //130
+    [33.89935433823247, 35.478701706204596],    //131
+    [33.89901612483741, 35.47883582998108],     //132
+    [33.89959909708953, 35.47866415154717],     //133
+    [33.89960354724406, 35.478524662819645],    //134
+    [33.89979045352477, 35.47871780105776],     //135
+    [33.89953234474364, 35.47881973512787],     //136
+    [33.89978600337999, 35.47890557434484],     //137
+    [33.9007160785905, 35.480606263830445],     //138
+    [33.900760579542414, 35.48067064324313],    //139
+    [33.90102758476617, 35.480858416530204],    //140
+    [33.90015981473182, 35.479855170682214],    //141
+    [33.90140679797635, 35.48173812245391],     //142
+    [33.90178950230343, 35.481834691572935],    //143
+    [33.90092619010916, 35.481544984215795],    //144
+    [33.901963053699575, 35.48264479918281],    //145
+    [33.90231015543198, 35.48265552908494],     //146
+    [33.90174055184577, 35.48229071241294],     //147
+    [33.90236800558333, 35.48199027515367],     //148
+    [33.90242140568821, 35.481931260691994],    //149
+    [33.90254582107453, 35.48115338276568],     //150
+    [33.90262592105225, 35.48154502419293],     //151
+    [33.90224322047963, 35.48206005949458],     //152
+    [33.90183826800315, 35.480611522708735],    //153
+    [33.90189611847469, 35.48026280088992],     //154
+    [33.90187386829797, 35.481308966346376],    //155
+    [33.901806604327824, 35.47976388549384],    //156
+    [33.90171387557521, 35.479463333100306],    //157
+    [33.9021766789237, 35.480407564486626],     //158
+    [33.9012154691597, 35.47939358873654],      //159
+    [33.90040110240779, 35.47992471889136],     //160
+    [33.90148692301516, 35.4796457414363],      //161
+    [33.89982258578218, 35.47923800515585],     //162
+    [33.89988488776123, 35.47917362574312],     //163
+    [33.89939640315094, 35.479516660067986],    //164
+    [33.89964934991581, 35.48009690304438],     //165
+    [33.89960929853817, 35.4803008699796],      //166
+    [33.899538096042534, 35.480418956099996],   //167
+    [33.899974210394966, 35.48001638978048],    //168
+    [33.89942239186033, 35.48042432365092],     //169
+    [33.89950249477245, 35.48038675079442],     //170
+    [33.89936008954334, 35.480435058752775],    //171
+    [33.89971165202142, 35.481288499350086],    //172
+    [33.8997161021701, 35.48146026097976],      //173
+    [33.89936898987714, 35.48052630711852],     //174
+    [33.89970275172341, 35.482920234831774],    //175
+    [33.899707201872545, 35.48321645219334],    //176
+    [33.89976950393589, 35.48349558287878],     //177
+    [33.899790765413805, 35.48244952966393],    //178
+    [33.8995104058401, 35.48404749715111],      //179
+    [33.90003119284309, 35.484218320734826],    //180
+    [33.89993328988071, 35.48399286902736],     //181
+    [33.900244798916255, 35.48312863748211],    //182
+    [33.90031600082171, 35.48308032640194],     //183
+    [33.89951497595696, 35.48386940737806],     //184
+    [33.900525252040225, 35.48269972881685],    //185
+    [33.9007700075361, 35.482415230233634],     //186
+    [33.90088570988959, 35.48228103278872],     //187
+    [33.90117051501391, 35.481905279942964],    //188
+    [33.90108596359193, 35.482307872277715],    //189
+    [33.90135296779672, 35.482286400686526],    //190
+    [33.901366317984994, 35.48198043051213],    //191
+    [33.90163777136017, 35.48232397597109],     //192
+    [33.90157547066197, 35.48239912654026],     //193
+    [33.9013841182328, 35.48165835664432],      //194
+    [33.9013129172193, 35.481443640732465],     //195
+    [33.90141526865751, 35.480783389303454],    //196
+    [33.90227412588466, 35.48215757113942],     //197
+    [33.899270312824875, 35.47871674865177],    //198
+    [33.90199408635763, 35.48031294556797],     //199
+    [33.90068499748483, 35.47836763932356],     //200
+    [33.901027654340396, 35.478989571987206],   //201
+    [33.90065384679331, 35.4785981833282],      //202
+    [33.902015566397125, 35.477826128987104],   //203
+    [33.901174506856925, 35.479021740918085],   //204
+    [33.901672913511916, 35.47804058852632],    //205
+    [33.90163286308478, 35.47789046684886],     //206
+    [33.90202001642555, 35.47796552768757],     //207
+    [33.90179751472039, 35.47882872733281],     //208
+    [33.90105435481675, 35.479193308549426],    //209
+    [33.90126832538968, 35.47989150392978],     //210
+    [33.9011077557444, 35.47936487618077],      //211
+    [33.90147266118816, 35.47991174800572],     //212
+    [33.90154386206827, 35.4798634946094],      //213
+    [33.90152161179963, 35.47953108232366],     //214
+    [33.90141926048907, 35.479922470982665],    //215
+    [33.901748564267365, 35.47968120400107],    //216
+    [33.90224780964262, 35.480099353229704],    //217
+    [33.90212696820399, 35.48037421440177],     //218
+    [33.901810803099686, 35.480460111836656],   //219
+    [33.90159260396366, 35.479364919541844],    //220
+    [33.900648552287564, 35.48220498563147],    //221
+    [33.900301209889506, 35.482080125901994],   //222
+    [33.900791051323594, 35.48204259293954],    //223
+    [33.899731442316316, 35.480055869767476],   //224
+    [33.90017684094625, 35.482475743416465],    //225
+    [33.89996754389742, 35.48014136615417],     //226
+    [33.901098550328314, 35.48087701902231],    //227
+    [33.90009653179202, 35.484171163022374],    //228
+    [33.90169521353484, 35.48027059790775],     //229
+    [33.90152599769754, 35.48037255921347],     //230
+    [33.901784274366996, 35.480179369371065],   //231
+    [33.8993974119038, 35.48068917589961],      //232
+    [33.89945530301537, 35.48088773212651],     //233
+    [33.899446456054065, 35.48085548269091],    //234
+    [33.90148152351984, 35.4804418482901],      //235
+    [33.901557225422806, 35.480372085291485],   //236
+    [33.89935738978194, 35.47979788214877],     //237
+    [33.8994063745942, 35.48080139605235],      //238
+    [33.89943754673281, 35.48077456412978],     //239
+    [33.89912599752108, 35.47877914417583],     //240
+    [33.89929521812154, 35.47979842062332],     //241
+    [33.899575865060086, 35.47911225661259],     //242
+    [33.8993976409534, 35.479161138799725],     //243
+    [33.90176640284864, 35.480464068466],       //244
+    [33.89944651181743, 35.47918235236163],     //245
+    [33.90143697197156, 35.480464322524575],    //246
+    [33.90129892707983, 35.47992813734644],     //247
+    [33.899784855473754, 35.4790912137126],     //248
+    [33.901695227925025, 35.48260885537108],    //249
+    [33.90134343672873, 35.48182602501099],     //250
+    [33.90214488104681, 35.48036764495263],     //251
+    [33.900181076414285, 35.482099523078055],   //252
+    [33.90055513792677, 35.48220676011367],     //253
+    [33.901704099236206, 35.482604350646206],   //254
+    [33.901209809978525, 35.481773263620084],   //255
+    [33.900996062384976, 35.481762539916524],   //256
+    [33.90004311942942, 35.482823678452085],    //257
+    [33.900105463229686, 35.48257703327016],    //258
+    [33.899615617856874, 35.481804926613634],   //259
+    [33.90068499748483, 35.47836763932356],     //260
+    [33.9014859555891, 35.47970158715875],      //261
+    [33.901779856703385, 35.48043079900106],    //262
+    [33.89904119342129, 35.47879543420772],     //263
+    [33.90113861660248, 35.47931553383049],     //264
+    [33.900167841161576, 35.47856487458108],    //265
+    [33.89921932053698, 35.47879543420772],     //266
+    [33.90051518410295, 35.47832895310269],     //267
+    [33.90012330991292, 35.48233961823526],     //268
+    [33.899794179178436, 35.479216816134304],   //269
+    [33.89960714695814, 35.480471607311834],    //270
+    [33.899331051025975, 35.478878987740366],   //271
+    [33.90023913188389, 35.480702252589545],    //272
+    [33.90008327254214, 35.48139399644382],     //273
+    [33.900653271036276, 35.47999442166887],    //274
+    [33.9006488179378, 35.48015339040741],      //275
+    [33.9006577241345, 35.47985837619766],      //276
+    [33.9006488179378, 35.4797028232507],       //277
+    [33.90101842431908, 35.479472175777616],    //278
+    [33.900862566401855, 35.479595545356254],   //279
+    [33.90071116129518, 35.47950972304068],     //280
+    [33.900902644179226, 35.47952045083013],    //281
+    [33.90095162810375, 35.47953654251432],     //282
+    [33.90145482497164, 35.479370261777895],    //283
+    [33.9009560811864, 35.47956336198792],      //284
+    [33.90137021685643, 35.48018557377573],     //285
+    [33.90151271468631, 35.480464496301295],    //286
+    [33.901143110447734, 35.47990665125014],    //287
+    [33.900225772522916, 35.47992810682905],    //288
+    [33.90195790614713, 35.4803304489561],      //289
+    [33.900368159540804, 35.48044845464001],    //290
+    [33.90037261265394, 35.480416271271686],    //291
+    [33.90055073698822, 35.4802768100089],      //292
+    [33.90039042510413, 35.480255354429985],    //293
+    [33.899882768815914, 35.47969750937888],    //294
+    [33.899989644075134, 35.47967068990527],    //295
+    [33.9002924565821, 35.480325085061416],     //296
+    [33.89994511273343, 35.47931667285356],     //297
+    [33.900003309270154, 35.48007721689235],    //298
+    [33.89914396612979, 35.47932105353214],     //299
+    [33.89940221523768, 35.47942294788561],     //300
+    [33.900012214335085, 35.480012862563804],   //301
+    [33.900016666867195, 35.48011475691732],    //302
+    [33.90028381836848, 35.48034535992788],     //303
+    [33.900323891021486, 35.47999141112098],    //304
+    [33.89999885673736, 35.48029173132077],     //305
+    [33.90013243262052, 35.4830965074725],      //306
+    [33.9003372485683, 35.48281763871553],      //307
+    [33.89963820080752, 35.480618865824134],    //308
+    [33.900666734060614, 35.48232961839086],    //309
+    [33.9005019914736, 35.48272647008345],      //310
+    [33.900733521505224, 35.482163369708836],   //311
+    [33.900764688961445, 35.48166462366274],    //312
+    [33.901000670760425, 35.48186841236973],    //313
+    [33.900693449044724, 35.48217945829095],    //314
+    [33.901396940613985, 35.48176629687695],    //315
+    [33.901098625277605, 35.481991518338944],   //316
+    [33.90185109031604, 35.4820719612496],      //317
+    [33.902167212700256, 35.482007606921094],   //318
+    [33.90141920291065, 35.48061862599701],     //319
+    [33.90141029799269, 35.480538183086324],    //320
+    [33.901583943725434, 35.48066689174342],    //321
+    [33.90247442910552, 35.48134261219297],     //322
+    [33.90203809243142, 35.48070979462911],     //323
+    [33.901966853578685, 35.48069370604696],    //324
+    [33.900902716130695, 35.479792969701485],   //325
+    [33.90239873820989, 35.48099961336139],     //326
+    [33.90168635001745, 35.48045260156889],     //327
+    [33.90059104156018, 35.4799431298014],      //328
+    [33.90133905861541, 35.47985732403003],     //329
+    [33.9003372485683, 35.4797983325622],       //330
+    [33.899660463563436, 35.481535899432465]    //331
+];
+
+let maxMarginLat = 0.00643;
+let maxMarginLng = 0.0104;
+let guessLat;
+let guessLng;
+
+let round = 5;  //change round size//////////////////////////////////////////////
+let locations = coords.length;
+let arr = new Array(locations);
+let scoreArr = new Array(round);
+let turnArr = new Array(round);
+
+let mode = 0;
+let wasMulti = 0;
+let invited = 0;
+
+let challengeCode;
+let challengeLink;
+
+let codeArr;
+
+let inverted = 0;
+let blurry = 0;
+let mirrored = 0;
+let twoSec = 0;
+let twoSecDone = 0;
+
+let oceanClick = false;
+let hintUsed = 0;
+let hintsArr = new Array(5).fill(0);;
+let allTimeArr = new Array(5);
+let dailyArr = new Array(5);
+let dailyRound = new Array(5);
+let leaderLoaded = 0;
+
+let dailyPlayed = 0;
+let dailyMode = 0;
+
+let opponentFinished = false;
+let opponentScore = null;
+let opponentName = null;
+let myScoreSubmitted = false;
+let opponentPerfectScores = null;
+let opponentHints = null;
+let opponentScoreArr = new Array(5);
+let opponentHintsArr = new Array(5).fill(0);
+
+let host = false;
+let expired = 0;
+
+const glow = document.getElementById('cursor-glow');
+document.addEventListener('mousemove', (e) => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top = e.clientY + 'px';
+});
+
+async function initPrep() {
+    await prepLeaderArrs();
+    displayLeader(0);
+}
+initPrep();
+
+const savedId = localStorage.getItem('student_id'); // null
+const savedName = localStorage.getItem('username');  // null
+
+if (savedId && savedName) {
+    document.getElementById("input").value = savedId;
+    document.getElementById("name").value = savedName;
+    document.getElementById("check").style.opacity = "1";
+    document.getElementById("check").style.cursor = "pointer";
+    submitInfo();
+}
+
+async function prepLeaderArrs() {
+
+    const { data, error } = await db.rpc('get_leaderboard');
+
+    if (error || !data) {
+        leaderLoaded = 1;
+        return;
+    }
+
+    const byAvg = [...data].sort((a, b) => b.avg_score - a.avg_score);
+    const byDaily = [...data]
+        .filter(u => u.daily_score !== null)
+        .sort((a, b) => b.daily_score - a.daily_score);
+
+    for (let i = 0; i < 5; i++) {
+        if (byAvg[i]) {
+            allTimeArr[i] = `${i + 1}. ${(byAvg[i].username).padEnd(usernameMaxLength + 2)} | AVG: ${(byAvg[i].avg_score).toFixed(2)}% | Games: ${byAvg[i].games_played}`;
+        } else {
+            allTimeArr[i] = `${i + 1}. ~`;
+        }
+
+        if (byDaily[i]) {
+            dailyArr[i] = `${i + 1}. ${(byDaily[i].username).padEnd(usernameMaxLength + 2)} | Score: ${(byDaily[i].daily_score).toFixed(2)}% | Games: ${byDaily[i].games_played}`;
+        } else {
+            dailyArr[i] = `${i + 1}. ~`;
+        }
+    }
+
+    leaderLoaded = 1;
+
+    if (isMobile) document.getElementById("leaderDiv").style.borderBottomWidth = "0";
+    return;
+}
+
+function displayLeader(leaderMode) {
+    if (!leaderMode) {
+        for (let i = 0; i < 5; i++) {
+            document.getElementById(`leader${i + 1}`).textContent = allTimeArr[i];
+        }
+    } else {
+        for (let i = 0; i < 5; i++) {
+            document.getElementById(`leader${i + 1}`).textContent = dailyArr[i];
+        }
+    }
+
+    return;
+}
+
+for (let i = 0; i < locations; i++) {
+    arr[i] = i;
+}
+
+arr = shuffleArray(arr);
+
+let turn = arr[0];
+
+function shuffleArray(arr) {
+    const shuffled = [...arr]; // Copy array to prevent original mutation
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1)); // Pick a random index
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; // Swap elements
+    }
+    return shuffled;
+}
+
+generateCode();
+
+let Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}')
+
+let bounds = L.latLngBounds([33.905, 35.475], [33.897, 35.488]);
+
+let map = L.map('map', {
+    center: [33.9005, 35.481],
+    zoom: 17,
+    layers: [Esri_WorldImagery],
+    minZoom: 17,   // Minimum zoom level (zoomed out)
+    maxZoom: 18,
+    maxBounds: bounds,
+    maxBoundsViscosity: 1.0
+});
+
+if (isMobile) map.setMinZoom(16);
+
+let markerGroup = L.layerGroup().addTo(map);
+let hintGroup = L.layerGroup().addTo(map);
+let markerFlash = L.layerGroup().addTo(map);
+let flashIcon = L.icon({
+    iconUrl: 'assets/marker.png',
+    iconSize: [30, 40],
+    iconAnchor: [15, 33],
+    className: 'pulse-marker'
+});
+
+var guessIcon = L.icon({
+    iconUrl: 'assets/marker.png',
+    iconSize: [30, 40],
+    iconAnchor: [15, 33]
+});
+
+let oceanPolygon = L.polygon([
+    [33.90041108133747, 35.46851832173644],
+    [33.9005802993875, 35.469344481591286],
+    [33.90041108133747, 35.47068565018683],
+    [33.900785141840885, 35.47233796989652],
+    [33.9014352907157, 35.47366840914329],
+    [33.901809346725756, 35.47463405053207],
+    [33.903091812015646, 35.48112530653442],
+    [33.903002752549405, 35.481704691367696],
+    [33.90152435181935, 35.488710956110744],
+    [33.90183606494941, 35.49042765191301],
+    [33.90261088979263, 35.49152204548698],
+    [33.903207589182706, 35.49289540212879],
+    [33.90306509418555, 35.493614269008695],
+    [33.90554091087979, 35.49721933019347],
+    [33.91411665520647, 35.49815278302326],
+    [33.91417898871457, 35.464709402925166],
+    [33.90069607996511, 35.46478450836651]
+    // ...more points outlining the ocean boundary
+], {
+    color: 'transparent',
+    fillColor: 'transparent',
+    fillOpacity: 0
+}).addTo(map);
+
+oceanPolygon.on('click', function () {
+    if (play || next) return;
+
+    oceanClick = true;
+
+    document.getElementById("side1").style.backgroundImage = "url('assets/ocean.jpg')";
+    document.getElementById("side1").style.backgroundSize = "contain";
+
+    if (isMobile) document.getElementById("side1").style.backgroundSize = "cover";
+});
+
+let formatted;
+
+if (!isMobile) showIntroMarkers();
+
+function showIntroMarkers() {
+    markerFlash.clearLayers();
+    let index = 0;
+    for (let i = 0; i < coords.length; i++) {
+        if (i == 151 || i == 155) continue;
+        const marker = L.marker([coords[i][0], coords[i][1]], { icon: flashIcon }).addTo(markerFlash);
+        const delay = index * 400;
+        setTimeout(() => {
+            const el = marker.getElement();
+            if (el) el.style.animationDelay = `${delay}ms`;
+        }, 100);
+        index++;
+    }
+}
+
+let picture = document.getElementById("picture");
+let dim = document.getElementById("dim");
+let picFull = document.getElementById("picFull");
+
+map.on('click', function (a) {
+
+    if (oceanClick) {
+        oceanClick = false;
+        return;
+    }
+    document.getElementById("side1").style.backgroundImage = "";
+});
+
+map.on('click', function (e) {
+
+    if (play) return;
+
+    if (next) return;
+
+    document.getElementById("submit").classList.add("active");
+
+    markerGroup.clearLayers();
+    L.marker(e.latlng, { icon: guessIcon }).addTo(markerGroup);
+
+    guessLat = e.latlng.lat;
+    guessLng = e.latlng.lng;
+
+    //console.log(guessLat, guessLng); //USED FOR NEW PICTURES///////////////////////////////////////////////////////////////////
+
+    let absLat = Math.abs(coords[turn][0] - guessLat);
+    let absLng = Math.abs(coords[turn][1] - guessLng);
+
+    let ACC = 100 - (((absLat / maxMarginLat) + (absLng / maxMarginLng)) / 2 * 100);
+
+    ACC = ACC - 7 * (100 - ACC);
+
+    if (ACC < 0) ACC = 0;
+    if (ACC > 95.5) {
+        ACC = 100;
+        formatted = ACC.toFixed(0);
+    } else formatted = ACC.toFixed(2);
+
+    if (hintUsed) formatted = (ACC * 0.6).toFixed(2);
+
+    guessed = true;
+});
+
+let submit = document.getElementById("submit");
+
+submit.addEventListener('click', function () {
+    submitFunc();
+});
+
+
+function submitFunc() {
+
+    markerFlash.clearLayers();
+
+    if (dailyMode && count == 0) turn = dailyRound[0];
+
+    if (isMobile && (next || play)) {
+        document.getElementById("side1").style.height = "calc(30dvh - 2px)";
+        document.getElementById("map").style.height = "70dvh";
+        setTimeout(() => map.invalidateSize(), 100);
+        document.getElementById("submit").style.top = "60dvh";
+        document.getElementById("submit").style.marginLeft = "10dvh";
+
+        document.getElementById("map").style.display = "revert";
+        document.getElementById("side1").style.borderWidth = "3px";
+
+        if (!done) {
+            dim.style.display = "revert";
+            picFull.style.display = "revert";
+        }
+    }
+
+    if (done) {
+        finishRound();
+        return;
+    }
+
+    turnArr[count] = turn;
+
+    if (next || play) {
+
+        if (twoSec && !dailyMode) {
+            setTimeout(function () {
+                document.getElementById("picWrap").style.display = "none";
+                document.getElementById("full").style.opacity = "0";
+                twoSecDone = 1;
+
+                document.getElementById("picFull").style.display = "none";
+                dim.style.display = "none";
+                hideDivs();
+                // or hide it, disable clicking, etc.
+            }, isMobile ? 3000 : 2500);
+        }
+
+        document.getElementById("picWrap").style.display = "flex";
+        picture.style.display = "revert";
+        document.getElementById("text1").style.display = "revert";
+
+        if ((mode && (count == 0)) && !host) {
+            generateCode();
+
+            turn = arr[round]
+
+            socket.emit("joinRoom", {
+                roomCode: challengeCode,
+                username: user_name
+            });
+
+            host = true;
+        }
+
+        if (next) {
+
+            document.getElementById("side1").style.backgroundImage = "";
+            count++;
+
+            if (mode) {
+                turn = arr[round + count];
+            } else {
+                if (dailyMode) {
+                    turn = dailyRound[count];
+                } else turn = arr[count];
+            }
+        }
+
+        document.getElementById("leader").style.display = "none";
+        document.getElementById("diff").style.display = "none";
+        document.getElementById("dailySVG").style.display = "none";
+        document.getElementById("hint").style.display = "revert";
+        document.getElementById("imageCount").style.display = "revert";
+        picture.src = `images/image${turn}.jpeg`;
+        document.getElementById("picFull").src = `images/image${turn}.jpeg`;
+        if (!dailyMode) applyDifficulty();
+        document.getElementById("result").style.display = "none";
+        document.getElementById("submit").classList.remove("active");
+        if (!isMobile) picture.style.width = "30vw";
+        document.getElementById("submit").textContent = "Submit";
+        hintGroup.clearLayers();
+        document.getElementById("imageCount").textContent = (count + 1) + "/" + round;
+        document.getElementById("mode").style.display = "none";
+        markerGroup.clearLayers();
+        hintUsed = 0;
+
+        let hintCenter = getHintCircle(coords[turn][0], coords[turn][1]);
+
+        let hintCircle = L.circle(hintCenter, {
+            radius: 100,
+            color: 'rgb(132, 1, 50)',
+            fillOpacity: 0.3
+        }).addTo(hintGroup);
+        next = false;
+        play = false;
+        twoSecDone = 0;
+        document.getElementById("full").style.display = "revert";
+        document.getElementById("press").style.display = "none";
+        map.removeLayer(hintGroup); // hides it
+        return;
+    }
+
+    if (!guessed) return;
+
+    document.getElementById("result").classList.remove("golden", "regular");
+
+    if (formatted == 100) {
+        document.getElementById("result").classList.add("golden");
+    } else {
+        document.getElementById("result").classList.add("regular");
+    }
+
+    if (!isMobile) picture.style.width = "25vw";
+
+    document.getElementById("result").style.display = "revert";
+    document.getElementById("result").textContent = formatted + "%";
+
+    scoreArr[count] = formatted;
+
+    total += parseFloat(formatted);
+    if (parseFloat(formatted) == 100) perfectScore++;
+
+    L.circleMarker([coords[turn][0], coords[turn][1]], {
+        color: 'rgb(132, 1, 50)',          // Stroke color
+        fillColor: '#e4c473',     // Fill color
+        fillOpacity: 1,
+        radius: 8
+    }).addTo(markerGroup);
+
+    let point1 = [coords[turn][0], coords[turn][1]];
+    let point2 = [guessLat, guessLng];
+
+    // Combine the points into an array
+    let pointList = [point1, point2];
+
+    // Create the line and add it to your map instance
+    let polyline = L.polyline(pointList, {
+        color: 'rgb(132, 1, 50)',      // Sets line color
+        weight: 5,         // Sets stroke width in pixels
+        opacity: 1,      // Sets line transparency
+        smoothFactor: 1    // Simplifies the line at higher zoom levels
+    }).addTo(markerGroup);
+
+    submit.textContent = "Next location ➜"
+    next = true;
+    guessed = false;
+    twoSecDone = 0;
+    document.getElementById("picWrap").style.display = "flex"; //for twoSec difficulty
+    document.getElementById("full").style.opacity = "1";    //for twoSec difficulty
+
+    if (count == round - 1) {
+        document.getElementById("submit").textContent = "See Results ➜";
+        done = true;
+        return;
+    }
+}
+
+let updateGamesDB = true;
+let finalScore;
+
+async function finishRound() {
+
+    console.log("FINISH ROUND:", {
+        wasMulti,
+        invited,
+        challengeCode,
+        socketConnected: socket.connected
+    });
+
+    finalScore = (total / round).toFixed(2);
+    if (finalScore == 100.00) finalScore = 100;
+
+
+    if (wasMulti || invited) {
+
+        socket.emit("sendScore", {
+            roomCode: challengeCode,
+            score: parseFloat(finalScore),
+            perfectScores: perfectScore,
+            hints: hints,
+            scoreArr: scoreArr,
+            hintsArr: hintsArr
+        });
+    }
+    myScoreSubmitted = true;
+
+    document.getElementById("score1").textContent = finalScore + "%";
+    document.getElementById("perfect1").textContent = perfectScore + "/" + round;
+    document.getElementById("hint1").textContent = hints + "/" + round;
+
+    document.getElementById("scoreDivMultiBubble").style.display = "flex";
+    document.getElementById("scoreDivMulti").style.display = "flex";
+
+    dim.style.display = "revert";
+
+    if (updateGamesDB && !wasMulti && signedIn) {
+        const { data, error } = await db.rpc('submit_game_result', {
+            p_student_id: id,
+            p_score: parseFloat(finalScore),
+            p_is_daily: dailyMode
+        });
+
+        if (!error) {
+            games_played = data[0].games_played;
+            avg_score = data[0].avg_score;
+            document.getElementById("played").textContent = "• Games Played: " + games_played;
+            document.getElementById("avg").textContent = "• Average Score: " + avg_score.toFixed(2) + "%";
+        } else {
+            console.error('submit_game_result failed:', error);
+        }
+
+        if (dailyMode) {
+            dailyMode = false;
+            dailyPlayed = 1;
+        }
+        updateGamesDB = false; //for it to happen once
+    }
+
+    for (let x = 0; x < round; x++) {
+        document.getElementById(`smallPicS${x}`).src = "images/image" + turnArr[x] + ".jpeg";
+    }
+
+    return;
+};
+
+function showPlayer2() {
+    document.getElementById("waiting").style.display = "none";
+
+    document.getElementById("score2").textContent = opponentScore.toFixed(2) + "%";
+    document.getElementById("perfect2").textContent = opponentPerfectScores + "/" + round;
+    document.getElementById("hint2").textContent = opponentHints + "/" + round;
+
+    document.getElementById("name2").style.display = "flex";
+    document.getElementById("score2").style.display = "revert";
+    document.getElementById("perfectLogo2").style.display = "flex";
+    document.getElementById("perfect2").style.display = "flex";
+    document.getElementById("hintSVG2").style.display = "flex";
+    document.getElementById("hint2").style.display = "flex";
+}
+
+function hidePlayer2() {
+    document.getElementById("player2").style.display = "none";
+
+    document.getElementById("waiting").style.display = "revert";
+
+    document.getElementById("name2").style.display = "none";
+    document.getElementById("score2").style.display = "none";
+    document.getElementById("perfectLogo2").style.display = "none";
+    document.getElementById("perfect2").style.display = "none";
+}
+
+document.getElementById("picWrap").addEventListener('click', function () {
+    if (play || twoSecDone) {
+        return;
+    }
+    dim.style.display = "revert";
+    picFull.style.display = "revert";
+});
+
+dim.addEventListener('click', function () {
+
+    if (invited && play) {
+        window.location.href = window.location.origin + window.location.pathname;
+    }
+
+    hideDivs();
+
+    if (play) generateCode();
+});
+
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+
+        if (invited && play) {
+            window.location.href = window.location.origin + window.location.pathname;
+        }
+
+        hideDivs();
+    }
+});
+
+function hideDivs() {
+    dim.style.display = "none";
+    picFull.style.display = "none";
+    document.getElementById("diffDiv").style.display = "none";
+    document.getElementById("scoreDiv").style.display = "none";
+    document.getElementById("hintDiv").style.display = "none";
+    document.getElementById("inviteDiv").style.display = "none";
+    document.getElementById("leaderDiv").style.display = "none";
+    document.getElementById("deleteDiv").style.display = "none";
+    document.getElementById("dailyDiv").style.display = "none";
+    document.getElementById("scoreDivMulti").style.display = "none";
+    document.getElementById("scoreDivMultiBubble").style.display = "none";
+    document.getElementById("summaryDivCover").style.display = "none";
+    return;
+}
+
+let container = document.getElementById("container");
+let container2 = document.getElementById("container2");
+let overlay = document.getElementById("overlay");
+let signin = document.getElementById("signin");
+let stats = document.getElementById("stats");
+
+document.getElementById("logo").addEventListener('click', function () {
+    window.location.href = window.location.origin + window.location.pathname;
+});
+
+document.getElementById("profileButton").addEventListener('click', function () {
+    showAccount();
+});
+
+document.getElementById("again").addEventListener('click', function () {
+    again();
+});
+
+document.getElementById("againMulti").addEventListener('click', function () {
+    again();
+});
+
+function again() {
+    count = 0;
+    next = false;
+    guessed = false;
+    play = true;
+    done = false;
+    perfectScore = 0;
+    hints = 0;
+    total = 0;
+    arr = shuffleArray(arr);
+    turn = arr[0];
+    updateGamesDB = true;
+    dailyMode = 0;
+    hintUsed = 0;
+    host = false;
+
+    opponentFinished = false;
+    opponentScore = null;
+    opponentName = null;
+    myScoreSubmitted = false;
+    opponentPerfectScores = null;
+    shownFinished = false;
+    hintsArr = new Array(5).fill(0);
+    opponentHintsArr = new Array(5).fill(0);
+
+    dim.style.display = "none";
+    document.getElementById("scoreDiv").style.display = "none";
+    document.getElementById("scoreDivMulti").style.display = "none";
+    document.getElementById("imageCount").textContent = (count + 1) + "/" + round;
+    document.getElementById("imageCount").style.display = "none";
+
+    if (wasMulti) {
+        document.getElementById("submit").textContent = "START GAME";
+    } else {
+        document.getElementById("submit").textContent = "PLAY";
+    }
+    document.getElementById("submit").style.top = "";
+    document.getElementById("submit").style.marginLeft = "";
+    document.getElementById("picWrap").style.display = "none";
+    document.getElementById("result").style.display = "none";
+
+    document.getElementById("text1").style.display = "none";
+    document.getElementById("full").style.display = "none";
+
+    document.getElementById("side1").style.height = "";
+    document.getElementById("map").style.height = "";
+
+    document.getElementById("mode").style.display = "flex";
+    document.getElementById("diff").style.display = "revert";
+
+    markerGroup.clearLayers();
+    hintGroup.clearLayers();
+    document.getElementById("hint").style.display = "none";
+    document.getElementById("leader").style.display = "flex";
+
+    hidePlayer2();
+
+    showIntroMarkers();
+
+    if (isMobile) {
+        document.getElementById("map").style.display = "none";
+        document.getElementById("side1").style.borderWidth = "0px";
+    }
+
+    if (wasMulti) document.getElementById("press").style.display = "none";
+    else document.getElementById("press").style.display = "revert";
+
+    if (invited) window.location.href = window.location.origin + window.location.pathname;
+
+    if (signedIn) document.getElementById("dailySVG").style.display = "revert";
+
+    invited = 0;
+
+    generateCode();
+}
+
+document.getElementById("back").addEventListener("click", function () {
+    setTimeout(() => map.invalidateSize(), 100);
+    hideAccount();
+});
+
+document.getElementById("guest").addEventListener("click", function () {
+    signinScreen = false;
+    document.getElementById("side1").style.display = "flex";
+    document.getElementById("logo").style.display = "revert";
+    document.getElementById("login").style.display = "revert";
+    document.getElementById("cursor-glow").style.display = "none";
+    hideSignin();
+    hideAccount();
+});
+
+function showAccount() {
+    container.style.display = "none";
+    container2.style.display = "flex";
+    stats.style.display = "revert";
+}
+
+function hideAccount() {
+    setTimeout(() => map.invalidateSize(), 100);
+    container2.style.display = "none";
+    container.style.display = "flex";
+}
+
+function showSignin() {
+    overlay.style.display = "revert";
+}
+
+function hideSignin() {
+    overlay.style.display = "none";
+    signin.style.display = "none";
+    document.getElementById("signinBubble").style.display = "none";
+    if (isMobile) document.getElementById("side1").style.borderBottomWidth = "0";
+}
+
+document.getElementById("input").addEventListener("input", updateButtonOpacity);
+document.getElementById("name").addEventListener("input", updateButtonOpacity);
+
+function updateButtonOpacity() {
+    const hasInput = document.getElementById("input").value.trim() !== "" || document.getElementById("name").value.trim() !== "";
+    document.getElementById("check").style.opacity = hasInput ? "1" : "0.6";
+    document.getElementById("check").style.cursor = hasInput ? "pointer" : "auto";
+}
+
+document.getElementById("check").addEventListener("click", function () {
+    submitInfo();
+});
+
+async function submitInfo() {
+    let valid = true;
+
+    let input = document.getElementById("input");
+    let value = input.value.trim();
+
+    let nameBox = document.getElementById("name");
+    let nameValue = nameBox.value.trim();
+
+    if (value.trim() == "") {
+        input.value = "";
+
+        valid = false;
+    }
+
+    if (nameValue.trim().length == 0) {
+        nameBox.value = "";
+
+        valid = false;
+    }
+
+    if ((value.trim().length != 9 || (/[a-zA-Z\s]/.test(value))) || (!/^\d+$/.test(value))) {
+        if (!valid) { } else {
+            input.value = "";
+            input.placeholder = "invalid";
+
+            input.classList.add("invalid");
+
+            valid = false;
+        }
+    }
+
+    if (nameValue.length > usernameMaxLength) {
+        nameBox.value = "";
+        nameBox.placeholder = `too long (max ${usernameMaxLength})`;
+        nameBox.classList.add("invalid");
+
+        valid = false;
+    }
+
+    if (!valid) return;
+
+    id = value;
+    user_name = nameValue;
+
+    const { data, error } = await db.rpc('get_or_create_user', {
+        p_student_id: id,
+        p_username: user_name
+    });
+
+    if (error) {
+        // e.g. error.message === 'username_taken'
+        nameBox.value = "";
+        nameBox.placeholder = "username taken";
+        nameBox.classList.add("invalid");
+        return;
+    }
+
+    const row = data[0];
+    if (!row.is_new && row.username !== nameValue) {
+        nameBox.value = "";
+        nameBox.placeholder = "wrong username";
+        nameBox.classList.add("invalid");
+        return;
+    }
+
+    games_played = row.games_played;
+    avg_score = row.avg_score;
+    dailyPlayed = row.daily_score !== null ? 1 : 0;
+
+    document.getElementById("profileName").textContent = "Name: " + nameValue;
+    document.getElementById("idnum").textContent = "ID: " + id;
+    document.getElementById("played").textContent = "• Games Played: " + games_played;
+    document.getElementById("avg").textContent = "• Average Score: " + avg_score.toFixed(2) + "%"
+    document.getElementById("side1").style.display = "flex";
+    document.getElementById("delete").style.display = "revert";
+    document.getElementById("logout").style.display = "revert";
+    document.getElementById("logo").style.display = "revert";
+    document.getElementById("login").style.display = "none";
+    document.getElementById("dailySVG").style.display = "revert";
+    document.getElementById("info").style.display = "revert";
+    document.getElementById("cursor-glow").style.display = "none";
+
+    localStorage.setItem('student_id', id);
+    localStorage.setItem('username', user_name);
+
+    signinScreen = false;
+    signedIn = true;
+    hideSignin();
+    hideAccount();
+}
+
+document.addEventListener('keydown', function (event) {
+    if (!signinScreen) return;
+
+    if (event.key === 'Enter') {
+        submitInfo();
+    }
+});
+
+let multi = document.getElementById("multi");
+let single = document.getElementById("single");
+let allTime = document.getElementById("allTime");
+let daily = document.getElementById("daily");
+
+// Multiplayer button click handler
+multi.addEventListener("click", function () {
+    single.style.borderStyle = "solid";
+    multi.style.borderStyle = "none";
+
+    multi.style.backgroundImage = "-webkit-linear-gradient(left, #e2bf71, #af4261)";
+    single.style.backgroundImage = "none";
+
+    multi.style.zIndex = "100";
+    single.style.zIndex = "50";
+
+    multi.style.width = "55%";
+    single.style.width = "44%";
+
+    multi.style.color = "#52011d";
+    single.style.color = "#e2c072";
+
+    single.style.textShadow = "2px 2px 4px rgba(0, 0, 0, 0.4)";
+    multi.style.textShadow = "none";
+
+    document.getElementById("press").style.display = "none";
+    document.getElementById("codeDiv").style.display = "flex";
+
+    document.getElementById("submit").textContent = "START GAME";
+    document.getElementById("text1").textContent = "Multiplayer";
+    wasMulti = 1;
+    mode = 1;
+});
+
+// Singleplayer button click handler
+single.addEventListener("click", function () {
+    multi.style.borderStyle = "solid";
+    single.style.borderStyle = "none";
+
+    single.style.backgroundImage = "-webkit-linear-gradient(left, #e2bf71, #af4261)";
+    multi.style.backgroundImage = "none";
+
+    multi.style.zIndex = "50";
+    single.style.zIndex = "100";
+
+    multi.style.width = "42%";
+    single.style.width = "57%";
+
+    single.style.color = "#52011d";
+    multi.style.color = "#e2c072";
+
+    multi.style.textShadow = "2px 2px 4px rgba(0, 0, 0, 0.4)";
+    single.style.textShadow = "none";
+
+    document.getElementById("press").style.display = "revert";
+    document.getElementById("codeDiv").style.display = "none";
+
+    document.getElementById("submit").textContent = "PLAY";
+    document.getElementById("text1").textContent = "Singleplayer";
+    wasMulti = 0;
+    mode = 0;
+});
+
+// All-time leaderboard button click handler
+allTime.addEventListener("click", function () {
+    if (leaderLoaded) displayLeader(0);
+
+    allTime.style.backgroundImage = "-webkit-linear-gradient(left, #e2bf71, #af4261)";
+    daily.style.backgroundImage = "none";
+
+    daily.style.borderStyle = "solid";
+    allTime.style.borderStyle = "none";
+
+    daily.style.width = "42%";
+    allTime.style.width = "57%";
+
+    allTime.style.color = "#52011d";
+    daily.style.color = "#e2c072";
+
+    daily.style.textShadow = "2px 2px 4px rgba(0, 0, 0, 0.4)";
+    allTime.style.textShadow = "none";
+});
+
+// Daily leaderboard button click handler
+daily.addEventListener("click", function () {
+    if (leaderLoaded) displayLeader(1);
+
+    daily.style.backgroundImage = "-webkit-linear-gradient(left, #e2bf71, #af4261)";
+    allTime.style.backgroundImage = "none";
+
+    allTime.style.borderStyle = "solid";
+    daily.style.borderStyle = "none";
+
+    allTime.style.width = "42%";
+    daily.style.width = "57%";
+
+    daily.style.color = "#52011d";
+    allTime.style.color = "#e2c072";
+
+    allTime.style.textShadow = "2px 2px 4px rgba(0, 0, 0, 0.4)";
+    daily.style.textShadow = "none";
+});
+
+function generateCode() {
+    challengeCode = arr[round] + "-" + arr[round + 1] + "-" + arr[round + 2] + "-" + arr[round + 3] + "-" + arr[round + 4] + "-" + inverted + blurry + mirrored + twoSec;
+    challengeLink = "https://aubguessr.com/?c=" + challengeCode;
+    document.getElementById("codeOutput").value = challengeLink;
+}
+
+document.getElementById("copy").addEventListener("click", function () {
+    navigator.clipboard.writeText(challengeLink);
+});
+
+document.getElementById("startGame").addEventListener("click", function () {
+
+    if (!opponentName) {
+
+        hostHasntJoinedPopUp();
+
+        return;
+    }
+
+    turn = arr[0];
+    mode = 0;
+    wasMulti = 1;
+
+    dim.style.display = "none";
+    document.getElementById("inviteDiv").style.display = "none";
+
+    submitFunc();
+});
+
+document.getElementById("diff").addEventListener("click", function () {
+    document.getElementById("diffDiv").style.display = "flex";
+    dim.style.display = "revert";
+});
+
+document.getElementById("inverted").addEventListener("click", function () {
+    buttonClicked("inverted", inverted);
+    if (inverted == 0) inverted = 1;
+    else inverted = 0;
+});
+
+document.getElementById("blurry").addEventListener("click", function () {
+    buttonClicked("blurry", blurry);
+    if (blurry == 0) blurry = 1;
+    else blurry = 0;
+});
+
+document.getElementById("mirrored").addEventListener("click", function () {
+    buttonClicked("mirrored", mirrored);
+    if (mirrored == 0) mirrored = 1;
+    else mirrored = 0;
+});
+
+document.getElementById("twoSec").addEventListener("click", function () {
+    buttonClicked("twoSec", twoSec);
+    if (twoSec == 0) twoSec = 1;
+    else twoSec = 0;
+});
+
+function buttonClicked(buttonID, state) {
+
+    let clickedButton = document.getElementById(buttonID);
+
+    if (state == 0) {
+        clickedButton.style.backgroundImage = "-webkit-linear-gradient(left, #eece7f, #af4261)";
+        clickedButton.style.borderStyle = "none";
+    } else {
+        clickedButton.style.backgroundImage = "none";
+        clickedButton.style.borderStyle = "solid";
+    }
+
+    return;
+}
+
+function applyDifficulty() {
+    picture.classList.toggle("blur", blurry);
+    picture.classList.toggle("invert", inverted);
+    picture.classList.toggle("mirrored", mirrored);
+    picFull.classList.toggle("blur", blurry);
+    picFull.classList.toggle("invert", inverted);
+    picFull.classList.toggle("mirrored", mirrored);
+
+    return;
+}
+
+function getHintCircle(trueLat, trueLng) {
+    let offsetLat = trueLat + (Math.random() - 0.5) * 0.001;
+    let offsetLng = trueLng + (Math.random() - 0.5) * 0.001;
+    return [offsetLat, offsetLng];
+}
+
+document.getElementById("hint").addEventListener("click", function () {
+    if (hintUsed || next) return;
+    dim.style.display = "revert";
+    document.getElementById("hintDiv").style.display = "flex";
+});
+
+document.getElementById("useHint").addEventListener("click", function () {
+    if (play || next) return;
+    hintUsed = 1;
+    hintsArr[count] = 1;
+    hints++;
+    dim.style.display = "none";
+    document.getElementById("hintDiv").style.display = "none";
+
+    map.addLayer(hintGroup);    // shows it again
+});
+
+let params = new URLSearchParams(window.location.search);
+let tempChallengeCode = params.get("c");
+let validCode = false;
+
+if (tempChallengeCode) {
+    codeArr = tempChallengeCode.split("-");
+    validCode = codeArr.length == 6;
+}
+
+if (validCode) validCode = codeArr[5].length == 4;
+
+if (validCode) {
+    challengeCode = tempChallengeCode;
+
+    socket.emit("joinRoom", {
+        roomCode: challengeCode,
+        username: user_name || "Opponent"
+    });
+}
+
+if (validCode) {
+
+    hideSignin();
+    hideAccount();
+    dim.style.display = "revert";
+    document.getElementById("side1").style.display = "flex";
+    document.getElementById("inviteDiv").style.display = "flex";
+    document.getElementById("logo").style.display = "revert";
+    document.getElementById("cursor-glow").style.display = "none";
+    document.getElementById("text1").textContent = "MULTIPLAYER";
+    invited = 1;
+
+    let params = new URLSearchParams(window.location.search);
+
+    for (let i = 0; i < codeArr.length; i++) {
+        let num = Number(codeArr[i]);
+        if (codeArr[i] === "" || !Number.isInteger(num) || num < 0 || num > coords.length - 1) {
+        }
+    }
+
+    for (let i = 0; i < round; i++) {
+        arr[i] = Number(codeArr[i]);
+    }
+
+    if (Number(codeArr[5].charAt(0))) {
+        buttonClicked("inverted", inverted);
+        document.getElementById("addedDiffInverted").textContent = "✔ inverted";
+        document.getElementById("addedDiffInverted").style.color = "#fffa97";
+        document.getElementById("addedDiffInverted").style.textShadow = "1px 2px 3px rgba(0, 0, 0, 0.8)";
+        inverted = 1;
+    }
+    if (Number(codeArr[5].charAt(1))) {
+        buttonClicked("blurry", blurry);
+        document.getElementById("addedDiffBlurry").textContent = "✔ blurry";
+        document.getElementById("addedDiffBlurry").style.color = "#fffa97";
+        document.getElementById("addedDiffBlurry").style.textShadow = "1px 2px 3px rgba(0, 0, 0, 0.8)";
+        blurry = 1;
+    }
+    if (Number(codeArr[5].charAt(2))) {
+        buttonClicked("mirrored", mirrored);
+        document.getElementById("addedDiffMirrored").textContent = "✔ mirrored";
+        document.getElementById("addedDiffMirrored").style.color = "#fffa97";
+        document.getElementById("addedDiffMirrored").style.textShadow = "1px 2px 3px rgba(0, 0, 0, 0.8)";
+        mirrored = 1;
+    }
+    if (Number(codeArr[5].charAt(3))) {
+        buttonClicked("twoSec", twoSec);
+        document.getElementById("addedDiffTwoSec").textContent = "✔ two second timer";
+        document.getElementById("addedDiffTwoSec").style.color = "#fffa97";
+        document.getElementById("addedDiffTwoSec").style.textShadow = "2px 2px 4px rgba(0, 0, 0, 0.6)";
+        twoSec = 1;
+    }
+} else {
+    document.getElementById("inviteText1").textContent = "Invalid Link";
+    document.getElementById("startGame").style.display = "none";
+}
+
+function assembleCanvas() {
+    document.getElementById('scoreValue').textContent = finalScore;
+
+    for (let x = 0; x < round; x++) {
+        document.getElementById(`pic${x}score`).textContent = scoreArr[x];
+        document.getElementById(`smallPic${x}`).src = "images/image" + turnArr[x] + ".jpeg";
+    }
+    return;
+}
+
+async function captureCanvas() {
+    assembleCanvas();
+    document.getElementById("canvas").style.display = "flex";
+    const canvas = await html2canvas(document.getElementById('canvas'));
+    document.getElementById("canvas").style.display = "none";
+
+    canvas.toBlob(async (blob) => {
+        if (isMobile) {
+            const file = new File([blob], 'aubguessr-score.png', { type: 'image/png' });
+
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                await navigator.share({
+                    files: [file],
+                    text: `I scored ${finalScore}% on AUBguessr! \nTry to beat it here: https://aubguessr.com`
+                });
+            }
+        } else {
+            try {
+                await navigator.clipboard.write([
+                    new ClipboardItem({ 'image/png': blob })
+                ]);
+                alert('Scores copied to clipboard!');
+            } catch (err) {
+                console.error(err);
+                alert('Error occured - unable to copy scores.');
+            }
+        }
+    }, 'image/png');
+}
+
+document.getElementById("share").addEventListener("click", function () {
+    captureCanvas();
+});
+
+document.getElementById("shareMulti").addEventListener("click", function () {
+    captureCanvas();
+});
+
+document.getElementById("leader").addEventListener("click", function () {
+    document.getElementById("leaderDiv").style.display = "flex";
+    dim.style.display = "revert";
+});
+
+document.getElementById("delete").addEventListener("click", function () {
+    document.getElementById("deleteDiv").style.display = "flex";
+    dim.style.display = "revert";
+});
+
+document.getElementById("login").addEventListener("click", function () {
+    window.location.href = window.location.origin + window.location.pathname;
+});
+
+document.getElementById("confirm").addEventListener("click", function () {
+    deleteAccount();
+});
+
+async function deleteAccount() {
+    await db.rpc('delete_account', { p_student_id: id });
+    localStorage.clear();
+    window.location.href = window.location.origin + window.location.pathname;
+}
+
+document.getElementById("logout").addEventListener("click", function () {
+    localStorage.clear();
+    window.location.href = window.location.origin + window.location.pathname;
+});
+
+document.getElementById("dailySVG").addEventListener("click", function () {
+    if (dailyPlayed) {
+        let dailyText1 = document.getElementById("dailyText1");
+
+        dailyText1.textContent = "Daily Game Already Attempted.";
+        dailyText1.style.textAlign = "center";
+        dailyText1.style.marginTop = "8%";
+        dailyText1.style.fontSize = "4dvh";
+        if (isMobile) dailyText1.style.fontSize = "2dvh";
+        document.getElementById("dailyStart").style.display = "none";
+    }
+    document.getElementById("dailyDiv").style.display = "flex";
+    dim.style.display = "revert";
+});
+
+document.getElementById("dailyStart").addEventListener("click", async function () {
+    document.getElementById("dailyDiv").style.display = "none";
+    dim.style.display = "none";
+
+    const { error } = await db.rpc('reset_daily_score', { p_student_id: id });
+    if (error) {
+        // already played today (or another error) — bail out
+        console.error('daily start failed:', error);
+        alert("You've already played today's daily.");
+        return;
+    }
+
+    document.getElementById("text1").textContent = "Daily Game";
+    dailyMode = 1;
+    dailyPlayed = 1;
+
+    dailyGame();
+});
+
+async function dailyGame() {
+    const { data, error } = await db
+        .from('daily')
+        .select('round')
+        .eq('id', -1);
+
+    dailyRound = data[0].round;
+
+    submitFunc();
+}
+
+async function setDailyPlayed() {
+    await db.rpc('reset_daily_score', { p_student_id: id });
+}
+
+document.addEventListener('contextmenu', function (e) {
+    if (e.target.tagName === 'IMG' || e.target.tagName === 'SVG') {
+        e.preventDefault();
+    }
+});
+
+document.getElementById("info").addEventListener("click", function () {
+    document.getElementById("infoDiv").style.display = "flex";
+    document.getElementById("delete").style.display = "none";
+    document.getElementById("logout").style.display = "none";
+    document.getElementById("logo").style.display = "none";
+    document.getElementById("back").style.display = "none";
+    document.getElementById("info").style.display = "none";
+    document.getElementById("stats").style.color = "#443a22";
+    document.getElementById("avg").style.color = "#e4c473";
+    document.getElementById("avg").style.boxShadow = "0 0 0 9999px rgba(0, 0, 0, 0.7)";
+});
+
+document.getElementById("gotit").addEventListener("click", function () {
+    document.getElementById("infoDiv").style.display = "none";
+    document.getElementById("delete").style.display = "flex";
+    document.getElementById("logout").style.display = "flex";
+    document.getElementById("logo").style.display = "flex";
+    document.getElementById("back").style.display = "revert";
+    document.getElementById("info").style.display = "flex";
+    document.getElementById("stats").style.color = "#e4c473";
+    document.getElementById("avg").style.boxShadow = "none";
+});
+
+socket.on("roomFull", () => {
+    console.log("This multiplayer room is full.");
+    popUpMessage.textContent = "This link has 2 players or has expired.";
+    expired = 1;
+
+    popUpMessage.classList.remove("show");
+
+    // Force the animation to restart
+    void popUpMessage.offsetWidth;
+
+    popUpMessage.classList.add("show");
+});
+
+socket.on("opponentFinished", (data) => {
+    console.log("OPPONENT FINISHED DATA:", data);
+
+    opponentFinished = true;
+    opponentScore = data.score;
+    opponentPerfectScores = data.perfectScores;
+    opponentHints = data.hints;
+    opponentScoreArr = data.scoreArr;
+    opponentHintsArr = data.hintsArr;
+
+    if (!done) opponentFinishedPopUp();
+
+    showPlayer2();
+});
+
+document.getElementById("player1").addEventListener("click", function () {
+
+    document.getElementById("summaryText1").textContent = "Your Summary:";
+
+    for (let x = 0; x < round; x++) {
+        document.getElementById(`pic${x}scoreS`).textContent = scoreArr[x];
+
+        if (hintsArr[x]) {
+            document.getElementById(`summaryHint${x + 1}`).style.display = "revert";
+        } else document.getElementById(`summaryHint${x + 1}`).style.display = "none";
+    }
+
+    document.getElementById("summaryDivCover").style.display = "flex";
+});
+
+document.getElementById("player2").addEventListener("click", function () {
+
+    if (!opponentFinished) return;
+
+    document.getElementById("summaryText1").textContent = opponentName + "'s Summary:";
+
+    for (let x = 0; x < round; x++) {
+        document.getElementById(`pic${x}scoreS`).textContent = opponentScoreArr[x];
+        if (opponentHintsArr[x]) {
+            document.getElementById(`summaryHint${x + 1}`).style.display = "revert";
+        } else document.getElementById(`summaryHint${x + 1}`).style.display = "none";
+    }
+
+    document.getElementById("summaryDivCover").style.display = "flex";
+});
+
+document.getElementById("summaryDivCover").addEventListener("click", function () {
+    document.getElementById("summaryDivCover").style.display = "none";
+});
+
+
+const popUpMessage = document.getElementById("popUpMessage");
+
+function hostHasntJoinedPopUp() {
+    if (!expired) popUpMessage.textContent = "Host has not started the game yet!";
+    popUpMessage.style.top = "4dvh";
+
+    showPopUp();
+}
+
+function hostJoinedPopUp() {
+    popUpMessage.textContent = "Host has started the game!";
+    popUpMessage.style.top = "4dvh";
+
+    showPopUp();
+}
+
+let shownFinished = false;
+
+function opponentFinishedPopUp() {
+    if (shownFinished) return;
+
+    popUpMessage.textContent = opponentName + " has finished the game!";
+    if (isMobile) popUpMessage.style.top = "34dvh";
+
+    showPopUp();
+
+    shownFinished = true;
+}
+
+function showPopUp() {
+    popUpMessage.classList.remove("show");
+
+    // Force the animation to restart
+    void popUpMessage.offsetWidth;
+
+    popUpMessage.classList.add("show");
+
+    // remove .show after animation ends so browser has nothing to repaint
+    popUpMessage.addEventListener("animationend", () => {
+        popUpMessage.classList.remove("show");
+    }, { once: true });
+}

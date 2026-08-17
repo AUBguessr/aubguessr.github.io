@@ -2190,7 +2190,7 @@ body {
     animation-fill-mode: backwards;
 }
 
-@media (orientation: landscape) and (max-height: 500px) and (max-width: 768px) {
+@media (orientation: landscape) and (max-height: 500px) {
     #rotate {
         display: flex;
     }
