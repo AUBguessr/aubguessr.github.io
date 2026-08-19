@@ -21,10 +21,6 @@ app.get("/", (req, res) => {
 io.on("connection", (socket) => {
     console.log("Player connected:", socket.id);
 
-    socket.onAny((event, ...args) => {
-        console.log("EVENT RECEIVED:", event, args);
-    });
-
     socket.on("testMessage", (message) => {
         console.log("Received:", message);
     });

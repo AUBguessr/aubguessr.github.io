@@ -225,7 +225,7 @@ body {
     border-style: solid;
 
     font-weight: bolder;
-    font-size: 1.4dvw;
+    font-size: 1.2dvw;
     z-index: 1000;
     /* Places it on top */
 
@@ -2301,7 +2301,7 @@ body {
         margin-top: 0;
         top: -22dvh;
         width: 60dvw;
-        font-size: 4dvw;
+        font-size: 5dvw;
     }
 
     #full {

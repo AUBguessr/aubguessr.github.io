@@ -867,6 +867,11 @@ async function finishRound() {
 
     dim.style.display = "revert";
 
+    if (updateGamesDB && wasMulti && signedIn){
+        await db.rpc('increment_multi_games_played', { p_student_id: id });
+        updateGamesDB = false; //for it to happen once
+    }
+
     if (updateGamesDB && !wasMulti && signedIn) {
         const { data, error } = await db.rpc('submit_game_result', {
             p_student_id: id,
@@ -993,6 +998,9 @@ document.getElementById("againMulti").addEventListener('click', function () {
 });
 
 function again() {
+
+    if (invited) window.location.href = window.location.origin + window.location.pathname;
+
     count = 0;
     next = false;
     guessed = false;
@@ -1059,8 +1067,6 @@ function again() {
 
     if (wasMulti) document.getElementById("press").style.display = "none";
     else document.getElementById("press").style.display = "revert";
-
-    if (invited) window.location.href = window.location.origin + window.location.pathname;
 
     if (signedIn) document.getElementById("dailySVG").style.display = "revert";
 
