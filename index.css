@@ -1,0 +1,2907 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    -webkit-user-drag: none;
+
+
+    /* outline-style: solid;
+    outline-width: 1px;
+    outline-color: red; */
+}
+
+*:focus {
+    outline: none;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    color-scheme: only light;
+    user-select: none;
+    -webkit-user-drag: none;
+    height: 100dvh;
+    width: 100vw;
+    background-color: rgb(132, 1, 50);
+    position: relative;
+}
+
+#container {
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#container2 {
+    display: none;
+    justify-content: center;
+}
+
+#map {
+    float: right;
+    width: 61vw;
+    height: 100vh;
+}
+
+#logo {
+    display: none;
+    cursor: pointer;
+
+    position: absolute;
+    z-index: 1005;
+    width: 14dvh;
+    border-radius: 14px;
+    top: 16px;
+    left: 10px;
+
+    background-color:#e2bf71;
+    padding: 4px;
+
+    box-shadow: -2px 2px 5px 2px rgba(0, 0, 0, 0.3);
+    -webkit-user-drag: none;
+    /* Safari and Chrome Safari-based engines */
+}
+
+#logo:hover {
+    box-shadow: none;
+}
+
+#side1 {
+    display: none;
+    height: 100vh;
+    width: 39vw;
+
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    border-style: solid;
+    border-width: 3px;
+    border-color: rgb(209, 151, 109);
+
+    border-top: 0px;
+    border-left: 0px;
+    border-bottom: 0px;
+}
+
+#side2 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    position: relative;
+}
+
+#press {
+    position: absolute;
+    text-align: center;
+    font-size: 6dvw;
+    margin-bottom: 14dvh;
+    margin-left: 4dvw;
+    width: 30dvw;
+
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    letter-spacing: 0.3dvw;
+    /* Widens text for a luxury brand aesthetic */
+    text-transform: uppercase;
+    /* Forces capital letters */
+
+    /* Create a color gradient inside the font */
+    background: linear-gradient(90deg, #fffa97, #af4261);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* Adds a smooth drop shadow underneath */
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 1));
+}
+
+#picture {
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    align-self: center;
+
+    margin-top: -10px;
+
+    display: none;
+
+    width: 30dvw;
+    max-width: 60dvh;
+
+    border-radius: 20px;
+    border-width: 10px;
+    border-color: #960236;
+    border-style: solid;
+
+    outline-width: 3px;
+    outline-color: #a3083e;
+    outline-style: solid;
+
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+
+    -webkit-user-drag: none;
+    /* Safari and Chrome Safari-based engines */
+}
+
+#picWrap {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    display: none;
+
+    max-width: 60dvh;
+    max-height: 80dvh;
+    z-index: 1200;
+    cursor: pointer;
+    height: 40vw;
+    width: 30vw;
+    margin-top: 12vh;
+    margin-left: 4dvw;
+
+    float: right;
+}
+
+#full {
+
+    color: rgb(217, 170, 111);
+    font-family: 'Georgia', serif;
+    font-size: 2dvh;
+    display: none;
+
+    align-self: center;
+    margin-top: 10px;
+}
+
+#picFull {
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+
+    position: absolute;
+    height: 100vh;
+    z-index: 2000;
+
+    display: none;
+}
+
+#dim {
+    backdrop-filter: blur(6px);
+    /* Blurs content behind the div */
+    -webkit-backdrop-filter: blur(6px);
+    height: 100dvh;
+    width: 100dvw;
+    position: absolute;
+    z-index: 1500;
+    background-color: rgba(0, 0, 0, 0.7);
+
+    display: none;
+    touch-action: none;
+}
+
+#submit {
+    background-color: rgb(149, 149, 149);
+    color: black;
+    border-color: rgb(149, 149, 149);
+    text-decoration: none;
+}
+
+#submit,
+#submit.active {
+
+    height: 50px;
+    width: 20dvw;
+    margin-top: 85vh;
+
+    text-transform: uppercase;
+    font-family: 'Georgia', serif;
+
+    border-radius: 15px;
+    border-width: 1px;
+    border-style: solid;
+
+    font-weight: bolder;
+    font-size: 1.4dvw;
+    z-index: 1000;
+    /* Places it on top */
+
+    position: absolute;
+
+    box-shadow: -2px 2px 5px 2px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+
+}
+
+#submit.active {
+    cursor: pointer;
+
+    color: #e2c072;
+
+    background-color: #960236;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: #a00c40;
+
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+
+#submit.active:hover {
+    background-color: #aa033e;
+}
+
+#text1,
+#imageCount {
+    display: none;
+
+    position: absolute;
+    top: 0;
+
+    margin-top: 12px;
+    margin-left: 3dvw;
+    font-family: 'Georgia', serif;
+    font-size: 1.5dvw;
+    font-weight: bold;
+    letter-spacing: 4px;
+    /* Widens text for a luxury brand aesthetic */
+    text-transform: uppercase;
+    /* Forces capital letters */
+
+    /* Create a color gradient inside the font */
+    background: linear-gradient(45deg, #fffa97, #af4261);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* Adds a smooth drop shadow underneath */
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 1));
+    text-align: center;
+    width: 22dvw;
+
+}
+
+#text1 {
+    margin-top: 3dvh;
+    margin-left: 4dvw;
+    font-size: 1.5dvw;
+}
+
+#imageCount {
+    font-size: 2dvw;
+}
+
+.regular,
+.golden {
+    display: none;
+    align-self: center;
+
+    font-family: 'Georgia', serif;
+    font-size: 10dvh;
+    font-weight: bold;
+    letter-spacing: 4px;
+
+    /* Adds a smooth drop shadow underneath */
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+    text-align: center;
+    margin-bottom: 2vh;
+    width: 20dvw;
+    margin-left: 4dvw;
+    ;
+}
+
+.golden {
+    background-image: -webkit-linear-gradient(left, #e2bf71, #af4261);
+    color: rgb(170, 2, 64);
+    border-style: none;
+    border-radius: 16px;
+    margin-top: 10px;
+
+}
+
+.regular {
+    color: rgb(217, 170, 111);
+}
+
+#scoreDiv,
+#diffDiv,
+#hintDiv,
+#inviteDiv,
+#deleteDiv,
+#dailyDiv,
+#infoDiv,
+#scoreDivMulti {
+    display: none;
+    justify-content: space-evenly;
+
+    position: absolute;
+    z-index: 2001;
+    width: 30vw;
+
+    height: 60vh;
+
+    background-color: rgb(133, 1, 50);
+
+    border-radius: 20px;
+    border-width: 10px;
+    border-color: rgb(111, 10, 39);
+    border-style: solid;
+}
+
+#dailyDiv {
+    height: 280px;
+    flex-direction: column;
+    justify-content: space-evenly;
+    min-height: 36dvh;
+}
+
+#hintDiv {
+    height: 200px;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+}
+
+#deleteDiv {
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-top: 33dvh;
+    width: 500px;
+    height: 220px;
+}
+
+#deleteText1,
+#infoText1 {
+    text-align: center;
+    align-self: center;
+    color: #e2c072;
+    width: 60%;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+#scoreText1,
+#score,
+#scoreMultiText1 {
+    margin-top: 8px;
+    font-family: 'Georgia', serif;
+    font-size: 3dvw;
+    font-weight: bold;
+    letter-spacing: 4px;
+    /* Widens text for a luxury brand aesthetic */
+    text-transform: uppercase;
+    /* Forces capital letters */
+
+    /* Create a color gradient inside the font */
+    background: linear-gradient(45deg, #fffa97, #af4261);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* Adds a smooth drop shadow underneath */
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+    text-align: center;
+    width: 20dvw;
+}
+
+#score {
+    margin-top: 17vh;
+    position: absolute;
+    font-size: 6dvw;
+    width: 25vw;
+}
+
+#scoreMultiText1 {
+    font-size: 2dvw;
+    width: 90%;
+}
+
+#perfect {
+    position: absolute;
+    margin-top: 36vh;
+
+    font-family: 'Georgia', serif;
+    font-size: 2dvw;
+    font-weight: bold;
+    letter-spacing: 2px;
+
+    box-shadow: -3px 3px 5px 2px rgba(0, 0, 0, 0.3);
+    width: 25dvw;
+    height: 60px;
+
+    background-image: -webkit-linear-gradient(left, #e2bf71, #af4261);
+    color: rgb(134, 2, 51);
+    border-radius: 10px;
+
+    padding-top: 8px;
+
+    text-align: center;
+}
+
+#again,
+#share,
+#againMulti,
+#shareMulti {
+    position: absolute;
+    bottom: 2dvh;
+
+    height: 50px;
+    width: 40%;
+
+    text-transform: uppercase;
+    font-family: 'Georgia', serif;
+
+    border-radius: 15px;
+    border-width: 2px;
+    border-style: solid;
+
+    font-weight: 800;
+    font-size: 1.2dvw;
+
+    cursor: pointer;
+
+    color: rgb(217, 170, 111);
+    background-color: rgb(132, 1, 50);
+
+    box-shadow: -3px 3px 5px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+#again,
+#againMulti {
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #a00c40;
+
+    background-color: #960236;
+}
+
+#again:hover,
+#againMulti:hover {
+    background-color: #a10c40;
+}
+
+#share,
+#shareMulti {
+    font-size: 0.8dvw;
+    width: 16%;
+    bottom: 20px;
+    right: 20px;
+    border: none;
+    border-radius: 6px;
+
+    box-shadow: none;
+    text-shadow: none;
+
+    font-family: 'Georgia', serif;
+
+    font-weight: bold;
+
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #a00c40;
+
+    background-color: #960236;
+
+    box-shadow: -2px 2px 3px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+
+    color: rgb(217, 170, 111);
+    padding-bottom: 4px;
+}
+
+#share:hover,
+#shareMulti:hover {
+    background-color: #a10c40;
+
+}
+
+#imageCount {
+    position: absolute;
+    margin-left: 32vw;
+    margin-top: 4vh;
+    width: 120px;
+}
+
+#rotate {
+    display: none;
+    z-index: 2500;
+    width: 100dvw;
+    height: 100dvh;
+
+    position: fixed;
+
+    background-color: rgb(132, 1, 50);
+
+    justify-content: center;
+}
+
+#rotateText {
+    margin-top: 45dvh;
+
+    /* Create a color gradient inside the font */
+    background: linear-gradient(45deg, #fffbab, #d55177);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    font-size: 30px;
+    text-align: center;
+}
+
+#profileButton {
+    position: absolute;
+    left: 2.6dvh;
+    bottom: 2dvh;
+    background-color: #960236;
+
+    border-radius: 6px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #a00c40;
+    box-shadow: -2px 2px 5px 2px rgba(0, 0, 0, 0.3);
+
+    width: 8dvh;
+
+    z-index: 1000;
+
+}
+
+#profileButton:hover {
+    cursor: pointer;
+    background-color: rgb(166, 7, 65);
+    padding: 4px;
+}
+
+#Aside1 {
+    position: absolute;
+    margin-top: 14dvh;
+    left: 3dvw;
+    height: 120px;
+    width: 68dvw;
+
+    background-color: transparent;
+}
+
+#profile {
+    display: flex;
+    height: 100%;
+
+    border-left: 0;
+    border-top: 0;
+    border-bottom: 0;
+    border-right: 5px;
+
+    border-radius: 10px;
+    border-color: #e2c072;
+    border-left-color: #a00c40;
+    border-top-color: #a00c40;
+    border-bottom-color: #a00c40;
+
+
+    border-left-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+
+    border-style: solid;
+
+    box-shadow: -2px 2px 5px 2px rgba(0, 0, 0, 0.3);
+    -webkit-user-drag: none;
+
+    background-color: #960035;
+}
+
+#idnum,
+#profileName {
+    font-family: Arial, Helvetica, sans-serif;
+
+    position: absolute;
+    font-size: 30px;
+    top: 0;
+    left: 150px;
+    width: 300px;
+
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+
+    color: #e4c473;
+}
+
+#idnum {
+    margin-top: 50px;
+}
+
+#delete,
+#confirm,
+#logout,
+#login {
+    top: 14dvh;
+    right: 28dvw;
+    z-index: 100;
+    position: absolute;
+    padding: 8px;
+    background-color: #e2c072;
+    border-style: solid;
+    border-color: #f7ec87;
+    color: #000000;
+    border-width: 1px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    box-shadow: -2px 2px 3px 1px rgba(0, 0, 0, 0.2);
+}
+
+#logout {
+    display: none;
+    margin-top: 50px;
+}
+
+#login {
+    display: none;
+}
+
+#login:hover {
+    cursor: pointer;
+    background-color: #efd087;
+    box-shadow: none;
+}
+
+#delete {
+    display: none;
+}
+
+#confirm {
+    position: relative;
+    align-self: center;
+    top: 0;
+    right: 0;
+    width: 100px;
+}
+
+#delete:hover,
+#confirm:hover,
+#logout:hover {
+    cursor: pointer;
+    background-color: #c40000;
+    border-color: #ad0000;
+    color: #ffffff;
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.08);
+}
+
+#back,
+#gotit {
+    position: absolute;
+    bottom: 5dvh;
+    left: 3dvw;
+
+    height: 50px;
+    width: 220px;
+
+    text-transform: uppercase;
+    font-family: 'Georgia', serif;
+
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #a00c40;
+
+    box-shadow: -3px 3px 5px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+
+    background-color: #960236;
+
+    font-weight: bolder;
+    font-size: 20px;
+
+    position: absolute;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    color: rgb(217, 170, 111);
+}
+
+#gotit {
+    text-transform: none;
+    top: auto;
+    right: auto;
+    position: static;
+    width: 30%;
+    align-self: center;
+}
+
+#gotit:hover {
+    background-color: rgb(166, 7, 65);
+}
+
+#back:hover {
+    background-color: #a10c40;
+    text-shadow: none;
+}
+
+#Aside2 {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    height: 100dvh;
+    width: 25dvw;
+    right: 0;
+
+    padding-left: 5px;
+
+    background-color: #e2c072;
+    border-radius: 30px 0px 0px 30px;
+    box-shadow: 0 0 8px 3px rgba(0, 0, 0, 0.4);
+
+    border-style: solid;
+    border-width: 2px;
+    border-color: #f7ec87;
+    border-right-width: 0;
+
+}
+
+#qr {
+    position: absolute;
+    width: 24dvw;
+    max-width: 50dvh;
+    margin-top: 26dvh;
+}
+
+#qrtext {
+    margin-top: 76dvh;
+    font-size: 2dvh;
+}
+
+#stats {
+    position: absolute;
+    height: 140px;
+    width: 70dvw;
+
+    border-radius: 20px;
+
+
+    border-style: solid;
+    border-width: 2px;
+    border-color: #a00c40;
+
+    padding-left: 15px;
+    padding-top: 10px;
+
+    top: 35dvh;
+    left: 2dvw;
+
+    font-size: 30px;
+
+    color: #e4c473;
+    background-color: #8d0333;
+
+    box-shadow: -3px 3px 5px 2px rgba(0, 0, 0, 0.3);
+}
+
+#played {
+    padding-top: 20px;
+}
+
+#played,
+#avg {
+    padding-left: 10px;
+    font-size: 25px;
+    text-decoration: dotted;
+}
+
+#avg {
+    width: 270px;
+    border-radius: 10px;
+    background-color: #8d0333;
+}
+
+#info {
+    display: none;
+    position: absolute;
+
+    bottom: 8px;
+    right: 10px;
+    height: 40px;
+    border-radius: 30px;
+
+    box-shadow: 0 0 14px 2px rgba(0, 0, 0, 0.2);
+}
+
+#info:hover {
+    cursor: pointer;
+    background-color: #ad003d;
+    padding: 4px;
+}
+
+#infoDiv {
+    position: absolute;
+    left: 300px;
+    bottom: 30px;
+    flex-direction: column;
+    width: 300px;
+    height: 270px;
+    border-radius: 20px 20px 20px 1px;
+}
+
+#infoText1 {
+    /* Create a color gradient inside the font */
+    background: linear-gradient(90deg, #fffa97, #d25377);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* Adds a smooth drop shadow underneath */
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 1));
+
+    width: 80%;
+    font-size: 20px;
+}
+
+#overlay {
+    animation: pulse 3s ease-in-out infinite, drift 8s linear infinite;
+    background-image: url('assets/background_logo.png');
+    background-repeat: repeat;
+    background-size: 10dvh;
+
+    position: absolute;
+    height: 100dvh;
+    width: 100dvw;
+
+    background-color: #85002e;
+
+    z-index: 10;
+}
+
+#signin,
+#signinBubble {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    margin-top: 12dvh;
+    position: absolute;
+
+    height: 530px;
+    width: 400px;
+
+    background-color: #85002e;
+
+    border-radius: 30px;
+    border-width: 2px;
+    border-color: #a00c40;
+    border-style: solid;
+
+    box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.3);
+
+    z-index: 15;
+
+    text-align: center;
+    padding-top: 15px;
+}
+
+#signinBubble {
+    justify-content: space-evenly;
+    position: absolute;
+    left: 0;
+    margin-left: 420px;
+    bottom: 420px;
+    width: 25dvw;
+    height: 20dvh;
+    padding-top: 0;
+
+    border-radius: 5dvh 5dvh 5dvh 0;
+}
+
+#signinBubbleText1 {
+    align-self: center;
+    width: 90%;
+
+    color: #e2c072;
+
+    font-size: 1.3dvw;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+    /* Create a color gradient inside the font */
+    background: linear-gradient(90deg, #fffa97, #d25377);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* Adds a smooth drop shadow underneath */
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 1));
+}
+
+#enter {
+    align-self: center;
+    margin-top: 10px;
+    font-size: 22px;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+
+    width: 80%;
+
+    color: #e4c473;
+
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+
+    text-decoration: underline;
+}
+
+#inputDiv,
+#nameDiv {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 40px;
+
+    margin-top: -70%;
+}
+
+#input,
+#name {
+    position: absolute;
+    right: 0;
+    margin-right: 30px;
+    background-color: #6c0026;
+    color: #e4c473;
+
+    width: 61.8%;
+    height: 40px;
+
+    border-color: #a00c40;
+    border-style: solid;
+    border-width: 2px;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-radius: 10px 10px 0px 0px;
+
+    font-size: 18px;
+
+    padding: 15px;
+}
+
+#input:focus,
+#name:focus {
+    outline: none;
+    /* Removes the default browser ring */
+}
+
+#input.invalid::placeholder,
+#name.invalid::placeholder {
+    color: rgb(239, 0, 0);
+}
+
+#id,
+#username {
+    margin-top: 8px;
+    font-size: 20px;
+    margin-left: 80px;
+
+    color: #e4c473;
+}
+
+#username {
+    margin-left: 20px;
+    margin-top: 6px;
+}
+
+#or {
+    align-self: center;
+    position: absolute;
+    width: 80%;
+    bottom: 50px;
+
+    color: #e4c473;
+    border-style: solid;
+
+    border-width: 2px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    padding-bottom: 2px;
+
+}
+
+#guest {
+    margin-bottom: 16px;
+    color: #e4c473;
+    font-size: 20px;
+}
+
+#guest:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#check {
+    position: absolute;
+    align-self: center;
+    margin-top: 50%;
+
+    width: 100px;
+    height: 40px;
+
+    background-color: #f5d27a;
+    border-style: solid;
+    border-width: 4px;
+    border-color: #f5d27a;
+    z-index: 10;
+    border-radius: 10px;
+    opacity: 0.6;
+}
+
+#modeSelect,
+#leaderSelect {
+    position: absolute;
+    display: flex;
+    width: 18dvw;
+    height: 6dvh;
+    bottom: 11dvh;
+    margin-right: 3dvw;
+}
+
+#leaderSelect {
+    bottom: 6dvh;
+    align-self: center;
+    margin-right: 0;
+}
+
+#single,
+#multi,
+#allTime,
+#daily {
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100%;
+    padding-top: 1.4dvh;
+
+    text-align: center;
+
+    font-size: 1.1dvw;
+    font-weight: bold;
+
+    background-color: #960236;
+    color: #52011d;
+
+    border-style: none;
+    border-width: 2px;
+    box-shadow: -2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+
+    border-style: solid;
+    border-width: 2px;
+    border-color: #a00c40;
+}
+
+#single,
+#allTime {
+    position: absolute;
+    width: 57%;
+    border-radius: 10px 0px 0px 10px;
+    z-index: 100;
+    border-style: none;
+    background-image: -webkit-linear-gradient(left, #e2bf71, #af4261);
+}
+
+#multi,
+#daily {
+    color: #e2c072;
+    position: absolute;
+    width: 42%;
+    right: 0;
+    border-radius: 0px 10px 10px 0px;
+
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+#single:hover,
+#multi:hover,
+#allTime:hover,
+#daily:hover {
+    cursor: pointer;
+    background-color: #a2043c;
+}
+
+#mode {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    height: 85dvh;
+    width: 30dvw;
+    bottom: 0;
+}
+
+#modeText1,
+#modeText2 {
+    position: absolute;
+    color: #e9c986;
+    font-size: 20px;
+    align-self: center;
+    text-align: center;
+    margin-top: 100px;
+
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+#modeText2 {
+    margin-top: 0;
+    bottom: 10dvh;
+    font-size: 16px;
+}
+
+#diff {
+    position: absolute;
+
+    left: 30dvw;
+    bottom: 12dvh;
+
+    height: 4dvh;
+    min-height: 30px;
+    width: 7dvw;
+
+    background-color: #960035;
+
+    font-size: 1dvw;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+    border-style: solid;
+    border-radius: 10px;
+    color: #e2c072;
+
+    border-style: solid;
+    border-width: 2px;
+    border-color: #a00c40;
+    box-shadow: -2px 2px 3px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+
+}
+
+#diff:hover {
+    cursor: pointer;
+    background-color: rgb(166, 7, 65);
+}
+
+#diffDiv {
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#inverted,
+#blurry,
+#mirrored,
+#twoSec {
+    font-weight: bold;
+    font-size: 2dvh;
+    height: 4dvh;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #960236;
+    color: #52011d;
+
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #a00c40;
+
+    box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+#inverted:hover,
+#blurry:hover,
+#twoSec:hover,
+#mirrored:hover,
+#useHint:hover {
+    background-color: rgb(166, 7, 65);
+    cursor: pointer;
+}
+
+.blur {
+    filter: blur(0.8dvh);
+}
+
+.invert {
+    filter: invert(1);
+}
+
+.blur.invert {
+    filter: blur(0.5dvh) invert(1);
+}
+
+.mirrored {
+    transform: scaleX(-1);
+}
+
+#useHint {
+    font-weight: bold;
+    font-size: 14px;
+    height: 4dvh;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    background-color: #960035;
+
+    border-style: solid;
+    border-radius: 10px;
+    color: #e2c072;
+
+    border-style: solid;
+    border-width: 2px;
+    border-color: #a00c40;
+
+    box-shadow: -2px 2px 3px 2px rgba(0, 0, 0, 0.3);
+}
+
+#diffText2 {
+    color: #5d0020;
+    font-weight: bold;
+    font-size: 1.2dvw;
+    letter-spacing: 1px;
+    position: absolute;
+    bottom: 4px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
+}
+
+#diffText1,
+#hintText1,
+#inviteText1,
+#dailyText1 {
+    margin-top: -20px;
+    font-family: 'Georgia', serif;
+    font-size: 3dvh;
+    font-weight: bold;
+    letter-spacing: 1px;
+    /* Widens text for a luxury brand aesthetic */
+    text-transform: none;
+    /* Forces capital letters */
+
+    /* Create a color gradient inside the font */
+    background: linear-gradient(90deg, #fffa97, #d25377);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* Adds a smooth drop shadow underneath */
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 1));
+    text-align: center;
+    width: 90%;
+}
+
+#diffText1 {
+    width: 90%;
+}
+
+#hintText1 {
+    margin-top: 0;
+    text-transform: none;
+    letter-spacing: 0px;
+
+    padding-top: 2dvh;
+    width: 95%;
+    font-size: 3dvh;
+}
+
+#dailyText1 {
+    position: inherit;
+    margin-top: 0;
+    margin-left: 20px;
+    top: 10%;
+    text-transform: none;
+    letter-spacing: 1px;
+    text-align: left;
+    font-size: 1.1dvw;
+    width: 92%;
+}
+
+#inviteDiv {
+    height: 24dvh;
+    width: 28dvw;
+}
+
+#inviteBubble {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+
+    height: 26dvh;
+    width: 20dvw;
+
+    margin-left: 50dvw;
+    bottom: 20dvh;
+
+    background-color: rgb(133, 1, 50);
+
+    box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.3);
+
+    z-index: 15;
+    border-radius: 22px 22px 22px 0;
+
+    border-radius: 20px 20px 20px 0;
+    border-width: 10px;
+    border-color: rgb(111, 10, 39);
+    border-style: solid;
+}
+
+#inviteBubbleText1 {
+    margin: auto;
+    margin-top: 10px;
+
+    font-size: 1.2dvw;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+
+    /* Create a color gradient inside the font */
+    background: linear-gradient(90deg, #fffa97, #d25377);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 1));
+}
+
+#addedDiffInverted,
+#addedDiffBlurry,
+#addedDiffMirrored,
+#addedDiffTwoSec {
+    font-size: 2.4dvh;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+
+    color: #5e0720;
+    margin-bottom: 8px;
+    margin-left: 10px;
+}
+
+#inviteText1 {
+    position: absolute;
+
+    margin-top: 0;
+    top: 25%;
+    text-transform: none;
+    letter-spacing: 0px;
+    font-size: 1.2dvw;
+}
+
+#startGame,
+#dailyStart {
+    position: absolute;
+    height: 18%;
+    width: 16dvw;
+
+    font-size: 2.5dvh;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Georgia', serif;
+
+    margin-top: 15dvh;
+
+    background-color: #960035;
+
+    border-style: solid;
+    border-radius: 10px;
+    color: #e2c072;
+
+    border-style: solid;
+    border-width: 2px;
+    border-color: #a00c40;
+
+    box-shadow: -2px 2px 3px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+}
+
+#startGame {
+    background-color: #620022;
+    border-color: #620022;
+    color: #75643a;
+    text-shadow: none;
+    box-shadow: none;
+    margin-top: 13dvh;
+    width: 40%;
+    font-size: 1dvw;
+}
+
+#dailyStart {
+    margin-top: auto;
+    align-self: center;
+    bottom: 8%;
+    font-size: 1.2dvw;
+}
+
+#dailyStart:hover {
+    background-color: rgb(166, 7, 65);
+    text-shadow: none;
+    cursor: pointer;
+}
+
+#codeDiv {
+    display: none;
+    flex-direction: column;
+    background-color: transparent;
+    position: absolute;
+    height: 68dvh;
+    width: 34dvw;
+    bottom: 180px;
+}
+
+#codeOutput {
+    position: absolute;
+    width: 30%;
+
+    height: 40px;
+    border-style: solid;
+
+    font-size: 12px;
+
+    padding: 8px;
+
+    margin-left: 10dvw;
+    margin-top: 38dvh;
+    background-color: rgb(55, 55, 55);
+    color: #dddddd;
+    border-color: #a2a2a2;
+    border-radius: 5px;
+
+    pointer-events: none;
+}
+
+#codeOutput:focus {
+    outline: none;
+    /* Removes the default browser ring */
+}
+
+#sendCode {
+    align-self: center;
+    color: #e9c986;
+    font-size: 3dvw;
+    margin-top: 28dvh;
+
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+#copy {
+    position: absolute;
+    width: 40px;
+    margin-top: 38dvh;
+    margin-left: 21dvw;
+    border-radius: 10px;
+}
+
+#copy:hover {
+    cursor: pointer;
+    background-color: #ad003d;
+    padding: 4px;
+}
+
+#hint,
+#leader,
+#dailySVG {
+    display: none;
+
+    position: absolute;
+    left: 2.6dvh;
+    bottom: 12dvh;
+    background-color: #960236;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: #a00c40;
+    box-shadow: -2px 2px 5px 2px rgba(0, 0, 0, 0.3);
+
+    border-radius: 6px;
+    padding: 4px;
+
+    width: 8dvh;
+
+}
+
+#dailySVG {
+    bottom: 22dvh;
+    left: 2.6dvh;
+    padding: 4px;
+}
+
+#dailySVG:hover {
+    cursor: pointer;
+    background-color: rgb(166, 7, 65);
+    padding: 8px;
+}
+
+#leader {
+    display: flex;
+    bottom: 12dvh;
+    height: 8dvh;
+    left: 2.6dvh;
+    padding: 4px;
+}
+
+#hint:hover,
+#leader:hover {
+    cursor: pointer;
+    background-color: rgb(166, 7, 65);
+    padding: 8px;
+}
+
+#useHint {
+    margin-bottom: 3dvh;
+    font-weight: bold;
+}
+
+#canvas {
+    position: absolute;
+    margin-left: -9999px;
+    display: none;
+    justify-content: center;
+    width: 800px;
+    height: 800px;
+    background-color: #85002e;
+}
+
+#canvasYellow {
+    width: 720px;
+    height: 720px;
+    background-color: #e2c072;
+    margin-top: 40px;
+    border-radius: 14px;
+}
+
+#iGot,
+#summary {
+    text-align: center;
+    color: #85002e;
+    font-family: system-ui, sans-serif;
+    font-weight: 600;
+    margin-top: 10px;
+    font-size: 50px;
+}
+
+#summary {
+    text-align: left;
+    margin-top: 20px;
+    margin-left: 20px;
+    font-size: 30px;
+}
+
+#canvasPics {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    width: 100%;
+    height: 200px;
+}
+
+#pic {
+    margin-left: 18px;
+    width: 17%;
+    height: 100%;
+}
+
+#smallPic0,
+#smallPic1,
+#smallPic2,
+#smallPic3,
+#smallPic4 {
+    width: 100%;
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #85002e;
+}
+
+#picScore {
+    text-align: center;
+    color: #85002e;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 30px;
+}
+
+#canvasBottom {
+    margin-top: 30px;
+    width: 100%;
+    height: 340px;
+}
+
+#canvasQR {
+    margin-left: 16px;
+    height: 270px;
+}
+
+#canYou {
+    position: absolute;
+    text-align: center;
+    font-size: 60px;
+    margin-left: 340px;
+    top: 500px;
+    width: 330px;
+
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    color: #85002e;
+}
+
+#leaderDiv {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    right: 0;
+    z-index: 1600;
+    background-color: #74052b;
+    border-radius: 30px 0px 0px 30px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #990d3e;
+    height: 100%;
+    width: 65%;
+}
+
+#leaderText1 {
+    align-self: center;
+    text-align: center;
+    color: #a3063d;
+    font-family: system-ui, sans-serif;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 4dvh;
+    font-size: 3dvw;
+    width: 45%;
+
+
+    text-transform: uppercase;
+    /* Forces capital letters */
+
+    /* Create a color gradient inside the font */
+    background: linear-gradient(90deg, #fffa97, #af4261);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* Adds a smooth drop shadow underneath */
+    filter: drop-shadow(2px 2px 0.3dvw rgba(0, 0, 0, 0.5));
+}
+
+#leader1,
+#leader2,
+#leader3,
+#leader4,
+#leader5 {
+    white-space: pre;
+
+    background-color: #960236;
+    color: #e2c072;
+    font-family: monospace;
+    font-weight: bold;
+    margin-top: 2dvh;
+    margin-left: 3.2dvw;
+    padding-left: 1dvw;
+    padding-top: 0.5dvh;
+    font-size: calc(1.4dvw + 1dvh);
+    height: 6dvh;
+    width: 90%;
+    border-radius: 1dvh;
+
+    /* Adds a smooth drop shadow underneath */
+    filter: drop-shadow(2px 2px 0.3dvw rgba(0, 0, 0, 0.5));
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+
+    border-style: solid;
+    border-width: 2px;
+    border-color: #ac0c44;
+}
+
+#leader1 {
+    color: #85002e;
+    background-image: -webkit-linear-gradient(left, #e2bf71, #af4261);
+    text-shadow: none;
+    border-style: none;
+}
+
+#picFull,
+#picWrap,
+#dim {
+    touch-action: none;
+}
+
+#cursor-glow {
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgb(132, 1, 50, 1), transparent 70%);
+    pointer-events: none;
+    z-index: 14;
+    transform: translate(-50%, -50%);
+    transition: left 0.001s, top 0.001s;
+}
+
+#scoreDivMulti {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#scoreMultiText1 {
+    margin-top: 20px;
+    align-self: center;
+}
+
+#againMulti {
+    position: absolute;
+    margin-left: 30%;
+}
+
+#multiNames {
+    position: absolute;
+    align-self: center;
+    top: 10dvh;
+    height: 16.4dvh;
+    width: 97%;
+    background-color: #750b29;
+    border-radius: 20px;
+
+    border-width: 2px;
+    border-style: solid;
+    border-color: #690427;
+}
+
+#scoreDivMultiBubble {
+    position: absolute;
+    color: #e2bf71;
+    white-space: nowrap;
+
+    margin-top: -60px;
+    margin-left: 50dvh;
+    background-color: #8e0336;
+    padding: 8px;
+
+    border-width: 4px;
+    border-style: solid;
+    border-color: #6f0a27;
+
+    border-radius: 10px 10px 10px 0;
+    font-weight: bold;
+}
+
+#player1,
+#player2 {
+    font-family: monospace;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    height: 6dvh;
+    width: 95%;
+
+    margin-top: 1.2dvh;
+    margin-left: 2.6%;
+    border-radius: 14px;
+
+    background-color: #960236;
+    color: #e2c072;
+
+    /* Adds a smooth drop shadow underneath */
+    box-shadow: -1px 1px 3px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ac0c44;
+
+    cursor: pointer;
+}
+
+#player1:hover,
+#player2:hover {
+    background-color: #a4073e;
+}
+
+#player2 {
+    display: none;
+}
+
+#waiting {
+    margin-left: 20px;
+    font-size: 1dvw;
+}
+
+#waitingSVG {
+    position: absolute;
+    height: 30px;
+    margin-left: 10px;
+}
+
+#name1,
+#name2 {
+    display: inline;
+    position: absolute;
+    font-size: 1dvw;
+    margin-left: 12px;
+    width: 26%;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+#name2 {
+    display: none;
+
+}
+
+#score1,
+#score2 {
+    position: absolute;
+    font-size: 1cqw;
+    right: 50%;
+    width: 14%;
+
+    text-align: center;
+
+    background-image: -webkit-linear-gradient(left, #e2bf71, #af4261);
+    border-radius: 10px;
+    padding: 6px;
+    color: #420017;
+    text-shadow: none;
+    box-shadow: -1px 1px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+#score2 {
+    display: none;
+}
+
+#perfectLogo1,
+#perfectLogo2 {
+    position: absolute;
+    font-family: Georgia;
+    right: 38%;
+
+    background-image: -webkit-linear-gradient(left, #e2bf71, #af4261);
+    height: 4dvh;
+    color: #420017;
+    text-align: center;
+    font-size: 2.6dvh;
+    border-radius: 6px;
+
+    padding-top: 2px;
+
+    text-shadow: none;
+    box-shadow: -1px 1px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+#perfectLogo2 {
+    display: none;
+}
+
+#perfect1,
+#perfect2 {
+    position: absolute;
+    font-size: 1.4dvw;
+    right: 29%;
+}
+
+#perfect2 {
+    display: none;
+}
+
+#hintSVG1,
+#hintSVG2 {
+    position: absolute;
+    height: 4dvh;
+    border-radius: 6px;
+    box-shadow: -1px 1px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 4px;
+    background-image: -webkit-linear-gradient(left, #e2bf71, #af4261);
+    right: 18%;
+}
+
+#hintSVG2 {
+    display: none;
+}
+
+#hint1,
+#hint2 {
+    position: absolute;
+    right: 9%;
+    font-size: 1.4dvw;
+}
+
+#hint2 {
+    display: none;
+}
+
+#legend {
+    position: absolute;
+    width: 100%;
+    height: 30%;
+
+
+    bottom: 8dvh;
+}
+
+#perfectLegend {
+    position: absolute;
+    margin-left: 16%;
+
+    background-image: -webkit-linear-gradient(left, #e2bf71, #af4261);
+    height: 5dvh;
+    width: 5dvh;
+    color: #420017;
+    text-align: center;
+    font-size: 4dvh;
+    border-radius: 6px;
+
+    padding-top: 2px;
+    font-weight: bold;
+    box-shadow: -1px 1px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+#perfectLegendText1,
+#hintLegendText1 {
+    position: absolute;
+    margin-left: 26%;
+    margin-top: 1.8%;
+    font-weight: bold;
+
+    font-size: 2.4dvh;
+
+    /* Create a color gradient inside the font */
+    background: linear-gradient(180deg, #fffa97, #d6597c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* Adds a smooth drop shadow underneath */
+    filter: drop-shadow(-2px 2px 2px rgba(0, 0, 0, 0.6));
+}
+
+#hintLegendText1 {
+    margin-top: -4dvh;
+}
+
+#hintLegend {
+    margin-left: 16%;
+    margin-top: 7dvh;
+    height: 5dvh;
+    border-radius: 6px;
+    box-shadow: -1px 1px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 4px;
+    background-image: -webkit-linear-gradient(left, #e2bf71, #af4261);
+}
+
+#summaryDivCover {
+    display: none;
+    justify-content: space-evenly;
+
+    position: absolute;
+    height: 100dvh;
+    width: 100dvw;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(6px);
+    /* Blurs content behind the div */
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 9000;
+}
+
+#summaryDiv {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    align-self: center;
+    background-color: #e2bf71;
+    width: 700px;
+    height: 300px;
+
+
+    border-style: solid;
+    border-width: 10px;
+    border-color: #85002e;
+    border-radius: 20px;
+
+    z-index: 9999;
+}
+
+#summaryText1 {
+    font-size: 40px;
+    color: #85002e;
+    font-family: Impact;
+    letter-spacing: 1px;
+
+    height: 20%;
+}
+
+#summaryPics {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+
+    bottom: 10px;
+    width: 100%;
+    height: 200px;
+    margin-left: -6px;
+}
+
+#imageContainer {
+    position: relative;
+    display: inline-block;
+}
+
+#picS {
+    margin-left: 18px;
+    width: 17%;
+    height: 100%;
+}
+
+#smallPicS0,
+#smallPicS1,
+#smallPicS2,
+#smallPicS3,
+#smallPicS4 {
+    display: block;
+    width: 100%;
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #85002e;
+}
+
+#summaryHint1,
+#summaryHint2,
+#summaryHint3,
+#summaryHint4,
+#summaryHint5 {
+    display: none;
+    position: absolute;
+    top: 0;
+    border-radius: 18px 0 20px 0;
+    align-self: center;
+    height: 50px;
+    padding: 6px;
+    background-color: #85002e;
+}
+
+#picScoreS {
+    text-align: center;
+    color: #85002e;
+    font-family: Impact;
+    font-size: 30px;
+    font-weight: 500;
+    margin-left: 6px;
+}
+
+#popUpMessage {
+    position: absolute;
+    opacity: 0;
+    display: none;
+    z-index: 2000;
+
+    font-size: 2dvh;
+
+    text-shadow: -2px 2px 2px rgba(0, 0, 0, 0.4);
+    color: #e2bf71;
+
+    white-space: nowrap;
+
+    background-color: #8e0336;
+    padding: 8px;
+
+    border-width: 4px;
+    border-style: solid;
+    border-color: #6f0a27;
+
+    border-radius: 10px;
+    font-weight: bold;
+
+    top: 4dvh;
+
+}
+
+#popUpMessage.show {
+    display: block;
+    animation: fadeMessage 2s ease-in-out;
+}
+
+@keyframes fadeMessage {
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes drift {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 80px 160px;
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.2;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes pulse-marker {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.pulse-marker {
+    animation: pulse-marker 1.5s forwards;
+    animation-fill-mode: backwards;
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+    #rotate {
+        display: flex;
+    }
+}
+
+@media (max-width: 768px) {
+
+    * {
+        cursor: auto !important;
+    }
+
+    *:hover {
+        cursor: auto !important;
+    }
+
+    #cursor-glow {
+        display: none;
+    }
+
+    #body {
+        user-select: none;
+    }
+
+    #container {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #logo {
+        top: 10px;
+        width: 12dvh;
+    }
+
+    #map {
+        float: right;
+        width: 100vw;
+        height: 0vh;
+    }
+
+    #text1 {
+        font-size: 4dvw;
+        width: 60dvw;
+        margin-right: 38dvw;
+        margin-top: 11dvh;
+    }
+
+    #press {
+        margin-left: 0;
+        margin-bottom: 10dvh;
+        font-size: 8dvh;
+        width: 300px;
+        top: 20dvh;
+    }
+
+    #picture {
+        width: 120px;
+        height: 150px;
+        border-width: 5px;
+        border-radius: 10px;
+        max-width: none;
+        max-height: none;
+
+        object-fit: cover;
+    }
+
+    #picWrap {
+        position: absolute;
+
+        margin-left: 60dvw;
+        margin-top: 0;
+        top: 3dvh;
+        width: 120px;
+        height: 150px;
+        max-width: none;
+        max-height: none;
+    }
+
+    #side1 {
+        width: 100vw;
+        height: 100dvh;
+
+        border-style: solid;
+        border-width: 3px;
+        border-color: rgb(209, 151, 109);
+
+        border-right: 0px;
+        border-left: 0px;
+        border-top: 0px;
+    }
+
+    #submit,
+    #submit.active {
+        position: absolute;
+        margin-top: 0;
+        top: -22dvh;
+        width: 60dvw;
+        font-size: 4dvw;
+    }
+
+    #full {
+        position: absolute;
+        text-align: center;
+        align-self: center;
+        width: 110px;
+        bottom: -2dvh;
+
+        font-size: 12px;
+    }
+
+    #imageCount {
+        position: absolute;
+        margin-top: 2dvh;
+        left: -16px;
+        font-size: 8dvw;
+
+    }
+
+    #picFull {
+        width: 100vw;
+        height: 65dvh;
+    }
+
+    #result,
+    .golden {
+        position: absolute;
+        width: 45dvw;
+        font-size: 12dvw;
+
+        margin-top: 16dvh;
+        margin-left: 0;
+        left: 8dvw;
+    }
+
+    #scoreDiv {
+        height: 60dvh;
+        width: 90dvw;
+    }
+
+    #score {
+        font-size: 18dvw;
+        margin-top: 14dvh;
+        width: 80dvw;
+    }
+
+    #scoreText1 {
+        font-size: 9dvw;
+        width: 65dvw;
+    }
+
+    #perfect {
+        width: 80dvw;
+        font-size: 6dvw;
+        height: 8dvh;
+        margin-top: 30dvh;
+    }
+
+    #again {
+        bottom: 30px;
+        font-size: 4dvw;
+    }
+
+    #share,
+    #shareMulti {
+        font-size: 3.2dvw;
+        width: 20%;
+        right: 10px;
+        bottom: 20px;
+        padding-bottom: 0;
+    }
+
+    #share:hover,
+    #shareMulti:hover {
+        font-size: 3dvw;
+    }
+
+    #signin {
+        margin-top: 22dvh;
+        width: 280px;
+        height: 320px;
+    }
+
+    #signinBubble {
+        margin-left: 40dvw;
+        bottom: 340px;
+        border-radius: 3dvh 3dvh 3dvh 0;
+        border-width: 1px;
+        width: 160px;
+        height: 11dvh;
+        padding: 4px;
+    }
+
+    #signinBubbleText1 {
+        font-size: 1.3dvh;
+        width: 90%;
+        background: none;
+        -webkit-background-clip: unset;
+        -webkit-text-fill-color: unset;
+        color: #e2c072;
+        font-family: system-ui, sans-serif;
+    }
+
+    #enter {
+        font-size: 2dvh;
+    }
+
+    #inputDiv,
+    #nameDiv {
+        margin-top: -35%;
+    }
+
+    #input,
+    #name {
+        width: 55%;
+        font-size: 13px;
+        margin-right: 20px;
+    }
+
+    #id {
+        margin-left: 64px;
+    }
+
+    #username {
+        margin-top: 8px;
+        margin-left: 10px;
+        font-size: 16px;
+    }
+
+    #check {
+        height: 30px;
+        margin-top: 60%;
+        opacity: 0.6;
+    }
+
+    #Aside1 {
+        height: 12dvh;
+        width: 88dvw;
+        margin-top: 11dvh;
+        margin-left: 5dvw;
+    }
+
+    #idnum {
+        font-size: 16px;
+        left: 115px;
+        width: 60%;
+    }
+
+    #profileName {
+        font-size: 16px;
+        left: 115px;
+        width: 60%;
+    }
+
+    #stats {
+        font-size: 18px;
+        height: 110px;
+        top: 28dvh;
+        margin-left: 2dvw;
+        width: 92%;
+    }
+
+    #played,
+    #avg {
+        font-size: 16px;
+    }
+
+    #avg {
+        border-radius: 8px;
+        width: 200px;
+    }
+
+    #info {
+        height: 25px;
+        bottom: 15px;
+    }
+
+    #infoDiv {
+        left: 80px;
+        top: 100px;
+        width: 220px;
+        border-radius: 0px 20px 20px 20px;
+    }
+
+    #infoText1 {
+        width: 90%;
+        font-size: 15px;
+    }
+
+    #gotit {
+        width: 90px;
+    }
+
+    #Aside2 {
+        height: 36dvh;
+        top: 48dvh;
+        width: 64dvw;
+    }
+
+    #qr {
+        width: 54dvw;
+        max-width: 28vh;
+        margin-top: 20px;
+    }
+
+    #qrtext {
+        margin-top: 31dvh;
+    }
+
+    #back {
+        left: 6dvw;
+        bottom: 4dvh;
+    }
+
+    #single,
+    #multi,
+    #allTime,
+    #daily {
+        padding-top: 1.6dvh;
+        font-weight: bold;
+        font-size: 4dvw;
+        border-width: 1px;
+    }
+
+    #modeSelect,
+    #leaderSelect {
+        width: 70dvw;
+        height: 12dvw;
+    }
+
+    #modeSelect {
+        bottom: 18dvh;
+    }
+
+    #mode {
+        margin-bottom: 60px;
+        height: 76dvh;
+        width: 80dvw;
+    }
+
+    #modeText1 {
+        font-size: 5dvw;
+        margin-top: 40px;
+    }
+
+    #modeText2 {
+        position: absolute;
+        top: 300px;
+        font-size: 3.5dvw;
+    }
+
+    #codeDiv {
+        height: 50dvh;
+        width: 90dvw;
+        bottom: 200px;
+    }
+
+    #sendCode {
+        font-size: 7dvw;
+
+        margin-left: 0;
+        margin-top: 150px;
+        align-self: center;
+    }
+
+    #codeOutput {
+        align-self: center;
+        margin-top: 200px;
+        margin-left: 0;
+        width: 40dvw;
+        font-size: 14px;
+    }
+
+    #copy {
+        width: 40px;
+        margin-top: 200px;
+        margin-left: 67dvw;
+    }
+
+    #startGame {
+        margin-top: 15dvh;
+        width: 45%;
+        font-size: 3.5dvw;
+    }
+
+    #startGame:hover {
+        background-color: #620022;
+    }
+
+    #diff {
+        position: absolute;
+        width: 30dvw;
+        left: auto;
+        right: 30px;
+        top: 20px;
+
+        border-width: 1px;
+
+        font-size: 4dvw;
+    }
+
+    #diff:hover {
+        background-color: #960035;
+    }
+
+    #diffDiv {
+        width: 86%;
+    }
+
+    #diffText1 {
+        font-size: 4.5dvw;
+    }
+
+    #inverted:hover,
+    #blurry:hover,
+    #twoSec:hover,
+    #mirrored:hover,
+    #useHint:hover {
+        background-color: #960236;
+    }
+
+    #hint {
+        z-index: 500;
+        background-color: #960236;
+    }
+
+    #hintText1 {
+        width: 90%;
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
+    #hintDiv {
+        width: 90%;
+        height: 160px;
+    }
+
+    #useHint {
+        margin-bottom: 2dvh;
+        border-width: 1px;
+    }
+
+    .blur {
+        filter: blur(0.6dvh);
+    }
+
+    #inviteDiv {
+        margin-top: 160px;
+        width: 90%;
+    }
+
+    #inviteBubble {
+        margin-left: 100px;
+        bottom: 26dvh;
+        height: 200px;
+        width: 200px;
+    }
+
+    #inviteBubbleText1 {
+        font-size: 16px;
+    }
+
+    #addedDiffInverted,
+    #addedDiffBlurry,
+    #addedDiffMirrored,
+    #addedDiffTwoSec {
+        font-size: 14px;
+        margin-bottom: 14px;
+        margin-left: 10px;
+    }
+
+    #inviteText1 {
+        top: 20%;
+        font-size: 6dvw;
+        width: 80%;
+    }
+
+    #diffText2 {
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+
+    #dailySVG {
+        bottom: 2dvh;
+        margin-left: 40dvw;
+    }
+
+    #leader {
+        bottom: 2dvh;
+        margin-left: 20dvw;
+    }
+
+    #leaderDiv {
+        right: auto;
+        border-radius: 30px 30px 0px 0px;
+        width: 100%;
+        height: 70%;
+        bottom: 0;
+    }
+
+    #leader1,
+    #leader2,
+    #leader3,
+    #leader4,
+    #leader5 {
+        margin-top: 2dvh;
+        margin-left: 4dvw;
+        padding-left: 3dvw;
+        font-size: 2.7dvw;
+        height: 4dvh;
+        padding-top: 8px;
+
+        border-width: 1px;
+    }
+
+    #leader1 {
+        border-width: 0.2dvh;
+    }
+
+    #leaderText1 {
+        font-size: 6dvw;
+        margin-bottom: 10px;
+    }
+
+    #delete,
+    #logout,
+    #login {
+        top: 14px;
+        right: 14px;
+        font-size: 1.4dvh;
+    }
+
+    #logout {
+        margin-top: 0;
+        margin-right: 30dvw;
+    }
+
+    #deleteDiv {
+        width: 90%;
+    }
+
+    #deleteText1 {
+        width: 90%;
+        font-size: 5dvw;
+    }
+
+    #dailyDiv {
+        width: 80%;
+        height: 80dvw;
+    }
+
+    #dailyText1 {
+        top: 12%;
+        font-size: 4dvw;
+        margin-left: 10px;
+    }
+
+    #dailyStart {
+        width: 60%;
+        font-size: 3.5vw;
+    }
+
+    #scoreDivMulti {
+        width: 90%;
+    }
+
+    #scoreMultiText1 {
+        margin-top: 20px;
+        font-size: 6dvw;
+        padding-bottom: 20px;
+    }
+
+    #againMulti {
+        font-size: 1.8dvh;
+    }
+
+    #multiNames {
+        position: absolute;
+        margin-bottom: 0dvh;
+        height: 16dvh;
+        top: 10dvh;
+    }
+
+    #scoreDivMultiBubble {
+        margin-left: 0;
+        right: 0;
+        font-size: 10px;
+    }
+
+    #player1,
+    #player2 {
+        height: 5.8dvh;
+    }
+
+    #player1:hover,
+    #player2:hover {
+        background-color: #960236;
+    }
+
+    #waiting {
+        font-size: 3dvw;
+    }
+
+    #waitingSVG {
+        margin-top: -6px;
+    }
+
+    #name1,
+    #name2 {
+        font-size: 3dvw;
+        margin-bottom: 2px;
+        width: 21%;
+    }
+
+    #score1,
+    #score2 {
+        position: absolute;
+        font-size: 3cqw;
+        right: 54%;
+        width: 16%;
+        border-radius: 8px;
+    }
+
+    #perfectLogo1,
+    #perfectLogo2 {
+        font-size: 3.3dvh;
+        right: 40%;
+        padding-top: 0;
+    }
+
+    #perfect1,
+    #perfect2 {
+        position: absolute;
+        font-size: 4dvw;
+        right: 30%;
+    }
+
+    #hintSVG1,
+    #hintSVG2 {
+        position: absolute;
+        border-radius: 6px;
+        box-shadow: -1px 1px 2px 2px rgba(0, 0, 0, 0.3);
+        padding: 2px;
+        background-image: -webkit-linear-gradient(left, #e2bf71, #af4261);
+        right: 17%;
+    }
+
+    #hint1,
+    #hint2 {
+        position: absolute;
+        right: 7%;
+        font-size: 4dvw;
+    }
+
+    #legend {
+        height: 26%;
+        bottom: 12dvh;
+    }
+
+    #perfectLegend {
+        margin-left: 14%;
+    }
+
+    #perfectLegendText1,
+    #hintLegendText1 {
+        margin-left: 28%;
+        margin-top: 1.5dvh;
+        font-size: 2dvh;
+    }
+
+    #hintLegendText1 {
+        margin-top: -4dvh;
+    }
+
+    #hintLegend {
+        margin-left: 14%;
+    }
+
+    #summaryDiv {
+        width: 100dvw;
+        height: 50dvw;
+        min-height: 200px;
+        border-width: 6px;
+    }
+
+    #xmark {
+        height: 26px;
+    }
+
+    #xmark:hover {
+        background-color: #9f043b;
+        box-shadow: none;
+    }
+
+    #summaryText1 {
+        font-size: 20px;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    #summaryPics {
+        justify-content: space-evenly;
+        width: 94dvw;
+        height: 60%;
+    }
+
+    #picS {
+        margin-left: 4px;
+        width: 80px;
+    }
+
+    #smallPicS0,
+    #smallPicS1,
+    #smallPicS2,
+    #smallPicS3,
+    #smallPicS4 {
+        border-radius: 10px;
+        border-width: 4px;
+    }
+
+    #summaryHint1,
+    #summaryHint2,
+    #summaryHint3,
+    #summaryHint4,
+    #summaryHint5 {
+        height: 34px;
+    }
+
+    #picScoreS {
+        font-size: 4dvw;
+    }
+}
