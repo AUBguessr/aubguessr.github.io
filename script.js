@@ -742,6 +742,7 @@ function submitFunc() {
         document.getElementById("leader").style.display = "none";
         document.getElementById("diff").style.display = "none";
         document.getElementById("dailySVG").style.display = "none";
+        document.getElementById("questionSVG").style.display = "none";
         document.getElementById("hint").style.display = "revert";
         document.getElementById("imageCount").style.display = "revert";
         picture.src = `images/image${turn}.jpeg`;
@@ -965,6 +966,7 @@ function hideDivs() {
     document.getElementById("scoreDivMulti").style.display = "none";
     document.getElementById("scoreDivMultiBubble").style.display = "none";
     document.getElementById("summaryDivCover").style.display = "none";
+    document.getElementById("questionDiv").style.display = "none";
     return;
 }
 
@@ -1039,6 +1041,7 @@ function again() {
 
     document.getElementById("mode").style.display = "flex";
     document.getElementById("diff").style.display = "revert";
+    document.getElementById("questionSVG").style.display = "revert";
 
     markerGroup.clearLayers();
     hintGroup.clearLayers();
@@ -1765,3 +1768,8 @@ function showPopUp() {
         popUpMessage.classList.remove("show");
     }, { once: true });
 }
+
+document.getElementById("questionSVG").addEventListener("click", function () {
+    dim.style.display = "revert";
+    document.getElementById("questionDiv").style.display = "flex";
+});

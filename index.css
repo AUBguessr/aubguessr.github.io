@@ -55,7 +55,7 @@ body {
     top: 16px;
     left: 10px;
 
-    background-color:#e2bf71;
+    background-color: #e2bf71;
     padding: 4px;
 
     box-shadow: -2px 2px 5px 2px rgba(0, 0, 0, 0.3);
@@ -68,6 +68,7 @@ body {
 }
 
 #side1 {
+    position: relative;
     display: none;
     height: 100vh;
     width: 39vw;
@@ -332,7 +333,8 @@ body {
 #deleteDiv,
 #dailyDiv,
 #infoDiv,
-#scoreDivMulti {
+#scoreDivMulti,
+#questionDiv {
     display: none;
     justify-content: space-evenly;
 
@@ -1265,7 +1267,8 @@ body {
 #diffText1,
 #hintText1,
 #inviteText1,
-#dailyText1 {
+#dailyText1,
+#questionText1 {
     margin-top: -20px;
     font-family: 'Georgia', serif;
     font-size: 3dvh;
@@ -1276,7 +1279,7 @@ body {
     /* Forces capital letters */
 
     /* Create a color gradient inside the font */
-    background: linear-gradient(90deg, #fffa97, #d25377);
+    background: linear-gradient(90deg, #fffa97, #f16c92);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
@@ -1310,6 +1313,33 @@ body {
     text-align: left;
     font-size: 1.1dvw;
     width: 92%;
+}
+
+#questionSVG {
+    height: 30px;
+    position: absolute;
+    top: 3dvh;
+    right: 1dvw;
+
+    box-shadow: -2px 2px 3px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+#questionSVG:hover {
+    box-shadow: none;
+}
+
+#questionDiv {
+    position: absolute;
+    height: 320px;
+    width: 500px;
+    background-color: #85002e;
+}
+
+#questionText1 {
+    font-size: 17px;
+    margin-top: 20px;
 }
 
 #inviteDiv {
@@ -2115,7 +2145,7 @@ body {
 
 #popUpMessage.show {
     display: block;
-    animation: fadeMessage 2s ease-in-out;
+    animation: fadeMessage 3s ease-in-out;
 }
 
 @keyframes fadeMessage {
@@ -2597,6 +2627,7 @@ body {
     #hint {
         z-index: 500;
         background-color: #960236;
+        bottom: -58dvh;
     }
 
     #hintText1 {
@@ -2903,5 +2934,22 @@ body {
 
     #picScoreS {
         font-size: 4dvw;
+    }
+
+    #questionSVG {
+        top: auto;
+        bottom: 4dvh;
+        right: 4dvw;
+    }
+
+    #questionDiv {
+        position: absolute;
+        height: 86dvw;
+        width: 86dvw;
+    }
+
+    #questionText1 {
+        font-size: 3.8dvw;
+        margin-top: 20px;
     }
 }
