@@ -1728,12 +1728,11 @@ body {
     width: 90%;
     border-radius: 1dvh;
 
-    /* Adds a smooth drop shadow underneath */
-    filter: drop-shadow(2px 2px 0.3dvw rgba(0, 0, 0, 0.5));
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: -2px 2px 5px 2px rgba(0, 0, 0, 0.3);
 
     border-style: solid;
-    border-width: 2px;
+    border-width: 1px;
     border-color: #ac0c44;
 }
 
