@@ -2230,6 +2230,7 @@ body {
     #logo {
         top: 10px;
         width: 12dvh;
+        border-radius: 8px;
     }
 
     #map {
