@@ -55,9 +55,6 @@ body {
     top: 16px;
     left: 10px;
 
-    background-color: #e2bf71;
-    padding: 4px;
-
     box-shadow: -2px 2px 5px 2px rgba(0, 0, 0, 0.3);
     -webkit-user-drag: none;
     /* Safari and Chrome Safari-based engines */
