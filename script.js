@@ -981,8 +981,12 @@ let overlay = document.getElementById("overlay");
 let signin = document.getElementById("signin");
 let stats = document.getElementById("stats");
 
-document.getElementById("logo").addEventListener('click', function () {
+document.getElementById("logoWrapper").addEventListener("click", function () {
     window.location.href = window.location.origin + window.location.pathname;
+});
+
+document.getElementById("logo").addEventListener("contextmenu", function (e) {
+    e.preventDefault();
 });
 
 document.getElementById("profileButton").addEventListener('click', function () {
