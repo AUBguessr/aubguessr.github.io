@@ -51,7 +51,7 @@ body {
     position: absolute;
     z-index: 1005;
     width: 14dvh;
-    border-radius: 14px;
+    border-radius: 1.4dvh;
     top: 16px;
     left: 10px;
 
@@ -599,7 +599,7 @@ body {
 #trash {
     display: none;
     height: 30px;
-    margin-left: 22px;
+    margin-left: 24px;
     margin-top: 10px;
     border-radius: 10px;
     cursor: pointer;
@@ -794,7 +794,7 @@ body {
     padding-left: 15px;
     padding-top: 10px;
 
-    top: 38dvh;
+    top: 42dvh;
     left: 2dvw;
 
     font-size: 30px;
@@ -2335,7 +2335,7 @@ body {
     #logo {
         top: 10px;
         width: 12dvh;
-        border-radius: 8px;
+        border-radius: 1.6dvh;
     }
 
     #map {
@@ -2543,6 +2543,10 @@ body {
         width: 88dvw;
         margin-top: 11dvh;
         margin-left: 5dvw;
+    }
+
+    #avatar{
+        border-radius: 12px;
     }
 
     #idnum {
@@ -3073,7 +3077,7 @@ body {
 
     #edit,
     #trash{
-        margin-left: 14px;
+        margin-left: 12px;
         margin-top: 4px;
         height: 26px;
         border-radius: 10px;
