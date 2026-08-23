@@ -329,7 +329,8 @@ body {
 #dailyDiv,
 #infoDiv,
 #scoreDivMulti,
-#questionDiv {
+#questionDiv,
+#avatarDiv {
     display: none;
     justify-content: space-evenly;
 
@@ -548,7 +549,7 @@ body {
     text-align: center;
 }
 
-#profileButton {
+#profile {
     position: absolute;
     left: 2.6dvh;
     bottom: 2dvh;
@@ -566,7 +567,7 @@ body {
 
 }
 
-#profileButton:hover {
+#profile:hover {
     cursor: pointer;
     background-color: rgb(166, 7, 65);
     padding: 4px;
@@ -582,32 +583,30 @@ body {
     background-color: transparent;
 }
 
-#profile {
+#avatar {
     display: flex;
     height: 100%;
 
-    border-left: 0;
-    border-top: 0;
-    border-bottom: 0;
-    border-right: 5px;
-
-    border-radius: 10px;
-    border-color: #e2c072;
-    border-left-color: #a00c40;
-    border-top-color: #a00c40;
-    border-bottom-color: #a00c40;
-
-
-    border-left-width: 2px;
-    border-top-width: 2px;
-    border-bottom-width: 2px;
-
-    border-style: solid;
+    border-radius: 20px;
 
     box-shadow: -2px 2px 5px 2px rgba(0, 0, 0, 0.3);
     -webkit-user-drag: none;
+    background-color: #e2c072;
+    padding-top: 5px;
+}
 
-    background-color: #960035;
+#edit {
+    height: 30px;
+    margin-left: 41px;
+    margin-top: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 4px;
+}
+
+#edit:hover {
+    background-color: #aa033e;
+    padding: 6px;
 }
 
 #idnum,
@@ -778,7 +777,6 @@ body {
 
     border-radius: 20px;
 
-
     border-style: solid;
     border-width: 2px;
     border-color: #a00c40;
@@ -786,7 +784,7 @@ body {
     padding-left: 15px;
     padding-top: 10px;
 
-    top: 35dvh;
+    top: 38dvh;
     left: 2dvw;
 
     font-size: 30px;
@@ -854,6 +852,55 @@ body {
     width: 80%;
     font-size: 20px;
 }
+
+#avatarDiv {
+    display: none;
+    margin-top: 20dvh;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    overflow-y: auto;
+    height: 50dvh;
+    width: 40dvw;
+    padding: 20px;
+}
+
+.avatarCell {
+    height: 8cqw;
+    width: 8cqw;
+
+    border-radius: 20px;
+
+    box-shadow: -2px 2px 5px 5px rgba(0, 0, 0, 0.3);
+    -webkit-user-drag: none;
+    background-color: #e2c072;
+    padding-top: 5px;
+    cursor: pointer;
+}
+
+.avatarCell:hover {
+    box-shadow: none;
+}
+
+.avatarCell img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: contain;
+}
+
+#avatarDiv::-webkit-scrollbar {
+    width: 10px;
+}
+
+#avatarDiv::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#avatarDiv::-webkit-scrollbar-thumb {
+    background: #e2c072;
+    border-radius: 4px;
+}
+
 
 #overlay {
     animation: pulse 3s ease-in-out infinite, drift 8s linear infinite;
@@ -2110,7 +2157,8 @@ body {
     margin-left: 6px;
 }
 
-#popUpMessage {
+#popUpMessage,
+#popUpMessage2 {
     position: absolute;
     opacity: 0;
     display: none;
@@ -2137,7 +2185,8 @@ body {
 
 }
 
-#popUpMessage.show {
+#popUpMessage.show,
+#popUpMessage2.show {
     display: block;
     animation: fadeMessage 3s ease-in-out;
 }
@@ -2434,7 +2483,7 @@ body {
     }
 
     #Aside1 {
-        height: 12dvh;
+        height: 90px;
         width: 88dvw;
         margin-top: 11dvh;
         margin-left: 5dvw;
@@ -2455,7 +2504,7 @@ body {
     #stats {
         font-size: 18px;
         height: 110px;
-        top: 28dvh;
+        top: 30dvh;
         margin-left: 2dvw;
         width: 92%;
     }
@@ -2492,8 +2541,8 @@ body {
     }
 
     #Aside2 {
-        height: 36dvh;
-        top: 48dvh;
+        height: 35dvh;
+        top: 50dvh;
         width: 64dvw;
     }
 
@@ -2946,5 +2995,36 @@ body {
     #questionText1 {
         font-size: 3.8dvw;
         margin-top: 20px;
+    }
+
+    #edit{
+        margin-left: 26px;
+        margin-top: 4px;
+        height: 26px;
+        border-radius: 10px;
+    }
+
+    #avatarDiv {
+        display: none;
+        margin-top: 30dvh;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 4px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        height: 30dvh;
+        width: 100dvw;
+        padding: 2dvw;
+        padding-right: 6px;
+    }
+
+    .avatarCell {
+        height: 21dvw;
+        width: 20dvw;
+        border-radius: 10px;
+        box-shadow: -1px 1px 2px 2px rgba(0, 0, 0, 0.4);
+    }
+
+    .avatarCell img {
+        border-radius: 10px;
     }
 }

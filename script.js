@@ -972,6 +972,7 @@ function hideDivs() {
     document.getElementById("scoreDivMultiBubble").style.display = "none";
     document.getElementById("summaryDivCover").style.display = "none";
     document.getElementById("questionDiv").style.display = "none";
+    document.getElementById("avatarDiv").style.display = "none";
     return;
 }
 
@@ -989,7 +990,7 @@ document.getElementById("logo").addEventListener("contextmenu", function (e) {
     e.preventDefault();
 });
 
-document.getElementById("profileButton").addEventListener('click', function () {
+document.getElementById("profile").addEventListener('click', function () {
     showAccount();
 });
 
@@ -1737,6 +1738,7 @@ document.getElementById("summaryDivCover").addEventListener("click", function ()
 
 
 const popUpMessage = document.getElementById("popUpMessage");
+const popUpMessage2 = document.getElementById("popUpMessage2");
 
 function hostHasntJoinedPopUp() {
     if (!expired) popUpMessage.textContent = "Host has not started the game yet!";
@@ -1779,7 +1781,60 @@ function showPopUp() {
     }, { once: true });
 }
 
+function showPopUp2() {
+    popUpMessage2.classList.remove("show");
+
+    // Force the animation to restart
+    void popUpMessage2.offsetWidth;
+
+    popUpMessage2.classList.add("show");
+
+    // remove .show after animation ends so browser has nothing to repaint
+    popUpMessage2.addEventListener("animationend", () => {
+        popUpMessage2.classList.remove("show");
+    }, { once: true });
+}
+
 document.getElementById("questionSVG").addEventListener("click", function () {
     dim.style.display = "revert";
     document.getElementById("questionDiv").style.display = "flex";
 });
+
+document.getElementById("edit").addEventListener("click", function () {
+    dim.style.display = "revert";
+    document.getElementById("avatarDiv").style.display = "grid";
+});
+
+function buildAvatarGrid() {
+    const grid = document.getElementById("avatarDiv");
+    grid.innerHTML = "";
+
+    for (let i = 1; i <= 16; i++) {
+        const cell = document.createElement("div");
+        cell.className = "avatarCell";
+
+        const img = document.createElement("img");
+        img.src = `avatars/${i}.svg`;
+        cell.appendChild(img);
+
+        if(i>4) cell.style.opacity = 0.5;
+
+        cell.addEventListener("click", () => selectAvatar(i));
+        
+        grid.appendChild(cell);
+    }
+}
+
+function selectAvatar(id) {
+
+    if(id>4){
+        showPopUp2();
+        return;
+    } 
+
+    document.getElementById("avatar").src = `avatars/${id}.svg`;
+    hideDivs();
+    buildAvatarGrid();
+}
+
+buildAvatarGrid();
