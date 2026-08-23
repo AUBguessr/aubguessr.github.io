@@ -3006,7 +3006,7 @@ body {
 
     #avatarDiv {
         display: none;
-        margin-top: 30dvh;
+        margin-top: 36dvh;
         grid-template-columns: repeat(4, 1fr);
         gap: 4px;
         overflow-y: auto;
@@ -3021,6 +3021,10 @@ body {
         height: 21dvw;
         width: 20dvw;
         border-radius: 10px;
+        box-shadow: -1px 1px 2px 2px rgba(0, 0, 0, 0.4);
+    }
+
+    .avatarCell:hover{
         box-shadow: -1px 1px 2px 2px rgba(0, 0, 0, 0.4);
     }
 
