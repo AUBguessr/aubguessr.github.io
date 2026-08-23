@@ -910,8 +910,8 @@ body {
 #avatarDiv::-webkit-scrollbar-thumb {
     background: #e2c072;
     border-radius: 4px;
-}
-
+    cursor: grabbing;
+} 
 
 #overlay {
     animation: pulse 3s ease-in-out infinite, drift 8s linear infinite;
@@ -2070,8 +2070,24 @@ body {
     background-image: -webkit-linear-gradient(left, #e2bf71, #af4261);
 }
 
+#summaryAvatar{
+    height: 120px;
+    position: absolute;
+    align-self: center;
+    top: -90px;
+    border: 10px solid #85002e;
+    background-color: #e2bf71;
+
+    padding: 8px 10px 8px 10px;
+
+    border-radius: 20px;
+    box-shadow: 0px 2px 8px 4px rgba(0, 0, 0, 0.4);
+
+    margin-right: 480px;
+}
+
 #summaryDivCover {
-    display: none;
+    display: flex;
     justify-content: space-evenly;
 
     position: absolute;
@@ -2091,7 +2107,7 @@ body {
     align-self: center;
     background-color: #e2bf71;
     width: 700px;
-    height: 300px;
+    height: 320px;
 
 
     border-style: solid;
@@ -2107,7 +2123,7 @@ body {
     color: #85002e;
     font-family: Impact;
     letter-spacing: 1px;
-
+    margin-top: 20px;
     height: 20%;
 }
 
@@ -2975,6 +2991,15 @@ body {
         margin-left: 14%;
     }
 
+    #summaryAvatar{
+        height: 80px;
+        top: -66px;
+        border: 6px solid #85002e;
+        border-radius: 14px;
+        margin-right: 66dvw;
+        padding: 4px 6px 4px 6px;
+    }
+
     #summaryDiv {
         width: 100dvw;
         height: 50dvw;
@@ -2993,7 +3018,7 @@ body {
 
     #summaryText1 {
         font-size: 20px;
-        margin-top: 10px;
+        margin-top: 20px;
         font-weight: bold;
     }
 

@@ -431,6 +431,7 @@ let opponentPerfectScores = null;
 let opponentHints = null;
 let opponentScoreArr = new Array(5);
 let opponentHintsArr = new Array(5).fill(0);
+let opponentAvatar = 0;
 
 let host = false;
 let expired = 0;
@@ -855,7 +856,8 @@ async function finishRound() {
             perfectScores: perfectScore,
             hints: hints,
             scoreArr: scoreArr,
-            hintsArr: hintsArr
+            hintsArr: hintsArr,
+            avatar: avatar
         });
     }
     myScoreSubmitted = true;
@@ -1028,6 +1030,7 @@ function again() {
     opponentName = null;
     myScoreSubmitted = false;
     opponentPerfectScores = null;
+    opponentAvatar = 0;
     shownFinished = false;
     hintsArr = new Array(5).fill(0);
     opponentHintsArr = new Array(5).fill(0);
@@ -1709,6 +1712,7 @@ socket.on("opponentFinished", (data) => {
     opponentHints = data.hints;
     opponentScoreArr = data.scoreArr;
     opponentHintsArr = data.hintsArr;
+    opponentAvatar = data.avatar;
 
     if (!done) opponentFinishedPopUp();
 
@@ -1726,7 +1730,8 @@ document.getElementById("player1").addEventListener("click", function () {
             document.getElementById(`summaryHint${x + 1}`).style.display = "revert";
         } else document.getElementById(`summaryHint${x + 1}`).style.display = "none";
     }
-
+    
+    document.getElementById("summaryAvatar").src = `avatars/${avatar}.svg`;
     document.getElementById("summaryDivCover").style.display = "flex";
 });
 
@@ -1742,7 +1747,8 @@ document.getElementById("player2").addEventListener("click", function () {
             document.getElementById(`summaryHint${x + 1}`).style.display = "revert";
         } else document.getElementById(`summaryHint${x + 1}`).style.display = "none";
     }
-
+    
+    document.getElementById("summaryAvatar").src = `avatars/${opponentAvatar}.svg`;
     document.getElementById("summaryDivCover").style.display = "flex";
 });
 
