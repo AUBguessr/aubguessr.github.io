@@ -2199,6 +2199,10 @@ body {
 
 }
 
+#popUpMessage2{
+    font-size: 1.8dvh;
+}
+
 #popUpMessage.show {
     display: block;
     animation: fadeMessage 3s ease-in-out;
