@@ -36,7 +36,7 @@ let games_played = 0;
 
 let id;
 let user_name = "Guest";
-let usernameMaxLength = 18;
+let usernameMaxLength = 12;
 let signinScreen = true;
 let signedIn = false;
 const isMobile = window.innerWidth < 768;
@@ -470,18 +470,18 @@ async function prepLeaderArrs() {
     const byDaily = [...data]
         .filter(u => u.daily_score !== null)
         .sort((a, b) => b.daily_score - a.daily_score);
-
+        console.log(byAvg[0]);
     for (let i = 0; i < 5; i++) {
         if (byAvg[i]) {
-            allTimeArr[i] = `${i + 1}. ${(byAvg[i].username).padEnd(usernameMaxLength + 2)} | AVG: ${(byAvg[i].avg_score).toFixed(2)}% | Games: ${byAvg[i].games_played}`;
+            allTimeArr[i] = `<img src="avatars/${byAvg[i].avatar}.svg" class="leaderAvatar"> ${i + 1}. ${(byAvg[i].username).padEnd(usernameMaxLength + 2)} | AVG: ${(byAvg[i].avg_score).toFixed(2)}% | Games: ${byAvg[i].games_played}`;
         } else {
-            allTimeArr[i] = `${i + 1}. ~`;
+            allTimeArr[i] = "";
         }
 
         if (byDaily[i]) {
-            dailyArr[i] = `${i + 1}. ${(byDaily[i].username).padEnd(usernameMaxLength + 2)} | Score: ${(byDaily[i].daily_score).toFixed(2)}% | Games: ${byDaily[i].games_played}`;
+            dailyArr[i] = `<img src="avatars/${byDaily[i].avatar}.svg" class="leaderAvatar"> ${i + 1}. ${(byDaily[i].username).padEnd(usernameMaxLength + 2)} | Score: ${(byDaily[i].daily_score).toFixed(2)}% | Games: ${byDaily[i].games_played}`;
         } else {
-            dailyArr[i] = `${i + 1}. ~`;
+            dailyArr[i] = "";
         }
     }
 
@@ -494,11 +494,11 @@ async function prepLeaderArrs() {
 function displayLeader(leaderMode) {
     if (!leaderMode) {
         for (let i = 0; i < 5; i++) {
-            document.getElementById(`leader${i + 1}`).textContent = allTimeArr[i];
+            document.getElementById(`leader${i + 1}`).innerHTML = allTimeArr[i];
         }
     } else {
         for (let i = 0; i < 5; i++) {
-            document.getElementById(`leader${i + 1}`).textContent = dailyArr[i];
+            document.getElementById(`leader${i + 1}`).innerHTML = dailyArr[i];
         }
     }
 
