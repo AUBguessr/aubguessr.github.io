@@ -624,7 +624,7 @@ body {
 
     position: absolute;
     font-size: 30px;
-    top: 0;
+    top: 20px;
     left: 150px;
     width: 300px;
 
@@ -634,6 +634,7 @@ body {
 }
 
 #idnum {
+    top: 10px;
     margin-top: 50px;
 }
 
@@ -2528,10 +2529,12 @@ body {
         font-size: 16px;
         left: 115px;
         width: 60%;
+        top: 0px;
     }
 
     #profileName {
         font-size: 16px;
+        top: 20px;
         left: 115px;
         width: 60%;
     }

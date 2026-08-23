@@ -49,6 +49,7 @@ let perfectScore = 0;
 let hints = 0;
 let total = 0;
 let avg_score = 0;
+let avatar = 0;
 let avatars_unlocked = 0;
 let coords = [
     [33.90083253913812, 35.48076220903855],     //0
@@ -470,7 +471,7 @@ async function prepLeaderArrs() {
     const byDaily = [...data]
         .filter(u => u.daily_score !== null)
         .sort((a, b) => b.daily_score - a.daily_score);
-        console.log(byAvg[0]);
+        
     for (let i = 0; i < 5; i++) {
         if (byAvg[i]) {
             allTimeArr[i] = `<img src="avatars/${byAvg[i].avatar}.svg" class="leaderAvatar"> ${i + 1}. ${(byAvg[i].username).padEnd(usernameMaxLength + 2)} | AVG: ${(byAvg[i].avg_score).toFixed(2)}% | Games: ${byAvg[i].games_played}`;
@@ -1203,6 +1204,7 @@ async function submitInfo() {
     dailyPlayed = row.daily_score !== null ? 1 : 0;
     avatars_unlocked = row.avatars_unlocked;    
     document.getElementById("avatar").src = `avatars/${row.avatar}.svg`;
+    avatar = row.avatar;
 
     if((!avatars_unlocked && games_played >= 20 && avg_score >= 75)){
         await db.rpc('set_avatars_unlocked', { p_student_id: id });
@@ -1818,8 +1820,11 @@ document.getElementById("edit").addEventListener("click", function () {
 });
 
 document.getElementById("trash").addEventListener("click", async function () {
+    if(!avatar) return;
+
     document.getElementById("avatar").src = `avatars/0.svg`;
     await db.rpc('set_avatar', { p_student_id: id, p_avatar: 0 });
+    avatar = 0;
 });
 
 function buildAvatarGrid() {
@@ -1853,6 +1858,7 @@ async function selectAvatar(avatarId) {
         return;
     } 
 
+    avatar = avatarId;
     document.getElementById("avatar").src = `avatars/${avatarId}.svg`;
     hideDivs();
     buildAvatarGrid();
