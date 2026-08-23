@@ -837,13 +837,6 @@ let finalScore;
 
 async function finishRound() {
 
-    console.log("FINISH ROUND:", {
-        wasMulti,
-        invited,
-        challengeCode,
-        socketConnected: socket.connected
-    });
-
     finalScore = (total / round).toFixed(2);
     if (finalScore == 100.00) finalScore = 100;
 
