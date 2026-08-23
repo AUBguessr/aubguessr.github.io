@@ -1753,8 +1753,8 @@ body {
 }
 
 .leaderAvatar{
-    background-color: #e2c072;
-    height: 7.8dvh;
+    background-color: #e4b77d;
+    height: 8dvh;
     border-radius: 10px 0 0 10px;
     vertical-align: middle;
     left: 3dvw;
@@ -1781,17 +1781,12 @@ body {
 
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     box-shadow: -2px 2px 2px 1px rgba(0, 0, 0, 0.3);
-
-    border-style: solid;
-    border-width: 1px;
-    border-color: #ac0c44;
 }
 
 #leader1 {
     color: #85002e;
     background-image: -webkit-linear-gradient(left, #efce83fa, #af4261);
     text-shadow: none;
-    border-style: none;
 }
 
 #picFull,
@@ -2781,8 +2776,7 @@ body {
     }
 
     .leaderAvatar{
-        background-color: #e2c072;
-        height: 5.8dvh;
+        height: 6dvh;
         border-radius: 9px 0 0 9px;
         vertical-align: middle;
         left: 0dvw;
