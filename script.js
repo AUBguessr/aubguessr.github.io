@@ -471,7 +471,7 @@ async function prepLeaderArrs() {
     const byDaily = [...data]
         .filter(u => u.daily_score !== null)
         .sort((a, b) => b.daily_score - a.daily_score);
-        
+
     for (let i = 0; i < 5; i++) {
         if (byAvg[i]) {
             allTimeArr[i] = `<img src="avatars/${byAvg[i].avatar}.svg" class="leaderAvatar"> ${i + 1}. ${(byAvg[i].username).padEnd(usernameMaxLength + 2)} | AVG: ${(byAvg[i].avg_score).toFixed(2)}% | Games: ${byAvg[i].games_played}`;
@@ -1851,7 +1851,7 @@ function buildAvatarGrid() {
 
 async function selectAvatar(avatarId) {
 
-    if(id>4 && !avatars_unlocked){
+    if(avatarId>4 && !avatars_unlocked){
         if(isMobile){
         popUpMessage2.innerHTML = "Achieve an average score of 75% <br> with 20 games played to unlock all avatars.";        }
         showPopUp2();
