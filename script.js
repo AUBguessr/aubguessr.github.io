@@ -49,6 +49,7 @@ let perfectScore = 0;
 let hints = 0;
 let total = 0;
 let avg_score = 0;
+let avatars_unlocked = 0;
 let coords = [
     [33.90083253913812, 35.48076220903855],     //0
     [33.89977295523677, 35.479049998468426],    //1
@@ -1200,6 +1201,15 @@ async function submitInfo() {
     games_played = row.games_played;
     avg_score = row.avg_score;
     dailyPlayed = row.daily_score !== null ? 1 : 0;
+    avatars_unlocked = row.avatars_unlocked;    
+    document.getElementById("avatar").src = `avatars/${row.avatar}.svg`;
+
+    if((!avatars_unlocked && games_played >= 20 && avg_score >= 75)){
+        await db.rpc('set_avatars_unlocked', { p_student_id: id });
+        avatars_unlocked = 1;
+    }
+
+    buildAvatarGrid();
 
     document.getElementById("profileName").textContent = "Name: " + nameValue;
     document.getElementById("idnum").textContent = "ID: " + id;
@@ -1212,6 +1222,7 @@ async function submitInfo() {
     document.getElementById("login").style.display = "none";
     document.getElementById("dailySVG").style.display = "revert";
     document.getElementById("info").style.display = "revert";
+    document.getElementById("edit").style.display = "revert";
     document.getElementById("cursor-glow").style.display = "none";
 
     localStorage.setItem('student_id', id);
@@ -1817,7 +1828,9 @@ function buildAvatarGrid() {
         img.src = `avatars/${i}.svg`;
         cell.appendChild(img);
 
-        if(i>4) cell.style.opacity = 0.5;
+        if(i>4 && !avatars_unlocked){ 
+            cell.style.opacity = 0.5;
+        }
 
         cell.addEventListener("click", () => selectAvatar(i));
         
@@ -1825,16 +1838,19 @@ function buildAvatarGrid() {
     }
 }
 
-function selectAvatar(id) {
+async function selectAvatar(avatarId) {
 
-    if(id>4){
+    if(id>4 && !avatars_unlocked){
+        if(isMobile){
+        popUpMessage2.innerHTML = "Achieve an average score of 75% <br> with 20 games played to unlock all avatars.";        }
         showPopUp2();
         return;
     } 
 
-    document.getElementById("avatar").src = `avatars/${id}.svg`;
+    document.getElementById("avatar").src = `avatars/${avatarId}.svg`;
     hideDivs();
     buildAvatarGrid();
+    
+    await db.rpc('set_avatar', { p_student_id: id, p_avatar: avatarId });
 }
 
-buildAvatarGrid();

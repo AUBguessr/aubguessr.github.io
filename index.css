@@ -596,6 +596,7 @@ body {
 }
 
 #edit {
+    display: none;
     height: 30px;
     margin-left: 41px;
     margin-top: 10px;
@@ -861,13 +862,14 @@ body {
     overflow-y: auto;
     height: 50dvh;
     width: 40dvw;
-    padding: 20px;
+    padding: 14px;
+    padding-right: 0px;
 }
 
 .avatarCell {
-    height: 8cqw;
-    width: 8cqw;
-
+    height: 8dvw;
+    width: 8dvw;
+    
     border-radius: 20px;
 
     box-shadow: -2px 2px 5px 5px rgba(0, 0, 0, 0.3);
@@ -2159,6 +2161,7 @@ body {
 
 #popUpMessage,
 #popUpMessage2 {
+    text-align: center;
     position: absolute;
     opacity: 0;
     display: none;
@@ -2185,10 +2188,14 @@ body {
 
 }
 
-#popUpMessage.show,
-#popUpMessage2.show {
+#popUpMessage.show {
     display: block;
     animation: fadeMessage 3s ease-in-out;
+}
+
+#popUpMessage2.show {
+    display: block;
+    animation: fadeMessage2 6s ease-in-out;
 }
 
 @keyframes fadeMessage {
@@ -2201,6 +2208,24 @@ body {
     }
 
     80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeMessage2 {
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
         opacity: 1;
     }
 
@@ -3002,6 +3027,10 @@ body {
         margin-top: 4px;
         height: 26px;
         border-radius: 10px;
+    }
+
+    #edit:hover{
+        background-color: transparent;
     }
 
     #avatarDiv {
