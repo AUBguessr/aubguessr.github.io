@@ -1223,6 +1223,7 @@ async function submitInfo() {
     document.getElementById("dailySVG").style.display = "revert";
     document.getElementById("info").style.display = "revert";
     document.getElementById("edit").style.display = "revert";
+    document.getElementById("trash").style.display = "revert";
     document.getElementById("cursor-glow").style.display = "none";
 
     localStorage.setItem('student_id', id);
@@ -1814,6 +1815,11 @@ document.getElementById("questionSVG").addEventListener("click", function () {
 document.getElementById("edit").addEventListener("click", function () {
     dim.style.display = "revert";
     document.getElementById("avatarDiv").style.display = "grid";
+});
+
+document.getElementById("trash").addEventListener("click", async function () {
+    document.getElementById("avatar").src = `avatars/0.svg`;
+    await db.rpc('set_avatar', { p_student_id: id, p_avatar: 0 });
 });
 
 function buildAvatarGrid() {

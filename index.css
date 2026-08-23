@@ -595,17 +595,25 @@ body {
     padding-top: 5px;
 }
 
-#edit {
+#edit, 
+#trash {
     display: none;
     height: 30px;
-    margin-left: 41px;
+    margin-left: 22px;
     margin-top: 10px;
     border-radius: 10px;
     cursor: pointer;
     padding: 4px;
 }
 
-#edit:hover {
+#trash{
+    padding: 3px;
+    margin-top: 0;
+    margin-left: 0;
+}
+
+#edit:hover,
+#trash:hover {
     background-color: #aa033e;
     padding: 6px;
 }
@@ -1753,7 +1761,7 @@ body {
 }
 
 .leaderAvatar{
-    background-color: #e4b77d;
+    background-color: #e9c07f;
     height: 8dvh;
     border-radius: 10px 0 0 10px;
     vertical-align: middle;
@@ -1774,7 +1782,7 @@ body {
     margin-top: 2dvh;
     margin-left: 3.2dvw;
     padding-left: 0dvw;
-    font-size: calc(1.2dvw + 1dvh);
+    font-size: calc(1.4dvw + 1.2dvh);
     height: 8dvh;
     width: 90%;
     border-radius: 10px;
@@ -2776,6 +2784,7 @@ body {
     }
 
     .leaderAvatar{
+        background-color: #e4b77d;
         height: 6dvh;
         border-radius: 9px 0 0 9px;
         vertical-align: middle;
@@ -3030,14 +3039,20 @@ body {
         margin-top: 20px;
     }
 
-    #edit{
-        margin-left: 26px;
+    #edit,
+    #trash{
+        margin-left: 14px;
         margin-top: 4px;
         height: 26px;
         border-radius: 10px;
     }
 
-    #edit:hover{
+    #trash{
+        margin-left: 0;
+    }
+
+    #edit:hover,
+    #trash:hover{
         background-color: transparent;
     }
 
