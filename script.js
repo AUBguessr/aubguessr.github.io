@@ -477,13 +477,14 @@ async function prepLeaderArrs() {
         if (byAvg[i]) {
             allTimeArr[i] = `<img src="avatars/${byAvg[i].avatar}.svg" class="leaderAvatar"> ${i + 1}. ${(byAvg[i].username).padEnd(usernameMaxLength + 2)} | AVG: ${(byAvg[i].avg_score).toFixed(2)}% | Games: ${byAvg[i].games_played}`;
         } else {
-            allTimeArr[i] = "";
+            allTimeArr[i] = `<img src="avatars/-1.svg" class="leaderAvatar"> ${i + 1}. ~`;
         }
 
         if (byDaily[i]) {
             dailyArr[i] = `<img src="avatars/${byDaily[i].avatar}.svg" class="leaderAvatar"> ${i + 1}. ${(byDaily[i].username).padEnd(usernameMaxLength + 2)} | Score: ${(byDaily[i].daily_score).toFixed(2)}% | Games: ${byDaily[i].games_played}`;
         } else {
-            dailyArr[i] = "";
+            dailyArr[i] = `<img src="avatars/-1.svg" class="leaderAvatar"> ${i + 1}. ~`;
+            
         }
     }
 
