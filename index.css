@@ -436,12 +436,18 @@ body {
     text-align: center;
 }
 
+#againShareDiv{
+    position: relative;
+    width: 100%;
+    height: 10dvh;
+}
+
 #again,
 #share {
     position: absolute;
-    bottom: 2dvh;
+    top: 0.8dvh;
 
-    height: 50px;
+    height: 6dvh;
     width: 40%;
 
     text-transform: uppercase;

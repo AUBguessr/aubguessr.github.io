@@ -743,8 +743,6 @@ function submitFunc() {
             }
         }
 
-        console.log("DAILY MODE:", dailyMode);
-
         document.getElementById("leader").style.display = "none";
         document.getElementById("diff").style.display = "none";
         document.getElementById("dailySVG").style.display = "none";
