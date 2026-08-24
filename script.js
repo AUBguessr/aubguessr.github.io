@@ -1823,7 +1823,7 @@ function buildAvatarGrid() {
     const grid = document.getElementById("avatarDiv");
     grid.innerHTML = "";
 
-    for (let i = 1; i <= 16; i++) {
+    for (let i = 1; i <= 24; i++) {
         const cell = document.createElement("div");
         cell.className = "avatarCell";
 
