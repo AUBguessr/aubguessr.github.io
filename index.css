@@ -321,14 +321,13 @@ body {
     color: rgb(217, 170, 111);
 }
 
-#scoreDiv,
 #diffDiv,
 #hintDiv,
 #inviteDiv,
 #deleteDiv,
 #dailyDiv,
 #infoDiv,
-#scoreDivMulti,
+#scoreDiv,
 #questionDiv,
 #avatarDiv {
     display: none;
@@ -382,7 +381,7 @@ body {
 
 #scoreText1,
 #score,
-#scoreMultiText1 {
+#scoreText1 {
     margin-top: 8px;
     font-family: 'Georgia', serif;
     font-size: 3dvw;
@@ -410,7 +409,7 @@ body {
     width: 25vw;
 }
 
-#scoreMultiText1 {
+#scoreText1 {
     font-size: 2dvw;
     width: 90%;
 }
@@ -438,9 +437,7 @@ body {
 }
 
 #again,
-#share,
-#againMulti,
-#shareMulti {
+#share {
     position: absolute;
     bottom: 2dvh;
 
@@ -466,8 +463,7 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
-#again,
-#againMulti {
+#again {
     border-radius: 15px;
     border-style: solid;
     border-width: 1px;
@@ -476,13 +472,11 @@ body {
     background-color: #960236;
 }
 
-#again:hover,
-#againMulti:hover {
+#again:hover {
     background-color: #a10c40;
 }
 
-#share,
-#shareMulti {
+#share {
     font-size: 0.8dvw;
     width: 16%;
     bottom: 20px;
@@ -511,8 +505,7 @@ body {
     padding-bottom: 4px;
 }
 
-#share:hover,
-#shareMulti:hover {
+#share:hover {
     background-color: #a10c40;
 
 }
@@ -1804,18 +1797,18 @@ body {
     transition: left 0.001s, top 0.001s;
 }
 
-#scoreDivMulti {
+#scoreDiv {
     display: none;
     flex-direction: column;
     justify-content: space-between;
 }
 
-#scoreMultiText1 {
+#scoreText1 {
     margin-top: 20px;
     align-self: center;
 }
 
-#againMulti {
+#again {
     position: absolute;
     margin-left: 30%;
 }
@@ -1834,7 +1827,7 @@ body {
     border-color: #690427;
 }
 
-#scoreDivMultiBubble {
+#scoreDivBubble {
     position: absolute;
     color: #e2bf71;
     white-space: nowrap;
@@ -1850,6 +1843,7 @@ body {
 
     border-radius: 10px 10px 10px 0;
     font-weight: bold;
+    text-shadow: -1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 #player1,
@@ -1922,9 +1916,9 @@ body {
 #score1,
 #score2 {
     position: absolute;
-    font-size: 1cqw;
+    font-size: 1.2cqw;
     right: 50%;
-    width: 14%;
+    width: 18%;
 
     text-align: center;
 
@@ -2184,7 +2178,7 @@ body {
 
     font-size: 2dvh;
 
-    text-shadow: -2px 2px 2px rgba(0, 0, 0, 0.4);
+    text-shadow: -2px 2px 2px rgba(0, 0, 0, 0.5);
     color: #e2bf71;
 
     white-space: nowrap;
@@ -2425,11 +2419,6 @@ body {
         left: 8dvw;
     }
 
-    #scoreDiv {
-        height: 60dvh;
-        width: 90dvw;
-    }
-
     #score {
         font-size: 18dvw;
         margin-top: 14dvh;
@@ -2438,7 +2427,7 @@ body {
 
     #scoreText1 {
         font-size: 9dvw;
-        width: 65dvw;
+        width: 90%;
     }
 
     #perfect {
@@ -2453,8 +2442,7 @@ body {
         font-size: 4dvw;
     }
 
-    #share,
-    #shareMulti {
+    #share {
         font-size: 3.2dvw;
         width: 20%;
         right: 10px;
@@ -2462,8 +2450,7 @@ body {
         padding-bottom: 0;
     }
 
-    #share:hover,
-    #shareMulti:hover {
+    #share:hover {
         font-size: 3dvw;
     }
 
@@ -2852,17 +2839,17 @@ body {
         font-size: 3.5vw;
     }
 
-    #scoreDivMulti {
+    #scoreDiv {
         width: 90%;
     }
 
-    #scoreMultiText1 {
+    #scoreText1 {
         margin-top: 20px;
         font-size: 6dvw;
         padding-bottom: 20px;
     }
 
-    #againMulti {
+    #again {
         font-size: 1.8dvh;
     }
 
@@ -2873,7 +2860,7 @@ body {
         top: 10dvh;
     }
 
-    #scoreDivMultiBubble {
+    #scoreDivBubble {
         margin-left: 0;
         right: 0;
         font-size: 10px;

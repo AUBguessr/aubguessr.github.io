@@ -716,7 +716,7 @@ function submitFunc() {
         picture.style.display = "revert";
         document.getElementById("text1").style.display = "revert";
 
-        if ((mode && (count == 0)) && !host) {
+        if ((mode && (count == 0)) && !host && !dailyMode) {
             generateCode();
 
             turn = arr[round]
@@ -742,6 +742,8 @@ function submitFunc() {
                 } else turn = arr[count];
             }
         }
+
+        console.log("DAILY MODE:", dailyMode);
 
         document.getElementById("leader").style.display = "none";
         document.getElementById("diff").style.display = "none";
@@ -860,8 +862,8 @@ async function finishRound() {
     document.getElementById("perfect1").textContent = perfectScore + "/" + round;
     document.getElementById("hint1").textContent = hints + "/" + round;
 
-    document.getElementById("scoreDivMultiBubble").style.display = "flex";
-    document.getElementById("scoreDivMulti").style.display = "flex";
+    document.getElementById("scoreDivBubble").style.display = "flex";
+    document.getElementById("scoreDiv").style.display = "flex";
 
     dim.style.display = "revert";
 
@@ -886,10 +888,6 @@ async function finishRound() {
             console.error('submit_game_result failed:', error);
         }
 
-        if (dailyMode) {
-            dailyMode = false;
-            dailyPlayed = 1;
-        }
         updateGamesDB = false; //for it to happen once
     }
 
@@ -966,8 +964,8 @@ function hideDivs() {
     document.getElementById("leaderDiv").style.display = "none";
     document.getElementById("deleteDiv").style.display = "none";
     document.getElementById("dailyDiv").style.display = "none";
-    document.getElementById("scoreDivMulti").style.display = "none";
-    document.getElementById("scoreDivMultiBubble").style.display = "none";
+    document.getElementById("scoreDiv").style.display = "none";
+    document.getElementById("scoreDivBubble").style.display = "none";
     document.getElementById("summaryDivCover").style.display = "none";
     document.getElementById("questionDiv").style.display = "none";
     document.getElementById("avatarDiv").style.display = "none";
@@ -993,10 +991,6 @@ document.getElementById("profile").addEventListener('click', function () {
 });
 
 document.getElementById("again").addEventListener('click', function () {
-    again();
-});
-
-document.getElementById("againMulti").addEventListener('click', function () {
     again();
 });
 
@@ -1031,7 +1025,6 @@ function again() {
 
     dim.style.display = "none";
     document.getElementById("scoreDiv").style.display = "none";
-    document.getElementById("scoreDivMulti").style.display = "none";
     document.getElementById("imageCount").textContent = (count + 1) + "/" + round;
     document.getElementById("imageCount").style.display = "none";
 
@@ -1573,10 +1566,6 @@ document.getElementById("share").addEventListener("click", function () {
     captureCanvas();
 });
 
-document.getElementById("shareMulti").addEventListener("click", function () {
-    captureCanvas();
-});
-
 document.getElementById("leader").addEventListener("click", function () {
     document.getElementById("leaderDiv").style.display = "flex";
     dim.style.display = "revert";
@@ -1625,6 +1614,9 @@ document.getElementById("dailyStart").addEventListener("click", async function (
     document.getElementById("dailyDiv").style.display = "none";
     dim.style.display = "none";
 
+    dailyMode = 1;
+    dailyPlayed = 1;
+
     const { error } = await db.rpc('reset_daily_score', { p_student_id: id });
     if (error) {
         // already played today (or another error) — bail out
@@ -1634,8 +1626,6 @@ document.getElementById("dailyStart").addEventListener("click", async function (
     }
 
     document.getElementById("text1").textContent = "Daily Game";
-    dailyMode = 1;
-    dailyPlayed = 1;
 
     dailyGame();
 });
