@@ -1203,7 +1203,7 @@ async function submitInfo() {
     document.getElementById("avatar").src = `avatars/${row.avatar}.svg`;
     avatar = row.avatar;
 
-    if((!avatars_unlocked && games_played >= 20 && avg_score >= 75)){
+    if((!avatars_unlocked && games_played >= 15 && avg_score >= 75)){
         await db.rpc('set_avatars_unlocked', { p_student_id: id });
         avatars_unlocked = 1;
     }
@@ -1857,7 +1857,7 @@ async function selectAvatar(avatarId) {
 
     if(avatarId>4 && !avatars_unlocked){
         if(isMobile){
-        popUpMessage2.innerHTML = "Achieve an average score of 75% <br> with 20 games played to unlock all avatars.";        }
+        popUpMessage2.innerHTML = "Achieve an average score of 75% <br> with 15 games played to unlock all avatars.";        }
         showPopUp2();
         return;
     } 
