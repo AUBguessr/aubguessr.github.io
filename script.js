@@ -1667,6 +1667,8 @@ document.getElementById("info").addEventListener("click", function () {
     document.getElementById("logo").style.display = "none";
     document.getElementById("back").style.display = "none";
     document.getElementById("info").style.display = "none";
+    document.getElementById("edit").style.display = "none";
+    document.getElementById("trash").style.display = "none";
     document.getElementById("stats").style.color = "#443a22";
     document.getElementById("avg").style.color = "#e4c473";
     document.getElementById("avg").style.boxShadow = "0 0 0 9999px rgba(0, 0, 0, 0.7)";
@@ -1681,6 +1683,8 @@ document.getElementById("gotit").addEventListener("click", function () {
     document.getElementById("info").style.display = "flex";
     document.getElementById("stats").style.color = "#e4c473";
     document.getElementById("avg").style.boxShadow = "none";
+    document.getElementById("edit").style.display = "revert";
+    document.getElementById("trash").style.display = "revert";
 });
 
 socket.on("roomFull", () => {
