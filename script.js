@@ -904,7 +904,7 @@ function showPlayer2() {
     document.getElementById("perfect2").textContent = opponentPerfectScores + "/" + round;
     document.getElementById("hint2").textContent = opponentHints + "/" + round;
 
-    document.getElementById("name2").style.display = "flex";
+    document.getElementById("name2").style.display = "inline";
     document.getElementById("score2").style.display = "revert";
     document.getElementById("perfectLogo2").style.display = "flex";
     document.getElementById("perfect2").style.display = "flex";
