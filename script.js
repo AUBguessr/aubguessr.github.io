@@ -11,6 +11,8 @@ socket.on("roomJoined", (data) => {
     console.log("Joined multiplayer room:", data);
 });
 
+let host = false;
+
 socket.on("opponentJoined", (name) => {
     const startGame = document.getElementById("startGame");
     if (!host) {
@@ -414,7 +416,7 @@ let twoSecDone = 0;
 
 let oceanClick = false;
 let hintUsed = 0;
-let hintsArr = new Array(5).fill(0);;
+let hintsArr = new Array(5).fill(0);
 let allTimeArr = new Array(5);
 let dailyArr = new Array(5);
 let dailyRound = new Array(5);
@@ -432,8 +434,8 @@ let opponentHints = null;
 let opponentScoreArr = new Array(5);
 let opponentHintsArr = new Array(5).fill(0);
 let opponentAvatar = 0;
+let shownFinished = false;
 
-let host = false;
 let expired = 0;
 
 const glow = document.getElementById('cursor-glow');
@@ -716,10 +718,9 @@ function submitFunc() {
         picture.style.display = "revert";
         document.getElementById("text1").style.display = "revert";
 
-        if ((mode && (count == 0)) && !host && !dailyMode) {
-            generateCode();
-
-            turn = arr[round]
+        if (!dailyMode && !host && (mode && (count == 0))) {
+            
+            turn = arr[round];
 
             socket.emit("joinRoom", {
                 roomCode: challengeCode,
@@ -1464,6 +1465,16 @@ if (validCode) {
 }
 
 if (validCode) {
+    for (let i = 0; i < 5; i++) {
+        let num = Number(codeArr[i]);
+        if (codeArr[i] === "" || !Number.isInteger(num) || num < 0 || num > coords.length - 1) {
+            validCode = false;
+            break;
+        }
+    }
+}
+
+if (validCode) {
 
     hideSignin();
     hideAccount();
@@ -1474,14 +1485,6 @@ if (validCode) {
     document.getElementById("cursor-glow").style.display = "none";
     document.getElementById("text1").textContent = "MULTIPLAYER";
     invited = 1;
-
-    let params = new URLSearchParams(window.location.search);
-
-    for (let i = 0; i < codeArr.length; i++) {
-        let num = Number(codeArr[i]);
-        if (codeArr[i] === "" || !Number.isInteger(num) || num < 0 || num > coords.length - 1) {
-        }
-    }
 
     for (let i = 0; i < round; i++) {
         arr[i] = Number(codeArr[i]);
@@ -1516,8 +1519,13 @@ if (validCode) {
         twoSec = 1;
     }
 } else {
-    document.getElementById("inviteText1").textContent = "Invalid Link";
-    document.getElementById("startGame").style.display = "none";
+    if(tempChallengeCode)  {
+        dim.style.display = "revert";
+        document.getElementById("side1").style.display = "flex";
+        document.getElementById("inviteDiv").style.display = "flex";
+        document.getElementById("inviteText1").textContent = "Invalid Link";
+        document.getElementById("startGame").style.display = "none";
+    }
 }
 
 function assembleCanvas() {
@@ -1760,10 +1768,8 @@ function hostJoinedPopUp() {
     showPopUp();
 }
 
-let shownFinished = false;
-
 function opponentFinishedPopUp() {
-    if (shownFinished) return;
+    if (shownFinished || play) return;
 
     popUpMessage.textContent = opponentName + " has finished the game!";
     if (isMobile) popUpMessage.style.top = "34dvh";
@@ -1857,4 +1863,3 @@ async function selectAvatar(avatarId) {
     
     await db.rpc('set_avatar', { p_student_id: id, p_avatar: avatarId });
 }
-
