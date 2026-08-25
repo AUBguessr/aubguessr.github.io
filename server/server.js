@@ -21,10 +21,6 @@ app.get("/", (req, res) => {
 io.on("connection", (socket) => {
     console.log("Player connected:", socket.id);
 
-    socket.on("testMessage", (message) => {
-        console.log("Received:", message);
-    });
-
     socket.on("joinRoom", (data) => {
         const room = io.sockets.adapter.rooms.get(data.roomCode);
 
