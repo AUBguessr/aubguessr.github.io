@@ -486,7 +486,7 @@ async function prepLeaderArrs() {
             dailyArr[i] = `<img src="avatars/${byDaily[i].avatar}.svg" class="leaderAvatar"> ${i + 1}. ${(byDaily[i].username).padEnd(usernameMaxLength + 2)} | Score: ${(byDaily[i].daily_score).toFixed(2)}% | Games: ${byDaily[i].games_played}`;
         } else {
             dailyArr[i] = `<img src="avatars/-1.svg" class="leaderAvatar"> ${i + 1}. ~`;
-            
+
         }
     }
 
@@ -719,7 +719,7 @@ function submitFunc() {
         document.getElementById("text1").style.display = "revert";
 
         if (!dailyMode && !host && (mode && (count == 0))) {
-            
+
             turn = arr[round];
 
             socket.emit("joinRoom", {
@@ -735,21 +735,22 @@ function submitFunc() {
             document.getElementById("side1").style.backgroundImage = "";
             count++;
 
-            if (mode) {
-                turn = arr[round + count];
-            } else {
-                if (dailyMode) {
-                    turn = dailyRound[count];
-                } else turn = arr[count];
-            }
+            if (mode && !dailyMode) turn = arr[round + count];
+
+            if (dailyMode) turn = dailyRound[count];
+
+            if (!mode && !dailyMode) turn = arr[count];
         }
 
-        document.getElementById("leader").style.display = "none";
-        document.getElementById("diff").style.display = "none";
-        document.getElementById("dailySVG").style.display = "none";
-        document.getElementById("questionSVG").style.display = "none";
-        document.getElementById("hint").style.display = "revert";
-        document.getElementById("imageCount").style.display = "revert";
+        if (play) {
+            console.log("running once");
+            document.getElementById("leader").style.display = "none";
+            document.getElementById("diff").style.display = "none";
+            document.getElementById("dailySVG").style.display = "none";
+            document.getElementById("questionSVG").style.display = "none";
+            document.getElementById("hint").style.display = "revert";
+            document.getElementById("imageCount").style.display = "revert";
+        }
         picture.src = `images/image${turn}.jpeg`;
         document.getElementById("picFull").src = `images/image${turn}.jpeg`;
         if (!dailyMode) applyDifficulty();
@@ -866,7 +867,7 @@ async function finishRound() {
 
     dim.style.display = "revert";
 
-    if (updateGamesDB && wasMulti && signedIn){
+    if (updateGamesDB && wasMulti && signedIn) {
         await db.rpc('increment_multi_games_played', { p_student_id: id });
         updateGamesDB = false; //for it to happen once
     }
@@ -1191,11 +1192,11 @@ async function submitInfo() {
     games_played = row.games_played;
     avg_score = row.avg_score;
     dailyPlayed = row.daily_score !== null ? 1 : 0;
-    avatars_unlocked = row.avatars_unlocked;    
+    avatars_unlocked = row.avatars_unlocked;
     document.getElementById("avatar").src = `avatars/${row.avatar}.svg`;
     avatar = row.avatar;
 
-    if((!avatars_unlocked && games_played >= 15 && avg_score >= 75)){
+    if ((!avatars_unlocked && games_played >= 15 && avg_score >= 75)) {
         await db.rpc('set_avatars_unlocked', { p_student_id: id });
         avatars_unlocked = 1;
     }
@@ -1519,7 +1520,7 @@ if (validCode) {
         twoSec = 1;
     }
 } else {
-    if(tempChallengeCode)  {
+    if (tempChallengeCode) {
         dim.style.display = "revert";
         document.getElementById("side1").style.display = "flex";
         document.getElementById("inviteDiv").style.display = "flex";
@@ -1724,7 +1725,7 @@ document.getElementById("player1").addEventListener("click", function () {
             document.getElementById(`summaryHint${x + 1}`).style.display = "revert";
         } else document.getElementById(`summaryHint${x + 1}`).style.display = "none";
     }
-    
+
     document.getElementById("summaryAvatar").src = `avatars/${avatar}.svg`;
     document.getElementById("summaryDivCover").style.display = "flex";
 });
@@ -1741,7 +1742,7 @@ document.getElementById("player2").addEventListener("click", function () {
             document.getElementById(`summaryHint${x + 1}`).style.display = "revert";
         } else document.getElementById(`summaryHint${x + 1}`).style.display = "none";
     }
-    
+
     document.getElementById("summaryAvatar").src = `avatars/${opponentAvatar}.svg`;
     document.getElementById("summaryDivCover").style.display = "flex";
 });
@@ -1818,7 +1819,7 @@ document.getElementById("edit").addEventListener("click", function () {
 });
 
 document.getElementById("trash").addEventListener("click", async function () {
-    if(!avatar) return;
+    if (!avatar) return;
 
     document.getElementById("avatar").src = `avatars/0.svg`;
     await db.rpc('set_avatar', { p_student_id: id, p_avatar: 0 });
@@ -1837,29 +1838,30 @@ function buildAvatarGrid() {
         img.src = `avatars/${i}.svg`;
         cell.appendChild(img);
 
-        if(i>4 && !avatars_unlocked){ 
+        if (i > 4 && !avatars_unlocked) {
             cell.style.opacity = 0.5;
         }
 
         cell.addEventListener("click", () => selectAvatar(i));
-        
+
         grid.appendChild(cell);
     }
 }
 
 async function selectAvatar(avatarId) {
 
-    if(avatarId>4 && !avatars_unlocked){
-        if(isMobile){
-        popUpMessage2.innerHTML = "Achieve an average score of 75% <br> with 15 games played to unlock all avatars.";        }
+    if (avatarId > 4 && !avatars_unlocked) {
+        if (isMobile) {
+            popUpMessage2.innerHTML = "Achieve an average score of 75% <br> with 15 games played to unlock all avatars.";
+        }
         showPopUp2();
         return;
-    } 
+    }
 
     avatar = avatarId;
     document.getElementById("avatar").src = `avatars/${avatarId}.svg`;
     hideDivs();
     buildAvatarGrid();
-    
+
     await db.rpc('set_avatar', { p_student_id: id, p_avatar: avatarId });
 }
