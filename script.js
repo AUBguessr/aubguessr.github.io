@@ -800,11 +800,12 @@ function submitFunc() {
     total += parseFloat(formatted);
     if (parseFloat(formatted) == 100) perfectScore++;
 
-    L.circleMarker([coords[turn][0], coords[turn][1]], {
-        color: 'rgb(132, 1, 50)',          // Stroke color
-        fillColor: '#e4c473',     // Fill color
-        fillOpacity: 1,
-        radius: 8
+    L.marker([coords[turn][0], coords[turn][1]], {
+        icon: L.icon({
+            iconUrl: 'assets/marker2.png',
+            iconSize: [30, 40],
+            iconAnchor: [15, 33]
+        })
     }).addTo(markerGroup);
 
     let point1 = [coords[turn][0], coords[turn][1]];
