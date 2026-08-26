@@ -752,6 +752,12 @@ function submitFunc() {
             document.getElementById("imageCount").style.display = "revert";
         }
         picture.src = `images/image${turn}.jpeg`;
+        // preload next
+        if (count < 5) {
+            const preload = new Image();
+            preload.src = `images/image${arr[count + 1]}.jpeg`;
+        }
+        
         document.getElementById("picFull").src = `images/image${turn}.jpeg`;
         if (!dailyMode) applyDifficulty();
         document.getElementById("result").style.display = "none";
