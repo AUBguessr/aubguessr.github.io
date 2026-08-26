@@ -34,6 +34,10 @@ socket.on("opponentJoined", (name) => {
     document.getElementById("player2").style.display = "flex";
 });
 
+
+const preload = new Image();
+preload.src = `avatars/-1.svg`; //preloads empty avatar on daily leader
+
 let games_played = 0;
 
 let id;
@@ -757,7 +761,6 @@ function submitFunc() {
         picture.src = `images/image${turn}.jpeg`;
         // preload next
         if (count < 5) {
-            const preload = new Image();
             preload.src = `images/image${arr[count + 1]}.jpeg`;
         }
         
