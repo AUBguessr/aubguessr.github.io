@@ -629,13 +629,15 @@ map.on('click', function (a) {
     document.getElementById("side1").style.backgroundImage = "";
 });
 
+let submit = document.getElementById("submit");
+
 map.on('click', function (e) {
 
     if (play) return;
 
     if (next) return;
 
-    document.getElementById("submit").classList.add("active");
+    submit.classList.add("active");
 
     markerGroup.clearLayers();
     L.marker(e.latlng, { icon: guessIcon }).addTo(markerGroup);
@@ -650,7 +652,9 @@ map.on('click', function (e) {
 
     let ACC = 100 - (((absLat / maxMarginLat) + (absLng / maxMarginLng)) / 2 * 100);
 
-    ACC = ACC - 7 * (100 - ACC);
+    if(hintUsed){
+        ACC = ACC - 14 * (100 - ACC);
+    }else ACC = ACC - 7 * (100 - ACC);
 
     if (ACC < 0) ACC = 0;
     if (ACC > 95.5) {
@@ -663,7 +667,6 @@ map.on('click', function (e) {
     guessed = true;
 });
 
-let submit = document.getElementById("submit");
 
 submit.addEventListener('click', function () {
     submitFunc();
@@ -680,8 +683,8 @@ function submitFunc() {
         document.getElementById("side1").style.height = "calc(30dvh - 2px)";
         document.getElementById("map").style.height = "70dvh";
         setTimeout(() => map.invalidateSize(), 100);
-        document.getElementById("submit").style.top = "60dvh";
-        document.getElementById("submit").style.marginLeft = "10dvh";
+        submit.style.top = "60dvh";
+        submit.style.marginLeft = "10dvh";
 
         document.getElementById("map").style.display = "revert";
         document.getElementById("side1").style.borderWidth = "3px";
@@ -761,9 +764,9 @@ function submitFunc() {
         document.getElementById("picFull").src = `images/image${turn}.jpeg`;
         if (!dailyMode) applyDifficulty();
         document.getElementById("result").style.display = "none";
-        document.getElementById("submit").classList.remove("active");
+        submit.classList.remove("active");
         if (!isMobile) picture.style.width = "30vw";
-        document.getElementById("submit").textContent = "Submit";
+        submit.textContent = "Submit";
         hintGroup.clearLayers();
         document.getElementById("imageCount").textContent = (count + 1) + "/" + round;
         document.getElementById("mode").style.display = "none";
@@ -836,7 +839,7 @@ function submitFunc() {
     document.getElementById("full").style.opacity = "1";    //for twoSec difficulty
 
     if (count == round - 1) {
-        document.getElementById("submit").textContent = "See Results ➜";
+        submit.textContent = "See Results ➜";
         done = true;
         return;
     }
@@ -1036,12 +1039,12 @@ function again() {
     document.getElementById("imageCount").style.display = "none";
 
     if (wasMulti) {
-        document.getElementById("submit").textContent = "START GAME";
+        submit.textContent = "START GAME";
     } else {
-        document.getElementById("submit").textContent = "PLAY";
+        submit.textContent = "PLAY";
     }
-    document.getElementById("submit").style.top = "";
-    document.getElementById("submit").style.marginLeft = "";
+    submit.style.top = "";
+    submit.style.marginLeft = "";
     document.getElementById("picWrap").style.display = "none";
     document.getElementById("result").style.display = "none";
 
@@ -1270,7 +1273,7 @@ multi.addEventListener("click", function () {
     document.getElementById("press").style.display = "none";
     document.getElementById("codeDiv").style.display = "flex";
 
-    document.getElementById("submit").textContent = "START GAME";
+    submit.textContent = "START GAME";
     document.getElementById("text1").textContent = "Multiplayer";
     wasMulti = 1;
     mode = 1;
@@ -1299,7 +1302,7 @@ single.addEventListener("click", function () {
     document.getElementById("press").style.display = "revert";
     document.getElementById("codeDiv").style.display = "none";
 
-    document.getElementById("submit").textContent = "PLAY";
+    submit.textContent = "PLAY";
     document.getElementById("text1").textContent = "Singleplayer";
     wasMulti = 0;
     mode = 0;
