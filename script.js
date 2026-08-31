@@ -425,6 +425,7 @@ let allTimeArr = new Array(5);
 let dailyArr = new Array(5);
 let dailyRound = new Array(5);
 let leaderLoaded = 0;
+let leaderMode = 0;
 
 let dailyPlayed = 0;
 let dailyMode = 0;
@@ -450,7 +451,7 @@ document.addEventListener('mousemove', (e) => {
 
 async function initPrep() {
     await prepLeaderArrs();
-    displayLeader(0);
+    displayLeader(leaderMode);
 }
 initPrep();
 
@@ -1083,6 +1084,7 @@ function again() {
     invited = 0;
 
     generateCode();
+    initPrep();
 }
 
 document.getElementById("back").addEventListener("click", function () {
@@ -1315,6 +1317,8 @@ single.addEventListener("click", function () {
 allTime.addEventListener("click", function () {
     if (leaderLoaded) displayLeader(0);
 
+    leaderMode = 0;
+
     allTime.style.backgroundImage = "-webkit-linear-gradient(left, #e2bf71, #af4261)";
     daily.style.backgroundImage = "none";
 
@@ -1334,6 +1338,8 @@ allTime.addEventListener("click", function () {
 // Daily leaderboard button click handler
 daily.addEventListener("click", function () {
     if (leaderLoaded) displayLeader(1);
+
+    leaderMode = 1;
 
     daily.style.backgroundImage = "-webkit-linear-gradient(left, #e2bf71, #af4261)";
     allTime.style.backgroundImage = "none";
