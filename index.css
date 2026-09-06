@@ -2538,6 +2538,7 @@ body {
         top: 30dvh;
         margin-left: 2dvw;
         width: 92%;
+        border-width: 1px;
     }
 
     #played,
