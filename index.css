@@ -436,7 +436,7 @@ body {
     text-align: center;
 }
 
-#againShareDiv{
+#againShareDiv {
     position: relative;
     width: 100%;
     height: 10dvh;
@@ -594,7 +594,7 @@ body {
     padding-top: 5px;
 }
 
-#edit, 
+#edit,
 #trash {
     display: none;
     height: 30px;
@@ -605,7 +605,7 @@ body {
     padding: 4px;
 }
 
-#trash{
+#trash {
     padding: 3px;
     margin-top: 0;
     margin-left: 0;
@@ -880,7 +880,7 @@ body {
 .avatarCell {
     height: 8dvw;
     width: 8dvw;
-    
+
     border-radius: 20px;
 
     box-shadow: -2px 2px 5px 5px rgba(0, 0, 0, 0.3);
@@ -913,7 +913,7 @@ body {
     background: #e2c072;
     border-radius: 4px;
     cursor: grabbing;
-} 
+}
 
 #overlay {
     animation: pulse 3s ease-in-out infinite, drift 8s linear infinite;
@@ -1750,7 +1750,7 @@ body {
     filter: drop-shadow(2px 2px 0.3dvw rgba(0, 0, 0, 0.5));
 }
 
-.leaderAvatar{
+.leaderAvatar {
     background-color: #e9c07f;
     height: 8dvh;
     border-radius: 10px 0 0 10px;
@@ -1758,23 +1758,52 @@ body {
     left: 3dvw;
 }
 
+#leaderDivContainer {
+    background-color: transparent;
+    width: 98%;
+    height: 68%;
+    overflow-y: auto;
+    mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+}
+
+#leaderDivContainer::-webkit-scrollbar {
+    width: 20px;
+}
+
+#leaderDivContainer::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#leaderDivContainer::-webkit-scrollbar-thumb {
+    background: #e2c072;
+    border-radius: 8px;
+    cursor: grabbing;
+}
+
 #leader1,
 #leader2,
 #leader3,
 #leader4,
-#leader5 {
+#leader5,
+#leader6,
+#leader7,
+#leader8,
+#leader9,
+#leader10 {
     white-space: pre;
 
     background-color: #960035;
     color: #e2c072;
     font-family: monospace;
     font-weight: bold;
-    margin-top: 2dvh;
+    margin-top: 1dvh;
+    margin-bottom: 2dvh;
     margin-left: 3.2dvw;
     padding-left: 0dvw;
     font-size: calc(1.4dvw + 1.2dvh);
     height: 8dvh;
-    width: 90%;
+    width: 92%;
     border-radius: 10px;
 
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
@@ -2060,7 +2089,7 @@ body {
     background-image: -webkit-linear-gradient(left, #e2bf71, #af4261);
 }
 
-#summaryAvatar{
+#summaryAvatar {
     height: 120px;
     position: absolute;
     align-self: center;
@@ -2201,7 +2230,7 @@ body {
     top: 4dvh;
 }
 
-#popUpMessage2{
+#popUpMessage2 {
     font-size: 1.8dvh;
 }
 
@@ -2215,7 +2244,7 @@ body {
     animation: fadeMessage2 6s ease-in-out;
 }
 
-#less{
+#less {
     text-shadow: 0px 0px 2px rgba(255, 255, 255, 0.3);
 }
 
@@ -2514,7 +2543,7 @@ body {
         margin-left: 5dvw;
     }
 
-    #avatar{
+    #avatar {
         border-radius: 12px;
     }
 
@@ -2720,7 +2749,7 @@ body {
         height: 160px;
     }
 
-    #useHint {  
+    #useHint {
         border-width: 1px;
     }
 
@@ -2782,7 +2811,7 @@ body {
         bottom: 0;
     }
 
-    .leaderAvatar{
+    .leaderAvatar {
         background-color: #e4b77d;
         height: 6dvh;
         border-radius: 9px 0 0 9px;
@@ -2791,11 +2820,28 @@ body {
         margin-right: 6px;
     }
 
+    #leaderDivContainer::-webkit-scrollbar {
+        display: none;
+    }
+
+    #leaderDivContainer::-webkit-scrollbar-track {
+        display: none;
+    }
+
+    #leaderDivContainer::-webkit-scrollbar-thumb {
+        display: none;
+    }
+
     #leader1,
     #leader2,
     #leader3,
     #leader4,
-    #leader5 {
+    #leader5,
+    #leader6,
+    #leader7,
+    #leader8,
+    #leader9,
+    #leader10 {
         margin-top: 2dvh;
         margin-left: 4dvw;
         font-size: 2.65dvw;
@@ -2967,7 +3013,7 @@ body {
         margin-left: 14%;
     }
 
-    #summaryAvatar{
+    #summaryAvatar {
         height: 80px;
         top: -66px;
         border: 4px solid #960035;
@@ -3047,19 +3093,19 @@ body {
     }
 
     #edit,
-    #trash{
+    #trash {
         margin-left: 12px;
         margin-top: 4px;
         height: 26px;
         border-radius: 10px;
     }
 
-    #trash{
+    #trash {
         margin-left: 0;
     }
 
     #edit:hover,
-    #trash:hover{
+    #trash:hover {
         background-color: transparent;
     }
 
@@ -3083,7 +3129,7 @@ body {
         box-shadow: -1px 1px 2px 2px rgba(0, 0, 0, 0.4);
     }
 
-    .avatarCell:hover{
+    .avatarCell:hover {
         box-shadow: -1px 1px 2px 2px rgba(0, 0, 0, 0.4);
     }
 

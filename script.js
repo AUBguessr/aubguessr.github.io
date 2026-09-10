@@ -421,8 +421,8 @@ let twoSecDone = 0;
 let oceanClick = false;
 let hintUsed = 0;
 let hintsArr = new Array(5).fill(0);
-let allTimeArr = new Array(5);
-let dailyArr = new Array(5);
+let allTimeArr = new Array(10);
+let dailyArr = new Array(10);
 let dailyRound = new Array(5);
 let leaderLoaded = 0;
 let leaderMode = 0;
@@ -448,6 +448,8 @@ document.addEventListener('mousemove', (e) => {
     glow.style.left = e.clientX + 'px';
     glow.style.top = e.clientY + 'px';
 });
+
+const leaderScroll = document.getElementById("leaderDivContainer");
 
 async function initPrep() {
     await prepLeaderArrs();
@@ -480,7 +482,7 @@ async function prepLeaderArrs() {
         .filter(u => u.daily_score !== null)
         .sort((a, b) => b.daily_score - a.daily_score);
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 10; i++) {
         if (byAvg[i]) {
             allTimeArr[i] = `<img src="avatars/${byAvg[i].avatar}.svg" class="leaderAvatar"> ${i + 1}. ${(byAvg[i].username).padEnd(usernameMaxLength + 2)} | AVG: ${(byAvg[i].avg_score).toFixed(2)}% | Games: ${byAvg[i].games_played}`;
         } else {
@@ -502,12 +504,13 @@ async function prepLeaderArrs() {
 }
 
 function displayLeader(leaderMode) {
+    leaderScroll.scrollTop = 0;
     if (!leaderMode) {
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 10; i++) {
             document.getElementById(`leader${i + 1}`).innerHTML = allTimeArr[i];
         }
     } else {
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 10; i++) {
             document.getElementById(`leader${i + 1}`).innerHTML = dailyArr[i];
         }
     }
@@ -1594,6 +1597,7 @@ document.getElementById("share").addEventListener("click", function () {
 
 document.getElementById("leader").addEventListener("click", function () {
     document.getElementById("leaderDiv").style.display = "flex";
+    leaderScroll.scrollTop = 0;
     dim.style.display = "revert";
 });
 
@@ -1884,3 +1888,15 @@ async function selectAvatar(avatarId) {
 
     await db.rpc('set_avatar', { p_student_id: id, p_avatar: avatarId });
 }
+
+
+leaderScroll.addEventListener("scroll", function () {
+    const atBottom = leaderScroll.scrollHeight - leaderScroll.scrollTop <= leaderScroll.clientHeight + 5;
+    
+    leaderScroll.style.maskImage = atBottom 
+        ? "none" 
+        : "linear-gradient(to bottom, black 90%, transparent 100%)";
+    leaderScroll.style.webkitMaskImage = atBottom 
+        ? "none" 
+        : "linear-gradient(to bottom, black 90%, transparent 100%)";
+});
