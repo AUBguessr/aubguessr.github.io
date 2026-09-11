@@ -874,7 +874,7 @@ body {
     height: 50dvh;
     width: 40dvw;
     padding: 14px;
-    padding-right: 0px;
+    padding-right: -1px;
 }
 
 .avatarCell {
@@ -886,8 +886,8 @@ body {
     box-shadow: -2px 2px 5px 5px rgba(0, 0, 0, 0.3);
     -webkit-user-drag: none;
     background-color: #e2c072;
-    padding-top: 5px;
     cursor: pointer;
+    overflow: hidden;
 }
 
 .avatarCell:hover {
@@ -898,11 +898,11 @@ body {
     width: 100%;
     height: 100%;
     border-radius: 20px;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 #avatarDiv::-webkit-scrollbar {
-    width: 10px;
+    width: 16px;
 }
 
 #avatarDiv::-webkit-scrollbar-track {
@@ -1724,6 +1724,7 @@ body {
     border-color: #990d3e;
     height: 100%;
     width: 65%;
+    border-style: none none none solid;
 }
 
 #leaderText1 {
@@ -1731,11 +1732,12 @@ body {
     text-align: center;
     color: #a3063d;
     font-family: system-ui, sans-serif;
-    font-weight: 600;
+    font-weight: bold;
     margin-top: 10px;
     margin-bottom: 4dvh;
     font-size: 3dvw;
-    width: 45%;
+    width: 50%;
+    letter-spacing: 4px;
 
 
     text-transform: uppercase;
@@ -1765,6 +1767,7 @@ body {
     overflow-y: auto;
     mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
     -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+    scroll-behavior: smooth;
 }
 
 #leaderDivContainer::-webkit-scrollbar {
@@ -1776,8 +1779,9 @@ body {
 }
 
 #leaderDivContainer::-webkit-scrollbar-thumb {
+    box-shadow: -12px 0 8px -2px rgba(0, 0, 0, 0.2);
     background: #e2c072;
-    border-radius: 8px;
+    border-radius: 4px;
     cursor: grabbing;
 }
 
@@ -1801,7 +1805,7 @@ body {
     margin-bottom: 2dvh;
     margin-left: 3.2dvw;
     padding-left: 0dvw;
-    font-size: calc(1.4dvw + 1.2dvh);
+    font-size: 2dvw;
     height: 8dvh;
     width: 92%;
     border-radius: 10px;
@@ -2641,6 +2645,10 @@ body {
         height: 12dvw;
     }
 
+    #leaderSelect {
+        bottom: 4dvh;
+    }
+
     #modeSelect {
         bottom: 18dvh;
     }
@@ -2806,6 +2814,7 @@ body {
     #leaderDiv {
         right: auto;
         border-radius: 30px 30px 0px 0px;
+        border-style: solid none none none;
         width: 100%;
         height: 70%;
         bottom: 0;
@@ -2820,15 +2829,11 @@ body {
         margin-right: 6px;
     }
 
+    #leaderDivContainer {
+        align-self: center;
+    }
+
     #leaderDivContainer::-webkit-scrollbar {
-        display: none;
-    }
-
-    #leaderDivContainer::-webkit-scrollbar-track {
-        display: none;
-    }
-
-    #leaderDivContainer::-webkit-scrollbar-thumb {
         display: none;
     }
 
@@ -2855,8 +2860,10 @@ body {
     }
 
     #leaderText1 {
-        font-size: 6dvw;
+        font-size: 7dvw;
         margin-bottom: 10px;
+        width: 70%;
+        letter-spacing: 2px;
     }
 
     #delete,
@@ -3113,17 +3120,17 @@ body {
         display: none;
         margin-top: 36dvh;
         grid-template-columns: repeat(4, 1fr);
-        gap: 4px;
+        gap: 8px;
         overflow-y: auto;
         overflow-x: hidden;
         height: 30dvh;
         width: 100dvw;
         padding: 2dvw;
-        padding-right: 6px;
+        padding-right: 0;
     }
 
     .avatarCell {
-        height: 21dvw;
+        height: 20dvw;
         width: 20dvw;
         border-radius: 10px;
         box-shadow: -1px 1px 2px 2px rgba(0, 0, 0, 0.4);
@@ -3135,5 +3142,9 @@ body {
 
     .avatarCell img {
         border-radius: 10px;
+    }
+
+    #avatarDiv::-webkit-scrollbar {
+        display: none;
     }
 }
