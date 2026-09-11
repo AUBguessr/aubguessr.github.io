@@ -2703,6 +2703,7 @@ body {
         margin-top: 14dvh;
         width: 45%;
         font-size: 3.5dvw;
+        border-radius: 1px;
     }
 
     #startGame:hover {
