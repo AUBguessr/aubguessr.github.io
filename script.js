@@ -1186,9 +1186,12 @@ async function submitInfo() {
     id = value;
     user_name = nameValue;
 
+    const deviceId = getDeviceId();
+    console.log("deviceId:", deviceId);
     const { data, error } = await db.rpc('get_or_create_user', {
         p_student_id: id,
-        p_username: user_name
+        p_username: user_name,
+        p_device_id: deviceId
     });
 
     if (error) {
@@ -1910,3 +1913,20 @@ leaderScroll.addEventListener("scroll", function () {
         ? "none" 
         : "linear-gradient(to bottom, black 90%, transparent 100%)";
 });
+
+async function getDeviceId() {
+    const raw = [
+        navigator.userAgent,
+        navigator.language,
+        screen.width + 'x' + screen.height,
+        screen.colorDepth,
+        new Date().getTimezoneOffset(),
+        navigator.hardwareConcurrency,
+        navigator.platform
+    ].join('|');
+
+    const encoded = new TextEncoder().encode(raw);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', encoded);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
