@@ -1187,7 +1187,6 @@ async function submitInfo() {
     user_name = nameValue;
 
     const deviceId = getDeviceId();
-    console.log("deviceId:", deviceId);
     const { data, error } = await db.rpc('get_or_create_user', {
         p_student_id: id,
         p_username: user_name,
