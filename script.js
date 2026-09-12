@@ -754,7 +754,6 @@ function submitFunc() {
         }
 
         if (play) {
-            console.log("running once");
             document.getElementById("leader").style.display = "none";
             document.getElementById("diff").style.display = "none";
             document.getElementById("dailySVG").style.display = "none";
@@ -1088,6 +1087,7 @@ function again() {
 
     generateCode();
     initPrep();
+    if(!avatars_unlocked) rebuildAvatarGrid();
 }
 
 document.getElementById("back").addEventListener("click", function () {
@@ -1869,6 +1869,16 @@ function buildAvatarGrid() {
 
         grid.appendChild(cell);
     }
+}
+
+async function rebuildAvatarGrid() {
+    if(!avatars_unlocked && games_played >= 15 && avg_score >= 75) {
+        await db.rpc('set_avatars_unlocked', { p_student_id: id });
+        avatars_unlocked = 1;
+
+        buildAvatarGrid();
+    }
+    return;
 }
 
 async function selectAvatar(avatarId) {
