@@ -1618,7 +1618,16 @@ document.getElementById("confirm").addEventListener("click", function () {
 });
 
 async function deleteAccount() {
-    await db.rpc('delete_account', { p_student_id: id });
+    const { error } = await db.rpc('delete_account', { p_student_id: id });
+
+    if (error) {
+        if (error.message === 'too_soon') {
+            popUpMessage2.textContent = "You can only delete your account 24 hours after creation.";
+            showPopUp2();
+        }
+        return;
+    }
+
     localStorage.clear();
     window.location.href = window.location.origin + window.location.pathname;
 }
@@ -1889,6 +1898,8 @@ async function selectAvatar(avatarId) {
     if (avatarId > 4 && !avatars_unlocked) {
         if (isMobile) {
             popUpMessage2.innerHTML = "Achieve an average score of 75% <br> with 15 games played to unlock all avatars.";
+        }else{
+            popUpMessage2.innerHTML = "Achieve an average score of 75% with 15 games played to unlock all avatars.";
         }
         showPopUp2();
         return;
