@@ -791,7 +791,7 @@ body {
 
     border-style: solid;
     border-width: 2px;
-    border-color: #a00c40;
+    border-color: #950a3b;
 
     padding-left: 15px;
     padding-top: 10px;
@@ -2493,12 +2493,14 @@ body {
         margin-top: 28dvh;
         width: 280px;
         height: 320px;
+        border-width: 1px;
     }
 
     #signinBubble {
         left: 16dvw;
         font-size: 12px;
         top: -90px;
+        border-width: 1px;
     }
 
     #enter {
