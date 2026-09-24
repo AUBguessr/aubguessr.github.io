@@ -1787,16 +1787,7 @@ body {
     cursor: grabbing;
 }
 
-#leader1,
-#leader2,
-#leader3,
-#leader4,
-#leader5,
-#leader6,
-#leader7,
-#leader8,
-#leader9,
-#leader10 {
+.leaderSection {
     white-space: pre;
 
     background-color: #960035;

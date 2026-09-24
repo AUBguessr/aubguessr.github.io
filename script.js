@@ -421,8 +421,9 @@ let twoSecDone = 0;
 let oceanClick = false;
 let hintUsed = 0;
 let hintsArr = new Array(5).fill(0);
-let allTimeArr = new Array(10);
-let dailyArr = new Array(10);
+let leaderLength = 20;
+let allTimeArr = new Array(leaderLength);
+let dailyArr = new Array(leaderLength);
 let dailyRound = new Array(5);
 let leaderLoaded = 0;
 let leaderMode = 0;
@@ -450,6 +451,14 @@ document.addEventListener('mousemove', (e) => {
 });
 
 const leaderScroll = document.getElementById("leaderDivContainer");
+
+for (let i = 1; i <= leaderLength; i++) {
+    const p = document.createElement("p");
+    p.id = `leader${i}`;
+    p.className = "leaderSection";
+    p.textContent = "loading...";
+    leaderScroll.appendChild(p);
+}
 
 async function initPrep() {
     await prepLeaderArrs();
@@ -482,7 +491,7 @@ async function prepLeaderArrs() {
         .filter(u => u.daily_score !== null)
         .sort((a, b) => b.daily_score - a.daily_score);
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < leaderLength; i++) {
         if (byAvg[i]) {
             allTimeArr[i] = `<img src="avatars/${byAvg[i].avatar}.svg" class="leaderAvatar"> ${i + 1}. ${(byAvg[i].username).padEnd(usernameMaxLength + 2)} | AVG: ${(byAvg[i].avg_score).toFixed(2)}% | Games: ${byAvg[i].games_played}`;
         } else {
@@ -506,11 +515,11 @@ async function prepLeaderArrs() {
 function displayLeader(leaderMode) {
     leaderScroll.scrollTop = 0;
     if (!leaderMode) {
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < leaderLength; i++) {
             document.getElementById(`leader${i + 1}`).innerHTML = allTimeArr[i];
         }
     } else {
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < leaderLength; i++) {
             document.getElementById(`leader${i + 1}`).innerHTML = dailyArr[i];
         }
     }
