@@ -2830,16 +2830,7 @@ body {
         display: none;
     }
 
-    #leader1,
-    #leader2,
-    #leader3,
-    #leader4,
-    #leader5,
-    #leader6,
-    #leader7,
-    #leader8,
-    #leader9,
-    #leader10 {
+    .leaderSection {
         margin-top: 2dvh;
         margin-left: 4dvw;
         font-size: 2.65dvw;
